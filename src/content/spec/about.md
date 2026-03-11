@@ -1,4 +1,4 @@
-
+<!-- 
 This website is built with the **Astro** framework using the [Mizuki](https://github.com/matsuzaka-yuki/mizuki) theme.
 
 ::github{repo="matsuzaka-yuki/Mizuki"}
@@ -46,4 +46,6 @@ This website is built with the **Astro** framework using the [Mizuki](https://gi
 
 ---
 
-*Built with ❤️ using Astro and inspired by modern web design principles.*
+*Built with ❤️ using Astro and inspired by modern web design principles.* -->
+一个学生，现阶段最喜欢做的事情是躺着。
+<!-- ::github{repo="2258009564/github.io"} -->

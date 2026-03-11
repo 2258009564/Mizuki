@@ -22,10 +22,18 @@ export const friendsData: FriendItem[] = [
 	},
 	{
 		id: 2,
-		title: "alisa的数字花园(?",
+		title: "我的个人图书馆(?",
 		imgurl: "https://thirdqq.qlogo.cn/ek_qqapp/AQJeM5LFEiaYWuE6KvTZvBb7MIhmWAIxIkhU3Ck3oo3WtnpDfGIBKu6CJzNfFzjqSyECvPiaKeUHZ3YbFTGsVk9mBLiaBJGoVyQzUOkmWNW33IUy6FTGs0/0",
-		desc: "一堆没有分类没有维护的md",
+		desc: "存了一堆没有分类没有维护的md",
 		siteurl: "https://2258009564.github.io/",
+		tags: ["Docs", "Reference"],
+	},
+	{
+		id: 3,
+		title: "imicola的猫咖",
+		imgurl: "https://imicola.com/_astro/nona_cut.D2OfEpoP_Z1NkkW9.webp",
+		desc: "一个天才",
+		siteurl: "https://imicola/com",
 		tags: ["Docs", "Reference"],
 	},
 ];
