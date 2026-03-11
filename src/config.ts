@@ -119,27 +119,28 @@ export const siteConfig: SiteConfig = {
 		// 支持单张图片或图片数组，当数组长度 > 1 时自动启用轮播
 		src: {
 			desktop: [
-				"/assets/desktop-banner/1.webp",
-				"/assets/desktop-banner/2.webp",
-				"/assets/desktop-banner/3.webp",
-				"/assets/desktop-banner/4.webp",
-				"/assets/desktop-banner/5.webp",
-				"/assets/desktop-banner/6.webp",
+				// "/assets/desktop-banner/pc1.jpg",
+				"/assets/desktop-banner/pc2.jpg",
+				"/assets/desktop-banner/pc3.jpg",
+				"/assets/desktop-banner/pc4.jpg",
+				"/assets/desktop-banner/pc5.jpg",
+				// "/assets/desktop-banner/pc6.jpg",
+				"/assets/desktop-banner/pc7.jpg",
+				"/assets/desktop-banner/pc8.jpg",
 			], // 桌面横幅图片
 			mobile: [
-				"/assets/mobile-banner/1.webp",
-				"/assets/mobile-banner/2.webp",
-				"/assets/mobile-banner/3.webp",
-				"/assets/mobile-banner/4.webp",
-				"/assets/mobile-banner/5.webp",
-				"/assets/mobile-banner/6.webp",
+				"/assets/mobile-banner/an1.jpg",
+				"/assets/mobile-banner/an2.jpg",
+				"/assets/mobile-banner/an3.jpg",
+				"/assets/mobile-banner/an4.jpg",
+				"/assets/mobile-banner/an5.jpg",
 			], // 移动横幅图片
 		}, // 使用本地横幅图片
 
 		position: "center", // 等同于 object-position，仅支持 'top', 'center', 'bottom'。默认为 'center'
 
 		carousel: {
-			enable: false, // 为 true 时：为多张图片启用轮播。为 false 时：从数组中随机显示一张图片
+			enable: true, // 为 true 时：为多张图片启用轮播。为 false 时：从数组中随机显示一张图片
 			interval: 2.5, // 轮播间隔时间（秒）
 		},
 
@@ -225,20 +226,21 @@ export const siteConfig: SiteConfig = {
 export const fullscreenWallpaperConfig: FullscreenWallpaperConfig = {
 	src: {
 		desktop: [
-			"/assets/desktop-banner/1.webp",
-			"/assets/desktop-banner/2.webp",
-			"/assets/desktop-banner/3.webp",
-			"/assets/desktop-banner/4.webp",
-			"/assets/desktop-banner/5.webp",
-			"/assets/desktop-banner/6.webp",
+			"/assets/desktop-banner/pc1.jpg",
+			"/assets/desktop-banner/pc2.jpg",
+			"/assets/desktop-banner/pc3.jpg",
+			"/assets/desktop-banner/pc4.jpg",
+			"/assets/desktop-banner/pc5.jpg",
+			"/assets/desktop-banner/pc6.jpg",
+			"/assets/desktop-banner/pc7.jpg",
+			"/assets/desktop-banner/pc8.jpg",
 		], // 桌面横幅图片
 		mobile: [
-			"/assets/mobile-banner/1.webp",
-			"/assets/mobile-banner/2.webp",
-			"/assets/mobile-banner/3.webp",
-			"/assets/mobile-banner/4.webp",
-			"/assets/mobile-banner/5.webp",
-			"/assets/mobile-banner/6.webp",
+			"/assets/mobile-banner/an1.jpg",
+			"/assets/mobile-banner/an2.jpg",
+			"/assets/mobile-banner/an3.jpg",
+			"/assets/mobile-banner/an4.jpg",
+			"/assets/mobile-banner/an5.jpg",
 		], // 移动横幅图片
 	}, // 使用本地横幅图片
 	position: "center", // 壁纸位置，等同于 object-position

@@ -5,7 +5,7 @@ tags: [Markdown, Demo]
 category: Examples
 draft: false
 pinned: true
-description: An article for testing the page layout and features. It is currently in draft status and will not be published until it is ready.
+description: 这是一个测试文章，用于验证博客系统的功能是否正常。
 ---
 
 # 测试
