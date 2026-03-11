@@ -373,7 +373,7 @@ export const profileConfig: ProfileConfig = {
 		{
 			name: "Codeberg",
 			icon: "simple-icons:codeberg",
-			url: "https://codeberg.org",
+			url: "https://codeberg.org/alisa22580",
 		},
 	],
 };
