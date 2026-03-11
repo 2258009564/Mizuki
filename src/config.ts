@@ -24,7 +24,7 @@ const SITE_TIMEZONE = 8; //设置你的网站时区 from -12 to 12 default in UT
 export const siteConfig: SiteConfig = {
 	title: "from alisa",
 	subtitle: "主页",
-	siteURL: "https://mizuki.mysqil.com/", // 请替换为你的站点URL，以斜杠结尾
+	siteURL: "https://alisa22580.pages.dev/", // 请替换为你的站点URL，以斜杠结尾
 	siteStartDate: "2026-03-11", // 站点开始运行日期，用于站点统计组件计算运行天数
 
 	timeZone: SITE_TIMEZONE,
@@ -162,10 +162,7 @@ export const siteConfig: SiteConfig = {
 			enable: true, // 在主页显示自定义文本
 			title: "Alisa 的小站", // 主页横幅主标题
 
-			subtitle: [
-				"你好喵，欢迎来访！",
-				"更多功能维护中...",
-			],
+			subtitle: ["你好喵，欢迎来访！", "更多功能维护中..."],
 			typewriter: {
 				enable: true, // 启用副标题打字机效果
 
@@ -304,12 +301,12 @@ export const navBarConfig: NavBarConfig = {
 					url: "/albums/",
 					icon: "material-symbols:photo-library",
 				},
-				{
-					name: "Devices",
-					url: "devices/",
-					icon: "material-symbols:devices",
-					external: false,
-				},
+				// {
+				// 	name: "Devices",
+				// 	url: "devices/",
+				// 	icon: "material-symbols:devices",
+				// 	external: false,
+				// },
 			],
 		},
 		{
