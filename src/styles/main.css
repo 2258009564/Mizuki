@@ -52,7 +52,7 @@
 /* 导入 maplemono 字体 */
 @font-face {
   font-family: "MapleMono-NF-CN-Medium";
-  src: url("public\fonts\MapleMono-NF-CN-Medium.ttf") format("ttf");
+  src: url("public\\fonts\\MapleMono-NF-CN-Medium.ttf") format("ttf");
   font-style: normal;
   font-weight: 400;
   font-display: swap;
