@@ -13,7 +13,7 @@ export interface FriendItem {
 // 友情链接数据
 export const friendsData: FriendItem[] = [
 	{
-		id: 7,
+		id: 1,
 		title: "GitHub",
 		imgurl: "https://avatars.githubusercontent.com/u/9919?v=4&s=640",
 		desc: "Where the world builds software",
@@ -21,7 +21,7 @@ export const friendsData: FriendItem[] = [
 		tags: ["Development", "Platform"],
 	},
 	{
-		id: 9,
+		id: 2,
 		title: "alisa的数字花园(?",
 		imgurl: "https://thirdqq.qlogo.cn/ek_qqapp/AQJeM5LFEiaYWuE6KvTZvBb7MIhmWAIxIkhU3Ck3oo3WtnpDfGIBKu6CJzNfFzjqSyECvPiaKeUHZ3YbFTGsVk9mBLiaBJGoVyQzUOkmWNW33IUy6FTGs0/0",
 		desc: "一堆没有分类没有维护的md",
