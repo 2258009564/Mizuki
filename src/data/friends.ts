@@ -33,7 +33,7 @@ export const friendsData: FriendItem[] = [
 		title: "imicola的猫咖",
 		imgurl: "https://imicola.com/_astro/nona_cut.D2OfEpoP_Z1NkkW9.webp",
 		desc: "一个天才",
-		siteurl: "https://imicola/com",
+		siteurl: "https://imicola.com",
 		tags: ["Docs", "Reference"],
 	},
 ];
