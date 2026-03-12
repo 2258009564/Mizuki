@@ -17,8 +17,8 @@ const diaryData: DiaryItem[] = [
 		id: 1,
 		content:
 			"超时空辉夜姬真好看！好吧也没那么好看，看了七八集，怎么讲的是一样的东西。",
-		date: "2025-03-12T16:24:00Z",
-		images: ["public/images/diary/pc6.jpg"],
+		date: "2026-03-12T16:20:00Z",
+		images: ["/images/diary/pc6.jpg"],
 	},
 ];
 
