@@ -244,11 +244,12 @@ Production branch: 设置主分支（通常为 `main` 或 `master`）
 ### 4. 部署项目
 配置完成后，点击 "Save and Deploy" 开始首次部署：
 
-    1. Cloudflare Pages 会克隆您的仓库
-    2. 安装依赖（pnpm i）
-    3. 构建项目（pnpm build）
-    4. 将 dist 目录部署到全球 CDN
-    首次部署可能需要几分钟时间。
+  1. Cloudflare Pages 会克隆您的仓库
+  2. 安装依赖（pnpm i）
+  3. 构建项目（pnpm build）
+  4. 将 dist 目录部署到全球 CDN
+  
+  首次部署可能需要几分钟时间。
 
 ### 5. 获取部署信息
 部署完成后，您将获得：
