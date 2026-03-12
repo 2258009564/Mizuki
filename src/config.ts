@@ -129,11 +129,11 @@ export const siteConfig: SiteConfig = {
 				"/assets/desktop-banner/pc8.jpg",
 			], // 桌面横幅图片
 			mobile: [
+				"/assets/mobile-banner/an5.jpg",
+				"/assets/mobile-banner/an3.jpg",
 				"/assets/mobile-banner/an1.jpg",
 				"/assets/mobile-banner/an2.jpg",
-				"/assets/mobile-banner/an3.jpg",
 				"/assets/mobile-banner/an4.jpg",
-				"/assets/mobile-banner/an5.jpg",
 			], // 移动横幅图片
 		}, // 使用本地横幅图片
 
