@@ -166,7 +166,9 @@ graph TD
 
 显然，上传、配置服务器对我来说太过困难。但我们有两位赛博义父： `Github` 和 `Cloudflare` 。
  
-在本教程中，我们将使用 GitHub 来托管我们的博客源代码，并通过 Cloudflare Pages 来部署我们的博客，这是一个免费的静态网站托管平台，具有全球 CDN、自动部署和免费 SSL 证书等特性。每当我们将代码推送到 GitHub 仓库时，Cloudflare Pages 会自动构建并部署最新版本的网站，这样我们就可以轻松地管理和更新我们的博客了。
+在本教程中，我们将使用 GitHub 来托管我们的博客源代码，并通过 Cloudflare Pages 来部署我们的博客，这是一个免费的静态网站托管平台，具有全球 CDN、自动部署和免费 SSL 证书等特性。
+
+每当我们将代码推送到 GitHub 仓库时，Cloudflare Pages 会自动构建并部署最新版本的网站，这样我们就可以轻松地管理和更新我们的博客了。
 
 ```mermaid
 graph TD
@@ -274,6 +276,7 @@ graph TD
 
 因此关于大多数常规设置，我就不在这里赘述了，这里只发表一些我自己的建议...
 
+## 配置文件的查找与修改
 - 如果您使用vscode编辑项目，可以在左侧任务栏找到搜索框，输入关键词进行整个工作区目录下的相关查找。
 
 ![alt text](image-2.png)
@@ -282,5 +285,29 @@ graph TD
 
 ![alt text](image-3.png)
 
+
+## 评论功能的配置
+
+博客的评论功能是通过 `Twikoo` 实现的，您可以在 `src/config.ts` 文件中找到相关配置项：
+
+```typescript
+export const commentConfig: CommentConfig = {
+  enable: true, // 启用评论功能。当设置为 false 时，评论组件将不会显示在文章区域。
+  twikoo: {
+    envId: "...", // Twikoo 环境 ID，通常是一个 URL 地址。
+    lang: SITE_LANG, // 评论界面语言设置，默认为站点语言。
+  },
+};
+```
+
+- enable: 设置为 true 启用评论功能，设置为 false 则禁用评论功能。
+- envId: 这是 Twikoo 的环境 ID，通常是一个 URL 地址，您需要将其替换为您自己的 Twikoo 环境 ID。
+- lang: 这是评论界面的语言设置，默认为站点语言，不动就行。
+
+由是观之，我们操作的目的就是得到一个 以 `.app` 结尾的 URL 地址，并将其填入 envId 中。
+
+我们可以直接访问 [Vercel 部署](https://twikoo.js.org/backend.html#vercel-%E9%83%A8%E7%BD%B2) 的教程来获取这个 ID 。
+
+## 更多内容
 持续更新中...
 
