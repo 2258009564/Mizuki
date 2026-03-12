@@ -36,6 +36,14 @@ export const friendsData: FriendItem[] = [
 		siteurl: "https://imicola.com",
 		tags: ["Docs", "Reference"],
 	},
+	{
+		id: 4,
+		title: "我才醒的神秘小站",
+		imgurl: "https://wcx684.github.io/images/avatar.jpg",
+		desc: "深圳的主人",
+		siteurl: "https://wcx684.github.io",
+		tags: ["Docs", "Reference"],
+	},
 ];
 
 // 获取所有友情链接数据
