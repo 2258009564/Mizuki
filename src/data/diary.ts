@@ -20,6 +20,16 @@ const diaryData: DiaryItem[] = [
 		date: "2026-03-12T16:20:00Z",
 		images: ["/images/diary/pc6.jpg"],
 	},
+	{
+		id: 2,
+		content:
+			"打了一下午羽毛球，感觉不运动一下人要腐烂了。虽然水平下降的很严重，但总体是开心的，大概吧。",
+		date: "2026-03-13T20:18:21Z",
+		images: [
+			"public/images/diary/51eeafee168445c8616f6eb489f6c00e.jpg",
+			"public/images/diary/f164495ed0ecaf5a8cf0f7f815f94f13.jpg"
+		],
+	},
 ];
 
 // 获取日记统计数据
