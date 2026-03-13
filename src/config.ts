@@ -163,7 +163,7 @@ export const siteConfig: SiteConfig = {
 			enable: true, // 在主页显示自定义文本
 			title: "Alisa 的小站", // 主页横幅主标题
 
-			subtitle: ["你好喵，欢迎来访！", "更多功能维护中..."],
+			subtitle: ["你好喵，欢迎来访！", "tell the world who i am and what i wanna do", "更多功能正紧锣密鼓地筹备中...，欢迎常来！"], // 主页横幅副标题，支持字符串数组，启用打字机效果后会轮播显示
 			typewriter: {
 				enable: true, // 启用副标题打字机效果
 
