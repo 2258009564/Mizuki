@@ -7,7 +7,7 @@ category: Tutorial
 pinned: true 
 priority: 0
 draft: false
-updated: 2026-03-12T16:54:24.123Z
+updated: 2026-03-13T21:16:48Z
 ---
 
 <!-- ---
@@ -302,10 +302,97 @@ graph TD
 
 ![alt text](image-3.png)
 
+## 更好的时间输入
+博客中很多地方需要输入时间，例如文章的发布时间、日记的日期等。
+
+通过官方文档的介绍，我们可以知道，博客中使用的时间格式是 ISO 8601 格式，例如：`2026-03-12T16:20:00Z`。
+
+这种格式虽然标准，但由于这个博客并没有自动化的时间输入工具（比如说日历选择器），因此我们的手动输入、修改显得繁琐且没必要。
+
+因此，我尝试了 `vscode` 的 `Insert Date String` 扩展。
+
+![alt text](image-4.png)
+
+但是这个扩展的默认输出格式是 `YYYY-MM-DD HH:mm:ss`，并不符合我们博客的时间格式要求。
+
+于是，我在 `vscode` 的设置中，手动将输出格式修改为 `YYYY-MM-DDTHH:mm:ssZ`。
+
+然而，这个插件自动识别了时区，并在输出的时间字符串中加入了时区偏移，例如 `2026-03-12T16:20:00+08`。
+
+这显然是我们不愿看到的，因为 通过配置 `config.ts` 中的 `timeZone`，我们已经自行选择了时区，因此我们需要将这个时区偏移手动修改为 `Z`，表示 UTC 时间。但是每次输入时间后都要修改一次时区，显然也是不合理的。
+
+于是，我参考了自己先前打 `acm` 时候使用的， `vscode` 原生提供的 `配置代码片段` 功能，在惊喜的发现这个功能支持时间相关的预定义变量后，事情就变得简单了。
+
+1. 使用组合键 `ctrl + shift + p` 打开命令面板，输入 `Snippets: Configure Snippets` (`配置代码片段`) 并选择它。
+
+2. 选择 `New Global Snippets file` (`新建代码片段`) 来创建一个全局的代码片段文件，命名为 `全局.code-snippets`。
+
+3. 在打开的 `全局.code-snippets` 文件中，添加以下代码片段：
+
+```json
+"Insert ISO Z Date": {
+  "scope": "typescript,markdown,mdx", // 只针对 TypeScript 和 Markdown 文件生效
+  "prefix": "isodate",
+  "body": [
+    "${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE}T${CURRENT_HOUR}:${CURRENT_MINUTE}:${CURRENT_SECOND}Z"
+  ],
+  "description": "插入当前 UTC 时间 (Z)"
+}
+```
+
+此时，完整的文件内容大致如下：
+![alt text](image-6.png)
+
+保存文件后，您就可以在任何地方输入 `isodate`，然后按下 `Tab` 键，就会自动插入当前的 UTC 时间，格式为 `YYYY-MM-DDTHH:mm:ssZ`... 吗？
+
+问题到此并没有结束，我发现在 `markdown` 文件中无法触发补全，而在 `ts` 文件中可以。
+
+经过一番折腾，我发现这是因为 `markdown` 文件默认没有启用代码片段补全功能。
+
+于是，我打开了 `vscode` 的设置，在右上角找到 `Edit in settings.json` (`在 settings.json 中编辑`) 的选项，点击它打开 `settings.json` 文件。
+![alt text](image-7.png)
+
+
+在文件中，我添加了关于 `markdown` 文件的代码片段补全配置：
+
+```json
+"[markdown]": {
+  "editor.quickSuggestions": {
+    "other": "on",
+    "comments": "on",
+    "strings": "on"
+  },
+  "editor.snippetSuggestions": "top", // 让代码片段排在最前面
+  "editor.tabCompletion": "on" // 允许按 Tab 键直接补全
+}
+```
+
+问题终于解决了，现在在 `markdown` 文件中输入 `isodate` 并按下 `Tab` 键，正确格式的 UTC 时间就会被插入了...吗？？
+
+仍然没有！在文章的表头中输入 `isodate` 并按下 `Tab` 键，竟然没有任何反应。
+
+经过一番调查，我发现这是因为 `markdown` 文件的表头部分（也就是 `---` 包围的部分）被 `vscode` 识别为 `yaml` 语言，而不是 `markdown`。...真是令人窒息。！
+
+因此，我们回到 `全局.code-snippets` 文件中，将代码片段的 `scope` 属性增加一个 `yaml`，使其变为：
+
+```json
+"scope": "typescript,markdown,mdx,yaml", // 现在也针对 yaml 文件生效
+```
+
+更新后的完整文件内容应如下：
+> 请注意 29 行的更改
+
+
+![alt text](image-8.png)
+
+
+终于，我做到了，我可以随心所欲地在表头插入当前的 UTC 时间，而且格式完全符合博客的要求。我真想**狠狠地**吃掉一包放在旁边的香辣小鱼干来庆祝下！
+![alt text](image-9.png)
+
 
 ## 评论功能的配置
 
-博客的评论功能是通过 `Twikoo` 实现的，您可以在 `src/config.ts` 文件中找到相关配置项：
+博客的评论功能是通过 `Twikoo` 实现的，您可以在 `src/config.ts` 文件中找到相关配置项:
 
 ```typescript
 export const commentConfig: CommentConfig = {

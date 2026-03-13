@@ -172,7 +172,6 @@ export const siteConfig: SiteConfig = {
 				pauseTime: 2000, // 完全显示后的暂停时间（毫秒）
 			},
 		},
-
 		credit: {
 			enable: false, // 显示横幅图片来源文本
 
