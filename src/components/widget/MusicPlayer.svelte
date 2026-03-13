@@ -36,6 +36,8 @@ let duration = 0;
 
 // localStorage 存储音量
 const STORAGE_KEY_VOLUME = 'music-player-volume';
+// localStorage 存储播放进度
+const STORAGE_KEY_PROGRESS = 'music-player-progress';
 
 // 音量，默认为 0.7
 let volume = 0.7;
@@ -124,6 +126,69 @@ function saveVolumeSettings() {
 		}
 	} catch (e) {
 		console.warn('Failed to save volume settings to localStorage:', e);
+	}
+}
+
+// 播放进度保存的节流机制
+let lastProgressSaveTime = 0;
+const PROGRESS_SAVE_INTERVAL = 2000; // 2秒保存一次
+
+// 保存播放进度到localStorage
+function savePlaybackProgress() {
+	try {
+		if (typeof localStorage !== 'undefined') {
+			const progress = {
+				currentIndex,
+				currentTime: audio?.currentTime || 0,
+				currentSongId: currentSong.title + currentSong.artist, // 使用title+artist作为唯一标识，更可靠
+				timestamp: Date.now()
+			};
+			localStorage.setItem(STORAGE_KEY_PROGRESS, JSON.stringify(progress));
+		}
+	} catch (e) {
+		console.warn('Failed to save playback progress:', e);
+	}
+}
+
+// 带节流的保存进度函数
+function savePlaybackProgressThrottled() {
+	const now = Date.now();
+	if (now - lastProgressSaveTime >= PROGRESS_SAVE_INTERVAL) {
+		savePlaybackProgress();
+		lastProgressSaveTime = now;
+	}
+}
+
+// 加载播放进度
+function loadPlaybackProgress() {
+	try {
+		if (typeof localStorage !== 'undefined') {
+			const savedProgress = localStorage.getItem(STORAGE_KEY_PROGRESS);
+			if (savedProgress) {
+				const { currentIndex: savedIndex, currentTime: savedTime, currentSongId } = JSON.parse(savedProgress);
+				
+				// 防御：检查保存的索引和歌曲是否还有效
+				if (
+					savedIndex >= 0 && 
+					savedIndex < playlist.length && 
+					currentSongId === (playlist[savedIndex].title + playlist[savedIndex].artist)
+				) {
+					currentIndex = savedIndex;
+					loadSong(playlist[savedIndex]);
+					
+					// 等待音频元素加载后设置播放进度
+					if (audio) {
+						audio.addEventListener('loadedmetadata', () => {
+							if (audio && savedTime > 0 && savedTime < audio.duration) {
+								audio.currentTime = savedTime;
+							}
+						}, { once: true });
+					}
+				}
+			}
+		}
+	} catch (e) {
+		console.warn('Failed to load playback progress:', e);
 	}
 }
 
@@ -237,6 +302,7 @@ function playSong(index: number, autoPlay = true) {
     willAutoPlay = autoPlay;
 	currentIndex = index;
 	loadSong(playlist[currentIndex]);
+	savePlaybackProgress(); // 切歌时保存新歌曲的进度信息
 }
 
 function getAssetPath(path: string): string {
@@ -408,11 +474,24 @@ function formatTime(seconds: number): string {
 }
 
 const interactionEvents = ['click', 'keydown', 'touchstart'];
+
+// 页面卸载时保存进度
+function handlePageUnload() {
+	savePlaybackProgress(); // 强制保存进度，不受节流限制
+}
+
 onMount(() => {
-    loadVolumeSettings(); 
+    loadVolumeSettings();
+	loadPlaybackProgress(); // 加载之前保存的播放进度
     interactionEvents.forEach(event => {
         document.addEventListener(event, handleUserInteraction, { capture: true });
     });
+	
+	// 监听页面即将卸载，强制保存进度
+	if (typeof window !== 'undefined') {
+		window.addEventListener('pagehide', handlePageUnload);
+		window.addEventListener('beforeunload', handlePageUnload);
+	}
 
 	if (!musicPlayerConfig.enable) {
 		return;
@@ -436,6 +515,15 @@ onDestroy(() => {
             document.removeEventListener(event, handleUserInteraction, { capture: true });
         });
     }
+	
+	// 清理页面卸载监听
+	if (typeof window !== 'undefined') {
+		window.removeEventListener('pagehide', handlePageUnload);
+		window.removeEventListener('beforeunload', handlePageUnload);
+	}
+	
+	// 组件销毁时保存最终进度
+	savePlaybackProgress();
 });
 </script>
 
@@ -445,8 +533,14 @@ onDestroy(() => {
 	bind:volume
 	bind:muted={isMuted}
 	on:play={() => isPlaying = true}
-	on:pause={() => isPlaying = false}
-	on:timeupdate={() => currentTime = audio.currentTime}
+	on:pause={() => {
+		isPlaying = false;
+		savePlaybackProgress(); // 暂停时立即保存进度
+	}}
+	on:timeupdate={() => {
+		currentTime = audio.currentTime;
+		savePlaybackProgressThrottled();
+	}}
 	on:ended={handleAudioEnded}
 	on:error={handleLoadError}
 	on:loadeddata={handleLoadSuccess}
