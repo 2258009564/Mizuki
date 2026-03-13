@@ -60,14 +60,20 @@ function formatNumber(num: number): string {
 	return num.toLocaleString();
 }
 
-// 获取最新文章日期（忽略置顶状态，只按发布日期排序）
+// 获取最新文章日期（忽略置顶状态，同时考虑发布日期和修改日期）
 const latestPost = posts.reduce((latest, post) => {
 	if (!latest) return post;
-	return post.data.published > latest.data.published ? post : latest;
+
+	// 获取当前文章的最后更新时间（优先使用 updated，否则使用 published）
+	const currentLastUpdate = post.data.updated || post.data.published;
+	// 获取前面最新的最后更新时间
+	const latestLastUpdate = latest.data.updated || latest.data.published;
+
+	return currentLastUpdate > latestLastUpdate ? post : latest;
 }, posts[0]);
 
 const lastPostDate = latestPost
-	? latestPost.data.published.toISOString()
+	? (latestPost.data.updated || latestPost.data.published).toISOString()
 	: null;
 
 const stats = [
@@ -163,7 +169,7 @@ const stats = [
 			'[data-stat-id="running-days"]',
 		);
 		if (runningDaysElements.length > 0) {
-			runningDaysElements.forEach(element => {
+			runningDaysElements.forEach((element) => {
 				element.textContent = diffDays.toString();
 			});
 		}
@@ -182,9 +188,9 @@ const stats = [
 				'[data-stat-id="last-update"]',
 			);
 			if (lastUpdateElements.length > 0) {
-				lastUpdateElements.forEach(element => {
+				lastUpdateElements.forEach((element) => {
 					element.textContent = daysSinceLastUpdate.toString();
-				})
+				});
 			}
 		}
 	}
