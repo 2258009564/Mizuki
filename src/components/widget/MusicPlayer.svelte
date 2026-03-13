@@ -493,10 +493,10 @@
 		if (playlist.length <= 1) return;
 		const newIndex =
 			currentIndex > 0 ? currentIndex - 1 : playlist.length - 1;
-		playSong(newIndex);
+		playSong(newIndex, isPlaying);
 	}
 
-	function nextSong(autoPlay: boolean = true) {
+	function nextSong(autoPlay: boolean = isPlaying) {
 		if (playlist.length <= 1) return;
 
 		let newIndex: number;
@@ -511,13 +511,13 @@
 		playSong(newIndex, autoPlay);
 	}
 
-	// 记录切歌时的播放意图，用于解决加载失败时的状态传递问题
-	let willAutoPlay = false;
+	// 记录下一次音频加载是否需要自动续播（一次性标记）
+	let shouldResumeAfterLoad = false;
 
 	function playSong(index: number, autoPlay = true) {
 		if (index < 0 || index >= playlist.length) return;
 
-		willAutoPlay = autoPlay;
+		shouldResumeAfterLoad = autoPlay;
 		pendingRestoreTime = null; // 用户主动切歌时，避免使用旧恢复时间
 		currentIndex = index;
 		loadSong(playlist[currentIndex]);
@@ -598,7 +598,10 @@
 		syncDurationFromAudio();
 		applyPendingRestoreTime();
 
-		if (willAutoPlay || isPlaying) {
+		const shouldAttemptAutoPlay = shouldResumeAfterLoad || isPlaying;
+		shouldResumeAfterLoad = false;
+
+		if (shouldAttemptAutoPlay) {
 			const playPromise = audio.play();
 			if (playPromise !== undefined) {
 				playPromise.catch((error) => {
@@ -629,7 +632,7 @@
 		pendingRestoreTime = null;
 		showErrorMessage(i18n(Key.musicPlayerErrorSong));
 
-		const shouldContinue = isPlaying || willAutoPlay;
+		const shouldContinue = isPlaying || shouldResumeAfterLoad;
 		if (playlist.length > 1) {
 			setTimeout(() => nextSong(shouldContinue), 1000);
 		} else {
@@ -808,6 +811,7 @@
 	on:play={() => (isPlaying = true)}
 	on:pause={() => {
 		isPlaying = false;
+		shouldResumeAfterLoad = false;
 		savePlaybackProgress(); // 暂停时立即保存进度
 	}}
 	on:timeupdate={() => {
