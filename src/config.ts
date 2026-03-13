@@ -67,7 +67,7 @@ export const siteConfig: SiteConfig = {
 	},
 
 	bangumi: {
-		userId: "ALisa22580", // 在此处设置你的Bangumi用户ID，可以设置为 "sai" 测试
+		userId: "1222336", // 在此处设置你的Bangumi用户ID，可以设置为 "sai" 测试
 		fetchOnDev: false, // 是否在开发环境下获取 Bangumi 数据（默认 false），获取前先执行 pnpm build 构建 json 文件
 	},
 
@@ -85,7 +85,7 @@ export const siteConfig: SiteConfig = {
 	},
 
 	anime: {
-		mode: "bilibili", // 番剧页面模式："bangumi" 使用Bangumi API，"local" 使用本地配置，"bilibili" 使用Bilibili API 
+		mode: "bangumi", // 番剧页面模式："bangumi" 使用Bangumi API，"local" 使用本地配置，"bilibili" 使用Bilibili API
 	},
 
 	// 文章列表布局配置
@@ -163,7 +163,11 @@ export const siteConfig: SiteConfig = {
 			enable: true, // 在主页显示自定义文本
 			title: "Alisa 的小站", // 主页横幅主标题
 
-			subtitle: ["你好喵，欢迎来访！", "tell the world who i am and what i wanna do", "更多功能正紧锣密鼓地筹备中...，欢迎常来！"], // 主页横幅副标题，支持字符串数组，启用打字机效果后会轮播显示
+			subtitle: [
+				"你好喵，欢迎来访！",
+				"tell the world who i am and what i wanna do",
+				"更多功能正紧锣密鼓地筹备中...，欢迎常来！",
+			], // 主页横幅副标题，支持字符串数组，启用打字机效果后会轮播显示
 			typewriter: {
 				enable: true, // 启用副标题打字机效果
 
