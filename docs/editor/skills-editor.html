@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>技能可视化编辑器</title>
+	<style>
+		:root {
+			color-scheme: light;
+			--bg: #f5f7fb;
+			--card: #ffffff;
+			--line: #dfe6ef;
+			--text: #1f2a37;
+			--muted: #5f6b7a;
+			--brand: #1664d6;
+			--brand-soft: #e8f0ff;
+			--danger: #d92d20;
+		}
+
+		* { box-sizing: border-box; }
+
+		body {
+			margin: 0;
+			font-family: "Segoe UI", "Microsoft YaHei", sans-serif;
+			background: linear-gradient(180deg, #f9fbff 0%, var(--bg) 100%);
+			color: var(--text);
+		}
+
+		header {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			padding: 14px 18px;
+			background: var(--card);
+			border-bottom: 1px solid var(--line);
+			position: sticky;
+			top: 0;
+			z-index: 10;
+		}
+
+		h1 {
+			font-size: 18px;
+			margin: 0;
+		}
+
+		.header-actions {
+			display: flex;
+			gap: 8px;
+		}
+
+		button {
+			border: 1px solid var(--line);
+			background: var(--card);
+			color: var(--text);
+			padding: 8px 12px;
+			border-radius: 8px;
+			cursor: pointer;
+			font-size: 14px;
+		}
+
+		button:hover { border-color: #b8c5d8; }
+		button.primary {
+			background: var(--brand);
+			border-color: var(--brand);
+			color: #fff;
+		}
+
+		button.danger {
+			color: var(--danger);
+			border-color: #f6c8c4;
+			background: #fff3f2;
+		}
+
+		main {
+			display: grid;
+			grid-template-columns: 320px 1fr;
+			gap: 14px;
+			padding: 14px;
+			height: calc(100vh - 64px);
+		}
+
+		.panel {
+			background: var(--card);
+			border: 1px solid var(--line);
+			border-radius: 10px;
+			overflow: hidden;
+			display: flex;
+			flex-direction: column;
+		}
+
+		.panel-header {
+			padding: 12px;
+			border-bottom: 1px solid var(--line);
+			display: flex;
+			flex-direction: column;
+			gap: 10px;
+		}
+
+		.panel-header h2 {
+			margin: 0;
+			font-size: 15px;
+		}
+
+		input, textarea, select {
+			width: 100%;
+			border: 1px solid #c9d4e3;
+			border-radius: 8px;
+			padding: 8px 10px;
+			font-size: 14px;
+			background: #fff;
+			color: var(--text);
+		}
+
+		textarea {
+			min-height: 84px;
+			resize: vertical;
+		}
+
+		.skills-list {
+			overflow: auto;
+			padding: 8px;
+			list-style: none;
+			margin: 0;
+			flex: 1;
+		}
+
+		.skills-item {
+			border: 1px solid var(--line);
+			border-radius: 8px;
+			padding: 8px 10px;
+			margin-bottom: 8px;
+			cursor: pointer;
+		}
+
+		.skills-item:hover { border-color: #afc1dc; }
+		.skills-item.active {
+			border-color: var(--brand);
+			background: var(--brand-soft);
+		}
+
+		.skills-item .name {
+			font-weight: 600;
+			font-size: 14px;
+		}
+
+		.skills-item .meta {
+			font-size: 12px;
+			color: var(--muted);
+			margin-top: 3px;
+		}
+
+		.form-wrap {
+			overflow: auto;
+			padding: 14px;
+		}
+
+		.grid {
+			display: grid;
+			grid-template-columns: repeat(2, minmax(180px, 1fr));
+			gap: 12px;
+		}
+
+		.field {
+			display: flex;
+			flex-direction: column;
+			gap: 6px;
+		}
+
+		.field label {
+			font-size: 13px;
+			color: var(--muted);
+		}
+
+		.field.full { grid-column: 1 / -1; }
+
+		.panel-footer {
+			padding: 12px;
+			border-top: 1px solid var(--line);
+			display: flex;
+			flex-wrap: wrap;
+			gap: 8px;
+		}
+
+		.status {
+			font-size: 13px;
+			padding: 8px 10px;
+			border-radius: 8px;
+			margin-top: 10px;
+			background: #eef3fb;
+			color: #29446f;
+		}
+
+		.status.error { background: #fff1f0; color: #a8071a; }
+		.status.success { background: #eefaf1; color: #1e7a35; }
+
+		.workflow {
+			border: 1px dashed #a8b9cf;
+			background: #f8fbff;
+			padding: 10px;
+			border-radius: 8px;
+			font-size: 13px;
+			line-height: 1.6;
+			color: #40536b;
+		}
+
+		@media (max-width: 1080px) {
+			main {
+				grid-template-columns: 1fr;
+				height: auto;
+			}
+
+			.panel {
+				min-height: 380px;
+			}
+		}
+	</style>
+</head>
+<body>
+	<header>
+		<h1>技能可视化编辑器</h1>
+		<div class="header-actions">
+			<button id="reloadBtn">重新加载</button>
+			<button id="saveBtn" class="primary">保存到 skills.ts</button>
+		</div>
+	</header>
+
+	<main>
+		<section class="panel">
+			<div class="panel-header">
+				<h2>技能列表</h2>
+				<input id="searchInput" type="text" placeholder="搜索 id / 名称 / 分类 / 等级">
+				<div class="header-actions">
+					<button id="addBtn">新增技能</button>
+					<button id="duplicateBtn">复制技能</button>
+					<button id="deleteBtn" class="danger">删除技能</button>
+				</div>
+			</div>
+			<ul id="skillsList" class="skills-list"></ul>
+		</section>
+
+		<section class="panel">
+			<div class="form-wrap">
+				<div class="workflow">
+					操作流程：1) 左侧选中技能 2) 右侧修改字段 3) 点顶部“保存到 skills.ts”或 Ctrl+S。
+				</div>
+				<div class="grid" style="margin-top: 12px;">
+					<div class="field">
+						<label for="idInput">id</label>
+						<input id="idInput" type="text">
+					</div>
+					<div class="field">
+						<label for="nameInput">名称</label>
+						<input id="nameInput" type="text">
+					</div>
+					<div class="field full">
+						<label for="descriptionInput">描述</label>
+						<textarea id="descriptionInput"></textarea>
+					</div>
+					<div class="field">
+						<label for="iconInput">图标 iconify 名称</label>
+						<input id="iconInput" type="text" placeholder="logos:typescript-icon">
+					</div>
+					<div class="field">
+						<label for="colorInput">主题色</label>
+						<input id="colorInput" type="text" placeholder="#3178C6">
+					</div>
+					<div class="field">
+						<label for="categorySelect">分类</label>
+						<select id="categorySelect">
+							<option value="frontend">frontend</option>
+							<option value="backend">backend</option>
+							<option value="database">database</option>
+							<option value="tools">tools</option>
+							<option value="other">other</option>
+						</select>
+					</div>
+					<div class="field">
+						<label for="levelSelect">等级</label>
+						<select id="levelSelect">
+							<option value="beginner">beginner</option>
+							<option value="intermediate">intermediate</option>
+							<option value="advanced">advanced</option>
+							<option value="expert">expert</option>
+						</select>
+					</div>
+					<div class="field">
+						<label for="yearsInput">经验年数</label>
+						<input id="yearsInput" type="number" min="0" step="1">
+					</div>
+					<div class="field">
+						<label for="monthsInput">经验月数</label>
+						<input id="monthsInput" type="number" min="0" max="11" step="1">
+					</div>
+					<div class="field full">
+						<label for="projectsInput">关联项目（逗号或换行分隔）</label>
+						<textarea id="projectsInput"></textarea>
+					</div>
+					<div class="field full">
+						<label for="certificationsInput">证书（逗号或换行分隔）</label>
+						<textarea id="certificationsInput"></textarea>
+					</div>
+				</div>
+				<div id="statusBox" class="status">正在加载数据...</div>
+			</div>
+		</section>
+	</main>
+
+	<script type="module" src="./skills-editor.js"></script>
+</body>
+</html>
