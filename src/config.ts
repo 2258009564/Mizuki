@@ -230,6 +230,7 @@ export const fullscreenWallpaperConfig: FullscreenWallpaperConfig = {
 	src: {
 		desktop: [
 			"/assets/desktop-banner/pc1.jpg",
+			"/assets/desktop-banner/2.webp",
 			"/assets/desktop-banner/pc2.jpg",
 			"/assets/desktop-banner/pc3.jpg",
 			"/assets/desktop-banner/pc4.jpg",

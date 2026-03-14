@@ -693,7 +693,20 @@ function disableAnimation() {
 			}
 		});
 
-		if (validItems.length > 1 && siteConfig.banner.carousel?.enable) {
+		// 每次进入页面时随机打乱播放顺序
+		const shuffleItems = (items: Element[]): Element[] => {
+			const shuffled = [...items];
+			for (let i = shuffled.length - 1; i > 0; i--) {
+				const j = Math.floor(Math.random() * (i + 1));
+				[shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+			}
+			return shuffled;
+		};
+
+		const playbackItems =
+			validItems.length > 1 ? shuffleItems(validItems) : validItems;
+
+		if (playbackItems.length > 1 && siteConfig.banner.carousel?.enable) {
 			let currentIndex = 0;
 			const interval = siteConfig.banner.carousel?.interval || 6;
 			let carouselInterval: any;
@@ -709,7 +722,7 @@ function disableAnimation() {
 			// 切换图片的函数 - 基于有效项目
 			function switchToSlide(index: number) {
 				// 隐藏当前图片
-				const currentItem = validItems[currentIndex];
+				const currentItem = playbackItems[currentIndex];
 				currentItem.classList.remove("opacity-100", "scale-100");
 				currentItem.classList.add("opacity-0", "scale-110");
 
@@ -717,7 +730,7 @@ function disableAnimation() {
 				currentIndex = index;
 
 				// 显示新图片
-				const nextItem = validItems[currentIndex];
+				const nextItem = playbackItems[currentIndex];
 				nextItem.classList.add("opacity-100", "scale-100");
 				nextItem.classList.remove("opacity-0", "scale-110");
 			}
@@ -729,9 +742,9 @@ function disableAnimation() {
 			});
 
 			// 显示第一张有效图片
-			if (validItems.length > 0) {
-				validItems[0].classList.add("opacity-100", "scale-100");
-				validItems[0].classList.remove("opacity-0", "scale-110");
+			if (playbackItems.length > 0) {
+				playbackItems[0].classList.add("opacity-100", "scale-100");
+				playbackItems[0].classList.remove("opacity-0", "scale-110");
 			}
 
 			// 移动端触摸事件
@@ -782,13 +795,13 @@ function disableAnimation() {
 							if (diffX > 0) {
 								// 向左滑动，显示下一张
 								const nextIndex =
-									(currentIndex + 1) % validItems.length;
+									(currentIndex + 1) % playbackItems.length;
 								switchToSlide(nextIndex);
 							} else {
 								// 向右滑动，显示上一张
 								const prevIndex =
-									(currentIndex - 1 + validItems.length) %
-									validItems.length;
+									(currentIndex - 1 + playbackItems.length) %
+									playbackItems.length;
 								switchToSlide(prevIndex);
 							}
 						}
@@ -810,7 +823,7 @@ function disableAnimation() {
 				carouselInterval = setInterval(() => {
 					if (!isPaused) {
 						const nextIndex =
-							(currentIndex + 1) % validItems.length;
+							(currentIndex + 1) % playbackItems.length;
 						switchToSlide(nextIndex);
 					}
 				}, interval * 1000);
