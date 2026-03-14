@@ -624,7 +624,7 @@ export const pioConfig: import("./types/config").PioConfig = {
 	width: 280, // 默认宽度
 	height: 250, // 默认高度
 	mode: "draggable", // 默认为可拖拽模式
-	hiddenOnMobile: false, // 先关闭隐藏，确保所有设备都能看到模型
+	hiddenOnMobile: true, // 移动端隐藏
 	dialog: {
 		welcome: "欢迎来访喵~", // 欢迎词
 		touch: [
@@ -636,9 +636,9 @@ export const pioConfig: import("./types/config").PioConfig = {
 			"生命的价值、和金钱一样、是会随着时代而改变的。 也会随地点而改变吧、果然。",
 			"我觉得、如果有来生的话、我想当一只猫。…虽然也不错、但我觉得当个人更好。",
 		], // 触摸提示
-		home: "摸这里回到首页", // 首页提示
+		home: "摸这里回到首页~", // 首页提示
 		skin: ["Want to see my new outfit?", "The new outfit looks great~"], // 换装提示
-		close: "QWQ See you next time~", // 关闭提示
+		close: "QWQ See u nxt time~", // 关闭提示
 		link: "https://github.com/2258009564", // 关于链接
 	},
 };
