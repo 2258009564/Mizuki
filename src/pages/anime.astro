@@ -1468,9 +1468,13 @@ const hiddenAnimeList = animeList.slice(INITIAL_DISPLAY_COUNT);
 		}
 
 		if (document.readyState === "loading") {
-			document.addEventListener("DOMContentLoaded", runInitFilterButtons, {
-				once: true,
-			});
+			document.addEventListener(
+				"DOMContentLoaded",
+				runInitFilterButtons,
+				{
+					once: true,
+				},
+			);
 		} else {
 			runInitFilterButtons();
 		}
