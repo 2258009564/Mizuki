@@ -619,12 +619,12 @@ export const sakuraConfig: SakuraConfig = {
 // Pio 看板娘配置
 export const pioConfig: import("./types/config").PioConfig = {
 	enable: true, // 启用看板娘
-	models: ["/pio/models/pio/model.json"], // 默认模型路径
+	models: ["/pio/UG/ugofficial.model3.json"], // 使用 UG 的 Cubism4 模型
 	position: "left", // 模型位置
 	width: 280, // 默认宽度
 	height: 250, // 默认高度
 	mode: "draggable", // 默认为可拖拽模式
-	hiddenOnMobile: true, // 默认在移动设备上隐藏
+	hiddenOnMobile: false, // 先关闭隐藏，确保所有设备都能看到模型
 	dialog: {
 		welcome: "欢迎来访喵~", // 欢迎词
 		touch: [
