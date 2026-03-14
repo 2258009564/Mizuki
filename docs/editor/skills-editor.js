@@ -57,9 +57,7 @@ const setStatus = (message, type = "info") => {
 
 const setDirty = (isDirty) => {
 	state.dirty = isDirty;
-	document.title = isDirty
-		? "技能可视化编辑器 *未保存"
-		: "技能可视化编辑器";
+	document.title = isDirty ? "技能可视化编辑器 *未保存" : "技能可视化编辑器";
 };
 
 const getSelectedSkill = () => {
@@ -70,10 +68,11 @@ const getSelectedSkill = () => {
 };
 
 const uniqueSkillId = (baseId) => {
-	const normalizedBase = baseId
-		.toLowerCase()
-		.replace(/[^a-z0-9-]+/g, "-")
-		.replace(/^-+|-+$/g, "") || "new-skill";
+	const normalizedBase =
+		baseId
+			.toLowerCase()
+			.replace(/[^a-z0-9-]+/g, "-")
+			.replace(/^-+|-+$/g, "") || "new-skill";
 
 	let candidate = normalizedBase;
 	let suffix = 1;
@@ -123,7 +122,9 @@ const fillForm = () => {
 	elements.yearsInput.value = String(skill.experience?.years ?? 0);
 	elements.monthsInput.value = String(skill.experience?.months ?? 0);
 	elements.projectsInput.value = textArrayToMultiline(skill.projects);
-	elements.certificationsInput.value = textArrayToMultiline(skill.certifications);
+	elements.certificationsInput.value = textArrayToMultiline(
+		skill.certifications,
+	);
 
 	state.isRendering = false;
 };
@@ -138,12 +139,7 @@ const renderSkillsList = () => {
 				return true;
 			}
 
-			const haystack = [
-				skill.id,
-				skill.name,
-				skill.category,
-				skill.level,
-			]
+			const haystack = [skill.id, skill.name, skill.category, skill.level]
 				.join(" ")
 				.toLowerCase();
 
@@ -198,10 +194,13 @@ const syncCurrentSkillFromForm = () => {
 	};
 
 	const projects = multilineToTextArray(elements.projectsInput.value);
-	const certifications = multilineToTextArray(elements.certificationsInput.value);
+	const certifications = multilineToTextArray(
+		elements.certificationsInput.value,
+	);
 
 	skill.projects = projects.length > 0 ? projects : undefined;
-	skill.certifications = certifications.length > 0 ? certifications : undefined;
+	skill.certifications =
+		certifications.length > 0 ? certifications : undefined;
 
 	setDirty(true);
 	renderSkillsList();
@@ -213,7 +212,7 @@ const loadSkills = async () => {
 	const response = await fetch("/api/skills", {
 		method: "GET",
 		headers: {
-			"Accept": "application/json",
+			Accept: "application/json",
 		},
 	});
 
@@ -227,7 +226,10 @@ const loadSkills = async () => {
 
 	if (state.skills.length === 0) {
 		state.selectedIndex = -1;
-	} else if (state.selectedIndex < 0 || state.selectedIndex >= state.skills.length) {
+	} else if (
+		state.selectedIndex < 0 ||
+		state.selectedIndex >= state.skills.length
+	) {
 		state.selectedIndex = 0;
 	}
 
@@ -308,7 +310,9 @@ const deleteSkill = () => {
 		return;
 	}
 
-	const confirmed = window.confirm(`确定删除技能 ${skill.name} (${skill.id}) 吗？`);
+	const confirmed = window.confirm(
+		`确定删除技能 ${skill.name} (${skill.id}) 吗？`,
+	);
 	if (!confirmed) {
 		return;
 	}
@@ -327,7 +331,10 @@ const withErrorToast = async (task) => {
 	try {
 		await task();
 	} catch (error) {
-		setStatus(error instanceof Error ? error.message : "发生未知错误", "error");
+		setStatus(
+			error instanceof Error ? error.message : "发生未知错误",
+			"error",
+		);
 	}
 };
 
@@ -355,7 +362,8 @@ const bindEvents = () => {
 	elements.reloadBtn.addEventListener("click", () => {
 		withErrorToast(async () => {
 			if (state.dirty) {
-				const confirmed = window.confirm("有未保存内容，确定重新加载吗？");
+				const confirmed =
+					window.confirm("有未保存内容，确定重新加载吗？");
 				if (!confirmed) {
 					return;
 				}
@@ -373,7 +381,10 @@ const bindEvents = () => {
 	elements.deleteBtn.addEventListener("click", deleteSkill);
 
 	window.addEventListener("keydown", (event) => {
-		if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === "s") {
+		if (
+			(event.ctrlKey || event.metaKey) &&
+			event.key.toLowerCase() === "s"
+		) {
 			event.preventDefault();
 			withErrorToast(saveSkills);
 		}

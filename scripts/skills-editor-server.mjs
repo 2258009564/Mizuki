@@ -23,12 +23,7 @@ const CATEGORY_SET = new Set([
 	"other",
 ]);
 
-const LEVEL_SET = new Set([
-	"beginner",
-	"intermediate",
-	"advanced",
-	"expert",
-]);
+const LEVEL_SET = new Set(["beginner", "intermediate", "advanced", "expert"]);
 
 const MIME_TYPES = {
 	".html": "text/html; charset=utf-8",
@@ -209,7 +204,10 @@ const parseSkillsArray = (arrayLiteral) => {
 
 const normalizeSkill = (rawSkill) => {
 	const years = toNonNegativeInteger(rawSkill?.experience?.years);
-	const months = Math.min(toNonNegativeInteger(rawSkill?.experience?.months), 11);
+	const months = Math.min(
+		toNonNegativeInteger(rawSkill?.experience?.months),
+		11,
+	);
 
 	return {
 		id: normalizeText(rawSkill?.id),
@@ -399,7 +397,8 @@ const handleApi = async (req, res, pathName) => {
 		} catch (error) {
 			sendJson(res, 500, {
 				success: false,
-				message: error instanceof Error ? error.message : "读取 skills 失败",
+				message:
+					error instanceof Error ? error.message : "读取 skills 失败",
 			});
 		}
 		return;
@@ -421,7 +420,9 @@ const handleApi = async (req, res, pathName) => {
 				return;
 			}
 
-			const normalizedSkills = nextSkills.map((skill) => normalizeSkill(skill));
+			const normalizedSkills = nextSkills.map((skill) =>
+				normalizeSkill(skill),
+			);
 			await saveSkills(normalizedSkills);
 
 			sendJson(res, 200, {
@@ -451,7 +452,10 @@ const createServer = () => {
 			return;
 		}
 
-		const url = new URL(req.url, `http://${req.headers.host || "localhost"}`);
+		const url = new URL(
+			req.url,
+			`http://${req.headers.host || "localhost"}`,
+		);
 		const pathName = decodeURIComponent(url.pathname);
 
 		if (pathName.startsWith("/api/")) {
