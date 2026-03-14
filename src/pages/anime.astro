@@ -237,37 +237,148 @@ const hiddenAnimeList = animeList.slice(INITIAL_DISPLAY_COUNT);
 				<div class="mb-6">
 					<div class="anime-filter-container flex flex-wrap gap-2">
 						<button
+							type="button"
 							class="anime-filter-tag anime-active"
 							data-status="all"
+							aria-pressed="true"
 							>{i18n(I18nKey.animeFilterAll)}</button
 						>
-						<button class="anime-filter-tag" data-status="watching"
+						<button
+							type="button"
+							class="anime-filter-tag"
+							data-status="watching"
+							aria-pressed="false"
 							>{i18n(I18nKey.animeStatusWatching)}</button
 						>
-						<button class="anime-filter-tag" data-status="planned"
+						<button
+							type="button"
+							class="anime-filter-tag"
+							data-status="planned"
+							aria-pressed="false"
 							>{i18n(I18nKey.animeStatusPlanned)}</button
 						>
-						<button class="anime-filter-tag" data-status="completed"
+						<button
+							type="button"
+							class="anime-filter-tag"
+							data-status="completed"
+							aria-pressed="false"
 							>{i18n(I18nKey.animeStatusCompleted)}</button
 						>
 						{
 							ANIME_MODE === "bangumi" && (
 								<>
 									<button
+										type="button"
 										class="anime-filter-tag"
 										data-status="onhold"
+										aria-pressed="false"
 									>
 										{i18n(I18nKey.animeStatusOnHold)}
 									</button>
 									<button
+										type="button"
 										class="anime-filter-tag"
 										data-status="dropped"
+										aria-pressed="false"
 									>
 										{i18n(I18nKey.animeStatusDropped)}
 									</button>
 								</>
 							)
 						}
+					</div>
+				</div>
+
+				<div class="mb-6">
+					<div class="anime-sort-toolbar">
+						<div
+							class="anime-filter-container flex flex-wrap gap-2"
+						>
+							<button
+								type="button"
+								class="anime-filter-tag anime-sort-tag anime-active"
+								data-sort="added"
+								aria-pressed="true"
+							>
+								{i18n(I18nKey.animeSortByAdded)}
+							</button>
+							<button
+								type="button"
+								class="anime-filter-tag anime-sort-tag"
+								data-sort="year"
+								aria-pressed="false"
+							>
+								{i18n(I18nKey.animeSortByYear)}
+							</button>
+							<button
+								type="button"
+								class="anime-filter-tag anime-sort-tag"
+								data-sort="rating"
+								aria-pressed="false"
+							>
+								{i18n(I18nKey.animeSortByRating)}
+							</button>
+							<button
+								type="button"
+								class="anime-filter-tag anime-sort-tag"
+								data-sort="title"
+								aria-pressed="false"
+							>
+								{i18n(I18nKey.animeSortByTitle)}
+							</button>
+						</div>
+
+						<div class="anime-order-switch" role="group">
+							<button
+								type="button"
+								class="anime-order-icon-btn anime-order-tag anime-active"
+								data-order="desc"
+								aria-label={i18n(I18nKey.animeSortOrderDesc)}
+								title={i18n(I18nKey.animeSortOrderDesc)}
+								aria-pressed="true"
+							>
+								<span
+									class="anime-order-icon"
+									aria-hidden="true"
+								>
+									<svg viewBox="0 0 24 24" focusable="false">
+										<path d="M4 6h12"></path>
+										<path d="M4 12h9"></path>
+										<path d="M4 18h6"></path>
+										<path d="M18 5v14"></path>
+										<path d="m15 16 3 3 3-3"></path>
+									</svg>
+								</span>
+								<span class="anime-visually-hidden">
+									{i18n(I18nKey.animeSortOrderDesc)}
+								</span>
+							</button>
+
+							<button
+								type="button"
+								class="anime-order-icon-btn anime-order-tag"
+								data-order="asc"
+								aria-label={i18n(I18nKey.animeSortOrderAsc)}
+								title={i18n(I18nKey.animeSortOrderAsc)}
+								aria-pressed="false"
+							>
+								<span
+									class="anime-order-icon"
+									aria-hidden="true"
+								>
+									<svg viewBox="0 0 24 24" focusable="false">
+										<path d="M4 6h6"></path>
+										<path d="M4 12h9"></path>
+										<path d="M4 18h12"></path>
+										<path d="M18 19V5"></path>
+										<path d="m15 8 3-3 3 3"></path>
+									</svg>
+								</span>
+								<span class="anime-visually-hidden">
+									{i18n(I18nKey.animeSortOrderAsc)}
+								</span>
+							</button>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -280,9 +391,7 @@ const hiddenAnimeList = animeList.slice(INITIAL_DISPLAY_COUNT);
 							<h3 class="text-xl font-medium text-90 mb-2">
 								{emptyMessage}
 							</h3>
-							<p class="text-60">
-								{emptyDescription}
-							</p>
+							<p class="text-60">{emptyDescription}</p>
 						</div>
 					) : (
 						<>
@@ -290,7 +399,7 @@ const hiddenAnimeList = animeList.slice(INITIAL_DISPLAY_COUNT);
 								id="anime-list-container"
 								class={`anime-grid-container grid gap-4 md:gap-6 opacity-0 transition-opacity duration-300`}
 							>
-								{visibleAnimeList.map((anime) => {
+								{visibleAnimeList.map((anime, index) => {
 									const statusInfo = getStatusInfo(
 										anime.status,
 									);
@@ -305,6 +414,10 @@ const hiddenAnimeList = animeList.slice(INITIAL_DISPLAY_COUNT);
 										<div
 											class="group relative bg-(--card-bg) border border-(--line-divider) rounded-(--radius-large) overflow-hidden hover:shadow-lg"
 											data-anime-status={anime.status}
+											data-anime-year={anime.year}
+											data-anime-rating={anime.rating}
+											data-anime-title={anime.title}
+											data-anime-index={index}
 										>
 											<div class="relative anime-cover-container aspect-2/3 overflow-hidden">
 												<a
@@ -431,7 +544,7 @@ const hiddenAnimeList = animeList.slice(INITIAL_DISPLAY_COUNT);
 							</div>
 
 							<template id="anime-lazy-store">
-								{hiddenAnimeList.map((anime) => {
+								{hiddenAnimeList.map((anime, hiddenIndex) => {
 									const statusInfo = getStatusInfo(
 										anime.status,
 									);
@@ -446,6 +559,13 @@ const hiddenAnimeList = animeList.slice(INITIAL_DISPLAY_COUNT);
 										<div
 											class="group relative bg-(--card-bg) border border-(--line-divider) rounded-(--radius-large) overflow-hidden hover:shadow-lg"
 											data-anime-status={anime.status}
+											data-anime-year={anime.year}
+											data-anime-rating={anime.rating}
+											data-anime-title={anime.title}
+											data-anime-index={
+												INITIAL_DISPLAY_COUNT +
+												hiddenIndex
+											}
 										>
 											<div class="relative anime-cover-container aspect-2/3 overflow-hidden">
 												<a
@@ -766,12 +886,254 @@ const hiddenAnimeList = animeList.slice(INITIAL_DISPLAY_COUNT);
 	</script>
 
 	<script is:inline>
+		const ANIME_SORT_STORAGE_KEY = "animeSortType";
+		const ANIME_ORDER_STORAGE_KEY = "animeSortOrder";
+		const ANIME_STATUS_STORAGE_KEY = "animeStatusFilter";
+		const DEFAULT_SORT_TYPE = "added";
+		const DEFAULT_SORT_ORDER = "desc";
+		const DEFAULT_STATUS_FILTER = "all";
+
+		function safeGetStorageItem(key) {
+			try {
+				return localStorage.getItem(key);
+			} catch {
+				return null;
+			}
+		}
+
+		function safeSetStorageItem(key, value) {
+			try {
+				localStorage.setItem(key, value);
+			} catch {
+				// ignore storage write errors in restricted environments
+			}
+		}
+
 		if (typeof window.animeFilterEventListeners === "undefined") {
 			window.animeFilterEventListeners = [];
 		}
+		if (typeof window.animeSortEventListeners === "undefined") {
+			window.animeSortEventListeners = [];
+		}
+		if (typeof window.animeOrderEventListeners === "undefined") {
+			window.animeOrderEventListeners = [];
+		}
+		if (typeof window.animeActiveSort === "undefined") {
+			window.animeActiveSort = DEFAULT_SORT_TYPE;
+		}
+		if (typeof window.animeActiveOrder === "undefined") {
+			window.animeActiveOrder = DEFAULT_SORT_ORDER;
+		}
+		if (typeof window.animeActiveStatus === "undefined") {
+			window.animeActiveStatus = DEFAULT_STATUS_FILTER;
+		}
+
+		function setTagActiveState(tag, isActive) {
+			tag.classList.toggle("anime-active", isActive);
+			tag.setAttribute("aria-pressed", isActive ? "true" : "false");
+		}
+
+		function getStoredSortState() {
+			const rawSort = safeGetStorageItem(ANIME_SORT_STORAGE_KEY);
+			const rawOrder = safeGetStorageItem(ANIME_ORDER_STORAGE_KEY);
+
+			const sortType = ["added", "year", "rating", "title"].includes(
+				rawSort,
+			)
+				? rawSort
+				: DEFAULT_SORT_TYPE;
+			const sortOrder = rawOrder === "asc" ? "asc" : DEFAULT_SORT_ORDER;
+
+			return { sortType, sortOrder };
+		}
+
+		function getStoredStatusFilter(filterTags) {
+			const rawStatus = safeGetStorageItem(ANIME_STATUS_STORAGE_KEY);
+
+			const validStatuses = new Set(
+				Array.from(filterTags)
+					.map((tag) => tag.getAttribute("data-status"))
+					.filter((status) => !!status),
+			);
+
+			if (rawStatus && validStatuses.has(rawStatus)) {
+				return rawStatus;
+			}
+
+			return DEFAULT_STATUS_FILTER;
+		}
+
+		function saveSortState(sortType, sortOrder) {
+			safeSetStorageItem(ANIME_SORT_STORAGE_KEY, sortType);
+			safeSetStorageItem(ANIME_ORDER_STORAGE_KEY, sortOrder);
+		}
+
+		function saveStatusFilter(status) {
+			safeSetStorageItem(ANIME_STATUS_STORAGE_KEY, status);
+		}
+
+		function isDefaultSortState(sortType, sortOrder) {
+			return (
+				sortType === DEFAULT_SORT_TYPE &&
+				sortOrder === DEFAULT_SORT_ORDER
+			);
+		}
+
+		function parseAnimeYear(yearValue) {
+			const text = String(yearValue || "");
+			const match = text.match(/(19|20)\d{2}/);
+			return match ? parseInt(match[0], 10) : -1;
+		}
+
+		function parseAnimeRating(ratingValue) {
+			const text = String(ratingValue ?? "").trim();
+			if (!text) return null;
+
+			const parsed = Number(ratingValue);
+			return Number.isFinite(parsed) ? parsed : null;
+		}
+
+		function applyStatusFilterWithoutAnimation(listContainer, status) {
+			const animeItems = getAnimeCards(listContainer);
+			animeItems.forEach((item) => {
+				const itemStatus = item.getAttribute("data-anime-status");
+				const shouldShow =
+					status === DEFAULT_STATUS_FILTER || itemStatus === status;
+
+				item.classList.toggle("anime-hidden", !shouldShow);
+				if (shouldShow) {
+					item.classList.remove(
+						"anime-fade-out",
+						"anime-fade-in",
+						"anime-fade-in-active",
+					);
+				}
+			});
+		}
+
+		function getAnimeCards(listContainer) {
+			return Array.from(listContainer.children).filter((item) =>
+				item.hasAttribute("data-anime-status"),
+			);
+		}
+
+		function ensureAllAnimeLoaded(lazyStore, listContainer, sentinel) {
+			if (!lazyStore || !listContainer) return;
+
+			if (lazyStore.content.children.length > 0) {
+				const fragment = document.createDocumentFragment();
+				while (lazyStore.content.firstChild) {
+					const node = lazyStore.content.firstChild;
+					fragment.appendChild(node);
+				}
+				listContainer.appendChild(fragment);
+			}
+
+			if (sentinel) sentinel.style.display = "none";
+		}
+
+		function sortAnimeCards(listContainer, sortType, sortOrder) {
+			const animeItems = getAnimeCards(listContainer);
+			const locale = document.documentElement.lang || undefined;
+
+			animeItems.sort((a, b) => {
+				const aIndex = parseInt(
+					a.getAttribute("data-anime-index") || "0",
+					10,
+				);
+				const bIndex = parseInt(
+					b.getAttribute("data-anime-index") || "0",
+					10,
+				);
+
+				if (sortType === "year") {
+					const aYear = parseAnimeYear(
+						a.getAttribute("data-anime-year"),
+					);
+					const bYear = parseAnimeYear(
+						b.getAttribute("data-anime-year"),
+					);
+					const aUnknown = aYear < 0;
+					const bUnknown = bYear < 0;
+
+					// 未知年份统一放到最后
+					if (aUnknown !== bUnknown) {
+						return aUnknown ? 1 : -1;
+					}
+
+					if (aYear !== bYear) {
+						return sortOrder === "asc"
+							? aYear - bYear
+							: bYear - aYear;
+					}
+				}
+
+				if (sortType === "rating") {
+					const aRating = parseAnimeRating(
+						a.getAttribute("data-anime-rating"),
+					);
+					const bRating = parseAnimeRating(
+						b.getAttribute("data-anime-rating"),
+					);
+					const aUnknown = aRating === null;
+					const bUnknown = bRating === null;
+
+					if (aUnknown !== bUnknown) {
+						return aUnknown ? 1 : -1;
+					}
+
+					if (aRating !== bRating) {
+						return sortOrder === "asc"
+							? aRating - bRating
+							: bRating - aRating;
+					}
+				}
+
+				if (sortType === "title") {
+					const aTitle = (
+						a.getAttribute("data-anime-title") || ""
+					).trim();
+					const bTitle = (
+						b.getAttribute("data-anime-title") || ""
+					).trim();
+
+					if (aTitle !== bTitle) {
+						const compared = aTitle.localeCompare(bTitle, locale, {
+							numeric: true,
+							sensitivity: "base",
+							ignorePunctuation: true,
+						});
+
+						return sortOrder === "asc" ? compared : -compared;
+					}
+				}
+
+				if (sortType === "added") {
+					return sortOrder === "asc"
+						? bIndex - aIndex
+						: aIndex - bIndex;
+				}
+
+				return aIndex - bIndex;
+			});
+
+			animeItems.forEach((item) => listContainer.appendChild(item));
+		}
 
 		function initFilterButtons() {
-			const filterTags = document.querySelectorAll(".anime-filter-tag");
+			const storedState = getStoredSortState();
+			window.animeActiveSort = storedState.sortType;
+			window.animeActiveOrder = storedState.sortOrder;
+
+			const filterTags = document.querySelectorAll(
+				".anime-filter-tag[data-status]",
+			);
+			const sortTags = document.querySelectorAll(
+				".anime-sort-tag[data-sort]",
+			);
+			const orderTags = document.querySelectorAll(
+				".anime-order-tag[data-order]",
+			);
 			const sentinel = document.getElementById(
 				"infinite-scroll-sentinel",
 			);
@@ -784,27 +1146,157 @@ const hiddenAnimeList = animeList.slice(INITIAL_DISPLAY_COUNT);
 				element.removeEventListener(type, handler);
 			});
 			window.animeFilterEventListeners = [];
+			window.animeSortEventListeners.forEach((listener) => {
+				const [element, type, handler] = listener;
+				element.removeEventListener(type, handler);
+			});
+			window.animeSortEventListeners = [];
+			window.animeOrderEventListeners.forEach((listener) => {
+				const [element, type, handler] = listener;
+				element.removeEventListener(type, handler);
+			});
+			window.animeOrderEventListeners = [];
+
+			const currentStatus = getStoredStatusFilter(filterTags);
+			window.animeActiveStatus = currentStatus;
+
+			const currentSort = window.animeActiveSort || DEFAULT_SORT_TYPE;
+			const currentOrder = window.animeActiveOrder || DEFAULT_SORT_ORDER;
+			sortTags.forEach((tag) => {
+				setTagActiveState(
+					tag,
+					tag.getAttribute("data-sort") === currentSort,
+				);
+			});
+			orderTags.forEach((tag) => {
+				setTagActiveState(
+					tag,
+					tag.getAttribute("data-order") === currentOrder,
+				);
+			});
+			filterTags.forEach((tag) => {
+				setTagActiveState(
+					tag,
+					tag.getAttribute("data-status") === currentStatus,
+				);
+			});
+
+			if (!listContainer) {
+				return;
+			}
+
+			if (
+				!isDefaultSortState(currentSort, currentOrder) ||
+				currentStatus !== DEFAULT_STATUS_FILTER
+			) {
+				ensureAllAnimeLoaded(lazyStore, listContainer, sentinel);
+				sortAnimeCards(listContainer, currentSort, currentOrder);
+				applyStatusFilterWithoutAnimation(listContainer, currentStatus);
+			}
+
+			sortTags.forEach((tag) => {
+				const clickHandler = function () {
+					const selectedSort =
+						this.getAttribute("data-sort") || DEFAULT_SORT_TYPE;
+
+					if (selectedSort === window.animeActiveSort) return;
+
+					window.animeActiveSort = selectedSort;
+					saveSortState(
+						window.animeActiveSort,
+						window.animeActiveOrder,
+					);
+					sortTags.forEach((t) => {
+						setTagActiveState(
+							t,
+							t.getAttribute("data-sort") === selectedSort,
+						);
+					});
+
+					if (!listContainer) return;
+
+					ensureAllAnimeLoaded(lazyStore, listContainer, sentinel);
+					sortAnimeCards(
+						listContainer,
+						selectedSort,
+						window.animeActiveOrder || DEFAULT_SORT_ORDER,
+					);
+					applyStatusFilterWithoutAnimation(
+						listContainer,
+						window.animeActiveStatus || DEFAULT_STATUS_FILTER,
+					);
+				};
+
+				tag.addEventListener("click", clickHandler);
+				window.animeSortEventListeners.push([
+					tag,
+					"click",
+					clickHandler,
+				]);
+			});
+
+			orderTags.forEach((tag) => {
+				const clickHandler = function () {
+					const selectedOrder =
+						this.getAttribute("data-order") || DEFAULT_SORT_ORDER;
+
+					if (selectedOrder === window.animeActiveOrder) return;
+
+					window.animeActiveOrder = selectedOrder;
+					saveSortState(
+						window.animeActiveSort,
+						window.animeActiveOrder,
+					);
+
+					orderTags.forEach((t) => {
+						setTagActiveState(
+							t,
+							t.getAttribute("data-order") === selectedOrder,
+						);
+					});
+
+					if (!listContainer) return;
+
+					ensureAllAnimeLoaded(lazyStore, listContainer, sentinel);
+					sortAnimeCards(
+						listContainer,
+						window.animeActiveSort || DEFAULT_SORT_TYPE,
+						selectedOrder,
+					);
+					applyStatusFilterWithoutAnimation(
+						listContainer,
+						window.animeActiveStatus || DEFAULT_STATUS_FILTER,
+					);
+				};
+
+				tag.addEventListener("click", clickHandler);
+				window.animeOrderEventListeners.push([
+					tag,
+					"click",
+					clickHandler,
+				]);
+			});
 			filterTags.forEach((tag) => {
 				const clickHandler = function () {
-					if (this.classList.contains("anime-active")) return;
+					const selectedStatus =
+						this.getAttribute("data-status") ||
+						DEFAULT_STATUS_FILTER;
 
-					filterTags.forEach((t) =>
-						t.classList.remove("anime-active"),
-					);
-					this.classList.add("anime-active");
+					if (selectedStatus === window.animeActiveStatus) return;
 
-					if (
-						lazyStore &&
-						lazyStore.content.children.length > 0 &&
-						listContainer
-					) {
-						const fragment = document.createDocumentFragment();
-						while (lazyStore.content.firstChild) {
-							const node = lazyStore.content.firstChild;
-							fragment.appendChild(node);
-						}
-						listContainer.appendChild(fragment);
-					}
+					window.animeActiveStatus = selectedStatus;
+					saveStatusFilter(selectedStatus);
+
+					filterTags.forEach((t) => {
+						setTagActiveState(
+							t,
+							t.getAttribute("data-status") === selectedStatus,
+						);
+					});
+
+					if (!listContainer) return;
+
+					ensureAllAnimeLoaded(lazyStore, listContainer, sentinel);
 
 					if (sentinel) sentinel.style.display = "none";
 					const initialHidden =
@@ -813,7 +1305,7 @@ const hiddenAnimeList = animeList.slice(INITIAL_DISPLAY_COUNT);
 						el.classList.remove("hidden", "initial-hidden");
 					});
 
-					const status = this.getAttribute("data-status");
+					const status = selectedStatus;
 					const animeItems = Array.from(
 						listContainer.children,
 					).filter((item) => item.hasAttribute("data-anime-status"));
@@ -971,7 +1463,18 @@ const hiddenAnimeList = animeList.slice(INITIAL_DISPLAY_COUNT);
 			}
 		}
 
-		document.addEventListener("DOMContentLoaded", initFilterButtons);
+		function runInitFilterButtons() {
+			setTimeout(initFilterButtons, 0);
+		}
+
+		if (document.readyState === "loading") {
+			document.addEventListener("DOMContentLoaded", runInitFilterButtons, {
+				once: true,
+			});
+		} else {
+			runInitFilterButtons();
+		}
+
 		function setupSwupListeners() {
 			if (window.swup) {
 				window.swup.hooks.on("content:replace", () =>
@@ -986,8 +1489,16 @@ const hiddenAnimeList = animeList.slice(INITIAL_DISPLAY_COUNT);
 		if (typeof window !== "undefined") {
 			if (window.swup) {
 				setupSwupListeners();
+				runInitFilterButtons();
 			} else {
-				document.addEventListener("swup:enable", setupSwupListeners);
+				document.addEventListener(
+					"swup:enable",
+					() => {
+						setupSwupListeners();
+						runInitFilterButtons();
+					},
+					{ once: true },
+				);
 			}
 		}
 	</script>
