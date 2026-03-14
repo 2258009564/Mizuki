@@ -1181,13 +1181,10 @@ const hiddenAnimeList = animeList.slice(INITIAL_DISPLAY_COUNT);
 				);
 			});
 
-			if (!listContainer) {
-				return;
-			}
-
 			if (
-				!isDefaultSortState(currentSort, currentOrder) ||
-				currentStatus !== DEFAULT_STATUS_FILTER
+				listContainer &&
+				(!isDefaultSortState(currentSort, currentOrder) ||
+					currentStatus !== DEFAULT_STATUS_FILTER)
 			) {
 				ensureAllAnimeLoaded(lazyStore, listContainer, sentinel);
 				sortAnimeCards(listContainer, currentSort, currentOrder);
