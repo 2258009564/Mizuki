@@ -112,7 +112,7 @@ export const siteConfig: SiteConfig = {
 		// "mobile" = 仅在移动端显示
 		// "desktop" = 仅在桌面端显示
 		// "both" = 在所有设备上显示
-		showModeSwitchOnMobile: "desktop",
+		showModeSwitchOnMobile: "off",
 	},
 
 	banner: {
@@ -166,6 +166,7 @@ export const siteConfig: SiteConfig = {
 			subtitle: [
 				"你好喵，欢迎来访！",
 				"tell the world who i am and what i wanna do",
+				"为了打算法竞赛，我去寺庙求了一签，结果签上显示为凶，问主持解签，主持说你拿歪了，上面写的是区",
 				"更多功能正紧锣密鼓地筹备中...，欢迎常来！",
 			], // 主页横幅副标题，支持字符串数组，启用打字机效果后会轮播显示
 			typewriter: {
@@ -274,16 +275,22 @@ export const navBarConfig: NavBarConfig = {
 					icon: "fa7-brands:github",
 				},
 				{
+					name: "Bilibili",
+					url: "https://space.bilibili.com/98732441",
+					external: true,
+					icon: "fa7-brands:bilibili",
+				},
+				{
 					name: "Codeforces",
 					url: "https://codeforces.com/profile/alisa22580",
 					external: true,
 					icon: "simple-icons:codeforces",
 				},
 				{
-					name: "Bilibili",
-					url: "https://space.bilibili.com/98732441",
+					name: "X",
+					url: "https://x.com/alisa_22580",
 					external: true,
-					icon: "fa7-brands:bilibili",
+					icon: "fa7-brands:x-twitter",
 				},
 				// {
 				// 	name: "Gitee",
@@ -373,25 +380,25 @@ export const profileConfig: ProfileConfig = {
 	},
 	links: [
 		{
-			name: "Bilibili",
-			icon: "fa7-brands:bilibili",
-			url: "https://space.bilibili.com/98732441",
-		},
-		{
 			name: "GitHub",
 			icon: "fa7-brands:github",
 			url: "https://github.com/2258009564",
+		},
+		{
+			name: "Bilibili",
+			icon: "fa7-brands:bilibili",
+			url: "https://space.bilibili.com/98732441",
 		},
 		{
 			name: "Codeforces",
 			icon: "simple-icons:codeforces",
 			url: "https://codeforces.com/profile/alisa22580",
 		},
-		// {
-		// 	name: "Codeberg",
-		// 	icon: "simple-icons:codeberg",
-		// 	url: "https://codeberg.org/alisa22580",
-		// },
+		{
+			name: "X",
+			icon: "fa7-brands:x-twitter",
+			url: "https://x.com/alisa_22580",
+		},
 	],
 };
 
