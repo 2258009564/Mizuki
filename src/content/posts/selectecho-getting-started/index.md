@@ -14,7 +14,11 @@ licenseName: "MIT"
 
 # 写在前面
 
-这篇教程是给第一次接触浏览器扩展、或者第一次折腾划词翻译的朋友准备的。
+这篇教程是给第一次接触浏览器扩展、或者第一次折腾划词翻译的朋友准备的，可以作为「SelectEcho」的快速上手指南。
+
+::github{repo="2258009564/SelectEcho"}
+
+如果对你有帮助的话，欢迎在 GitHub 上给项目点个 star，或者把教程分享给需要的朋友！如果你在使用过程中遇到任何问题，也欢迎在 GitHub 上提交 issue，我会尽快回复。
 
 这篇教程可以：
 
@@ -32,10 +36,10 @@ licenseName: "MIT"
 
 也就是划词翻译啦！
 
-它的设计原则：
-1. 引擎策略很明确，只在百度和 Google 里二选一，不会乱跳多个第三方节点。
-2. 对中文有识别逻辑：简体中文默认跳过，繁体中文会继续翻译为简体。
-3. 支持多种面板模板（classic、glass、brutal、editorial、terminal），可以按个人审美换样式。
+## 效果展示：
+![alt text](image-9.png)
+![alt text](image-10.png)
+![alt text](image-11.png)
 
 # 2. 使用前准备
 
