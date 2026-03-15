@@ -27,7 +27,16 @@ const diaryData: DiaryItem[] = [
 		date: "2026-03-13T20:18:21Z",
 		images: [
 			"/images/diary/51eeafee168445c8616f6eb489f6c00e.jpg",
-			"/images/diary/f164495ed0ecaf5a8cf0f7f815f94f13.jpg"
+			"/images/diary/f164495ed0ecaf5a8cf0f7f815f94f13.jpg",
+		],
+	},
+	{
+		id: 3,
+		content:
+			"今天写了一下午划词翻译，结果发现好像是在手造轮子，心累。不过本身是为了满足个人需求，看到确实有朋友需要，我还是很开心的。",
+		date: "2026-03-15T22:41:38Z",
+		images: [
+			"/images/diary/image.png",
 		],
 	},
 ];

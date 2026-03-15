@@ -178,9 +178,6 @@ cd SelectEcho
 | `baiduAppId` | 空 | 百度凭证 App ID。 |
 | `baiduAppKey` | 空 | 百度凭证密钥，和 App ID 成对使用。 |
 
-> 重点记忆
-> `engineMode` 决定引擎策略优先级。你选了 `google`，就算填了百度凭证，也不会走百度。
-
 # 6. 常见问题排查
 
 ## 6.1 安装成功但划词没反应
