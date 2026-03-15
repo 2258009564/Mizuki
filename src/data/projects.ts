@@ -61,6 +61,7 @@ const PROJECT_STATUS_OVERRIDE_ENTRIES: Array<[string, Project["status"]]> = [
 	["mizuki", "in-progress"],
 	["docs-mizuki", "in-progress"],
 	["2258009564.github.io", "in-progress"],
+	["SelectEcho", "in-progress"],
 ];
 
 const fallbackProjectsData: Project[] = [
