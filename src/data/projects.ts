@@ -42,6 +42,7 @@ const FALLBACK_GITHUB_USERNAME = "2258009564";
 // 请使用 GitHub 上的仓库原名；留空则使用自动精选
 const FEATURED_REPO_NAMES: string[] = [
 	"2258009564.github.io",
+	"SelectEcho",
 	"MYWORK",
 	"maze-explorer",
 ];
