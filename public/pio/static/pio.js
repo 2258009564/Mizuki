@@ -22,6 +22,7 @@ var Paul_Pio = function (prop) {
 
 	const dragThresholdPx = 6;
 	const clickSuppressWindowMs = 240;
+	const viewportPaddingPx = 8;
 	let suppressClickUntil = 0;
 
 	const shouldSuppressClick = () => Date.now() < suppressClickUntil;
@@ -65,6 +66,90 @@ var Paul_Pio = function (prop) {
 	current.body.appendChild(elements.dialog);
 	current.body.appendChild(elements.show);
 
+	const clampValue = (value, min, max) => {
+		if (max < min) return min;
+		return Math.min(Math.max(value, min), max);
+	};
+
+	const setBodyPosition = (nextLeft, nextTop) => {
+		const rect = current.body.getBoundingClientRect();
+		const minLeft = viewportPaddingPx;
+		const minTop = viewportPaddingPx;
+		const maxLeft = Math.max(
+			minLeft,
+			window.innerWidth - rect.width - viewportPaddingPx,
+		);
+		const maxTop = Math.max(
+			minTop,
+			window.innerHeight - rect.height - viewportPaddingPx,
+		);
+		const left = clampValue(nextLeft, minLeft, maxLeft);
+		const top = clampValue(nextTop, minTop, maxTop);
+
+		current.body.style.left = left + "px";
+		current.body.style.top = top + "px";
+		current.body.style.right = "auto";
+		current.body.style.bottom = "auto";
+		current.body.classList.remove("left");
+		current.body.classList.remove("right");
+	};
+
+	const keepBodyInViewport = () => {
+		const bodyRect = current.body.getBoundingClientRect();
+		let minX = bodyRect.left;
+		let minY = bodyRect.top;
+		let maxX = bodyRect.right;
+		let maxY = bodyRect.bottom;
+
+		const showStyle = window.getComputedStyle(elements.show);
+		if (showStyle.display !== "none" && showStyle.visibility !== "hidden") {
+			const showRect = elements.show.getBoundingClientRect();
+			minX = Math.min(minX, showRect.left);
+			minY = Math.min(minY, showRect.top);
+			maxX = Math.max(maxX, showRect.right);
+			maxY = Math.max(maxY, showRect.bottom);
+		}
+
+		let deltaX = 0;
+		let deltaY = 0;
+
+		if (minX < viewportPaddingPx) {
+			deltaX = viewportPaddingPx - minX;
+		} else if (maxX > window.innerWidth - viewportPaddingPx) {
+			deltaX = window.innerWidth - viewportPaddingPx - maxX;
+		}
+
+		if (minY < viewportPaddingPx) {
+			deltaY = viewportPaddingPx - minY;
+		} else if (maxY > window.innerHeight - viewportPaddingPx) {
+			deltaY = window.innerHeight - viewportPaddingPx - maxY;
+		}
+
+		if (deltaX === 0 && deltaY === 0) return;
+
+		setBodyPosition(bodyRect.left + deltaX, bodyRect.top + deltaY);
+	};
+
+	if (typeof current.body.__pioViewportCleanup === "function") {
+		current.body.__pioViewportCleanup();
+	}
+
+	const handleViewportChange = () => {
+		keepBodyInViewport();
+	};
+
+	window.addEventListener("resize", handleViewportChange);
+	window.addEventListener("orientationchange", handleViewportChange);
+
+	current.body.__pioViewportCleanup = () => {
+		window.removeEventListener("resize", handleViewportChange);
+		window.removeEventListener("orientationchange", handleViewportChange);
+	};
+
+	window.requestAnimationFrame(() => {
+		keepBodyInViewport();
+	});
+
 	/* - 方法 */
 	const modules = {
 		// 更换模型
@@ -78,6 +163,11 @@ var Paul_Pio = function (prop) {
 		// 创建对话框方法
 		message: (text, options = {}) => {
 			const { dialog } = elements;
+
+			if (dialog.classList.contains("active")) {
+				dialog.classList.remove("active");
+				void dialog.offsetWidth;
+			}
 
 			if (text.constructor === Array) {
 				dialog.innerText = tools.rand(text);
@@ -275,7 +365,7 @@ var Paul_Pio = function (prop) {
 						};
 					} else if (item.text) {
 						el[i].onmouseover = () => {
-							modules.message(t.text);
+							modules.message(item.text);
 						};
 					}
 				}
@@ -362,9 +452,10 @@ var Paul_Pio = function (prop) {
 					body.classList.remove("right");
 				}
 
-				body.style.left = ev.clientX - dragState.offsetX + "px";
-				body.style.top = ev.clientY - dragState.offsetY + "px";
-				body.style.bottom = "auto";
+				setBodyPosition(
+					ev.clientX - dragState.offsetX,
+					ev.clientY - dragState.offsetY,
+				);
 
 				ev.preventDefault();
 			};
@@ -395,6 +486,7 @@ var Paul_Pio = function (prop) {
 
 				dragState.pointerId = null;
 				body.classList.remove("active");
+				keepBodyInViewport();
 
 				if (ev) {
 					ev.preventDefault();
@@ -518,9 +610,10 @@ var Paul_Pio = function (prop) {
 				current.body.classList.remove("right");
 			}
 
-			current.body.style.left = ev.clientX - dragState.offsetX + "px";
-			current.body.style.top = ev.clientY - dragState.offsetY + "px";
-			current.body.style.bottom = "auto";
+			setBodyPosition(
+				ev.clientX - dragState.offsetX,
+				ev.clientY - dragState.offsetY,
+			);
 
 			ev.preventDefault();
 		};
@@ -551,6 +644,7 @@ var Paul_Pio = function (prop) {
 
 			dragState.pointerId = null;
 			current.body.classList.remove("active");
+			keepBodyInViewport();
 
 			if (ev) {
 				ev.preventDefault();
@@ -568,6 +662,9 @@ var Paul_Pio = function (prop) {
 			localStorage.setItem("posterGirl", "1");
 
 			this.init();
+			window.requestAnimationFrame(() => {
+				keepBodyInViewport();
+			});
 		};
 
 		elements.show.onpointerdown = pointerdown;

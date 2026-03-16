@@ -181,6 +181,7 @@ if (siteConfig.font) {
 >
 	<head>
 		<script
+			is:inline
 			defer
 			src="https://cloud.umami.is/script.js"
 			data-website-id="8391b994-eef8-41a4-8068-160d8cff9f14"></script>
@@ -391,6 +392,11 @@ if (siteConfig.font) {
 		{
 			shouldOptimizeCubismAssets && (
 				<>
+					<link
+						rel="preconnect"
+						href="https://cubism.live2d.com"
+						crossorigin="anonymous"
+					/>
 					<link
 						rel="preconnect"
 						href="https://cdn.jsdelivr.net"

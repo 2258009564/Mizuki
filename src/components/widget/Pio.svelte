@@ -23,6 +23,8 @@
 	const clickSuppressWindowMs = 240;
 	const scriptLoadTimeoutMs = 10000;
 	const modelLoadTimeoutMs = 15000;
+	const viewportPaddingPx = 8;
+	const showBubbleOffsetEm = 1;
 
 	// 全局Pio实例引用
 	let pioInstance = null;
@@ -46,6 +48,10 @@
 	let isRestoringCubism = false;
 	let cubismSuppressClickUntil = 0;
 	let pioShowButton;
+	let cubismResizeRafId = 0;
+	let lastTouchDialogText = "";
+	let showAnchorX = "left";
+	let showAnchorY = "bottom";
 
 	// 样式已通过 Layout.astro 静态引入，无需动态加载
 
@@ -84,8 +90,44 @@
 		return fallback;
 	}
 
+	function pickTouchDialogText() {
+		const source = pioConfig.dialog?.touch;
+
+		if (!Array.isArray(source) || source.length <= 1) {
+			const text = pickDialogText(source, "不可以这样欺负我啦！");
+			lastTouchDialogText = text;
+			return text;
+		}
+
+		const candidates = source.filter(
+			(item) => typeof item === "string" && item.trim().length > 0,
+		);
+
+		if (candidates.length === 0) {
+			return "不可以这样欺负我啦！";
+		}
+
+		let next = candidates[Math.floor(Math.random() * candidates.length)];
+		if (candidates.length > 1 && next === lastTouchDialogText) {
+			const alternatives = candidates.filter(
+				(item) => item !== lastTouchDialogText,
+			);
+			next =
+				alternatives[Math.floor(Math.random() * alternatives.length)] ||
+				next;
+		}
+
+		lastTouchDialogText = next;
+		return next;
+	}
+
 	function showCubismDialog(message, duration = 3000) {
 		if (!useCubism4 || !pioDialog || !message) return;
+
+		if (pioDialog.classList.contains("active")) {
+			pioDialog.classList.remove("active");
+			void pioDialog.offsetWidth;
+		}
 
 		pioDialog.textContent = message;
 		pioDialog.classList.add("active");
@@ -117,6 +159,298 @@
 	function hideCubismModel() {
 		if (!pioContainer) return;
 		pioContainer.classList.add("pio-hidden");
+
+		if (typeof window !== "undefined") {
+			window.requestAnimationFrame(() => {
+				keepPioInsideViewport();
+			});
+		}
+	}
+
+	function clampValue(value, min, max) {
+		if (!Number.isFinite(value)) return min;
+		if (max < min) return min;
+		return Math.min(Math.max(value, min), max);
+	}
+
+	function getShowBubbleSizePx() {
+		if (typeof window === "undefined") return { width: 48, height: 48 };
+
+		if (pioShowButton) {
+			const rect = pioShowButton.getBoundingClientRect();
+			if (rect.width > 0 && rect.height > 0) {
+				return { width: rect.width, height: rect.height };
+			}
+
+			const style = window.getComputedStyle(pioShowButton);
+			const width = Number.parseFloat(style.width);
+			const height = Number.parseFloat(style.height);
+			if (Number.isFinite(width) && Number.isFinite(height)) {
+				return { width, height };
+			}
+		}
+
+		return { width: 48, height: 48 };
+	}
+
+	function getShowAnchorMetrics(
+		containerWidth,
+		containerHeight,
+		xMode = showAnchorX,
+		yMode = showAnchorY,
+	) {
+		const { width: bubbleWidth, height: bubbleHeight } =
+			getShowBubbleSizePx();
+		const rootFontSize =
+			typeof window === "undefined"
+				? 16
+				: Number.parseFloat(
+						window.getComputedStyle(document.documentElement)
+							.fontSize,
+					) || 16;
+		const bubbleOffsetPx = rootFontSize * showBubbleOffsetEm;
+
+		const centerX =
+			xMode === "right"
+				? containerWidth + bubbleOffsetPx - bubbleWidth / 2
+				: -bubbleOffsetPx + bubbleWidth / 2;
+		const centerY =
+			yMode === "top"
+				? bubbleOffsetPx + bubbleHeight / 2
+				: containerHeight - bubbleOffsetPx - bubbleHeight / 2;
+
+		return {
+			centerX,
+			centerY,
+			minX: centerX - bubbleWidth / 2,
+			maxX: centerX + bubbleWidth / 2,
+			minY: centerY - bubbleHeight / 2,
+			maxY: centerY + bubbleHeight / 2,
+		};
+	}
+
+	function setContainerPosition(nextLeft, nextTop, options = {}) {
+		if (!pioContainer || typeof window === "undefined") return;
+
+		const {
+			useBubbleBounds = false,
+			containerWidth = null,
+			containerHeight = null,
+		} = options;
+
+		const rect = pioContainer.getBoundingClientRect();
+		const width = Number.isFinite(containerWidth)
+			? containerWidth
+			: rect.width;
+		const height = Number.isFinite(containerHeight)
+			? containerHeight
+			: rect.height;
+
+		let minLeft;
+		let minTop;
+		let maxLeft;
+		let maxTop;
+
+		if (useBubbleBounds) {
+			const metrics = getShowAnchorMetrics(width, height);
+			minLeft = viewportPaddingPx - metrics.minX;
+			maxLeft = window.innerWidth - viewportPaddingPx - metrics.maxX;
+			minTop = viewportPaddingPx - metrics.minY;
+			maxTop = window.innerHeight - viewportPaddingPx - metrics.maxY;
+		} else {
+			minLeft = viewportPaddingPx;
+			minTop = viewportPaddingPx;
+			maxLeft = Math.max(
+				minLeft,
+				window.innerWidth - width - viewportPaddingPx,
+			);
+			maxTop = Math.max(
+				minTop,
+				window.innerHeight - height - viewportPaddingPx,
+			);
+		}
+
+		const left = clampValue(nextLeft, minLeft, maxLeft);
+		const top = clampValue(nextTop, minTop, maxTop);
+
+		pioContainer.style.left = `${left}px`;
+		pioContainer.style.top = `${top}px`;
+		pioContainer.style.right = "auto";
+		pioContainer.style.bottom = "auto";
+		pioContainer.classList.remove("left");
+		pioContainer.classList.remove("right");
+	}
+
+	function evaluateShowAnchorCandidate(
+		bubbleCenterX,
+		bubbleCenterY,
+		containerWidth,
+		containerHeight,
+		xMode,
+		yMode,
+	) {
+		const metrics = getShowAnchorMetrics(
+			containerWidth,
+			containerHeight,
+			xMode,
+			yMode,
+		);
+		const left = bubbleCenterX - metrics.centerX;
+		const top = bubbleCenterY - metrics.centerY;
+
+		const overflowLeft = Math.max(0, viewportPaddingPx - left);
+		const overflowTop = Math.max(0, viewportPaddingPx - top);
+		const overflowRight = Math.max(
+			0,
+			left + containerWidth - (window.innerWidth - viewportPaddingPx),
+		);
+		const overflowBottom = Math.max(
+			0,
+			top + containerHeight - (window.innerHeight - viewportPaddingPx),
+		);
+
+		return {
+			xMode,
+			yMode,
+			left,
+			top,
+			overflow:
+				overflowLeft + overflowTop + overflowRight + overflowBottom,
+		};
+	}
+
+	function placeModelAroundBubble(bubbleRect) {
+		if (!bubbleRect || typeof window === "undefined") return;
+
+		const { width, height } = getCubismCanvasMetrics();
+		const bubbleCenterX = bubbleRect.left + bubbleRect.width / 2;
+		const bubbleCenterY = bubbleRect.top + bubbleRect.height / 2;
+
+		const candidates = [
+			evaluateShowAnchorCandidate(
+				bubbleCenterX,
+				bubbleCenterY,
+				width,
+				height,
+				"left",
+				"bottom",
+			),
+			evaluateShowAnchorCandidate(
+				bubbleCenterX,
+				bubbleCenterY,
+				width,
+				height,
+				"right",
+				"bottom",
+			),
+			evaluateShowAnchorCandidate(
+				bubbleCenterX,
+				bubbleCenterY,
+				width,
+				height,
+				"left",
+				"top",
+			),
+			evaluateShowAnchorCandidate(
+				bubbleCenterX,
+				bubbleCenterY,
+				width,
+				height,
+				"right",
+				"top",
+			),
+		];
+
+		let best = candidates[0];
+		for (let index = 1; index < candidates.length; index += 1) {
+			const candidate = candidates[index];
+
+			if (candidate.overflow < best.overflow) {
+				best = candidate;
+				continue;
+			}
+
+			if (
+				candidate.overflow === best.overflow &&
+				candidate.xMode === showAnchorX &&
+				candidate.yMode === showAnchorY
+			) {
+				best = candidate;
+			}
+		}
+
+		showAnchorX = best.xMode;
+		showAnchorY = best.yMode;
+
+		setContainerPosition(best.left, best.top, {
+			containerWidth: width,
+			containerHeight: height,
+		});
+	}
+
+	function keepPioInsideViewport() {
+		if (!pioContainer || typeof window === "undefined") return;
+
+		const containerRect = pioContainer.getBoundingClientRect();
+		const useBubbleBounds = pioContainer.classList.contains("pio-hidden");
+		setContainerPosition(containerRect.left, containerRect.top, {
+			useBubbleBounds,
+		});
+	}
+
+	function cleanupCubismBindings() {
+		if (cubismDragCleanup) {
+			cubismDragCleanup();
+			cubismDragCleanup = null;
+		}
+
+		if (cubismShowDragCleanup) {
+			cubismShowDragCleanup();
+			cubismShowDragCleanup = null;
+		}
+
+		if (cubismTapCleanup) {
+			cubismTapCleanup();
+			cubismTapCleanup = null;
+		}
+
+		if (cubismResizeCleanup) {
+			cubismResizeCleanup();
+			cubismResizeCleanup = null;
+		}
+
+		if (cubismResizeRafId && typeof window !== "undefined") {
+			window.cancelAnimationFrame(cubismResizeRafId);
+			cubismResizeRafId = 0;
+		}
+	}
+
+	function destroyCubismRenderer() {
+		if (cubismModel && typeof cubismModel.destroy === "function") {
+			cubismModel.destroy({
+				children: true,
+				texture: true,
+				baseTexture: true,
+			});
+			cubismModel = null;
+		}
+
+		if (pixiApp && typeof pixiApp.destroy === "function") {
+			pixiApp.destroy(true, {
+				children: true,
+				texture: true,
+				baseTexture: true,
+			});
+			pixiApp = null;
+		}
+	}
+
+	function loadLegacyPioScripts() {
+		return loadScript("/pio/static/l2d.js", "pio-l2d-script")
+			.then(() => loadScript("/pio/static/pio.js", "pio-main-script"))
+			.then(() => {
+				setTimeout(initPio, 100);
+			});
 	}
 
 	function withTimeout(promise, timeoutMs, timeoutMessage) {
@@ -176,13 +510,19 @@
 		pixiApp.renderer.resolution = resolution;
 		pixiApp.renderer.resize(width, height);
 		fitCubismModelToCanvas();
+		keepPioInsideViewport();
 	}
 
 	function bindCubismResizeHandlers() {
 		if (typeof window === "undefined") return null;
 
 		const handleResize = () => {
-			syncCubismCanvasViewport();
+			if (cubismResizeRafId) return;
+
+			cubismResizeRafId = window.requestAnimationFrame(() => {
+				cubismResizeRafId = 0;
+				syncCubismCanvasViewport();
+			});
 		};
 
 		window.addEventListener("resize", handleResize);
@@ -191,6 +531,11 @@
 		return () => {
 			window.removeEventListener("resize", handleResize);
 			window.removeEventListener("orientationchange", handleResize);
+
+			if (cubismResizeRafId) {
+				window.cancelAnimationFrame(cubismResizeRafId);
+				cubismResizeRafId = 0;
+			}
 		};
 	}
 
@@ -202,7 +547,18 @@
 		}
 
 		if (!pioContainer) return;
+		const wasHidden = pioContainer.classList.contains("pio-hidden");
+		const bubbleRect =
+			wasHidden && pioShowButton
+				? pioShowButton.getBoundingClientRect()
+				: null;
+
+		if (bubbleRect) {
+			placeModelAroundBubble(bubbleRect);
+		}
+
 		pioContainer.classList.remove("pio-hidden");
+		keepPioInsideViewport();
 
 		if (
 			useCubism4 &&
@@ -239,6 +595,7 @@
 			pickDialogText(pioConfig.dialog?.welcome, "欢迎回来喵~"),
 			2500,
 		);
+		keepPioInsideViewport();
 	}
 
 	async function handleShowClick(event) {
@@ -264,22 +621,19 @@
 			return;
 		}
 
-		showCubismDialog(
-			pickDialogText(pioConfig.dialog?.touch, "不可以这样欺负我啦！"),
-			2200,
-		);
+		showCubismDialog(pickTouchDialogText(), 2200);
 	}
 
 	function bindCubismCanvasTap() {
 		if (!pioCanvas || typeof window === "undefined") return null;
 
-		const handleCanvasClick = (event) => {
+		const handleCanvasPointerUp = (event) => {
 			handleCubismCanvasTap(event);
 		};
 
-		pioCanvas.addEventListener("click", handleCanvasClick);
+		pioCanvas.addEventListener("pointerup", handleCanvasPointerUp);
 		return () => {
-			pioCanvas.removeEventListener("click", handleCanvasClick);
+			pioCanvas.removeEventListener("pointerup", handleCanvasPointerUp);
 		};
 	}
 
@@ -515,59 +869,18 @@
 	function fallbackToLegacyPio(reason = "unknown") {
 		console.warn(`Fallback to legacy Pio model due to: ${reason}`);
 
-		if (cubismDragCleanup) {
-			cubismDragCleanup();
-			cubismDragCleanup = null;
-		}
+		cleanupCubismBindings();
+		destroyCubismRenderer();
 
-		if (cubismShowDragCleanup) {
-			cubismShowDragCleanup();
-			cubismShowDragCleanup = null;
-		}
-
-		if (cubismTapCleanup) {
-			cubismTapCleanup();
-			cubismTapCleanup = null;
-		}
-
-		if (cubismResizeCleanup) {
-			cubismResizeCleanup();
-			cubismResizeCleanup = null;
-		}
-
-		if (cubismModel && typeof cubismModel.destroy === "function") {
-			cubismModel.destroy({
-				children: true,
-				texture: true,
-				baseTexture: true,
-			});
-			cubismModel = null;
-		}
-
-		if (pixiApp && typeof pixiApp.destroy === "function") {
-			pixiApp.destroy(true, {
-				children: true,
-				texture: true,
-				baseTexture: true,
-			});
-			pixiApp = null;
-		}
-
+		pioInstance = null;
 		pioInitialized = false;
 		isRestoringCubism = false;
+		cubismSuppressClickUntil = 0;
 		pioOptions.model = [defaultLegacyModel];
 
-		loadScript("/pio/static/l2d.js", "pio-l2d-script")
-			.then(() => loadScript("/pio/static/pio.js", "pio-main-script"))
-			.then(() => {
-				setTimeout(initPio, 100);
-			})
-			.catch((error) => {
-				console.error(
-					"Failed to fallback to legacy Pio scripts:",
-					error,
-				);
-			});
+		loadLegacyPioScripts().catch((error) => {
+			console.error("Failed to fallback to legacy Pio scripts:", error);
+		});
 	}
 
 	function fitCubismModelToCanvas() {
@@ -645,15 +958,22 @@
 			offsetX: 0,
 			offsetY: 0,
 			pointerId: null,
+			useBubbleAnchor: false,
 		};
 
 		const handlePointerDown = (event) => {
 			if (event.pointerType === "mouse" && event.button !== 0) return;
 
-			const rect = pioContainer.getBoundingClientRect();
+			const useBubbleAnchor =
+				targetElement === pioShowButton &&
+				pioContainer.classList.contains("pio-hidden");
+			const rect = useBubbleAnchor
+				? pioShowButton.getBoundingClientRect()
+				: pioContainer.getBoundingClientRect();
 			dragState.pointerDown = true;
 			dragState.dragging = false;
 			dragState.pointerId = event.pointerId;
+			dragState.useBubbleAnchor = useBubbleAnchor;
 			dragState.startX = event.clientX;
 			dragState.startY = event.clientY;
 			dragState.offsetX = event.clientX - rect.left;
@@ -691,9 +1011,26 @@
 				pioContainer.classList.remove("right");
 			}
 
-			pioContainer.style.left = `${event.clientX - dragState.offsetX}px`;
-			pioContainer.style.top = `${event.clientY - dragState.offsetY}px`;
-			pioContainer.style.bottom = "auto";
+			if (dragState.useBubbleAnchor) {
+				const containerRect = pioContainer.getBoundingClientRect();
+				const metrics = getShowAnchorMetrics(
+					containerRect.width,
+					containerRect.height,
+				);
+				const bubbleLeft = event.clientX - dragState.offsetX;
+				const bubbleTop = event.clientY - dragState.offsetY;
+
+				setContainerPosition(
+					bubbleLeft - metrics.minX,
+					bubbleTop - metrics.minY,
+					{ useBubbleBounds: true },
+				);
+			} else {
+				setContainerPosition(
+					event.clientX - dragState.offsetX,
+					event.clientY - dragState.offsetY,
+				);
+			}
 
 			event.preventDefault();
 		};
@@ -708,6 +1045,7 @@
 
 			dragState.pointerDown = false;
 			dragState.dragging = false;
+			dragState.useBubbleAnchor = false;
 			if (markActiveClass) {
 				pioContainer.classList.remove("active");
 			}
@@ -728,6 +1066,8 @@
 			if (!wasDragging && typeof onTap === "function") {
 				onTap(event);
 			}
+
+			keepPioInsideViewport();
 
 			if (event && wasDragging) {
 				event.preventDefault();
@@ -920,6 +1260,7 @@
 			);
 			if (loaded) {
 				pioInitialized = true;
+				keepPioInsideViewport();
 				showCubismDialog(
 					pickDialogText(pioConfig.dialog?.welcome, "欢迎来访喵~"),
 					2600,
@@ -930,6 +1271,8 @@
 			}
 		} catch (error) {
 			console.error("Cubism4 initialization error:", error);
+			showCubismDialog("UG 初始化失败，已切换备用模型。", 3800);
+			fallbackToLegacyPio("cubism-initialize-failed");
 		}
 	}
 
@@ -953,18 +1296,15 @@
 				})
 				.catch((error) => {
 					console.error("Failed to prepare Cubism4 runtime:", error);
+					showCubismDialog("UG 运行时异常，已切换备用模型。", 3800);
+					fallbackToLegacyPio("cubism-runtime-prepare-throw");
 				});
 			return;
 		}
 
-		loadScript("/pio/static/l2d.js", "pio-l2d-script")
-			.then(() => loadScript("/pio/static/pio.js", "pio-main-script"))
-			.then(() => {
-				setTimeout(initPio, 100);
-			})
-			.catch((error) => {
-				console.error("Failed to load legacy Pio scripts:", error);
-			});
+		loadLegacyPioScripts().catch((error) => {
+			console.error("Failed to load legacy Pio scripts:", error);
+		});
 	}
 
 	// 样式已通过 Layout.astro 静态引入，无需页面切换监听
@@ -986,6 +1326,10 @@
 
 		// 加载资源并初始化
 		loadPioAssets();
+
+		window.requestAnimationFrame(() => {
+			keepPioInsideViewport();
+		});
 	});
 
 	onDestroy(() => {
@@ -994,48 +1338,14 @@
 			dialogTimer = null;
 		}
 
-		if (cubismDragCleanup) {
-			cubismDragCleanup();
-			cubismDragCleanup = null;
-		}
-
-		if (cubismShowDragCleanup) {
-			cubismShowDragCleanup();
-			cubismShowDragCleanup = null;
-		}
-
-		if (cubismTapCleanup) {
-			cubismTapCleanup();
-			cubismTapCleanup = null;
-		}
-
-		if (cubismResizeCleanup) {
-			cubismResizeCleanup();
-			cubismResizeCleanup = null;
-		}
-
-		if (cubismModel && typeof cubismModel.destroy === "function") {
-			cubismModel.destroy({
-				children: true,
-				texture: true,
-				baseTexture: true,
-			});
-			cubismModel = null;
-		}
-
-		if (pixiApp && typeof pixiApp.destroy === "function") {
-			pixiApp.destroy(true, {
-				children: true,
-				texture: true,
-				baseTexture: true,
-			});
-			pixiApp = null;
-		}
+		cleanupCubismBindings();
+		destroyCubismRenderer();
 
 		pioInstance = null;
 		pioInitialized = false;
 		isRestoringCubism = false;
 		cubismSuppressClickUntil = 0;
+		lastTouchDialogText = "";
 
 		console.log("Pio component destroyed");
 	});
@@ -1043,7 +1353,7 @@
 
 {#if pioConfig.enable}
 	<div
-		class={`pio-container ${pioConfig.position || "right"} ${useCubism4 ? "cubism4-mode" : ""}`}
+		class={`pio-container ${pioConfig.position || "right"} ${useCubism4 ? "cubism4-mode" : ""} ${useCubism4 && showAnchorX === "right" ? "show-right" : ""} ${useCubism4 && showAnchorY === "top" ? "show-top" : ""}`}
 		bind:this={pioContainer}
 	>
 		{#if useCubism4}
@@ -1074,6 +1384,25 @@
 
 	:global(.pio-container.cubism4-mode #pio) {
 		transition: opacity 0.2s ease;
+	}
+
+	:global(.pio-container.cubism4-mode .pio-action) {
+		left: auto !important;
+		right: 0 !important;
+	}
+
+	:global(.pio-container.cubism4-mode.show-right .pio-show) {
+		left: auto;
+		right: -1em;
+	}
+
+	:global(.pio-container.cubism4-mode.show-top .pio-show) {
+		top: 1em;
+		bottom: auto;
+	}
+
+	:global(.pio-container.cubism4-mode.show-right.pio-hidden .pio-show:hover) {
+		transform: translateX(-0.5em);
 	}
 
 	:global(.pio-container.cubism4-mode.pio-hidden #pio) {

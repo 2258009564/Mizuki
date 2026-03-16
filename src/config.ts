@@ -166,7 +166,8 @@ export const siteConfig: SiteConfig = {
 			subtitle: [
 				"你好喵，欢迎来访！",
 				"tell the world who i am and what i wanna do",
-				"为了打算法竞赛，我去寺庙求了一签，结果签上显示为凶，问主持解签，主持说你拿歪了，上面写的是区",
+				"为了打 ACM ，我去寺庙求了一签，结果签上显示为凶，问主持解签，主持说你拿歪了，上面写的是区",
+				"就这样日复一日的 vibe， 是不是也挺好？",
 				"更多功能正紧锣密鼓地筹备中...，欢迎常来！",
 			], // 主页横幅副标题，支持字符串数组，启用打字机效果后会轮播显示
 			typewriter: {
@@ -642,6 +643,7 @@ export const pioConfig: import("./types/config").PioConfig = {
 			"还活着时胡思乱想、烦恼死後的事简直无聊至极。为了能含笑九泉而活吧。",
 			"生命的价值、和金钱一样、是会随着时代而改变的。 也会随地点而改变吧、果然。",
 			"我觉得、如果有来生的话、我想当一只猫。…虽然也不错、但我觉得当个人更好。",
+			"大概？只有我？？会一直陪着他？？？...我想我会一直陪着他！",
 		], // 触摸提示
 		home: "摸这里回到首页~", // 首页提示
 		skin: ["Want to see my new outfit?", "The new outfit looks great~"], // 换装提示
