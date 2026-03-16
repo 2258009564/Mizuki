@@ -3,8 +3,7 @@ title: SelectEcho 入门教程：从安装到第一次划词翻译
 published: 2026-03-15
 updated: 2026-03-15T22:01:26Z
 description: "一篇给零基础用户的完整上手指南：安装、配置、实操、排错和进阶建议。"
-image: ""
-tags: [Tutorial, SelectEcho, ChromeExtension]
+tags: [Tutorial, SelectEcho]
 category: Tutorial
 draft: false
 comment: true
@@ -19,12 +18,6 @@ licenseName: "MIT"
 ::github{repo="2258009564/SelectEcho"}
 
 如果对你有帮助的话，欢迎在 GitHub 上给项目点个 star，或者把教程分享给需要的朋友！如果你在使用过程中遇到任何问题，也欢迎在 GitHub 上提交 issue，我会尽快回复。
-
-这篇教程可以：
-
-1. 让你在 5 分钟内跑通一次翻译。
-2. 再把设置项讲清楚，知道每个选项是干什么的。
-3. 最后给你一套排错清单，遇到问题不用慌。
 
 # 1. SelectEcho 是什么
 

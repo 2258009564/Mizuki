@@ -20,6 +20,15 @@ var Paul_Pio = function (prop) {
 		root: document.location.origin + "/",
 	};
 
+	const dragThresholdPx = 6;
+	const clickSuppressWindowMs = 240;
+	let suppressClickUntil = 0;
+
+	const shouldSuppressClick = () => Date.now() < suppressClickUntil;
+	const markDragEnd = () => {
+		suppressClickUntil = Date.now() + clickSuppressWindowMs;
+	};
+
 	// 工具通用函数
 	const tools = {
 		// 创建内容
@@ -35,10 +44,10 @@ var Paul_Pio = function (prop) {
 		},
 		// 是否为移动设备
 		isMobile: () => {
-			let ua = window.navigator.userAgent.toLowerCase();
-			ua = ua.indexOf("mobile") || ua.indexOf("android") || ua.indexOf("ios");
+			const ua = window.navigator.userAgent.toLowerCase();
+			const mobilePattern = /mobile|android|iphone|ipad|ipod|ios/;
 
-			return window.innerWidth < 500 || ua !== -1;
+			return window.innerWidth < 768 || mobilePattern.test(ua);
 		},
 	};
 
@@ -105,7 +114,10 @@ var Paul_Pio = function (prop) {
 
 				if (prop.content.referer) {
 					modules.message(
-						prop.content.referer.replace(/%t/, `“${referrer.hostname}”`),
+						prop.content.referer.replace(
+							/%t/,
+							`“${referrer.hostname}”`,
+						),
 					);
 				} else {
 					modules.message(`欢迎来自 “${referrer.hostname}” 的朋友！`);
@@ -182,11 +194,15 @@ var Paul_Pio = function (prop) {
 					loadlive2d("pio", prop.model[modules.idol()]);
 
 					prop.content.skin &&
-						modules.message(prop.content.skin[1] || "新衣服真漂亮~");
+						modules.message(
+							prop.content.skin[1] || "新衣服真漂亮~",
+						);
 				};
 				elements.skin.onmouseover = () => {
 					prop.content.skin &&
-						modules.message(prop.content.skin[0] || "想看看我的新衣服吗？");
+						modules.message(
+							prop.content.skin[0] || "想看看我的新衣服吗？",
+						);
 				};
 				current.menu.appendChild(elements.skin);
 			}
@@ -206,7 +222,9 @@ var Paul_Pio = function (prop) {
 			// 夜间模式
 			if (prop.night) {
 				elements.night.onclick = () => {
-					typeof prop.night === "function" ? prop.night() : eval(prop.night);
+					typeof prop.night === "function"
+						? prop.night()
+						: eval(prop.night);
 				};
 				elements.night.onmouseover = () => {
 					modules.message("夜间点击这里可以保护眼睛呢");
@@ -233,14 +251,26 @@ var Paul_Pio = function (prop) {
 				for (let i = 0; i < el.length; i++) {
 					if (item.type === "read") {
 						el[i].onmouseover = (ev) => {
-							const text = ev.currentTarget.title || ev.currentTarget.innerText;
-							modules.message("想阅读 %t 吗？".replace(/%t/, "“" + text + "”"));
+							const text =
+								ev.currentTarget.title ||
+								ev.currentTarget.innerText;
+							modules.message(
+								"想阅读 %t 吗？".replace(
+									/%t/,
+									"“" + text + "”",
+								),
+							);
 						};
 					} else if (item.type === "link") {
 						el[i].onmouseover = (ev) => {
-							const text = ev.currentTarget.title || ev.currentTarget.innerText;
+							const text =
+								ev.currentTarget.title ||
+								ev.currentTarget.innerText;
 							modules.message(
-								"想了解一下 %t 吗？".replace(/%t/, "“" + text + "”"),
+								"想了解一下 %t 吗？".replace(
+									/%t/,
+									"“" + text + "”",
+								),
 							);
 						};
 					} else if (item.text) {
@@ -267,37 +297,124 @@ var Paul_Pio = function (prop) {
 			action.buttons();
 
 			const body = current.body;
+			if (typeof body.__pioDragCleanup === "function") {
+				body.__pioDragCleanup();
+			}
 
-			const location = {
-				x: 0,
-				y: 0,
+			const dragState = {
+				pointerDown: false,
+				dragging: false,
+				startX: 0,
+				startY: 0,
+				offsetX: 0,
+				offsetY: 0,
+				pointerId: null,
 			};
 
-			const mousedown = (ev) => {
-				const { offsetLeft, offsetTop } = ev.currentTarget;
-
-				location.x = ev.clientX - offsetLeft;
-				location.y = ev.clientY - offsetTop;
-
-				document.addEventListener("mousemove", mousemove);
-				document.addEventListener("mouseup", mouseup);
+			const suppressSyntheticClick = (ev) => {
+				if (shouldSuppressClick()) {
+					ev.preventDefault();
+					ev.stopPropagation();
+				}
 			};
 
-			const mousemove = (ev) => {
-				body.classList.add("active");
-				body.classList.remove("right");
+			const pointerdown = (ev) => {
+				if (ev.pointerType === "mouse" && ev.button !== 0) return;
 
-				body.style.left = ev.clientX - location.x + "px";
-				body.style.top = ev.clientY - location.y + "px";
+				const rect = body.getBoundingClientRect();
+				dragState.pointerDown = true;
+				dragState.dragging = false;
+				dragState.pointerId = ev.pointerId;
+				dragState.startX = ev.clientX;
+				dragState.startY = ev.clientY;
+				dragState.offsetX = ev.clientX - rect.left;
+				dragState.offsetY = ev.clientY - rect.top;
+
+				if (typeof body.setPointerCapture === "function") {
+					try {
+						body.setPointerCapture(ev.pointerId);
+					} catch (error) {
+						console.warn(
+							"Failed to capture pointer in legacy mode:",
+							error,
+						);
+					}
+				}
+
+				ev.preventDefault();
+			};
+
+			const pointermove = (ev) => {
+				if (!dragState.pointerDown) return;
+
+				const distance = Math.hypot(
+					ev.clientX - dragState.startX,
+					ev.clientY - dragState.startY,
+				);
+
+				if (!dragState.dragging && distance < dragThresholdPx) {
+					return;
+				}
+
+				if (!dragState.dragging) {
+					dragState.dragging = true;
+					body.classList.add("active");
+					body.classList.remove("right");
+				}
+
+				body.style.left = ev.clientX - dragState.offsetX + "px";
+				body.style.top = ev.clientY - dragState.offsetY + "px";
 				body.style.bottom = "auto";
+
+				ev.preventDefault();
 			};
 
-			const mouseup = () => {
+			const pointerup = (ev) => {
+				if (!dragState.pointerDown) return;
+
+				if (dragState.dragging) {
+					markDragEnd();
+				}
+
+				dragState.pointerDown = false;
+				dragState.dragging = false;
+
+				if (
+					dragState.pointerId !== null &&
+					typeof body.releasePointerCapture === "function"
+				) {
+					try {
+						body.releasePointerCapture(dragState.pointerId);
+					} catch (error) {
+						console.warn(
+							"Failed to release pointer in legacy mode:",
+							error,
+						);
+					}
+				}
+
+				dragState.pointerId = null;
 				body.classList.remove("active");
-				document.removeEventListener("mousemove", mousemove);
+
+				if (ev) {
+					ev.preventDefault();
+				}
 			};
 
-			body.onmousedown = mousedown;
+			body.onpointerdown = pointerdown;
+			document.addEventListener("pointermove", pointermove);
+			document.addEventListener("pointerup", pointerup);
+			document.addEventListener("pointercancel", pointerup);
+			body.addEventListener("click", suppressSyntheticClick, true);
+
+			body.__pioDragCleanup = () => {
+				body.onpointerdown = null;
+				document.removeEventListener("pointermove", pointermove);
+				document.removeEventListener("pointerup", pointerup);
+				document.removeEventListener("pointercancel", pointerup);
+				body.removeEventListener("click", suppressSyntheticClick, true);
+				body.classList.remove("active");
+			};
 		},
 	};
 
@@ -330,6 +447,10 @@ var Paul_Pio = function (prop) {
 	this.initHidden = () => {
 		// ! 清除预设好的间距
 		if (prop.mode === "draggable") {
+			if (typeof current.body.__pioDragCleanup === "function") {
+				current.body.__pioDragCleanup();
+			}
+
 			current.body.style.top = null;
 			current.body.style.left = null;
 			current.body.style.bottom = null;
@@ -338,15 +459,136 @@ var Paul_Pio = function (prop) {
 		current.body.classList.add("pio-hidden");
 		elements.dialog.classList.remove("active");
 
-		elements.show.onclick = () => {
+		if (typeof elements.show.__pioShowDragCleanup === "function") {
+			elements.show.__pioShowDragCleanup();
+		}
+
+		const dragState = {
+			pointerDown: false,
+			dragging: false,
+			startX: 0,
+			startY: 0,
+			offsetX: 0,
+			offsetY: 0,
+			pointerId: null,
+		};
+
+		const pointerdown = (ev) => {
+			if (ev.pointerType === "mouse" && ev.button !== 0) return;
+
+			const rect = current.body.getBoundingClientRect();
+			dragState.pointerDown = true;
+			dragState.dragging = false;
+			dragState.pointerId = ev.pointerId;
+			dragState.startX = ev.clientX;
+			dragState.startY = ev.clientY;
+			dragState.offsetX = ev.clientX - rect.left;
+			dragState.offsetY = ev.clientY - rect.top;
+
+			if (typeof elements.show.setPointerCapture === "function") {
+				try {
+					elements.show.setPointerCapture(ev.pointerId);
+				} catch (error) {
+					console.warn(
+						"Failed to capture pointer on hidden bubble:",
+						error,
+					);
+				}
+			}
+
+			ev.preventDefault();
+			ev.stopPropagation();
+		};
+
+		const pointermove = (ev) => {
+			if (!dragState.pointerDown) return;
+
+			const distance = Math.hypot(
+				ev.clientX - dragState.startX,
+				ev.clientY - dragState.startY,
+			);
+
+			if (!dragState.dragging && distance < dragThresholdPx) {
+				return;
+			}
+
+			if (!dragState.dragging) {
+				dragState.dragging = true;
+				current.body.classList.add("active");
+				current.body.classList.remove("right");
+			}
+
+			current.body.style.left = ev.clientX - dragState.offsetX + "px";
+			current.body.style.top = ev.clientY - dragState.offsetY + "px";
+			current.body.style.bottom = "auto";
+
+			ev.preventDefault();
+		};
+
+		const pointerup = (ev) => {
+			if (!dragState.pointerDown) return;
+
+			if (dragState.dragging) {
+				markDragEnd();
+			}
+
+			dragState.pointerDown = false;
+			dragState.dragging = false;
+
+			if (
+				dragState.pointerId !== null &&
+				typeof elements.show.releasePointerCapture === "function"
+			) {
+				try {
+					elements.show.releasePointerCapture(dragState.pointerId);
+				} catch (error) {
+					console.warn(
+						"Failed to release pointer on hidden bubble:",
+						error,
+					);
+				}
+			}
+
+			dragState.pointerId = null;
+			current.body.classList.remove("active");
+
+			if (ev) {
+				ev.preventDefault();
+			}
+		};
+
+		const clickHandler = (ev) => {
+			if (shouldSuppressClick()) {
+				ev.preventDefault();
+				ev.stopPropagation();
+				return;
+			}
+
 			current.body.classList.remove("pio-hidden");
 			localStorage.setItem("posterGirl", "1");
 
 			this.init();
 		};
+
+		elements.show.onpointerdown = pointerdown;
+		document.addEventListener("pointermove", pointermove);
+		document.addEventListener("pointerup", pointerup);
+		document.addEventListener("pointercancel", pointerup);
+		elements.show.addEventListener("click", clickHandler);
+
+		elements.show.__pioShowDragCleanup = () => {
+			elements.show.onpointerdown = null;
+			document.removeEventListener("pointermove", pointermove);
+			document.removeEventListener("pointerup", pointerup);
+			document.removeEventListener("pointercancel", pointerup);
+			elements.show.removeEventListener("click", clickHandler);
+			current.body.classList.remove("active");
+		};
 	};
 
-	localStorage.getItem("posterGirl") === "0" ? this.initHidden() : this.init();
+	localStorage.getItem("posterGirl") === "0"
+		? this.initHidden()
+		: this.init();
 };
 
 // 请保留版权说明

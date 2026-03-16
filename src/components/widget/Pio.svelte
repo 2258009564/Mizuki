@@ -19,6 +19,10 @@
 	const primaryModel = configuredModels[0] || defaultLegacyModel;
 	const useCubism4 = /\.model3\.json$/i.test(primaryModel);
 	const mobileHideBreakpoint = 768;
+	const dragThresholdPx = 6;
+	const clickSuppressWindowMs = 240;
+	const scriptLoadTimeoutMs = 10000;
+	const modelLoadTimeoutMs = 15000;
 
 	// 全局Pio实例引用
 	let pioInstance = null;
@@ -31,12 +35,17 @@
 	let cubismModel = null;
 	let cubismModelIndex = 0;
 	let cubismDragCleanup = null;
+	let cubismShowDragCleanup = null;
+	let cubismResizeCleanup = null;
+	let cubismTapCleanup = null;
 	let dialogTimer = null;
 	let cubismPIXI = null;
 	let cubismLive2DModel = null;
 	let cubismRuntimeSource = "none";
 	let cubismCoreSource = "none";
 	let isRestoringCubism = false;
+	let cubismSuppressClickUntil = 0;
+	let pioShowButton;
 
 	// 样式已通过 Layout.astro 静态引入，无需动态加载
 
@@ -110,7 +119,88 @@
 		pioContainer.classList.add("pio-hidden");
 	}
 
-	async function restoreCubismModel() {
+	function withTimeout(promise, timeoutMs, timeoutMessage) {
+		if (!Number.isFinite(timeoutMs) || timeoutMs <= 0) {
+			return promise;
+		}
+
+		return new Promise((resolve, reject) => {
+			const timer = setTimeout(() => {
+				reject(new Error(timeoutMessage));
+			}, timeoutMs);
+
+			promise
+				.then((value) => {
+					clearTimeout(timer);
+					resolve(value);
+				})
+				.catch((error) => {
+					clearTimeout(timer);
+					reject(error);
+				});
+		});
+	}
+
+	function shouldSuppressCubismClick() {
+		return Date.now() < cubismSuppressClickUntil;
+	}
+
+	function markCubismDragEnd() {
+		cubismSuppressClickUntil = Date.now() + clickSuppressWindowMs;
+	}
+
+	function getCubismCanvasMetrics() {
+		const width = pioConfig.width || 280;
+		const height = pioConfig.height || 250;
+		const resolution =
+			typeof window === "undefined"
+				? 1
+				: Math.min(window.devicePixelRatio || 1, 2);
+
+		return { width, height, resolution };
+	}
+
+	function applyCubismCanvasStyle() {
+		if (!pioCanvas) return;
+
+		const { width, height } = getCubismCanvasMetrics();
+		pioCanvas.style.width = `${width}px`;
+		pioCanvas.style.height = `${height}px`;
+	}
+
+	function syncCubismCanvasViewport() {
+		if (!pixiApp || !pioCanvas) return;
+
+		const { width, height, resolution } = getCubismCanvasMetrics();
+		applyCubismCanvasStyle();
+		pixiApp.renderer.resolution = resolution;
+		pixiApp.renderer.resize(width, height);
+		fitCubismModelToCanvas();
+	}
+
+	function bindCubismResizeHandlers() {
+		if (typeof window === "undefined") return null;
+
+		const handleResize = () => {
+			syncCubismCanvasViewport();
+		};
+
+		window.addEventListener("resize", handleResize);
+		window.addEventListener("orientationchange", handleResize);
+
+		return () => {
+			window.removeEventListener("resize", handleResize);
+			window.removeEventListener("orientationchange", handleResize);
+		};
+	}
+
+	async function restoreCubismModel(event) {
+		if (event && shouldSuppressCubismClick()) {
+			event.preventDefault();
+			event.stopPropagation();
+			return;
+		}
+
 		if (!pioContainer) return;
 		pioContainer.classList.remove("pio-hidden");
 
@@ -125,18 +215,19 @@
 			isRestoringCubism = true;
 			try {
 				if (pixiApp?.renderer && pioCanvas) {
-					pixiApp.renderer.resize(
-						pioCanvas.width || 280,
-						pioCanvas.height || 250,
-					);
+					const { width, height } = getCubismCanvasMetrics();
+					pixiApp.renderer.resize(width, height);
+					fitCubismModelToCanvas();
 				}
 
-				const currentModelPath =
-					pioOptions.model[cubismModelIndex] ||
-					pioOptions.model[0] ||
-					primaryModel;
+				if (!cubismModel) {
+					const currentModelPath =
+						pioOptions.model[cubismModelIndex] ||
+						pioOptions.model[0] ||
+						primaryModel;
 
-				await loadCubismModel(currentModelPath);
+					await loadCubismModel(currentModelPath);
+				}
 			} catch (error) {
 				console.error("Failed to restore Cubism model state:", error);
 			} finally {
@@ -148,6 +239,48 @@
 			pickDialogText(pioConfig.dialog?.welcome, "欢迎回来喵~"),
 			2500,
 		);
+	}
+
+	async function handleShowClick(event) {
+		if (shouldSuppressCubismClick()) {
+			event.preventDefault();
+			event.stopPropagation();
+			return;
+		}
+
+		await restoreCubismModel();
+	}
+
+	function handleCubismCanvasTap(event) {
+		if (shouldSuppressCubismClick()) {
+			if (event) {
+				event.preventDefault();
+				event.stopPropagation();
+			}
+			return;
+		}
+
+		if (!pioContainer || pioContainer.classList.contains("pio-hidden")) {
+			return;
+		}
+
+		showCubismDialog(
+			pickDialogText(pioConfig.dialog?.touch, "不可以这样欺负我啦！"),
+			2200,
+		);
+	}
+
+	function bindCubismCanvasTap() {
+		if (!pioCanvas || typeof window === "undefined") return null;
+
+		const handleCanvasClick = (event) => {
+			handleCubismCanvasTap(event);
+		};
+
+		pioCanvas.addEventListener("click", handleCanvasClick);
+		return () => {
+			pioCanvas.removeEventListener("click", handleCanvasClick);
+		};
 	}
 
 	function loadScript(src, id) {
@@ -162,15 +295,29 @@
 				}
 
 				if (status === "loading") {
-					existing.addEventListener("load", () => resolve(), {
-						once: true,
-					});
-					existing.addEventListener(
-						"error",
-						() =>
-							reject(new Error(`Failed to load script: ${src}`)),
-						{ once: true },
-					);
+					withTimeout(
+						new Promise((resolveExisting, rejectExisting) => {
+							existing.addEventListener(
+								"load",
+								() => resolveExisting(),
+								{ once: true },
+							);
+							existing.addEventListener(
+								"error",
+								() =>
+									rejectExisting(
+										new Error(
+											`Failed to load script: ${src}`,
+										),
+									),
+								{ once: true },
+							);
+						}),
+						scriptLoadTimeoutMs,
+						`Timed out while waiting for script: ${src}`,
+					)
+						.then(() => resolve())
+						.catch((error) => reject(error));
 					return;
 				}
 
@@ -181,11 +328,28 @@
 			script.id = id;
 			script.src = src;
 			script.setAttribute("data-load-status", "loading");
+
+			let settled = false;
+			const timeoutId = setTimeout(() => {
+				if (settled) return;
+				settled = true;
+				script.setAttribute("data-load-status", "failed");
+				script.remove();
+				reject(new Error(`Timed out while loading script: ${src}`));
+			}, scriptLoadTimeoutMs);
+
 			script.onload = () => {
+				if (settled) return;
+				settled = true;
+				clearTimeout(timeoutId);
 				script.setAttribute("data-load-status", "loaded");
 				resolve();
 			};
+
 			script.onerror = () => {
+				if (settled) return;
+				settled = true;
+				clearTimeout(timeoutId);
 				script.setAttribute("data-load-status", "failed");
 				reject(new Error(`Failed to load script: ${src}`));
 			};
@@ -350,6 +514,47 @@
 
 	function fallbackToLegacyPio(reason = "unknown") {
 		console.warn(`Fallback to legacy Pio model due to: ${reason}`);
+
+		if (cubismDragCleanup) {
+			cubismDragCleanup();
+			cubismDragCleanup = null;
+		}
+
+		if (cubismShowDragCleanup) {
+			cubismShowDragCleanup();
+			cubismShowDragCleanup = null;
+		}
+
+		if (cubismTapCleanup) {
+			cubismTapCleanup();
+			cubismTapCleanup = null;
+		}
+
+		if (cubismResizeCleanup) {
+			cubismResizeCleanup();
+			cubismResizeCleanup = null;
+		}
+
+		if (cubismModel && typeof cubismModel.destroy === "function") {
+			cubismModel.destroy({
+				children: true,
+				texture: true,
+				baseTexture: true,
+			});
+			cubismModel = null;
+		}
+
+		if (pixiApp && typeof pixiApp.destroy === "function") {
+			pixiApp.destroy(true, {
+				children: true,
+				texture: true,
+				baseTexture: true,
+			});
+			pixiApp = null;
+		}
+
+		pioInitialized = false;
+		isRestoringCubism = false;
 		pioOptions.model = [defaultLegacyModel];
 
 		loadScript("/pio/static/l2d.js", "pio-l2d-script")
@@ -368,8 +573,8 @@
 	function fitCubismModelToCanvas() {
 		if (!cubismModel || !pioCanvas) return;
 
-		const canvasWidth = pioCanvas.width || 280;
-		const canvasHeight = pioCanvas.height || 250;
+		const canvasWidth = pixiApp?.screen?.width || pioConfig.width || 280;
+		const canvasHeight = pixiApp?.screen?.height || pioConfig.height || 250;
 		const bounds =
 			typeof cubismModel.getLocalBounds === "function"
 				? cubismModel.getLocalBounds()
@@ -396,12 +601,18 @@
 		if (!pixiApp || !cubismLive2DModel) return false;
 
 		try {
-			const nextModel = await cubismLive2DModel.from(modelPath);
+			const nextModel = await withTimeout(
+				cubismLive2DModel.from(modelPath),
+				modelLoadTimeoutMs,
+				`Timed out while loading model: ${modelPath}`,
+			);
 
 			if (cubismModel) {
 				pixiApp.stage.removeChild(cubismModel);
 				if (typeof cubismModel.destroy === "function") {
-					cubismModel.destroy();
+					cubismModel.destroy({
+						children: true,
+					});
 				}
 			}
 
@@ -417,49 +628,144 @@
 		}
 	}
 
-	function enableCubismDragging() {
-		if (!pioContainer || !pioCanvas) return null;
+	function enableContainerDragging(
+		targetElement,
+		markActiveClass = true,
+		onTap = null,
+	) {
+		if (!pioContainer || !targetElement || typeof window === "undefined") {
+			return null;
+		}
 
 		const dragState = {
-			active: false,
+			pointerDown: false,
+			dragging: false,
+			startX: 0,
+			startY: 0,
 			offsetX: 0,
 			offsetY: 0,
+			pointerId: null,
 		};
 
-		const handleMouseDown = (event) => {
-			if (event.button !== 0) return;
+		const handlePointerDown = (event) => {
+			if (event.pointerType === "mouse" && event.button !== 0) return;
+
 			const rect = pioContainer.getBoundingClientRect();
-			dragState.active = true;
+			dragState.pointerDown = true;
+			dragState.dragging = false;
+			dragState.pointerId = event.pointerId;
+			dragState.startX = event.clientX;
+			dragState.startY = event.clientY;
 			dragState.offsetX = event.clientX - rect.left;
 			dragState.offsetY = event.clientY - rect.top;
-			pioContainer.classList.add("active");
-			pioContainer.classList.remove("right");
+
+			if (typeof targetElement.setPointerCapture === "function") {
+				try {
+					targetElement.setPointerCapture(event.pointerId);
+				} catch (error) {
+					console.warn("Failed to capture pointer for drag:", error);
+				}
+			}
+
 			event.preventDefault();
+			event.stopPropagation();
 		};
 
-		const handleMouseMove = (event) => {
-			if (!dragState.active) return;
+		const handlePointerMove = (event) => {
+			if (!dragState.pointerDown) return;
+
+			const distance = Math.hypot(
+				event.clientX - dragState.startX,
+				event.clientY - dragState.startY,
+			);
+
+			if (!dragState.dragging && distance < dragThresholdPx) {
+				return;
+			}
+
+			if (!dragState.dragging) {
+				dragState.dragging = true;
+				if (markActiveClass) {
+					pioContainer.classList.add("active");
+				}
+				pioContainer.classList.remove("right");
+			}
 
 			pioContainer.style.left = `${event.clientX - dragState.offsetX}px`;
 			pioContainer.style.top = `${event.clientY - dragState.offsetY}px`;
 			pioContainer.style.bottom = "auto";
+
+			event.preventDefault();
 		};
 
-		const handleMouseUp = () => {
-			if (!dragState.active) return;
-			dragState.active = false;
-			pioContainer.classList.remove("active");
+		const finishDragging = (event) => {
+			if (!dragState.pointerDown) return;
+
+			const wasDragging = dragState.dragging;
+			if (wasDragging) {
+				markCubismDragEnd();
+			}
+
+			dragState.pointerDown = false;
+			dragState.dragging = false;
+			if (markActiveClass) {
+				pioContainer.classList.remove("active");
+			}
+
+			if (
+				dragState.pointerId !== null &&
+				typeof targetElement.releasePointerCapture === "function"
+			) {
+				try {
+					targetElement.releasePointerCapture(dragState.pointerId);
+				} catch (error) {
+					console.warn("Failed to release pointer capture:", error);
+				}
+			}
+
+			dragState.pointerId = null;
+
+			if (!wasDragging && typeof onTap === "function") {
+				onTap(event);
+			}
+
+			if (event && wasDragging) {
+				event.preventDefault();
+			}
 		};
 
-		pioCanvas.addEventListener("mousedown", handleMouseDown);
-		document.addEventListener("mousemove", handleMouseMove);
-		document.addEventListener("mouseup", handleMouseUp);
+		const suppressSyntheticClick = (event) => {
+			if (shouldSuppressCubismClick()) {
+				event.preventDefault();
+				event.stopPropagation();
+			}
+		};
+
+		targetElement.addEventListener("pointerdown", handlePointerDown);
+		window.addEventListener("pointermove", handlePointerMove);
+		window.addEventListener("pointerup", finishDragging);
+		window.addEventListener("pointercancel", finishDragging);
+		targetElement.addEventListener("click", suppressSyntheticClick, true);
 
 		return () => {
-			pioCanvas.removeEventListener("mousedown", handleMouseDown);
-			document.removeEventListener("mousemove", handleMouseMove);
-			document.removeEventListener("mouseup", handleMouseUp);
+			targetElement.removeEventListener("pointerdown", handlePointerDown);
+			window.removeEventListener("pointermove", handlePointerMove);
+			window.removeEventListener("pointerup", finishDragging);
+			window.removeEventListener("pointercancel", finishDragging);
+			targetElement.removeEventListener(
+				"click",
+				suppressSyntheticClick,
+				true,
+			);
 		};
+	}
+
+	function enableCubismDragging() {
+		return enableContainerDragging(pioCanvas, true, handleCubismCanvasTap);
+	}
+
+	function enableCubismShowDragging() {
+		return enableContainerDragging(pioShowButton, false);
 	}
 
 	function applyCubismModeBehavior() {
@@ -475,9 +781,23 @@
 			cubismDragCleanup = null;
 		}
 
+		if (cubismShowDragCleanup) {
+			cubismShowDragCleanup();
+			cubismShowDragCleanup = null;
+		}
+
+		if (cubismTapCleanup) {
+			cubismTapCleanup();
+			cubismTapCleanup = null;
+		}
+
 		if (pioConfig.mode === "draggable") {
 			cubismDragCleanup = enableCubismDragging();
+			cubismShowDragCleanup = enableCubismShowDragging();
+			return;
 		}
+
+		cubismTapCleanup = bindCubismCanvasTap();
 	}
 
 	function setupCubismActions() {
@@ -571,19 +891,26 @@
 		}
 
 		try {
-			pioCanvas.width = pioConfig.width || 280;
-			pioCanvas.height = pioConfig.height || 250;
+			const { width, height, resolution } = getCubismCanvasMetrics();
+			applyCubismCanvasStyle();
 			pioContainer.classList.remove("pio-hidden");
 
 			pixiApp = new cubismPIXI.Application({
 				view: pioCanvas,
-				width: pioCanvas.width,
-				height: pioCanvas.height,
+				width,
+				height,
 				antialias: true,
 				transparent: true,
 				backgroundAlpha: 0,
 				autoStart: true,
+				autoDensity: true,
+				resolution,
 			});
+
+			if (cubismResizeCleanup) {
+				cubismResizeCleanup();
+			}
+			cubismResizeCleanup = bindCubismResizeHandlers();
 
 			setupCubismActions();
 			applyCubismModeBehavior();
@@ -672,19 +999,43 @@
 			cubismDragCleanup = null;
 		}
 
+		if (cubismShowDragCleanup) {
+			cubismShowDragCleanup();
+			cubismShowDragCleanup = null;
+		}
+
+		if (cubismTapCleanup) {
+			cubismTapCleanup();
+			cubismTapCleanup = null;
+		}
+
+		if (cubismResizeCleanup) {
+			cubismResizeCleanup();
+			cubismResizeCleanup = null;
+		}
+
 		if (cubismModel && typeof cubismModel.destroy === "function") {
-			cubismModel.destroy();
+			cubismModel.destroy({
+				children: true,
+				texture: true,
+				baseTexture: true,
+			});
 			cubismModel = null;
 		}
 
 		if (pixiApp && typeof pixiApp.destroy === "function") {
 			pixiApp.destroy(true, {
 				children: true,
-				texture: false,
-				baseTexture: false,
+				texture: true,
+				baseTexture: true,
 			});
 			pixiApp = null;
 		}
+
+		pioInstance = null;
+		pioInitialized = false;
+		isRestoringCubism = false;
+		cubismSuppressClickUntil = 0;
 
 		console.log("Pio component destroyed");
 	});
@@ -696,7 +1047,11 @@
 		bind:this={pioContainer}
 	>
 		{#if useCubism4}
-			<div class="pio-show" on:click={restoreCubismModel}></div>
+			<div
+				class="pio-show"
+				bind:this={pioShowButton}
+				on:click={handleShowClick}
+			></div>
 			<div class="pio-action"></div>
 			<div class="pio-dialog" bind:this={pioDialog}></div>
 		{:else}

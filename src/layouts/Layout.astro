@@ -9,6 +9,17 @@ import {
 	siteConfig,
 } from "@/config";
 
+const primaryPioModelPath =
+	Array.isArray(pioConfig.models) && pioConfig.models.length > 0
+		? pioConfig.models[0]
+		: "";
+const shouldOptimizeCubismAssets =
+	pioConfig.enable && /\.model3\.json$/i.test(primaryPioModelPath);
+const shouldPreloadUgTextures =
+	shouldOptimizeCubismAssets &&
+	primaryPioModelPath === "/pio/UG/ugofficial.model3.json";
+const pioCssMedia = pioConfig.hiddenOnMobile ? "(min-width: 769px)" : "all";
+
 const BANNER_HEIGHT = 35;
 const BANNER_HEIGHT_EXTEND = 30;
 const BANNER_HEIGHT_HOME = BANNER_HEIGHT + BANNER_HEIGHT_EXTEND;
@@ -376,10 +387,54 @@ if (siteConfig.font) {
 		<!-- defines global css variables. This will be applied to <html> <body> and some other elements idk why -->
 		<slot name="head" />
 
+		<!-- Cubism4 runtime 预连接与关键资源预加载 -->
+		{
+			shouldOptimizeCubismAssets && (
+				<>
+					<link
+						rel="preconnect"
+						href="https://cdn.jsdelivr.net"
+						crossorigin="anonymous"
+					/>
+					<link
+						rel="preconnect"
+						href="https://unpkg.com"
+						crossorigin="anonymous"
+					/>
+					<link
+						rel="preload"
+						as="fetch"
+						href={primaryPioModelPath}
+						crossorigin="anonymous"
+					/>
+				</>
+			)
+		}
+		{
+			shouldPreloadUgTextures && (
+				<>
+					<link
+						rel="preload"
+						as="image"
+						href="/pio/UG/UGOfficial.2048/texture_00.png"
+					/>
+					<link
+						rel="preload"
+						as="image"
+						href="/pio/UG/UGOfficial.2048/texture_01.png"
+					/>
+				</>
+			)
+		}
+
 		<!-- Pio 看板娘样式 - 仅在启用时加载 -->
 		{
 			pioConfig.enable && (
-				<link rel="stylesheet" href="/pio/static/pio.css" />
+				<link
+					rel="stylesheet"
+					href="/pio/static/pio.css"
+					media={pioCssMedia}
+				/>
 			)
 		}
 

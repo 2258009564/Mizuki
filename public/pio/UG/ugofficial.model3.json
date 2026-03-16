@@ -42,47 +42,12 @@
 				"File": "8punch.exp3.json"
 			},
 			{
-				"Name": "1desk",
-				"File": "1desk.exp3.json"
-			},
-			{
-				"Name": "2mic",
-				"File": "2mic.exp3.json"
-			},
-			{
-				"Name": "3clever",
-				"File": "3clever.exp3.json"
-			},
-			{
-				"Name": "4OAO",
-				"File": "4OAO.exp3.json"
-			},
-			{
-				"Name": "5QAQ",
-				"File": "5QAQ.exp3.json"
-			},
-			{
-				"Name": "6i gi a ri",
-				"File": "6i gi a ri.exp3.json"
-			},
-			{
-				"Name": "7keyboard",
-				"File": "7keyboard.exp3.json"
-			},
-			{
-				"Name": "8punch",
-				"File": "8punch.exp3.json"
-			},
-			{
 				"Name": "9",
 				"File": "9.exp3.json"
 			}
 		],
 		"Motions": {
 			"": [
-				{
-					"File": "loop.motion3.json"
-				},
 				{
 					"File": "loop.motion3.json"
 				}
@@ -98,10 +63,7 @@
 		{
 			"Target": "Parameter",
 			"Name": "EyeBlink",
-			"Ids": [
-				"ParamEyeLOpen",
-				"ParamEyeROpen"
-			]
+			"Ids": ["ParamEyeLOpen", "ParamEyeROpen"]
 		}
 	],
 	"HitAreas": []
