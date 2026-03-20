@@ -19,6 +19,7 @@ export interface ToolboxItem {
 	tags: string[];
 	softwareId?: string;
 	settings?: ToolboxSettingItem[];
+	pluginEnabled?: boolean;
 }
 
 export const toolboxData: ToolboxItem[] = [
@@ -69,6 +70,75 @@ export const toolboxData: ToolboxItem[] = [
 			},
 			{ label: "输出参数", value: "按场景设置码率、分辨率与帧率" },
 			{ label: "场景模板", value: "固定录屏/直播模板，减少重复配置" },
+		],
+	},
+	{
+		id: "clash-verge-rev",
+		name: "Clash Verge Rev",
+		type: "software",
+		description:
+			"基于 Clash.Meta 内核的代理客户端，用于规则分流与网络调试。",
+		platform: "Windows / macOS / Linux",
+		url: "https://www.clashverge.dev/",
+		icon: "https://www.clashverge.dev/assets/logo.png",
+		tags: ["代理", "网络"],
+		pluginEnabled: false,
+		settings: [
+			// { label: "订阅管理", value: "按场景拆分订阅，定期校验可用性" },
+			// {
+			// 	label: "规则策略",
+			// 	value: "按国内/国外与服务类型分组，减少误代理",
+			// },
+			// { label: "延迟测试", value: "启用自动测速并优先低延迟节点" },
+		],
+	},
+	{
+		id: "gkd",
+		name: "GKD",
+		type: "software",
+		description:
+			"基于无障碍的 Android 自动点击工具，用于跳过常见开屏广告。",
+		platform: "Android",
+		url: "https://gkd.li/",
+		icon: "material-symbols:touch-app-rounded",
+		tags: ["自动化", "Android"],
+		pluginEnabled: false,
+		settings: [
+			// { label: "规则订阅", value: "仅启用常用应用规则，避免误触" },
+			// { label: "黑名单", value: "支付与输入类页面强制禁用" },
+			// { label: "触发频率", value: "限制触发间隔，降低后台占用" },
+		],
+	},
+	{
+		id: "ani",
+		name: "Ani",
+		type: "software",
+		description: "Animeko 客户端，聚合追番与媒体管理体验。",
+		platform: "Windows / macOS / Linux / Android",
+		url: "https://animeko.org/",
+		icon: "https://animeko.org/logo.png",
+		tags: ["追番", "媒体"],
+		pluginEnabled: false,
+		settings: [
+			// { label: "数据源", value: "优先稳定源，异常时手动切换" },
+			// { label: "字幕偏好", value: "默认简中，保留双语备选" },
+			// { label: "播放策略", value: "自动续播 + 记录观看进度" },
+		],
+	},
+	{
+		id: "uu-remote",
+		name: "UU远程",
+		type: "software",
+		description: "网易 UU 远程工具，用于跨设备远程连接与协作。",
+		platform: "Windows / macOS / iOS / Android",
+		url: "https://uuyc.163.com/",
+		icon: "material-symbols:devices-rounded",
+		tags: ["远程控制", "协作"],
+		pluginEnabled: false,
+		settings: [
+			// { label: "连接方式", value: "优先同局域网直连，外网走中继" },
+			// { label: "安全策略", value: "开启访问密码与设备白名单" },
+			// { label: "画质设置", value: "按网络状况动态调整分辨率和帧率" },
 		],
 	},
 	{

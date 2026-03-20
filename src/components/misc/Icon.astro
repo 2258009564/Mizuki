@@ -36,6 +36,7 @@ const sizeClass = sizeClasses[size] || sizeClasses.md;
 const colorStyle = color ? `color: ${color};` : "";
 const combinedStyle = `${colorStyle}${style}`;
 const combinedClass = `${sizeClass} ${className}`.trim();
+const isImageIcon = /^(https?:\/\/|\/|\.\/|\.\.\/)/i.test(icon);
 
 // 生成唯一ID
 const iconId = `icon-${Math.random().toString(36).substring(2, 9)}`;
@@ -53,26 +54,39 @@ const iconId = `icon-${Math.random().toString(36).substring(2, 9)}`;
   >
     {fallback}
   </span>
-  
-  <!-- 实际图标 -->
-  <iconify-icon 
-    icon={icon}
-    class="icon-content opacity-0 transition-opacity duration-200"
-    data-icon-element
-    loading={loading}
-  ></iconify-icon>
+
+	{
+		isImageIcon ? (
+			<img
+				src={icon}
+				alt={fallback}
+				class="icon-content icon-image opacity-0 transition-opacity duration-200"
+				data-image-element
+				loading={loading}
+				decoding="async"
+			/>
+		) : (
+			<iconify-icon
+				icon={icon}
+				class="icon-content opacity-0 transition-opacity duration-200"
+				data-icon-element
+				loading={loading}
+			></iconify-icon>
+		)
+	}
 </span>
 
-<script is:inline define:vars={{ iconId, icon }}>
+<script is:inline define:vars={{ iconId, icon, isImageIcon }}>
   // 图标加载和显示逻辑
   (function() {
     const container = document.querySelector(`[data-icon-container="${iconId}"]`);
     if (!container) return;
     
     const loadingIndicator = container.querySelector('[data-loading-indicator]');
+    const imageElement = container.querySelector('[data-image-element]');
     const iconElement = container.querySelector('[data-icon-element]');
     
-    if (!loadingIndicator || !iconElement) return;
+    if (!loadingIndicator) return;
 
     // 检查图标是否已经加载
     function checkIconLoaded() {
@@ -97,12 +111,39 @@ const iconId = `icon-${Math.random().toString(36).substring(2, 9)}`;
     // 显示加载指示器，隐藏图标
     function showLoading() {
       loadingIndicator.style.display = 'inline-flex';
-      iconElement.classList.remove('opacity-100');
-      iconElement.classList.add('opacity-0');
+      if (iconElement) {
+        iconElement.classList.remove('opacity-100');
+        iconElement.classList.add('opacity-0');
+      }
+      if (imageElement) {
+        imageElement.classList.remove('opacity-100');
+        imageElement.classList.add('opacity-0');
+      }
     }
 
     // 初始状态
     showLoading();
+
+    if (isImageIcon && imageElement) {
+      function showImage() {
+        loadingIndicator.style.display = 'none';
+        imageElement.classList.remove('opacity-0');
+        imageElement.classList.add('opacity-100');
+      }
+
+      imageElement.addEventListener('load', showImage);
+      imageElement.addEventListener('error', () => {
+        console.warn(`Failed to load image icon: ${icon}`);
+      });
+
+      if (imageElement.complete && imageElement.naturalWidth > 0) {
+        showImage();
+      }
+
+      return;
+    }
+
+    if (!iconElement) return;
 
     // 监听图标加载事件
     iconElement.addEventListener('load', () => {
@@ -160,6 +201,10 @@ const iconId = `icon-${Math.random().toString(36).substring(2, 9)}`;
     align-items: center;
     justify-content: center;
   }
+
+	.icon-image {
+		object-fit: contain;
+	}
   
   [data-icon-container] {
     position: relative;
