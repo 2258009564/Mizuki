@@ -141,6 +141,12 @@ export const en: Translation = {
 	[Key.devices]: "My Devices",
 	[Key.devicesSubtitle]: "Here are the devices I use in my daily life",
 	[Key.devicesViewDetails]: "View Details",
+	[Key.toolbox]: "Toolbox",
+	[Key.toolboxSubtitle]: "Software and extensions I use frequently",
+	[Key.toolboxTotal]: "Total Items",
+	[Key.toolboxSoftware]: "Software",
+	[Key.toolboxExtensions]: "Extensions",
+	[Key.toolboxVisit]: "Open",
 	[Key.albumsPhotoCount]: "photo",
 	[Key.albumsPhotosCount]: "photos",
 

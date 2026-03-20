@@ -46,6 +46,7 @@ export const siteConfig: SiteConfig = {
 		timeline: true, // 时间线页面开关
 		albums: true, // 相册页面开关
 		devices: false, // 设备页面开关
+		toolbox: true, // 常用软件/插件页面开关
 	},
 
 	// 顶栏标题配置
@@ -320,6 +321,11 @@ export const navBarConfig: NavBarConfig = {
 					name: "Gallery",
 					url: "/albums/",
 					icon: "material-symbols:photo-library",
+				},
+				{
+					name: "Toolbox",
+					url: "/toolbox/",
+					icon: "material-symbols:extension",
 				},
 				// {
 				// 	name: "Devices",

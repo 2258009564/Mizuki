@@ -139,6 +139,14 @@ export const zh_CN: Translation = {
 	[Key.devicesSubtitle]: "这里展示了我日常使用的各类设备",
 	[Key.devicesViewDetails]: "查看详情",
 
+	// 工具箱页面
+	[Key.toolbox]: "工具箱",
+	[Key.toolboxSubtitle]: "收录我常用的软件和插件",
+	[Key.toolboxTotal]: "总条目",
+	[Key.toolboxSoftware]: "软件",
+	[Key.toolboxExtensions]: "插件",
+	[Key.toolboxVisit]: "前往官网",
+
 	// 项目展示页面
 	[Key.projects]: "项目展示",
 	[Key.projectsSubtitle]: "我的开发项目作品集",

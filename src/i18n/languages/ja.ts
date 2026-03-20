@@ -142,6 +142,12 @@ export const ja: Translation = {
 	[Key.devices]: "デバイス",
 	[Key.devicesSubtitle]: "日常的に使用しているデバイスを紹介",
 	[Key.devicesViewDetails]: "詳細を表示",
+	[Key.toolbox]: "ツールボックス",
+	[Key.toolboxSubtitle]: "よく使うソフトと拡張機能",
+	[Key.toolboxTotal]: "総アイテム数",
+	[Key.toolboxSoftware]: "ソフトウェア",
+	[Key.toolboxExtensions]: "拡張機能",
+	[Key.toolboxVisit]: "開く",
 	[Key.albumsPhotoCount]: "件の写真",
 	[Key.albumsPhotosCount]: "件の写真",
 

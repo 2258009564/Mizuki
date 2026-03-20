@@ -64,6 +64,12 @@ export const zh_TW: Translation = {
 	[Key.devices]: "我的設備",
 	[Key.devicesSubtitle]: "這裡展示了我日常使用的各類設備",
 	[Key.devicesViewDetails]: "查看詳情",
+	[Key.toolbox]: "工具箱",
+	[Key.toolboxSubtitle]: "收錄我常用的軟體和插件",
+	[Key.toolboxTotal]: "總條目",
+	[Key.toolboxSoftware]: "軟體",
+	[Key.toolboxExtensions]: "插件",
+	[Key.toolboxVisit]: "前往官網",
 
 	// 番劇頁面
 	[Key.animeTitle]: "我的追番記錄",

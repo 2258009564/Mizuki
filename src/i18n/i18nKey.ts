@@ -135,6 +135,14 @@ enum I18nKey {
 	devicesSubtitle = "devicesSubtitle",
 	devicesViewDetails = "devicesViewDetails",
 
+	// 工具箱页面
+	toolbox = "toolbox",
+	toolboxSubtitle = "toolboxSubtitle",
+	toolboxTotal = "toolboxTotal",
+	toolboxSoftware = "toolboxSoftware",
+	toolboxExtensions = "toolboxExtensions",
+	toolboxVisit = "toolboxVisit",
+
 	// 项目展示页面
 	projects = "projects",
 	projectsSubtitle = "projectsSubtitle",

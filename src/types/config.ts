@@ -67,6 +67,7 @@ export type SiteConfig = {
 		timeline: boolean; // 时间线页面开关
 		albums: boolean; // 相册页面开关
 		devices: boolean; // 设备页面开关
+		toolbox: boolean; // 常用软件/插件页面开关
 	};
 
 	// 文章列表布局配置

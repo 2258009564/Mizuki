@@ -1,0 +1,245 @@
+---
+import Icon from "../../components/misc/Icon.astro";
+import { siteConfig } from "../../config";
+import {
+	getExtensionsBySoftware,
+	getSoftwareById,
+	getSoftwareItems,
+} from "../../data/toolbox";
+import MainGridLayout from "../../layouts/MainGridLayout.astro";
+import { url } from "../../utils/url-utils";
+
+export function getStaticPaths() {
+	return getSoftwareItems().map((item) => ({
+		params: { software: item.id },
+		props: { softwareId: item.id },
+	}));
+}
+
+interface Props {
+	softwareId: string;
+}
+
+const { softwareId } = Astro.props as Props;
+
+if (!siteConfig.featurePages.toolbox) {
+	return Astro.redirect("/404/");
+}
+
+const softwareItem = getSoftwareById(softwareId);
+
+if (!softwareItem) {
+	return Astro.redirect("/404/");
+}
+
+const extensions = getExtensionsBySoftware(softwareId);
+const settings = softwareItem.settings || [];
+---
+
+<MainGridLayout
+	title={`${softwareItem.name} 配置`}
+	description={`${softwareItem.name} 配置与插件清单`}
+>
+	<script>
+		import("../../scripts/right-sidebar-layout.js");
+	</script>
+
+	<div
+		class="flex w-full rounded-(--radius-large) overflow-hidden relative min-h-32"
+	>
+		<div class="card-base z-10 px-9 py-6 relative w-full">
+			<a
+				href={url("/toolbox/")}
+				class="inline-flex items-center gap-1.5 text-sm text-60 hover:text-(--primary) transition-colors mb-4"
+			>
+				<Icon
+					icon="material-symbols:arrow-back-rounded"
+					class="text-lg"
+					loading="eager"
+				/>
+				返回工具箱
+			</a>
+
+			<div class="flex flex-col items-start justify-center mb-8">
+				<div class="flex items-center gap-3 mb-2">
+					<div
+						class="w-12 h-12 shrink-0 rounded-lg bg-(--btn-regular-bg) flex items-center justify-center text-(--primary)"
+					>
+						<Icon
+							icon={softwareItem.icon}
+							class="text-2xl"
+							fallback={softwareItem.name.charAt(0)}
+							loading="eager"
+						/>
+					</div>
+					<h1 class="text-4xl font-bold text-90">
+						{softwareItem.name} 配置
+					</h1>
+				</div>
+				<p class="text-lg text-60 mb-3">{softwareItem.description}</p>
+				<a
+					href={softwareItem.url}
+					target="_blank"
+					rel="noopener noreferrer"
+					class="inline-flex items-center gap-1.5 text-sm px-3 py-2 rounded-lg border border-(--line-divider) text-80 hover:text-(--primary) hover:border-(--primary)/50 transition-colors"
+				>
+					<Icon
+						icon="material-symbols:open-in-new"
+						class="text-base"
+						loading="eager"
+					/>
+					前往官网
+				</a>
+			</div>
+
+			{
+				settings.length > 0 && (
+					<section class="mb-10">
+						<h2 class="text-2xl font-bold text-90 mb-4 relative before:w-1 before:h-6 before:rounded-md before:bg-(--primary) before:absolute before:top-1/2 before:-translate-y-1/2 before:-left-4">
+							常用配置
+						</h2>
+						<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+							{settings.map((config, index) => (
+								<div
+									class="config-card rounded-lg border border-(--line-divider) p-4"
+									style={`animation-delay: ${index * 50}ms`}
+								>
+									<div class="text-sm text-50 mb-1">
+										{config.label}
+									</div>
+									<div class="text-base text-90 font-medium">
+										{config.value}
+									</div>
+								</div>
+							))}
+						</div>
+					</section>
+				)
+			}
+
+			<section>
+				<h2
+					class="text-2xl font-bold text-90 mb-4 relative before:w-1 before:h-6 before:rounded-md before:bg-(--primary) before:absolute before:top-1/2 before:-translate-y-1/2 before:-left-4"
+				>
+					插件展示
+					<span class="text-lg font-normal text-60 ml-2"
+						>({extensions.length})</span
+					>
+				</h2>
+
+				{
+					extensions.length === 0 ? (
+						<div class="rounded-xl border border-(--line-divider) p-6 text-60">
+							当前还没有为 {softwareItem.name}{" "}
+							添加插件条目。你可以在
+							<span class="font-medium text-90">
+								{" "}
+								src/data/toolbox.ts{" "}
+							</span>
+							中继续补充。
+						</div>
+					) : (
+						<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
+							{extensions.map((item, index) => (
+								<a
+									href={item.url}
+									target="_blank"
+									rel="noopener noreferrer"
+									class="plugin-card group rounded-xl border border-(--line-divider) bg-(--card-bg) p-5 block"
+									style={`animation-delay: ${index * 60}ms`}
+								>
+									<div class="flex items-start justify-between gap-3 mb-3">
+										<div class="flex items-center gap-3 min-w-0">
+											<div class="w-11 h-11 shrink-0 rounded-lg bg-(--btn-regular-bg) flex items-center justify-center text-(--primary)">
+												<Icon
+													icon={item.icon}
+													class="text-xl"
+													fallback={item.name.charAt(
+														0,
+													)}
+													loading="eager"
+												/>
+											</div>
+											<h3 class="text-lg font-semibold text-90 truncate">
+												{item.name}
+											</h3>
+										</div>
+										<Icon
+											icon="material-symbols:open-in-new"
+											class="text-lg text-(--primary) opacity-0 group-hover:opacity-100 transition-opacity"
+											loading="eager"
+										/>
+									</div>
+									<p class="text-sm text-60 line-clamp-2 min-h-10 mb-3">
+										{item.description}
+									</p>
+									<div class="flex flex-wrap gap-2 mb-3">
+										{item.tags.map((tag) => (
+											<span class="px-2 py-1 rounded-md text-xs bg-(--primary)/10 text-(--primary)">
+												{tag}
+											</span>
+										))}
+									</div>
+									<div class="pt-3 border-t border-(--line-divider) border-dashed flex items-center justify-between gap-3">
+										<span class="text-xs text-50 truncate">
+											{item.platform}
+										</span>
+										<span class="text-sm font-medium text-(--primary)">
+											前往插件页
+										</span>
+									</div>
+								</a>
+							))}
+						</div>
+					)
+				}
+			</section>
+		</div>
+	</div>
+</MainGridLayout>
+
+<style>
+	.config-card,
+	.plugin-card {
+		transition:
+			transform 0.25s ease,
+			box-shadow 0.25s ease,
+			border-color 0.25s ease;
+		animation: fadeInUp 0.55s ease forwards;
+		opacity: 0;
+	}
+
+	.config-card:hover,
+	.plugin-card:hover {
+		transform: translateY(-3px);
+		border-color: color-mix(
+			in srgb,
+			var(--primary) 45%,
+			var(--line-divider)
+		);
+		box-shadow: 0 10px 24px rgb(0 0 0 / 8%);
+	}
+
+	:root.dark .config-card:hover,
+	:root.dark .plugin-card:hover {
+		box-shadow: 0 10px 24px rgb(255 255 255 / 6%);
+	}
+
+	.line-clamp-2 {
+		display: -webkit-box;
+		-webkit-line-clamp: 2;
+		-webkit-box-orient: vertical;
+		overflow: hidden;
+	}
+
+	@keyframes fadeInUp {
+		from {
+			opacity: 0;
+			transform: translateY(12px);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+</style>
