@@ -42,18 +42,15 @@ const isImageIcon = /^(https?:\/\/|\/|\.\/|\.\.\/)/i.test(icon);
 const iconId = `icon-${Math.random().toString(36).substring(2, 9)}`;
 ---
 
-<span 
-  class={`inline-flex items-center justify-center ${combinedClass}`}
-  style={combinedStyle}
-  data-icon-container={iconId}
+<span
+	class={`inline-flex items-center justify-center ${combinedClass}`}
+	style={combinedStyle}
+	data-icon-container={iconId}
 >
-  <!-- 加载状态指示器 -->
-  <span 
-    class="icon-loading animate-pulse opacity-50"
-    data-loading-indicator
-  >
-    {fallback}
-  </span>
+	<!-- 加载状态指示器 -->
+	<span class="icon-loading animate-pulse opacity-50" data-loading-indicator>
+		{fallback}
+	</span>
 
 	{
 		isImageIcon ? (
@@ -71,156 +68,161 @@ const iconId = `icon-${Math.random().toString(36).substring(2, 9)}`;
 				class="icon-content opacity-0 transition-opacity duration-200"
 				data-icon-element
 				loading={loading}
-			></iconify-icon>
+			/>
 		)
 	}
 </span>
 
 <script is:inline define:vars={{ iconId, icon, isImageIcon }}>
-  // 图标加载和显示逻辑
-  (function() {
-    const container = document.querySelector(`[data-icon-container="${iconId}"]`);
-    if (!container) return;
-    
-    const loadingIndicator = container.querySelector('[data-loading-indicator]');
-    const imageElement = container.querySelector('[data-image-element]');
-    const iconElement = container.querySelector('[data-icon-element]');
-    
-    if (!loadingIndicator) return;
+	// 图标加载和显示逻辑
+	(function () {
+		const container = document.querySelector(
+			`[data-icon-container="${iconId}"]`,
+		);
+		if (!container) return;
 
-    // 检查图标是否已经加载
-    function checkIconLoaded() {
-      // 检查iconify-icon元素是否已经渲染
-      const hasContent = iconElement.shadowRoot && 
-                        iconElement.shadowRoot.children.length > 0;
-      
-      if (hasContent) {
-        showIcon();
-        return true;
-      }
-      return false;
-    }
+		const loadingIndicator = container.querySelector(
+			"[data-loading-indicator]",
+		);
+		const imageElement = container.querySelector("[data-image-element]");
+		const iconElement = container.querySelector("[data-icon-element]");
 
-    // 显示图标，隐藏加载指示器
-    function showIcon() {
-      loadingIndicator.style.display = 'none';
-      iconElement.classList.remove('opacity-0');
-      iconElement.classList.add('opacity-100');
-    }
+		if (!loadingIndicator) return;
 
-    // 显示加载指示器，隐藏图标
-    function showLoading() {
-      loadingIndicator.style.display = 'inline-flex';
-      if (iconElement) {
-        iconElement.classList.remove('opacity-100');
-        iconElement.classList.add('opacity-0');
-      }
-      if (imageElement) {
-        imageElement.classList.remove('opacity-100');
-        imageElement.classList.add('opacity-0');
-      }
-    }
+		// 检查图标是否已经加载
+		function checkIconLoaded() {
+			// 检查iconify-icon元素是否已经渲染
+			const hasContent =
+				iconElement.shadowRoot &&
+				iconElement.shadowRoot.children.length > 0;
 
-    // 初始状态
-    showLoading();
+			if (hasContent) {
+				showIcon();
+				return true;
+			}
+			return false;
+		}
 
-    if (isImageIcon && imageElement) {
-      function showImage() {
-        loadingIndicator.style.display = 'none';
-        imageElement.classList.remove('opacity-0');
-        imageElement.classList.add('opacity-100');
-      }
+		// 显示图标，隐藏加载指示器
+		function showIcon() {
+			loadingIndicator.style.display = "none";
+			iconElement.classList.remove("opacity-0");
+			iconElement.classList.add("opacity-100");
+		}
 
-      imageElement.addEventListener('load', showImage);
-      imageElement.addEventListener('error', () => {
-        console.warn(`Failed to load image icon: ${icon}`);
-      });
+		// 显示加载指示器，隐藏图标
+		function showLoading() {
+			loadingIndicator.style.display = "inline-flex";
+			if (iconElement) {
+				iconElement.classList.remove("opacity-100");
+				iconElement.classList.add("opacity-0");
+			}
+			if (imageElement) {
+				imageElement.classList.remove("opacity-100");
+				imageElement.classList.add("opacity-0");
+			}
+		}
 
-      if (imageElement.complete && imageElement.naturalWidth > 0) {
-        showImage();
-      }
+		// 初始状态
+		showLoading();
 
-      return;
-    }
+		if (isImageIcon && imageElement) {
+			function showImage() {
+				loadingIndicator.style.display = "none";
+				imageElement.classList.remove("opacity-0");
+				imageElement.classList.add("opacity-100");
+			}
 
-    if (!iconElement) return;
+			imageElement.addEventListener("load", showImage);
+			imageElement.addEventListener("error", () => {
+				console.warn(`Failed to load image icon: ${icon}`);
+			});
 
-    // 监听图标加载事件
-    iconElement.addEventListener('load', () => {
-      showIcon();
-    });
+			if (imageElement.complete && imageElement.naturalWidth > 0) {
+				showImage();
+			}
 
-    // 监听图标加载错误
-    iconElement.addEventListener('error', () => {
-      // 保持显示fallback
-      console.warn(`Failed to load icon: ${icon}`);
-    });
+			return;
+		}
 
-    // 使用MutationObserver监听shadow DOM变化
-    if (window.MutationObserver) {
-      const observer = new MutationObserver(() => {
-        if (checkIconLoaded()) {
-          observer.disconnect();
-        }
-      });
+		if (!iconElement) return;
 
-      // 监听iconify-icon元素的变化
-      observer.observe(iconElement, {
-        childList: true,
-        subtree: true,
-        attributes: true
-      });
+		// 监听图标加载事件
+		iconElement.addEventListener("load", () => {
+			showIcon();
+		});
 
-      // 设置超时，避免无限等待
-      setTimeout(() => {
-        observer.disconnect();
-        if (!checkIconLoaded()) {
-          console.warn(`Icon load timeout: ${icon}`);
-        }
-      }, 5000);
-    }
+		// 监听图标加载错误
+		iconElement.addEventListener("error", () => {
+			// 保持显示fallback
+			console.warn(`Failed to load icon: ${icon}`);
+		});
 
-    // 立即检查一次（可能已经加载完成）
-    setTimeout(() => {
-      checkIconLoaded();
-    }, 100);
-  })();
+		// 使用MutationObserver监听shadow DOM变化
+		if (window.MutationObserver) {
+			const observer = new MutationObserver(() => {
+				if (checkIconLoaded()) {
+					observer.disconnect();
+				}
+			});
+
+			// 监听iconify-icon元素的变化
+			observer.observe(iconElement, {
+				childList: true,
+				subtree: true,
+				attributes: true,
+			});
+
+			// 设置超时，避免无限等待
+			setTimeout(() => {
+				observer.disconnect();
+				if (!checkIconLoaded()) {
+					console.warn(`Icon load timeout: ${icon}`);
+				}
+			}, 5000);
+		}
+
+		// 立即检查一次（可能已经加载完成）
+		setTimeout(() => {
+			checkIconLoaded();
+		}, 100);
+	})();
 </script>
 
 <style>
-  .icon-loading {
-    min-width: 1em;
-    min-height: 1em;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .icon-content {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-  }
+	.icon-loading {
+		min-width: 1em;
+		min-height: 1em;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.icon-content {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+	}
 
 	.icon-image {
 		object-fit: contain;
 	}
-  
-  [data-icon-container] {
-    position: relative;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 1em;
-    min-height: 1em;
-  }
-  
-  [data-icon-container] .icon-loading,
-  [data-icon-container] .icon-content {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-  }
+
+	[data-icon-container] {
+		position: relative;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		min-width: 1em;
+		min-height: 1em;
+	}
+
+	[data-icon-container] .icon-loading,
+	[data-icon-container] .icon-content {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+	}
 </style>
