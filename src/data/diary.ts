@@ -40,7 +40,7 @@ const diaryData: DiaryItem[] = [
 	{
 		id: 4,
 		content:
-			"我一直做噩梦，我一周能做五天噩梦。我怎么了？",
+			"我一直做噩梦，我一周能做五天噩梦。我怎么了...？",
 		date: "2026-03-20T21:59:36Z",
 		// images: ["/images/diary/image.png"],
 	},
