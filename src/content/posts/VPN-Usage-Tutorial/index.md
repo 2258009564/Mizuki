@@ -59,7 +59,7 @@ clash 是 基于规则的软件内代理核心 ...
 
 ## 1. clash 的安装
 ### windows
-推荐使用 [clash verge dev](https://github.com/clash-verge-rev/clash-verge-rev/releases/tag/v2.4.7)，界面友好，功能齐全，适合大多数用户。
+推荐使用 [clash verge rev](https://github.com/clash-verge-rev/clash-verge-rev/releases/tag/v2.4.7)，界面友好，功能齐全，适合大多数用户。
 
 ::github{repo="clash-verge-rev/clash-verge-rev"}
 ### Android
