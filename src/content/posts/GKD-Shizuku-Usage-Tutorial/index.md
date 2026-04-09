@@ -73,6 +73,7 @@ Shizuku 有三种常见启动方式：
 
 ## 3.3 安装并启动 Shizuku 
 
+::github{repo="RikkaApps/Shizuku"}
 [Shizuku 官方文档](https://shizuku.rikka.app/zh-hans/guide/setup/)
 
 ### A. Root 启动
