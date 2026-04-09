@@ -34,7 +34,7 @@ export const friendsData: FriendItem[] = [
 		imgurl: "https://imicola.com/_astro/nona_cut.D2OfEpoP_Z1NkkW9.webp",
 		desc: "一个天才",
 		siteurl: "https://imicola.com",
-		tags: ["Docs", "Reference"],
+		tags: ["Friend"],
 	},
 	{
 		id: 4,
@@ -42,7 +42,15 @@ export const friendsData: FriendItem[] = [
 		imgurl: "https://wcx684.github.io/images/avatar.jpg",
 		desc: "深圳的主人",
 		siteurl: "https://wcx684.github.io",
-		tags: ["Docs", "Reference"],
+		tags: ["Friend"],
+	},
+	{
+		id: 5,
+		title: "castorice的博客",
+		imgurl: "https://www.castorice.xin/images/friends/castorice.png",
+		desc: "愿白昼晴朗，夜晚幸福。",
+		siteurl: "https://www.castorice.xin/",
+		tags: ["Friend"],
 	},
 ];
 
