@@ -2,12 +2,11 @@
 title: 简短的VPN使用教程
 published: 2026-04-03
 updated: 2026-04-03T21:07:30Z
-description: "关于梯子，你需要知道..."
+description: "内涵丛雨云推荐（更适合二次元宝宝体质"
 tags: [Tutorial, VPN]
 category: Tutorial
 draft: false
 comment: true
-# sourceLink: 
 licenseName: "MIT"
 ---
 
@@ -44,8 +43,8 @@ VPN 的全称是 `Virtual Private Network` 。
 clash 是 基于规则的软件内代理核心 ...
 这个听起来很高端很专业，其实就是一个让订阅服务运行起来的平台。这样的平台当然不止一个，我在此推荐 clash 是因为它全平台通用，界面设计现代，足够方便。
 - 核心优势——分流 (Rule-based)： 这是它区别于传统 VPN 的最大优点。Clash 会根据预设规则自动判断：
-  - 当你访问 YouTube 时，它自动走加速通道；
-  - 当你访问 微信 时，它自动走国内直连，不消耗加速流量。
+	- 当你访问 YouTube 时，它自动走加速通道；
+	- 当你访问 微信 时，它自动走国内直连，不消耗加速流量。
 
 我们可以用一个形象的比喻来总结：
 - “科学上网” 是你的目的；
@@ -63,9 +62,8 @@ clash 是 基于规则的软件内代理核心 ...
 
 ::github{repo="clash-verge-rev/clash-verge-rev"}
 ### Android
-推荐使用 [Clash for Android](https://github.com/clashbk/clash_for_android/releases/tag/2.5.12) 或者可以直接在 google play 上搜索 “Clash” ... 
-
-不过如果可以正常上google play 的话，你可能并不需要这个教程。
+推荐使用 [Clash Meta](https://github.com/MetaCubeX/ClashMetaForAndroid) ，它是目前安卓平台上功能最全、更新最活跃的 Clash 版本。
+::github{repo="MetaCubeX/ClashMetaForAndroid"}
 ### ios
 没有用过ios呢...等个有缘人提PR。
 
@@ -73,7 +71,7 @@ clash 是 基于规则的软件内代理核心 ...
 这个帖子仅负责必要的说明，因此 建议大家自行搜索评价稳定的机场，本站没有立场作推荐。
 
 ![alt text](preview.jpg)
-话说，[丛雨宝宝](https://congyu.moe/auth/register?invite=fc84dcfb89)真的很可爱！有懂的吗
+:spoiler[可爱的 [丛雨宝宝](https://congyu.moe/auth/register?invite=fc84dcfb89) 出现在这里，单纯是因为她是卡密sama，想去哪就去哪，跟作者本人并无联系。]
 ## 3. 导入 / 使用
 > 下面以 windows 版本的 clash 为例，其他平台的操作大同小异。
 
@@ -92,7 +90,13 @@ clash 是 基于规则的软件内代理核心 ...
 我们应当选择 Rule (规则模式) 实现“国内直连，国外加速”。  
 
 ​我们应当选择 日本 / 新加坡 节点： 物理距离近，延迟低，适合刷网页、看视频；适合访问ChatGPT 或某些有严格地区限制的资源。  
-​
-> 安全提醒： 订阅链接包含你的个人账户信息，千万不要发给别人，否则流量会被蹭光，账号也可能被封。
+
+:::tip
+我一般用 穹妹 / 宁宁 / 魔理沙 / 七海 
+:::
+
+:::warning
+安全提醒： 订阅链接包含你的个人账户信息，千万不要发给别人，否则流量会被蹭光，账号也可能被封。
+:::
 
 祝大家在广阔的互联网海洋中愉悦自在。
