@@ -4,6 +4,7 @@ description: 个人复习用
 published: 2026-04-10
 updated: 2026-04-10T22:22:49Z
 # image: ""
+category: Tutorial
 tags: [蓝桥杯, 算法竞赛]
 draft: false
 pinned: false
@@ -244,6 +245,11 @@ public:
 写的简短些似乎可以
 ```cpp
 vector<int> parent(n + 1);
+
+void init()
+{
+    iota(all(parent), 0ll);
+}
 
 int find(int x)
 {
@@ -518,7 +524,7 @@ void init()
 }
 
 /* C(n, k) = n! / (k! * (n - k)!)
-当 n < k 时 C(n, k) = 0
+当 n < k 或 k < 0 时 C(n, k) = 0
 */ 
 
 int C(int n, int k)
