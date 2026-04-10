@@ -82,11 +82,6 @@ Shizuku 有三种常见启动方式：
 
 ### B. 无线调试启动（Android 11+）
 
-1. 开启开发者选项。
-2. 开启 USB 调试和无线调试。
-3. 在 Shizuku 里执行配对（首次）。
-4. 完成后点击启动。
-
 1. 打开 Shizuku，点击配对。![alt text](image-1.png)
 2. 点击 开发者选项，找到无线调试。![alt text](image-2.png)
 ![alt text](image-3.png)
