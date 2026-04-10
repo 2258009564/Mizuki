@@ -16,9 +16,9 @@ comment: true
 
 希望一切顺利。
 :::
-## 1. 基础中的基础
+# 1. 基础中的基础
 
-### 1.1 基本板子
+## 1.1 基本板子
 
 ```cpp
 #include <bits/stdc++.h>
@@ -47,12 +47,12 @@ signed main()
 ```
  
 
-### 1.2 常见类型范围
+## 1.2 常见类型范围
 
 - `int` 约 $2.1 \times 10^9$。
 - `long long` 约 $9 \times 10^{18}$。 
 
-### 1.3 排序与比较器
+## 1.3 排序与比较器
 
 ```cpp
 vector<pair<int,int>> a;
@@ -63,14 +63,14 @@ sort(a.begin(), a.end(), [](pair<int, int> x, pair<int, int> y) {
 });
 ```
 
-## 2. STL 高频容器和用法
+# 2. STL 高频容器和用法
 
-### 2.1 `string`
+## 2.1 `string`
 
 - 子串：`s.substr(pos, len)`。
 - 查找：`s.find("abc")`，找不到返回 `string::npos`。
 
-### 2.2 `queue` / `priority_queue`
+## 2.2 `queue` / `priority_queue`
 
 ```cpp
 queue<int> q;
@@ -81,7 +81,7 @@ priority_queue<int> maxh; // 大根堆
 priority_queue<int, vector<int>, greater<int>> minh; // 小根堆
 ```
 
-### 2.3 `set` / `map` 与 `unordered_set` / `unordered_map`
+## 2.3 `set` / `map` 与 `unordered_set` / `unordered_map`
 
 - `set/map`：有序，复杂度通常 $O(\log n)$。
 - `unordered_*`：均摊 $O(1)$，但极端可能退化。
@@ -91,7 +91,7 @@ unordered_map<int, int> cnt;
 for (int x : {1,2,2,3,3,3}) cnt[x]++;
 ```
 
-## 3. 简单的板子
+# 3. 简单的板子
 
 ## 3.1 前缀和
 
@@ -264,7 +264,7 @@ void merge(int i, int j)
 ```
 剩下的 size, count 等属性自己慢慢往里面添加即可。
 
-### 3.9 BIT
+## 3.9 BIT
 
 - 适用于频繁的区间求和和单点更新。复杂度 $O(\log n)$。
 
@@ -307,7 +307,7 @@ public:
 }
 ```
 
-### 3.10 线段树
+## 3.10 线段树
 
 - 代码量略大，基本不考虑了...
 
@@ -420,7 +420,7 @@ public:
 };
 ```
 
-## 4. 动态规划入门框架
+# 4. 动态规划入门框架
 
 > 我能做到这玩意吗
 
@@ -430,9 +430,9 @@ public:
 2. 转移从哪里来？
 3. 初始化和遍历顺序是什么？
  
-## 5. 数学与数论高频点
+# 5. 数学与数论高频点
 
-### 5.1 gcd \ lcm
+## 5.1 gcd \ lcm
 
 - gcd
 ```cpp
@@ -451,7 +451,7 @@ int lcm(int a, int b)
 }
 ```
 
-### 5.2 快速幂
+## 5.2 快速幂
 
 ```cpp
 int ksm(int base, int exp)
@@ -470,7 +470,7 @@ int ksm(int base, int exp)
 }
 ```
 
-### 5.3 质数筛
+## 5.3 质数筛
 
 ```cpp
 const int N = 1e7;
@@ -494,7 +494,7 @@ void init()
 }
 ```
 
-### 5.4 逆元
+## 5.4 逆元
 ```cpp
 int inv(int x)
 {
@@ -502,7 +502,7 @@ int inv(int x)
 }
 ```
 
-### 5.5 组合数
+## 5.5 组合数
 ```cpp
 const int N = 1e6;
 // 预处理阶乘和逆元阶乘
