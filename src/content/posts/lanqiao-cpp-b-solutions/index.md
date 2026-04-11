@@ -13,7 +13,7 @@ comment: true
 :::tip
 补题链接：[蓝桥杯省赛自测 CB](https://www.luogu.com.cn/contest/320659#problems)
 
-代码模板请移步 [蓝桥杯 C++ B 组常用板子](../lanqiao-cpp-b-common/index.md) 或 [我的 github 存储库](https://github.com/2258009564/MYWORK/tree/main/CODES/CPPPROGRAM/%E6%9D%BF%E5%AD%90)
+代码模板请移步 [蓝桥杯 C++ B 组常用板子](../lanqiao-cpp-b-common/) 或 [我的 github 存储库](https://github.com/2258009564/MYWORK/tree/main/CODES/CPPPROGRAM/%E6%9D%BF%E5%AD%90)
 :::
 
 # A. 青春常数（填空）
