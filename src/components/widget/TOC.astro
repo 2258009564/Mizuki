@@ -133,6 +133,12 @@ class TableOfContents extends HTMLElement {
         else
             top = bottommost.offsetTop - tocHeight * 0.8;
 
+        const maxTop = Math.max(0, this.tocEl.scrollHeight - tocHeight);
+        top = Math.max(0, Math.min(top, maxTop));
+
+        // 小于一个行高级别的位移不触发滚动，减少active更新时的抖动感
+        if (Math.abs((this.tocEl.scrollTop || 0) - top) < 24) return;
+
         this.tocEl.scrollTo({
             top,
             left: 0,
