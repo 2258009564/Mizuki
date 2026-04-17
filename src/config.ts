@@ -462,8 +462,8 @@ export const shareConfig: ShareConfig = {
 };
 
 export const announcementConfig: AnnouncementConfig = {
-	title: "公告标题", // 公告标题，填空使用i18n字符串Key.announcement
-	content: "公告内容", // 公告内容
+	title: "公告", // 公告标题，填空使用i18n字符串Key.announcement
+	content: "记录一些比较面向基础的东西，满足个人的一点创作欲，希望能帮到你。", // 公告内容
 	closable: true, // 允许用户关闭公告
 	link: {
 		enable: true, // 启用链接
