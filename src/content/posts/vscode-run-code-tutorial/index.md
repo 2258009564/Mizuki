@@ -198,7 +198,7 @@ g++ -v // 等效于 g++ --version 作用是查看 g++ 的版本信息
 ```bash
 g++ main.cpp
 ```
-
+![alt text](image-10.png)
 - 这是最简单的命令。它会把 main.cpp 编译成一个默认名为 a.exe（Windows）或 a.out（Linux/Mac）的可执行文件。
 
 缺点：每次都生成 a.exe，如果你有多个源代码，会互相覆盖。
@@ -208,7 +208,7 @@ g++ main.cpp
 ```bash
 g++ main.cpp -o main
 ```
-
+![alt text](image-11.png)
 - -o 代表 Output。这条命令会把编译后的程序命名为 main.exe。
 
 运行方式：输入 ./main 即可运行。
