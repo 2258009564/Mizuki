@@ -149,7 +149,7 @@ sequenceDiagram
 
 ![alt text](image-3.png)
 
-4. 打开 bin 文件夹，确认里面有 g++.exe。
+4. **打开** bin 文件夹，**确认**里面有 g++.exe。
 
 ![alt text](image-4.png)
 
@@ -159,7 +159,7 @@ sequenceDiagram
 
 ## 2. 将路径写入 Path 环境变量
 
-1. 按下 Win 键，直接搜索 “编辑系统环境变量”，点击打开。
+1. 按下 Win 键，直接**搜索** “编辑系统环境变量”，点击打开。
 
 ![alt text](image-6.png)
 
