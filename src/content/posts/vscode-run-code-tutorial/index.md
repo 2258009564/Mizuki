@@ -2,7 +2,7 @@
 title: vscode 快速配置 g++
 description: 可以作为 从 Dev-C++ / CodeBlocks 等 古老 IDE 过渡到 vscode 的快速替代方案
 published: 2026-04-13
-updated: 2026-04-13T10:15:39Z
+updated: 2026-04-29T00:21:26Z
 category: Tutorial
 tags: [vscode, 算法竞赛]
 draft: false
