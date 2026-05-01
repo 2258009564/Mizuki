@@ -168,7 +168,6 @@ export const siteConfig: SiteConfig = {
 				"你好喵，欢迎来访！",
 				"tell the world who i am and what i wanna do",
 				"为了打 ACM ，我去寺庙求了一签，结果签上显示为凶，问主持解签，主持说你拿歪了，上面写的是区",
-				"就这样日复一日的 vibe， 是不是也挺好？",
 				"更多功能正紧锣密鼓地筹备中...，欢迎常来！",
 			], // 主页横幅副标题，支持字符串数组，启用打字机效果后会轮播显示
 			typewriter: {
