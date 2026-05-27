@@ -120,6 +120,25 @@ export const siteConfig: SiteConfig = {
 		// 支持单张图片或图片数组，当数组长度 > 1 时自动启用轮播
 		src: {
 			desktop: [
+				// Wallpaper Engine 播放列表壁纸
+				"/assets/desktop-banner/wp01.jpg", // YUZUSOFT natsume cafe stella
+				"/assets/desktop-banner/wp02.jpg", // 星光咖啡馆 四季夏目
+				"/assets/desktop-banner/wp03.gif", // 千恋*万花 丛雨 (GIF动画)
+				// "/assets/desktop-banner/wp04.gif", // 天使☆嚣嚣 RE-BOOT! 白雪乃爱 (GIF动画)
+				// "/assets/desktop-banner/wp05.jpg", // YUZUSOFT 芳乃 千恋*万花
+				"/assets/desktop-banner/wp06.jpg", // YUZUSOFT 天音 天使☆騒々 RE-BOOT!
+				// "/assets/desktop-banner/wp07.jpg", // YUZUSOFT 天音 天使☆騒々 RE-BOOT!
+				"/assets/desktop-banner/wp09.jpg", // YUZUSOFT めぐる サノバウィッチ
+				"/assets/desktop-banner/wp10.jpg", // 丛雨丛雨丛
+				// "/assets/desktop-banner/wp11.jpg", // 假屋和奏
+				"/assets/desktop-banner/wp12.jpg", // 常陆茉子
+				"/assets/desktop-banner/wp13.jpg", // 明月栞那
+				"/assets/desktop-banner/wp14.jpg", // 柚子社 ライムライト・レモネードジャム
+				"/assets/desktop-banner/wp15.jpg", // 阳见惠凪
+				"/assets/desktop-banner/wp16.jpg", // 谷风天音
+				"/assets/desktop-banner/wp18.jpg", // YUZUSOFT ムラサメ 千恋*万花
+				// "/assets/desktop-banner/wp17.gif", // 隐杏珠 LimeLight Lemonade (GIF动画)
+				// 旧壁纸
 				// "/assets/desktop-banner/pc1.jpg",
 				"/assets/desktop-banner/pc5.jpg",
 				"/assets/desktop-banner/pc2.jpg",
@@ -231,24 +250,29 @@ export const siteConfig: SiteConfig = {
 export const fullscreenWallpaperConfig: FullscreenWallpaperConfig = {
 	src: {
 		desktop: [
-			"/assets/desktop-banner/pc1.jpg",
-			"/assets/desktop-banner/2.webp",
-			"/assets/desktop-banner/pc2.jpg",
-			"/assets/desktop-banner/pc3.jpg",
-			"/assets/desktop-banner/pc4.jpg",
-			"/assets/desktop-banner/pc5.jpg",
-			"/assets/desktop-banner/pc6.jpg",
-			"/assets/desktop-banner/pc7.jpg",
-			"/assets/desktop-banner/pc8.jpg",
-		], // 桌面横幅图片
+			"/assets/desktop-banner/wp01.jpg",
+			"/assets/desktop-banner/wp02.jpg",
+			"/assets/desktop-banner/wp05.jpg",
+			"/assets/desktop-banner/wp06.jpg",
+			"/assets/desktop-banner/wp07.jpg",
+			"/assets/desktop-banner/wp09.jpg",
+			"/assets/desktop-banner/wp10.jpg",
+			"/assets/desktop-banner/wp11.jpg",
+			"/assets/desktop-banner/wp12.jpg",
+			"/assets/desktop-banner/wp13.jpg",
+			"/assets/desktop-banner/wp14.jpg",
+			"/assets/desktop-banner/wp15.jpg",
+			"/assets/desktop-banner/wp16.jpg",
+			"/assets/desktop-banner/wp18.jpg",
+		],
 		mobile: [
 			"/assets/mobile-banner/an1.jpg",
 			"/assets/mobile-banner/an2.jpg",
 			"/assets/mobile-banner/an3.jpg",
 			"/assets/mobile-banner/an4.jpg",
 			"/assets/mobile-banner/an5.jpg",
-		], // 移动横幅图片
-	}, // 使用本地横幅图片
+		],
+	},
 	position: "center", // 壁纸位置，等同于 object-position
 	carousel: {
 		enable: true, // 启用轮播
