@@ -1,7 +1,7 @@
 ---
 title: 简短的VPN使用教程
 published: 2026-04-03
-updated: 2026-04-03T21:07:30Z
+updated: 2026-05-28T15:34:59Z
 description: "内涵丛雨云推荐（更适合二次元宝宝体质"
 tags: [Tutorial, VPN]
 category: Tutorial
