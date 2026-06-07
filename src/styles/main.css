@@ -56,6 +56,10 @@ html {
   scroll-behavior: smooth;
   /* 现代浏览器：为滚动条预留稳定空间 */
   scrollbar-gutter: stable;
+  /* 优化字体渲染清晰度 */
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /* 页面顶部渐变高光效果 */
