@@ -2,9 +2,9 @@ name: Lint
 
 on:
   push:
-    branches: [ master ]
+    branches: [ my-original ]
   pull_request:
-    branches: [ master ]
+    branches: [ my-original ]
   workflow_dispatch:
 
 concurrency:
