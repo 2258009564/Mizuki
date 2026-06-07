@@ -113,7 +113,7 @@ export const getAllTags = () => {
 	const tags = new Set<string>();
 	diaryData.forEach((item) => {
 		if (item.tags) {
-			item.tags.forEach((tag) => tags.add(tag));
+			item.tags.forEach((tag) => { tags.add(tag); });
 		}
 	});
 	return Array.from(tags).sort();
