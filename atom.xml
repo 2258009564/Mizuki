@@ -5,7 +5,7 @@
   <link href="https://alisa22580.pages.dev/" rel="alternate" type="text/html"/>
   <link href="https://alisa22580.pages.dev/atom.xml" rel="self" type="application/atom+xml"/>
   <id>https://alisa22580.pages.dev/</id>
-  <updated>2026-06-07T10:04:27.930Z</updated>
+  <updated>2026-06-07T10:08:32.321Z</updated>
   <language>zh_CN</language>
   <entry>
     <title>本博客的搭建教程</title>
@@ -353,6 +353,187 @@ Root directory: /
 <p>我们可以直接访问 <a href="https://twikoo.js.org/backend.html#vercel-%E9%83%A8%E7%BD%B2">Vercel 部署</a> 的教程来获取这个 ID 。</p>
 <h2>更多内容</h2>
 <p>持续更新中...</p>
+]]></content>
+    <author>
+      <name>alisa22580</name>
+    </author>
+    <category term="Tutorial"></category>
+  </entry>
+  <entry>
+    <title>CFBetter 快速配置 AI 翻译（接入 DeepSeek V4 Flash）</title>
+    <link href="https://alisa22580.pages.dev/posts/cfbetter-deepseek-ai-translation/" rel="alternate" type="text/html"/>
+    <id>https://alisa22580.pages.dev/posts/cfbetter-deepseek-ai-translation/</id>
+    <published>2026-06-07T00:00:00.000Z</published>
+    <updated>2026-06-07T00:00:00.000Z</updated>
+    <summary>在 Codeforces Better 中接入 DeepSeek V4 Flash，三步搞定高质量 AI 翻译，告别机翻时代</summary>
+    <content type="html"><![CDATA[<h1>写在前面</h1>
+<p>刷 Codeforces 的时候，题目读不懂怎么办？传统翻译工具翻译出来的东西，经常把题目里的数学公式和关键信息搞得面目全非，还不如自己硬啃英文。</p>
+<p><strong>CFBetter</strong>（也叫 OJBetter / Codeforces Better）是一个非常好用的 Codeforces 增强插件，它支持多种翻译服务，其中最推荐的就是 <strong>AI 翻译（ChatGPT 兼容接口）</strong> —— 因为 AI 能理解上下文，还能自动识别和保护 LaTeX 公式，翻译质量远超传统机翻。</p>
+<p>本文将教你如何<strong>快速配置</strong> CFBetter 的 AI 翻译功能，接入 <strong>DeepSeek V4 Flash</strong> 模型。整个配置过程不到 5 分钟，翻译质量极高，且花费极低。</p>
+<blockquote>
+<p>为什么选择 DeepSeek V4 Flash？</p>
+<ul>
+<li><strong>便宜</strong>：输入 1 元 / 百万 tokens，输出 2 元 / 百万 tokens（翻译一篇题目大概不到 0.01 元）</li>
+<li><strong>快</strong>：响应速度在 AI 模型中属于第一梯队</li>
+<li><strong>质量好</strong>：翻译准确，能正确保留 LaTeX 公式</li>
+<li><strong>兼容 OpenAI 格式</strong>：可以直接接入任何支持 OpenAI API 的工具</li>
+</ul>
+</blockquote>
+<h1>1. 准备工作</h1>
+<h2>1.1 安装 CFBetter</h2>
+<p>CFBetter 是一个 Tampermonkey 油猴脚本（也有 Chrome 扩展版本），你需要在浏览器中先安装它。</p>
+<p><strong>方式一：Chrome 扩展（推荐）</strong></p>
+<p>直接在 Chrome Web Store 搜索 "CF Better" 或 "OJBetter" 安装即可。</p>
+<p><strong>方式二：油猴脚本</strong></p>
+<ol>
+<li>安装 <a href="https://www.tampermonkey.net/">Tampermonkey</a> 浏览器扩展</li>
+<li>前往 <a href="https://github.com/beijixiaohu/OJBetter">OJBetter GitHub 仓库</a> 安装脚本</li>
+</ol>
+<h2>1.2 获取 DeepSeek API Key</h2>
+<ol>
+<li>前往 <a href="https://platform.deepseek.com/">DeepSeek 开放平台</a> 注册账号（支持微信、手机号登录）</li>
+<li>登录后，点击左侧菜单的 <strong>「API Keys」</strong></li>
+<li>点击 <strong>「创建 API Key」</strong>，输入一个名称（比如 <code>CFBetter</code>）</li>
+<li>创建后，<strong>立刻复制并保存</strong> API Key（格式为 <code>sk-xxxx...</code>，只显示一次）</li>
+</ol>
+<p>:::tip
+新注册账号通常有赠送额度，可以直接使用，不需要立即充值。翻译 Codeforces 题目的消耗非常少，赠送额度足够用很久。
+:::</p>
+<h1>2. 配置 CFBetter 的 AI 翻译</h1>
+<h2>2.1 打开设置面板</h2>
+<p>在 Codeforces 任意页面，点击右上角的 <strong>「CodeforcesBetter 设置」</strong> 按钮，打开设置面板。</p>
+<p>也可以直接访问扩展的设置页面。</p>
+<h2>2.2 选择翻译服务</h2>
+<p>在设置面板中，找到 <strong>「翻译服务」</strong> 选项，从下拉菜单中选择 <strong>「使用 ChatGPT 翻译」</strong>。</p>
+<h2>2.3 添加 DeepSeek 配置</h2>
+<p>选中 ChatGPT 翻译后，下方会出现 ChatGPT 的配置区域。点击 <strong>「添加」</strong> 按钮，新建一个配置，然后填写以下信息：</p>
+<table>
+<thead>
+<tr>
+<th>配置项</th>
+<th>填写内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>名称</strong></td>
+<td>随意，比如 <code>DeepSeek V4 Flash</code></td>
+</tr>
+<tr>
+<td><strong>KEY</strong></td>
+<td>你的 DeepSeek API Key（<code>sk-xxxx...</code> 格式）</td>
+</tr>
+<tr>
+<td><strong>Proxy API</strong></td>
+<td><code>https://api.deepseek.com/v1/chat/completions</code></td>
+</tr>
+<tr>
+<td><strong>Model</strong></td>
+<td><code>deepseek-v4-flash</code></td>
+</tr>
+</tbody>
+</table>
+<p>:::warning
+<strong>Proxy API 地址一定要填完整！</strong> 包括 <code>/v1/chat/completions</code> 路径，不要只填 <code>https://api.deepseek.com</code>。
+:::</p>
+<p>填写完成后保存即可。</p>
+<h3>配置参数说明</h3>
+<p><strong>关于模型名称：</strong></p>
+<table>
+<thead>
+<tr>
+<th>模型名称</th>
+<th>说明</th>
+<th>推荐</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>deepseek-v4-flash</code></td>
+<td>DeepSeek V4 Flash 模型，速度快、便宜</td>
+<td>✅ 推荐</td>
+</tr>
+<tr>
+<td><code>deepseek-v4-pro</code></td>
+<td>DeepSeek V4 Pro 模型，推理能力更强</td>
+<td>复杂题目可选</td>
+</tr>
+<tr>
+<td><code>deepseek-chat</code></td>
+<td>旧版模型名，对应 V4 Flash 非思考模式（2026/07/24 弃用）</td>
+<td>不推荐</td>
+</tr>
+</tbody>
+</table>
+<p><strong>对于翻译场景，<code>deepseek-v4-flash</code> 完全够用，不建议使用 <code>deepseek-v4-pro</code>，因为翻译不需要复杂推理能力，用 Pro 纯属浪费钱。</strong></p>
+<h1>3. 使用与测试</h1>
+<p>配置完成后，在任意 Codeforces 题目页面，点击翻译按钮即可使用 AI 翻译。</p>
+<ul>
+<li>翻译会自动保留 LaTeX 数学公式不被破坏</li>
+<li>翻译质量远超 DeepL、Google 等传统翻译工具</li>
+<li>首次翻译可能需要授权 Tampermonkey 的跨域请求，点击允许即可</li>
+</ul>
+<h2>3.1 推荐的翻译设置</h2>
+<p>回到 CFBetter 的设置面板，建议进行以下调整：</p>
+<ul>
+<li><strong>翻译模式</strong>：选择「普通模式」（一次性翻译整个区域，上下文更完整）</li>
+<li><strong>自动翻译</strong>：可以开启，建议设置短文本阈值为 200 字符</li>
+<li><strong>历史翻译恢复</strong>：建议开启，避免重复翻译消耗 API 额度</li>
+</ul>
+<h2>3.2 快速切换翻译服务</h2>
+<p>右键页面上的任意<strong>翻译图标按钮</strong>，可以快速切换翻译服务，不需要每次都打开设置面板。</p>
+<h1>4. 费用估算</h1>
+<p>DeepSeek V4 Flash 的定价如下（截至 2026 年 6 月）：</p>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>价格</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>输入（缓存命中）</td>
+<td>0.02 元 / 百万 tokens</td>
+</tr>
+<tr>
+<td>输入（缓存未命中）</td>
+<td>1 元 / 百万 tokens</td>
+</tr>
+<tr>
+<td>输出</td>
+<td>2 元 / 百万 tokens</td>
+</tr>
+</tbody>
+</table>
+<p>实际使用中，翻译一道 Codeforces 题目（包括题目描述、输入输出说明、样例等）大约消耗 500-2000 tokens，折合人民币 <strong>不到 0.01 元</strong>。</p>
+<p>也就是说，<strong>充 10 块钱，能翻译上千道题目</strong>，基本等于白嫖。</p>
+<h1>5. 常见问题</h1>
+<h3>Q: 翻译报错 401 Unauthorized？</h3>
+<p>检查 API Key 是否正确，确保完整复制了 <code>sk-</code> 开头的整个 Key，没有多余空格。</p>
+<h3>Q: 翻译报错 402 Payment Required？</h3>
+<p>你的 DeepSeek 账号余额不足，前往 <a href="https://platform.deepseek.com/">DeepSeek 开放平台</a> 充值即可。支持微信、支付宝。</p>
+<h3>Q: 翻译很慢怎么办？</h3>
+<p>AI 翻译的速度取决于 DeepSeek 服务器的响应时间，通常在 2-5 秒左右。如果经常很慢，可能是网络问题，建议检查网络连接。</p>
+<h3>Q: 公式显示异常？</h3>
+<p>使用 ChatGPT/AI 翻译时，CFBetter 会通过提示词告知 AI 保留 LaTeX 公式，通常不会出现公式被破坏的情况。如果偶尔出现，可以重新翻译一次。</p>
+<h3>Q: Tampermonkey 弹出跨域警告？</h3>
+<p>这是正常现象，因为你在使用自定义 API 地址。点击「允许」或「始终允许」即可。</p>
+<h3>Q: 可以用其他 AI 模型吗？</h3>
+<p>可以！只要模型支持 OpenAI 兼容的 API 格式（<code>/v1/chat/completions</code>），都可以使用。例如：</p>
+<ul>
+<li><strong>OpenAI</strong>：<code>https://api.openai.com/v1/chat/completions</code>，模型 <code>gpt-4o</code></li>
+<li><strong>硅基流动 (SiliconFlow)</strong>：填入对应的 API 地址和模型名</li>
+<li><strong>其他代理服务</strong>：填入代理商提供的完整 API 地址</li>
+</ul>
+<p>只需要修改 <strong>KEY</strong>、<strong>Proxy API</strong> 和 <strong>Model</strong> 三个字段即可。</p>
+<h1>参考</h1>
+<ul>
+<li><a href="https://github.com/beijixiaohu/OJBetter">OJBetter GitHub 仓库</a></li>
+<li><a href="https://github.com/beijixiaohu/OJBetter/wiki/%E7%BF%BB%E8%AF%91">OJBetter 翻译配置 Wiki</a></li>
+<li><a href="https://platform.deepseek.com/">DeepSeek 开放平台</a></li>
+<li><a href="https://api-docs.deepseek.com/zh-cn/quick_start/pricing">DeepSeek API 定价</a></li>
+</ul>
 ]]></content>
     <author>
       <name>alisa22580</name>
