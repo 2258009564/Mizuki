@@ -1,8 +1,9 @@
 ---
 title: CFBetter 快速配置 AI 翻译（接入 DeepSeek V4 Flash）
 published: 2026-06-07
-description: "在 Codeforces Better 中接入 DeepSeek V4 Flash，三步搞定高质量 AI 翻译，告别机翻时代"
-tags: [Tutorial, Codeforces, DeepSeek, AI翻译]
+updated: 2026-06-07T18:32:08Z
+description: "在 Codeforces Better 中接入 DeepSeek V4 Flash"
+tags: [Tutorial, Codeforces, CFBetter]
 category: Tutorial
 draft: false
 comment: true
@@ -10,72 +11,80 @@ comment: true
 
 # 写在前面
 
-刷 Codeforces 的时候，题目读不懂怎么办？传统翻译工具翻译出来的东西，经常把题目里的数学公式和关键信息搞得面目全非，还不如自己硬啃英文。
+> 曾经在 b 站发过一个 [简易版本的教程](https://www.bilibili.com/opus/1117176875527962633?spm_id_from=333.1387.0.0)，其内容已经过时。
 
-**CFBetter**（也叫 OJBetter / Codeforces Better）是一个非常好用的 Codeforces 增强插件，它支持多种翻译服务，其中最推荐的就是 **AI 翻译（ChatGPT 兼容接口）** —— 因为 AI 能理解上下文，还能自动识别和保护 LaTeX 公式，翻译质量远超传统机翻。
+刷 Codeforces 的时候，传统翻译工具翻译出来的东西，经常把题目里的数学公式和关键信息搞得面目全非，还不如自己硬啃英文。
 
-本文将教你如何**快速配置** CFBetter 的 AI 翻译功能，接入 **DeepSeek V4 Flash** 模型。整个配置过程不到 5 分钟，翻译质量极高，且花费极低。
+**CFBetter** 是一个非常好用的 Codeforces 增强插件，它支持多种翻译服务，其中最推荐的就是 **AI 翻译（ChatGPT 兼容接口）** —— 因为 AI 能理解上下文，还能自动识别和保护 LaTeX 公式，翻译质量远超传统机翻。
 
-> 为什么选择 DeepSeek V4 Flash？
-> - **便宜**：输入 1 元 / 百万 tokens，输出 2 元 / 百万 tokens（翻译一篇题目大概不到 0.01 元）
-> - **快**：响应速度在 AI 模型中属于第一梯队
-> - **质量好**：翻译准确，能正确保留 LaTeX 公式
-> - **兼容 OpenAI 格式**：可以直接接入任何支持 OpenAI API 的工具
+本文将教你如何**快速配置** CFBetter 的 AI 翻译功能，接入 **DeepSeek V4 Flash** 模型。
 
 # 1. 准备工作
 
-## 1.1 安装 CFBetter
+## 1.1 安装 油猴脚本
 
-CFBetter 是一个 Tampermonkey 油猴脚本（也有 Chrome 扩展版本），你需要在浏览器中先安装它。
+CFBetter 是一个 Tampermonkey 油猴脚本，你需要在浏览器中先安装它。
 
-**方式一：Chrome 扩展（推荐）**
+1. 安装 [Tampermonkey](https://microsoftedge.microsoft.com/addons/detail/%E7%AF%A1%E6%94%B9%E7%8C%B4/iikmkjmpaadaobahmlepeloendndfphd) 浏览器扩展。
+![alt text](image.png)
 
-直接在 Chrome Web Store 搜索 "CF Better" 或 "OJBetter" 安装即可。
+2. 进入 [扩展管理](edge://extensions/) 确保 Tampermonkey 已启用，开发人员模式已打开。
+![alt text](image-1.png)
 
-**方式二：油猴脚本**
+3. 点击 篡改猴 的 详细信息， 像我图片那样设置相关权限。
+![alt text](image-2.png)
+![alt text](image-3.png)
 
-1. 安装 [Tampermonkey](https://www.tampermonkey.net/) 浏览器扩展
-2. 前往 [OJBetter GitHub 仓库](https://github.com/beijixiaohu/OJBetter) 安装脚本
+## 1.2 安装 CFBetter 脚本
+
+访问 [cf better 油猴脚本页面](https://greasyfork.org/zh-CN/scripts/465777-codeforces-better), 点击安装按钮，按照提示完成安装即可。
 
 ## 1.2 获取 DeepSeek API Key
 
-1. 前往 [DeepSeek 开放平台](https://platform.deepseek.com/) 注册账号（支持微信、手机号登录）
+1. 前往 [DeepSeek 开放平台](https://platform.deepseek.com/) 注册账号。
 2. 登录后，点击左侧菜单的 **「API Keys」**
 3. 点击 **「创建 API Key」**，输入一个名称（比如 `CFBetter`）
 4. 创建后，**立刻复制并保存** API Key（格式为 `sk-xxxx...`，只显示一次）
 
-:::tip
-新注册账号通常有赠送额度，可以直接使用，不需要立即充值。翻译 Codeforces 题目的消耗非常少，赠送额度足够用很久。
-:::
-
 # 2. 配置 CFBetter 的 AI 翻译
+
+进入 codeforces 主页，应当能看到 cf better 已经加载成功：
+![alt text](image-4.png)
 
 ## 2.1 打开设置面板
 
 在 Codeforces 任意页面，点击右上角的 **「CodeforcesBetter 设置」** 按钮，打开设置面板。
 
-也可以直接访问扩展的设置页面。
-
 ## 2.2 选择翻译服务
 
-在设置面板中，找到 **「翻译服务」** 选项，从下拉菜单中选择 **「使用 ChatGPT 翻译」**。
-
+在设置面板中，找到 **「翻译」** 选项，从下拉菜单中选择 **「AI 翻译」**。
+![alt text](image-5.png)
 ## 2.3 添加 DeepSeek 配置
 
-选中 ChatGPT 翻译后，下方会出现 ChatGPT 的配置区域。点击 **「添加」** 按钮，新建一个配置，然后填写以下信息：
+向下滚动，找到 **「ChatGPT」** 区域，点击 **「添加」** 按钮，弹出配置表单。
+
+![alt text](image-6.png)
 
 | 配置项 | 填写内容 |
 |--------|---------|
 | **名称** | 随意，比如 `DeepSeek V4 Flash` |
+| **模型** | `deepseek-v4-flash` |
 | **KEY** | 你的 DeepSeek API Key（`sk-xxxx...` 格式） |
-| **Proxy API** | `https://api.deepseek.com/v1/chat/completions` |
-| **Model** | `deepseek-v4-flash` |
+| **Proxy API** | `https://api.deepseek.com/chat/completions` |
+
+> 参考如下：
+> ![alt text](image-7.png)
+
+## 2.4 配置自动翻译
+
+向下滚动，像图中一样配置即可。
+![alt text](image-8.png)
+
+填写完成后直接关闭，会弹出保存提示，保存即可。
 
 :::warning
-**Proxy API 地址一定要填完整！** 包括 `/v1/chat/completions` 路径，不要只填 `https://api.deepseek.com`。
+完成之后多点几下 确认确实选择了AI翻译；确认确实选择了刚刚自己设置的接口；确认保存了设置！
 :::
-
-填写完成后保存即可。
 
 ### 配置参数说明
 
@@ -131,7 +140,7 @@ DeepSeek V4 Flash 的定价如下（截至 2026 年 6 月）：
 
 ### Q: 翻译报错 402 Payment Required？
 
-你的 DeepSeek 账号余额不足，前往 [DeepSeek 开放平台](https://platform.deepseek.com/) 充值即可。支持微信、支付宝。
+你的 DeepSeek 账号余额不足，前往 [DeepSeek 开放平台](https://platform.deepseek.com/) 充值即可。
 
 ### Q: 翻译很慢怎么办？
 
