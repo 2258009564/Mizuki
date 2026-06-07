@@ -79,20 +79,21 @@ export const ja: Translation = {
 	[Key.animeStudio]: "スタジオ",
 	[Key.animeEmpty]: "アニメのデータはありません",
 	[Key.animeEmptyBangumi]:
-		"Bangumiの構成またはネットワークを接続を確認してください",
+		"Bangumiの構成またはネットワークの接続を確認してください",
 	[Key.animeEmptyBilibili]:
-		"Bilibiliの構成またはネットワーク接続を確認してください",
+		"Bilibiliの構成またはネットワークの接続を確認してください",
 	[Key.animeEmptyLocal]:
-		"src/data/anime.tsのファイルにアニメの情報を追加してください",
+		"src/data/anime.tsファイルにアニメの情報を追加してください",
 	[Key.animeConfigBilibili]:
-		"src/config.tsファイルでBilibili vmidを設定してください",
+		"src/config/siteConfig.tsファイルにBilibiliのvmidを設定してください",
 	[Key.animeConfigBangumi]:
-		"src/config.tsファイルでBangumi userIdを設定してください",
+		"src/config/siteConfig.tsファイルにBangumiのユーザーIDを設定してください",
 
 	// 日記ページ
 	[Key.diarySubtitle]: "いつでも、どこでも生活を共有",
+	[Key.diaryNoResults]: "一致するモーメントはありません",
 	[Key.diaryCount]: "件の日記のエントリー",
-	[Key.diaryReply]: "返信",
+
 	[Key.diaryTips]: "最新の30件の日記のエントリーのみを表示",
 	[Key.diaryMinutesAgo]: "分前",
 	[Key.diaryHoursAgo]: "時間前",
@@ -118,7 +119,7 @@ export const ja: Translation = {
 	[Key.musicPlayerShuffle]: "シャッフル",
 	[Key.musicPlayerRepeat]: "リピート",
 	[Key.musicPlayerRepeatOne]: "1曲のみリピート",
-	[Key.musicPlayerVolume]: "音量コントロール",
+	[Key.musicPlayerVolume]: "音量のコントロール",
 	[Key.musicPlayerProgress]: "再生状況",
 	[Key.musicPlayerCover]: "カバー",
 	[Key.musicPlayerPlaylist]: "プレイリスト",
@@ -150,6 +151,8 @@ export const ja: Translation = {
 	[Key.toolboxVisit]: "開く",
 	[Key.albumsPhotoCount]: "件の写真",
 	[Key.albumsPhotosCount]: "件の写真",
+	[Key.albumsFilterAll]: "すべて",
+	[Key.albumsNoResults]: "一致するアルバムはありません",
 
 	// プロジェクトページ
 	[Key.projects]: "プロジェクト",
@@ -198,8 +201,7 @@ export const ja: Translation = {
 	[Key.rssHowToUse]:
 		"このサイトの購読はFeedly、Inoreaderまたはその他のRSSリーダーの使用をおすすめします。",
 	[Key.rssCopied]: "RSSのリンクをクリップボードにコピーしました!",
-	[Key.rssCopyFailed]:
-		"コピーに失敗しました。リンクを手動で追加してください。",
+	[Key.rssCopyFailed]: "コピーに失敗しました。リンクを手動で追加してください。",
 
 	// Atomページ
 	[Key.atom]: "Atomフィード",
@@ -227,7 +229,33 @@ export const ja: Translation = {
 	// 壁紙モード
 	[Key.wallpaperBanner]: "バナーモード",
 	[Key.wallpaperFullscreen]: "フルスクリーンモード",
+	[Key.wallpaperOverlay]: "オーバーレイモード",
 	[Key.wallpaperNone]: "壁紙を非表示",
+
+	// 設定パネル
+	[Key.settingsPanel]: "設定",
+	[Key.wallpaperSettings]: "壁紙",
+	[Key.overlaySettings]: "壁紙効果",
+	[Key.overlayOpacity]: "壁紙の透明度",
+	[Key.overlayBlur]: "背景のぼかし",
+	[Key.overlayCardOpacity]: "カードの透明度",
+	[Key.fullscreenOpacity]: "壁紙の透明度",
+	[Key.fullscreenBlur]: "背景のぼかし",
+	[Key.wavesAnimation]: "ウェーブアニメーション",
+	[Key.bannerTitle]: "バナータイトル",
+	[Key.bannerCarousel]: "バナーカルーセル",
+	[Key.sakuraEffect]: "桜エフェクト",
+	[Key.effectsSettings]: "エフェクト",
+	[Key.postListLayout]: "投稿レイアウト",
+	[Key.postListLayoutList]: "リスト",
+	[Key.postListLayoutGrid]: "グリッド",
+	[Key.resetAll]: "すべてリセット",
+	[Key.settingsThemeColor]: "テーマカラー",
+	[Key.settingsWallpaper]: "壁紙",
+	[Key.settingsWallpaperEffects]: "壁紙効果",
+	[Key.settingsBanner]: "バナーオプション",
+	[Key.settingsEffects]: "エフェクト",
+	[Key.settingsLayout]: "レイアウト",
 
 	// スキルページ
 	[Key.skills]: "スキル",
@@ -280,10 +308,11 @@ export const ja: Translation = {
 
 	// パスワード保護
 	[Key.passwordProtected]: "パスワードで保護されています",
-	[Key.passwordProtectedTitle]:
-		"このコンテンツはパスワードで保護されています",
+	[Key.passwordProtectedTitle]: "このコンテンツはパスワードで保護されています",
 	[Key.passwordProtectedDescription]:
 		"保護されたコンテンツを表示するにはパスワードを入力してください。",
+	[Key.postEncrypted]: "暗号化済み",
+	[Key.postEncryptedMessage]: "この記事は暗号化されています",
 	[Key.passwordPlaceholder]: "パスワードを入力",
 	[Key.passwordUnlock]: "ロックを解除",
 	[Key.passwordUnlocking]: "ロックを解除中...",
@@ -300,6 +329,7 @@ export const ja: Translation = {
 	[Key.syntaxHighlightFailed]: "構文の強調表示が失敗しました:",
 	[Key.autoSyntaxHighlightFailed]: "自動構文強調表示が失敗しました:",
 	[Key.decryptionError]: "復号中にエラーが発生しました:",
+	[Key.passwordHint]: "ヒント",
 
 	// 最終更新時間カード
 	[Key.lastModifiedPrefix]: "最終編集からの時間: ",
@@ -349,7 +379,7 @@ export const ja: Translation = {
 	[Key.copied]: "コピーしました",
 	[Key.copyLink]: "リンクをコピー",
 	[Key.savePoster]: "ポスターを保存",
-	[Key.scanToRead]: "スキャンで読み込む",
+	[Key.scanToRead]: "出典元",
 	[Key.shareOnSocial]: "共有",
 	[Key.shareOnSocialDescription]:
 		"この記事が役に立ったときは、ぜひ他の人に共有してください!",
@@ -360,11 +390,17 @@ export const ja: Translation = {
 	[Key.profileStatsVisits]: "訪問",
 	[Key.profileStatsUnavailable]: "統計は利用できません",
 
-	// ページビューの統計
+	// ページ閲覧の統計
 	[Key.pageViewsLoading]: "統計を読み込み中...",
 	[Key.pageViewsUnavailable]: "統計は利用できません",
 
 	// レイアウト切り替えボタン
 	[Key.switchToGridMode]: "グリッド表示に切り替え",
 	[Key.switchToListMode]: "リスト表示に切り替え",
+
+	// 関連した投稿とランダムな投稿
+	[Key.relatedPosts]: "関連した投稿",
+	[Key.randomPosts]: "ランダムな投稿",
+	[Key.smartRecommend]: "スマート",
+	[Key.randomRecommend]: "ランダム",
 };

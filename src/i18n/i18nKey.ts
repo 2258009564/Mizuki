@@ -84,8 +84,9 @@ enum I18nKey {
 
 	// 短文页面
 	diarySubtitle = "diarySubtitle",
+	diaryNoResults = "diaryNoResults",
 	diaryCount = "diaryCount",
-	diaryReply = "diaryReply",
+
 	diaryTips = "diaryTips",
 	diaryMinutesAgo = "diaryMinutesAgo",
 	diaryHoursAgo = "diaryHoursAgo",
@@ -129,6 +130,8 @@ enum I18nKey {
 	albumsBackToList = "albumsBackToList",
 	albumsPhotoCount = "albumsPhotoCount",
 	albumsPhotosCount = "albumsPhotosCount",
+	albumsFilterAll = "albumsFilterAll",
+	albumsNoResults = "albumsNoResults",
 
 	// 设备页面
 	devices = "devices",
@@ -223,6 +226,8 @@ enum I18nKey {
 	passwordProtected = "passwordProtected",
 	passwordProtectedTitle = "passwordProtectedTitle",
 	passwordProtectedDescription = "passwordProtectedDescription",
+	postEncrypted = "postEncrypted",
+	postEncryptedMessage = "postEncryptedMessage",
 	passwordPlaceholder = "passwordPlaceholder",
 	passwordUnlock = "passwordUnlock",
 	passwordUnlocking = "passwordUnlocking",
@@ -233,6 +238,7 @@ enum I18nKey {
 	passwordDecryptFailed = "passwordDecryptFailed",
 	passwordDecryptRetry = "passwordDecryptRetry",
 	passwordUnlockButton = "passwordUnlockButton",
+	passwordHint = "passwordHint",
 	copyFailed = "copyFailed",
 	syntaxHighlightFailed = "syntaxHighlightFailed",
 	autoSyntaxHighlightFailed = "autoSyntaxHighlightFailed",
@@ -286,7 +292,33 @@ enum I18nKey {
 	// Wallpaper mode
 	wallpaperBanner = "wallpaperBanner",
 	wallpaperFullscreen = "wallpaperFullscreen",
+	wallpaperOverlay = "wallpaperOverlay",
 	wallpaperNone = "wallpaperNone",
+
+	// Settings panel
+	settingsPanel = "settingsPanel",
+	wallpaperSettings = "wallpaperSettings",
+	overlaySettings = "overlaySettings",
+	overlayOpacity = "overlayOpacity",
+	overlayBlur = "overlayBlur",
+	overlayCardOpacity = "overlayCardOpacity",
+	fullscreenOpacity = "fullscreenOpacity",
+	fullscreenBlur = "fullscreenBlur",
+	wavesAnimation = "wavesAnimation",
+	bannerTitle = "bannerTitle",
+	bannerCarousel = "bannerCarousel",
+	sakuraEffect = "sakuraEffect",
+	effectsSettings = "effectsSettings",
+	postListLayout = "postListLayout",
+	postListLayoutList = "postListLayoutList",
+	postListLayoutGrid = "postListLayoutGrid",
+	resetAll = "resetAll",
+	settingsThemeColor = "settingsThemeColor",
+	settingsWallpaper = "settingsWallpaper",
+	settingsWallpaperEffects = "settingsWallpaperEffects",
+	settingsBanner = "settingsBanner",
+	settingsEffects = "settingsEffects",
+	settingsLayout = "settingsLayout",
 
 	// 站点统计
 	siteStats = "siteStats",
@@ -343,6 +375,12 @@ enum I18nKey {
 	// 布局切换按钮
 	switchToGridMode = "switchToGridMode",
 	switchToListMode = "switchToListMode",
+
+	// 相关文章与随机文章
+	relatedPosts = "relatedPosts",
+	randomPosts = "randomPosts",
+	smartRecommend = "smartRecommend",
+	randomRecommend = "randomRecommend",
 }
 
 export default I18nKey;
