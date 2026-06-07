@@ -210,13 +210,13 @@ export const siteConfig: SiteConfig = {
 			fontFamily: "MapleMono-NF-CN-Medium",
 			fontWeight: "500",
 			localFonts: ["MapleMono-NF-CN-Medium.ttf"],
-			enableCompress: true,
+			enableCompress: false,
 		},
 		cjkFont: {
 			fontFamily: "MapleMono-NF-CN-Medium",
 			fontWeight: "500",
 			localFonts: ["MapleMono-NF-CN-Medium.ttf"],
-			enableCompress: true,
+			enableCompress: false,
 		},
 	},
 	showLastModified: true, // 控制"上次编辑"卡片显示的开关
