@@ -30,7 +30,7 @@
 @font-face {
   font-family: "MapleMono-NF-CN-Medium";
   src: url("/assets/font/MapleMono-NF-CN-Medium.ttf") format("truetype");
-  font-weight: 500;
+  font-weight: 400;
   font-display: swap;
 }
 
@@ -38,7 +38,7 @@
 @font-face {
   font-family: "ZenMaruGothic-Medium";
   src: url("/assets/font/ZenMaruGothic-Medium.ttf") format("truetype");
-  font-weight: 500;
+  font-weight: 400;
   font-display: swap;
 }
 
