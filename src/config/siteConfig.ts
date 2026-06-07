@@ -207,15 +207,15 @@ export const siteConfig: SiteConfig = {
 		// 注意：自定义字体需要在 src/styles/main.css 中引入字体文件
 		// 注意：字体子集优化功能目前仅支持 TTF 格式字体,开启后需要在生产环境才能看到效果,在Dev环境下显示的是浏览器默认字体!
 		asciiFont: {
-			fontFamily: "MapleMono-NF-CN-Medium",
-			fontWeight: "500",
-			localFonts: ["MapleMono-NF-CN-Medium.ttf"],
+			fontFamily: "MapleMono-NF-CN-Regular",
+			fontWeight: "400",
+			localFonts: ["MapleMono-NF-CN-Regular.ttf"],
 			enableCompress: false,
 		},
 		cjkFont: {
-			fontFamily: "MapleMono-NF-CN-Medium",
-			fontWeight: "500",
-			localFonts: ["MapleMono-NF-CN-Medium.ttf"],
+			fontFamily: "MapleMono-NF-CN-Regular",
+			fontWeight: "400",
+			localFonts: ["MapleMono-NF-CN-Regular.ttf"],
 			enableCompress: false,
 		},
 	},
