@@ -26,6 +26,7 @@ export const siteConfig: SiteConfig = {
 		timeline: true, // 时间线页面开关
 		albums: true, // 相册页面开关
 		devices: false, // 设备页面开关
+		toolbox: false
 	},
 
 	// 顶栏标题配置
@@ -35,7 +36,7 @@ export const siteConfig: SiteConfig = {
 		// 顶栏标题文本
 		text: "alisa22580",
 		// 顶栏标题图标路径，默认使用 public/assets/home/alisa22580透明背景.png
-		icon: "assets/home/alisa22580透明背景.png",
+		icon: "assets/home/alisa22580-avatar.png",
 		// 网站Logo图片路径
 		logo: "assets/home/default-logo.png",
 	},
@@ -108,30 +109,30 @@ export const siteConfig: SiteConfig = {
 		// 支持单张图片或图片数组，当数组长度 > 1 时自动启用轮播
 		src: {
 			desktop: [
-				"/assets/desktop-banner/wp01.jpg",
-				"/assets/desktop-banner/wp02.jpg",
-				"/assets/desktop-banner/wp03.gif",
-				"/assets/desktop-banner/wp06.jpg",
-				"/assets/desktop-banner/wp09.jpg",
-				"/assets/desktop-banner/wp10.jpg",
-				"/assets/desktop-banner/wp12.jpg",
-				"/assets/desktop-banner/wp13.jpg",
-				"/assets/desktop-banner/wp14.jpg",
-				"/assets/desktop-banner/wp15.jpg",
-				"/assets/desktop-banner/wp16.jpg",
-				"/assets/desktop-banner/wp18.jpg",
-				"/assets/desktop-banner/pc5.jpg",
-				"/assets/desktop-banner/pc2.jpg",
-				"/assets/desktop-banner/pc3.jpg",
-				"/assets/desktop-banner/pc4.jpg",
-				"/assets/desktop-banner/pc7.jpg",
-				"/assets/desktop-banner/pc8.jpg",
+				"/assets/desktop-banner/wp01.webp",
+				"/assets/desktop-banner/wp02.webp",
+				// "/assets/desktop-banner/wp03.gif",
+				"/assets/desktop-banner/wp06.webp",
+				"/assets/desktop-banner/wp09.webp",
+				// "/assets/desktop-banner/wp10.jpg",
+				"/assets/desktop-banner/wp12.webp",
+				"/assets/desktop-banner/wp13.webp",
+				"/assets/desktop-banner/wp14.webp",
+				"/assets/desktop-banner/wp15.webp",
+				"/assets/desktop-banner/wp16.webp",
+				"/assets/desktop-banner/wp18.webp",
+				// "/assets/desktop-banner/pc5.jpg",
+				"/assets/desktop-banner/pc2.webp",
+				"/assets/desktop-banner/pc3.webp",
+				"/assets/desktop-banner/pc4.webp",
+				"/assets/desktop-banner/pc7.webp",
+				"/assets/desktop-banner/pc8.webp",
 			],
 			mobile: [
-				"/assets/mobile-banner/an5.jpg",
-				"/assets/mobile-banner/an3.jpg",
-				"/assets/mobile-banner/an2.jpg",
-				"/assets/mobile-banner/an4.jpg",
+				"/assets/mobile-banner/an5.webp",
+				"/assets/mobile-banner/an3.webp",
+				"/assets/mobile-banner/an2.webp",
+				"/assets/mobile-banner/an4.webp",
 			],
 		},
 

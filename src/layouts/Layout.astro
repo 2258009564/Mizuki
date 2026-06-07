@@ -1,6 +1,6 @@
 ---
 import { PageProgressBar } from "@components/control/PageProgressBar";
-import Pio from "@components/features/pio/Pio.astro";
+import Pio from "@components/features/pio/Pio.svelte";
 import ConfigCarrier from "@components/misc/ConfigCarrier.astro";
 import MusicPlayer from "@components/widgets/music-player/MusicPlayer.svelte";
 import { pioConfig, profileConfig, siteConfig } from "@/config";
@@ -247,6 +247,48 @@ if (siteConfig.font) {
 			title={profileConfig.name}
 			href={`${Astro.site}rss.xml`}
 		/>
+
+		<!-- Pio 看板娘资源预加载 -->
+		{
+			shouldOptimizeCubismAssets && (
+				<>
+					<link rel="preconnect" href="https://cubism.live2d.com" />
+					<link
+						rel="preload"
+						href={primaryPioModelPath}
+						as="fetch"
+						crossorigin="anonymous"
+					/>
+					{
+						shouldPreloadUgTextures && (
+							<>
+								<link
+									rel="preload"
+									href="/pio/UG/UGOfficial.2048/texture_00.png"
+									as="image"
+								/>
+								<link
+									rel="preload"
+									href="/pio/UG/UGOfficial.2048/texture_01.png"
+									as="image"
+								/>
+							</>
+						)
+					}
+				</>
+			)
+		}
+
+		<!-- Pio 看板娘样式 -->
+		{
+			pioConfig.enable && (
+				<link
+					rel="stylesheet"
+					href="/pio/static/pio.css"
+					media={pioCssMedia}
+				/>
+			)
+		}
 	</head>
 	<body
 		class="min-h-screen"
@@ -277,8 +319,8 @@ if (siteConfig.font) {
 		<!-- Music Player - 核心始终加载（当enable=true），UI通过showFloatingPlayer控制 -->
 		<MusicPlayer client:idle />
 
-		<!-- Pio 看板娘组件 - 仅在进入视口时加载 -->
-		{pioConfig.enable && <Pio config={pioConfig} />}
+		<!-- Pio 看板娘组件 - 仅客户端渲染 -->
+		{pioConfig.enable && <Pio client:idle />}
 
 		<!-- increase the page height during page transition to prevent the scrolling animation from jumping -->
 		<div id="page-height-extend" class="hidden h-[300vh]"></div>

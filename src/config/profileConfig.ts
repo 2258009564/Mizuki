@@ -2,7 +2,7 @@ import type { ProfileConfig } from "../types/config";
 
 // 个人资料配置
 export const profileConfig: ProfileConfig = {
-	avatar: "assets/images/alisa22580透明背景.png",
+	avatar: "assets/images/alisa22580-avatar.png",
 	name: "alisa22580",
 	bio: "您想生活在怎样的虚拟世界里？",
 	typewriter: {

@@ -1,1 +1,1 @@
-export { default as Pio } from "./Pio.astro";
+export { default as Pio } from "./Pio.svelte";

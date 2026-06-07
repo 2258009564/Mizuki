@@ -26,7 +26,15 @@
   --breakpoint-xl: 1920px;
 }
 
-/* 导入 ZenMaruGothic-Medium 字体 */
+/* 导入 MapleMono-NF-CN-Medium 字体 (CJK) */
+@font-face {
+  font-family: "MapleMono-NF-CN-Medium";
+  src: url("/assets/font/MapleMono-NF-CN-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-display: swap;
+}
+
+/* 导入 ZenMaruGothic-Medium 字体 (ASCII) */
 @font-face {
   font-family: "ZenMaruGothic-Medium";
   src: url("/assets/font/ZenMaruGothic-Medium.ttf") format("truetype");
