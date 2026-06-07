@@ -1,0 +1,1 @@
+const e={enable:!0,showFloatingPlayer:!0,floatingEntryMode:"fab",mode:"meting",meting_api:"https://meting.mysqil.com/api?server=:server&type=:type&id=:id&auth=:auth&r=:r",id:"17739906691",server:"netease",type:"playlist"};export{e as m};

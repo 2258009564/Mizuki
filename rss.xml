@@ -1,0 +1,2092 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>from alisa</title><description>主页</description><link>https://alisa22580.pages.dev/</link><language>zh_CN</language><item><title>本博客的搭建教程</title><link>https://alisa22580.pages.dev/posts/my-blog-build-tutorial/</link><guid isPermaLink="true">https://alisa22580.pages.dev/posts/my-blog-build-tutorial/</guid><description>和我一起，开启博客生涯。</description><pubDate>Thu, 12 Mar 2026 11:33:24 GMT</pubDate><content:encoded>&lt;p&gt;&amp;lt;!-- ---
+title: &quot;我的第一篇 Astro 博客&quot;      # 文章标题
+published: 2026-03-12            # 发布日期 (格式: YYYY-MM-DD)
+description: &quot;这是我使用 Mizuki 主题开启博客生涯的第一天。&quot; # 简短摘要，显示在列表页
+image: &quot;./cover.webp&quot;            # 文章封面图路径
+tags: [&quot;教程&quot;, &quot;Astro&quot;]          # 标签（用英文方括号包围，逗号分隔）
+category: &quot;技术&quot;                  # 分类
+pinned: true                     # 是否置顶 (true 或 false)
+priority: 0                      # 置顶优先级，数字越小越靠前
+draft: false                     # 是否为草稿（设为 true 则不会在正式网站显示）
+updated: 2026-03-12T16:54:24.123Z # 最后更新时间 (格式: YYYY-MM-DDTHH:mm:ss.sssZ)
+--- --&amp;gt;&lt;/p&gt;
+&lt;h1&gt;写在之前&lt;/h1&gt;
+&lt;p&gt;在此之前，我尝试过在 &lt;code&gt;GitHub pages&lt;/code&gt; 上部署一个基于 &lt;code&gt;Quartz&lt;/code&gt; 的 &lt;a href=&quot;https://2258009564.github.io/&quot;&gt;静态知识库&lt;/a&gt;，但由于 &lt;code&gt;Quartz&lt;/code&gt; 的功能过于简单，无法满足我对博客的需求（臆想）。&lt;/p&gt;
+&lt;p&gt;再后来，我也尝试过使用 &lt;code&gt;Hexo&lt;/code&gt; 和 &lt;code&gt;Hugo&lt;/code&gt; 等静态博客生成器，但由于它们的配置较为复杂，且需要一定的前端知识，加上我的懒癌（大概这才是最主要的），导致最后没有好好操作下去。&lt;/p&gt;
+&lt;p&gt;最近好像还真是发生了很多事情啊...现在大概需要督促自己做点什么，不然整个人要烂了。&lt;/p&gt;
+&lt;p&gt;在对比好几个朋友的选择之后，我最终选择了 &lt;code&gt;Astro-theme-Mizuki&lt;/code&gt; 作为我的博客框架，这是一个基于 &lt;code&gt;Astro&lt;/code&gt; 的博客主题，具有简洁的设计和丰富的功能，而且上手非常容易，适合个人博客的搭建。&lt;/p&gt;
+&lt;p&gt;那么，接下来我将分享一下我捣鼓博客的过程，希望能给有需要的朋友提供帮助。&lt;/p&gt;
+&lt;p&gt;本教程力求在 &lt;a href=&quot;https://docs.mizuki.mysqil.com/&quot;&gt;官方文档&lt;/a&gt; 的基础上，结合我自己的经验，提供一个更为通俗、详细的指南，帮助大家顺利搭建自己的博客，毕竟先把东西跑起来，才有动力去研究官方文档以完善它。&lt;/p&gt;
+&lt;p&gt;当然，本教程不可能完全替代（完全不可能替代）&lt;a href=&quot;https://docs.mizuki.mysqil.com/&quot;&gt;官方文档&lt;/a&gt;。因此，建议搭配食用。&lt;/p&gt;
+&lt;h1&gt;1. 环境讲解与配置&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;什么是 &lt;code&gt;Astro&lt;/code&gt;？&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;它是一个现代化的静态网站生成器，支持多种前端框架（如 React、Vue、Svelte 等），并且具有出色的性能和灵活性。要搭建基于 &lt;code&gt;Astro&lt;/code&gt; 的博客，您需要先安装 &lt;code&gt;Node.js&lt;/code&gt; 和 &lt;code&gt;npm&lt;/code&gt; 。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;什么是 &lt;code&gt;Node.js&lt;/code&gt;？&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;它是一个基于 &lt;code&gt;Chrome V8&lt;/code&gt; 引擎的 &lt;code&gt;JavaScript&lt;/code&gt; 运行环境，允许您在服务器端运行 &lt;code&gt;JavaScript&lt;/code&gt; 代码。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;什么是 &lt;code&gt;npm&lt;/code&gt; ?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;npm&lt;/code&gt; 是 &lt;code&gt;node package manager&lt;/code&gt; 的缩写，是 &lt;code&gt;Node.js&lt;/code&gt; 的包管理器，用于安装和管理项目所需的依赖包。&lt;/p&gt;
+&lt;p&gt;也就是说，我们通过 &lt;code&gt;Node.js&lt;/code&gt; 来支持 &lt;code&gt;Astro&lt;/code&gt; 生成器的运行，而 &lt;code&gt;npm&lt;/code&gt; 则帮助我们安装和管理博客所需的各种依赖包。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;什么是 &lt;code&gt;pnpm&lt;/code&gt; ?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;pnpm&lt;/code&gt; 是 &lt;code&gt;performance npm&lt;/code&gt; 的缩写，是一个快速、节省磁盘空间的包管理器。&lt;/p&gt;
+&lt;p&gt;与 &lt;code&gt;npm&lt;/code&gt; 不同，&lt;code&gt;pnpm&lt;/code&gt; 使用符号链接来共享依赖包，从而减少了磁盘空间的占用，并且在安装速度上也有显著提升。&lt;/p&gt;
+&lt;p&gt;此外，本博客的搭建还需要使用到 &lt;code&gt;Git&lt;/code&gt; 和 &lt;code&gt;GitHub&lt;/code&gt;。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;什么是 &lt;code&gt;Git&lt;/code&gt; ?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;Git&lt;/code&gt; 是一个分布式版本控制系统，用于跟踪文件的更改历史，协助多人协作开发项目。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;什么是 &lt;code&gt;GitHub&lt;/code&gt; ?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;GitHub&lt;/code&gt; 是一个基于 &lt;code&gt;Git&lt;/code&gt; 的代码托管平台，提供了版本控制和协作功能，允许开发者在云端存储和管理他们的代码库。&lt;/p&gt;
+&lt;p&gt;也就是说，我们需要使用 &lt;code&gt;Git&lt;/code&gt; 来管理博客的源代码，并将其托管在 &lt;code&gt;GitHub&lt;/code&gt; 上，以便于后续的部署和管理。&lt;/p&gt;
+&lt;p&gt;知道了这些基础知识后，我们可以发现 搭建博客的第一步就是在电脑中安装这些基础工具：&lt;/p&gt;
+&lt;h2&gt;1. 安装 &lt;code&gt;Node.js&lt;/code&gt; 和 &lt;code&gt;npm&lt;/code&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;访问 &lt;a href=&quot;https://nodejs.org/&quot;&gt;Node.js 官网&lt;/a&gt; 下载并安装最新的 LTS 版本，这将同时安装 &lt;code&gt;Node.js&lt;/code&gt; 和 &lt;code&gt;npm&lt;/code&gt;。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;安装完成后，可以通过命令行输入以下命令来验证安装是否成功：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;node -v
+npm -v
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;如果显示版本号，说明安装成功。&lt;/p&gt;
+&lt;h2&gt;2. 安装 &lt;code&gt;pnpm&lt;/code&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;您可以通过 &lt;code&gt;npm&lt;/code&gt; 来安装 &lt;code&gt;pnpm&lt;/code&gt;，打开命令行输入以下命令：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;npm install -g pnpm
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;安装完成后，可以通过以下命令来验证 &lt;code&gt;pnpm&lt;/code&gt; 是否安装成功：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;pnpm -v
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;如果显示版本号，说明安装成功。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;3. 安装 &lt;code&gt;Git&lt;/code&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;访问 &lt;a href=&quot;https://git-scm.com/&quot;&gt;Git 官网&lt;/a&gt; 下载并安装 &lt;code&gt;Git&lt;/code&gt;。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;安装完成后，可以通过命令行输入以下命令来验证安装是否成功：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;git --version
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;如果显示版本号，说明安装成功。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;2. 项目搭建&lt;/h1&gt;
+&lt;h2&gt;1. 克隆博客模板&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;导航到您想要存放博客项目的目录，例如：我直接把整个项目放在桌面上，那么于我而言，就是进入桌面目录：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;cd D:/Desktop
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;使用 Git 克隆 &lt;code&gt;Astro-theme-Mizuki&lt;/code&gt; 的模板仓库：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;git clone https://github.com/matsuzaka-yuki/mizuki.git
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;进入克隆的项目目录，下文的所有指令都需要在该目录中进行：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;cd Mizuki
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;2. 安装依赖&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;使用 &lt;code&gt;pnpm&lt;/code&gt; 安装项目所需的依赖包：&lt;pre&gt;&lt;code&gt;pnpm install
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;3. 配置博客&lt;/h2&gt;
+&lt;p&gt;根据自己的需求配置您的博客，详细的配置教程将在下文介绍。&lt;/p&gt;
+&lt;h2&gt;4. 本地预览&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;使用以下命令启动本地开发服务器：&lt;pre&gt;&lt;code&gt;pnpm dev
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;打开浏览器，访问 &lt;code&gt;http://localhost:4321&lt;/code&gt;，您应该能够看到博客的默认界面。
+&lt;img src=&quot;image.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;5. 打包网站&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;运行以下命令将网站打包成静态文件，生成到 dist 目录中：&lt;pre&gt;&lt;code&gt;pnpm build
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;生成的 dist 目录后续将可以部署到您自己的服务器上。&lt;/p&gt;
+&lt;h1&gt;3. 项目部署&lt;/h1&gt;
+&lt;p&gt;在正式开始之前，我们有必要了解一下 一个本地项目是如何在网络上被看见的：&lt;/p&gt;
+&lt;p&gt;当我们在本地开发一个网站时，它只能在我们的计算机上访问，其他人无法看到它。&lt;/p&gt;
+&lt;p&gt;为了突破这个限制，我们需要将它部署到服务器上，这样它就可以通过互联网被访问了。&lt;/p&gt;
+&lt;p&gt;以下是一个简单的部署流程图：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;graph TD
+  A[本地开发] --&amp;gt; B[打包成静态文件]
+  B --&amp;gt; C[上传到服务器]
+  C --&amp;gt; D[服务器配置]
+  D --&amp;gt; E[网站上线]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;本地开发：我们在本地计算机上开发和测试我们的网站。&lt;/li&gt;
+&lt;li&gt;打包成静态文件：我们使用构建工具将我们的项目打包成静态文件，这些文件可以被服务器直接提供给用户。&lt;/li&gt;
+&lt;li&gt;上传到服务器：我们将打包好的静态文件上传到服务器上，这可以通过 FTP、SSH 或者使用云服务提供的工具来完成。&lt;/li&gt;
+&lt;li&gt;服务器配置：我们需要在服务器上进行一些配置，例如设置域名、SSL 证书等，以确保我们的网站能够正常访问。&lt;/li&gt;
+&lt;li&gt;网站上线：完成以上步骤后，我们的网站就可以通过互联网访问了。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;显然，上传、配置服务器对我来说太过困难。但我们有两位赛博义父： &lt;code&gt;Github&lt;/code&gt; 和 &lt;code&gt;Cloudflare&lt;/code&gt; 。&lt;/p&gt;
+&lt;p&gt;在本教程中，我们将使用 &lt;code&gt;GitHub&lt;/code&gt; 来托管我们的博客源代码，并通过 &lt;code&gt;Cloudflare Pages&lt;/code&gt; 来部署我们的博客，这是一个免费的静态网站托管平台，具有全球 CDN、自动部署和免费 SSL 证书等特性。&lt;/p&gt;
+&lt;p&gt;每当我们将代码推送到 &lt;code&gt;GitHub&lt;/code&gt; 仓库时，&lt;code&gt;Cloudflare Pages&lt;/code&gt; 会自动构建并部署最新版本的网站，这样我们就可以轻松地管理和更新我们的博客了。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;graph TD
+  A[本地开发] --&amp;gt; B[推送代码到 GitHub]
+  B --&amp;gt; C[Cloudflare Pages 自动构建]
+  C --&amp;gt; D[部署到全球 CDN]
+  D --&amp;gt; E[用户访问博客]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;本地开发：我们在本地计算机上开发和测试我们的博客。&lt;/li&gt;
+&lt;li&gt;推送代码到 &lt;code&gt;GitHub&lt;/code&gt; ：我们将我们的代码推送到 &lt;code&gt;GitHub&lt;/code&gt; 仓库中。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Cloudflare Pages&lt;/code&gt; 自动构建：&lt;code&gt;Cloudflare Pages&lt;/code&gt; 会自动检测到 &lt;code&gt;GitHub&lt;/code&gt; 仓库的更新，并开始构建我们的博客。&lt;/li&gt;
+&lt;li&gt;部署到全球 CDN：构建完成后，&lt;code&gt;Cloudflare Pages&lt;/code&gt; 会将我们的博客部署到全球的内容分发网络（CDN）上，以确保用户能够快速访问。&lt;/li&gt;
+&lt;li&gt;用户访问博客：用户通过互联网访问我们的博客，&lt;code&gt;Cloudflare Pages&lt;/code&gt; 会从最近的 CDN 节点提供博客内容，确保访问速度和稳定性。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;可以看出，这两尊大佛为我们减轻很多部署时候的障碍，让我们再次感谢它们。&lt;/p&gt;
+&lt;h2&gt;1. 创建 GitHub 仓库&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;登录到 &lt;a href=&quot;https://github.com/&quot;&gt;GitHub&lt;/a&gt; 并创建一个新的仓库。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;将本地项目与 &lt;code&gt;GitHub&lt;/code&gt; 仓库关联：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;git remote add origin https://github.com/your-username/your-repo.git
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;将代码推送到 &lt;code&gt;GitHub&lt;/code&gt; ：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;  git add .
+  git commit -m &quot;提交信息&quot;
+  git push -u origin main
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;有关 &lt;code&gt;GitHub&lt;/code&gt; 的使用，请参阅：（我也不知道参阅哪里 先搁置吧&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;2. 配置 Cloudflare Pages&lt;/h2&gt;
+&lt;h3&gt;1. 登录 Cloudflare Pages&lt;/h3&gt;
+&lt;p&gt;访问 Cloudflare Dashboard，使用您的账号登录，然后选择 &quot;Pages&quot; 服务。
+当然 您可以在左下角找到更改语言的选项，切换到中文界面或许会更方便一些。&lt;/p&gt;
+&lt;h3&gt;2. 创建新项目&lt;/h3&gt;
+&lt;p&gt;点击 &quot;Create a project&quot; 或 &quot;Connect to Git&quot; 按钮
+选择您的 &lt;code&gt;Git&lt;/code&gt; 提供商（GitHub、GitLab 等）并授权
+从列表中选择您的 &lt;code&gt;Mizuki&lt;/code&gt; 项目仓库&lt;/p&gt;
+&lt;h3&gt;3. 配置构建设置&lt;/h3&gt;
+&lt;p&gt;在项目设置页面中，配置以下构建设置：&lt;/p&gt;
+&lt;p&gt;基本设置&lt;/p&gt;
+&lt;p&gt;Project name: 输入您的项目名称（如 &lt;code&gt;alisa22580-blog&lt;/code&gt;）&lt;/p&gt;
+&lt;p&gt;Production branch: 设置主分支（通常为 &lt;code&gt;main&lt;/code&gt; 或 &lt;code&gt;master&lt;/code&gt;）&lt;/p&gt;
+&lt;p&gt;构建配置&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# 构建设置
+Build command: pnpm i &amp;amp;&amp;amp; pnpm build
+Build output directory: dist
+Root directory: /
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;参考如下：
+&lt;img src=&quot;image-1.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;h3&gt;4. 部署项目&lt;/h3&gt;
+&lt;p&gt;配置完成后，点击 &quot;Save and Deploy&quot; 开始首次部署：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;Cloudflare Pages&lt;/code&gt; 会克隆您的仓库&lt;/li&gt;
+&lt;li&gt;安装依赖（pnpm i）&lt;/li&gt;
+&lt;li&gt;构建项目（pnpm build）&lt;/li&gt;
+&lt;li&gt;将 dist 目录部署到全球 CDN&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;首次部署可能需要几分钟时间。&lt;/p&gt;
+&lt;h3&gt;5. 获取部署信息&lt;/h3&gt;
+&lt;p&gt;部署完成后，您将获得：&lt;/p&gt;
+&lt;p&gt;站点 URL：如 https://alisa22580.pages.dev&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;URL: URL 是 Uniform Resource Locator 的缩写，中文通常翻译为统一资源定位符。它是互联网上资源的地址，用于指定和访问各种类型的资源，如网页、图片、视频等。URL 通常由以下几个部分组成：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;协议（Protocol）：指定访问资源所使用的协议，如 http、https、ftp 等。&lt;/li&gt;
+&lt;li&gt;域名（Domain）：指定资源所在的服务器地址，如 www.example.com。&lt;/li&gt;
+&lt;li&gt;路径（Path）：指定资源在服务器上的具体位置，如 /blog/post1。&lt;/li&gt;
+&lt;li&gt;查询参数（Query Parameters）：用于传递额外的信息，如 ?id=123。
+例如 当前这篇文章的 URL 就是 https://alisa22580.pages.dev/posts/post1/#本博客的搭建教程&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;自动生成的 SSL 证书&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;SSL: SSL 是 Secure Sockets Layer 的缩写，是一种安全协议，用于在互联网上加密数据传输，确保数据的机密性和完整性。SSL 证书是由受信任的证书颁发机构（CA）签发的数字证书，用于验证网站的身份并启用 HTTPS 协议。当用户访问启用了 SSL 的网站时，浏览器会显示一个锁形图标，表示连接是安全的。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;全球 CDN 分发&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;CDN: CDN 是 Content Delivery Network 的缩写，中文通常翻译为内容分发网络。CDN 是一种分布式的服务器网络，旨在通过将内容缓存到全球各地的服务器上来加速网站的加载速度。当用户访问一个启用了 CDN 的网站时，CDN 会根据用户的地理位置选择最近的服务器来提供内容，从而减少延迟和提高性能。CDN 还可以提供额外的安全功能，如 DDoS 防护和 Web 应用防火墙。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;现在，您可以通过站点 URL 访问您的博客了！每当您推送新的代码到 &lt;code&gt;GitHub&lt;/code&gt;，&lt;code&gt;Cloudflare Pages&lt;/code&gt; 都会自动重新构建和部署您的博客，确保您的内容始终是最新的。&lt;/p&gt;
+&lt;p&gt;也就是说，我们以后的操作流程将是：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;graph TD
+    A[本地开发] --&amp;gt; B[推送代码到 GitHub]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;就结束了， &lt;code&gt;GitHub&lt;/code&gt; 和 &lt;code&gt;Cloudflare&lt;/code&gt; 会帮我们完成剩下的工作。&lt;/p&gt;
+&lt;h1&gt;4. 博客配置&lt;/h1&gt;
+&lt;p&gt;完成了&lt;code&gt;GitHub&lt;/code&gt; 和 &lt;code&gt;Cloudflare&lt;/code&gt; 的部署后，所有需要动脑的工作告一段落，接下来我们就可以专注于博客的内容和配置了。&lt;/p&gt;
+&lt;p&gt;博客的配置主要涉及到 &lt;code&gt;src/config.ts&lt;/code&gt; 文件，这个文件包含了博客的全局设置，如站点标题、描述、作者信息、社交链接等。您可以根据自己的需求修改这些配置项来个性化您的博客。&lt;/p&gt;
+&lt;p&gt;有关博客各项配置已经在 &lt;a href=&quot;https://docs.mizuki.mysqil.com/Basic-Layout/site-config/&quot;&gt;官方文档&lt;/a&gt; 中有详细的介绍。&lt;/p&gt;
+&lt;p&gt;因此关于大多数常规设置，我就不在这里赘述了，这里只发表一些我自己的建议...&lt;/p&gt;
+&lt;h2&gt;配置文件的查找与修改&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;如果您使用vscode编辑项目，可以在左侧任务栏找到搜索框，输入关键词进行整个工作区目录下的相关查找。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&quot;image-2.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;也可以通过快捷键 &lt;code&gt;ctrl + f&lt;/code&gt; 进行当前文件下的关键词查找。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&quot;image-3.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;h2&gt;更好的时间输入&lt;/h2&gt;
+&lt;p&gt;博客中很多地方需要输入时间，例如文章的发布时间、日记的日期等。&lt;/p&gt;
+&lt;p&gt;通过官方文档的介绍，我们可以知道，博客中使用的时间格式是 ISO 8601 格式，例如：&lt;code&gt;2026-03-12T16:20:00Z&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;这种格式虽然标准，但由于这个博客并没有自动化的时间输入工具（比如说日历选择器），因此我们的手动输入、修改显得繁琐且没必要。&lt;/p&gt;
+&lt;p&gt;因此，我尝试了 &lt;code&gt;vscode&lt;/code&gt; 的 &lt;code&gt;Insert Date String&lt;/code&gt; 扩展。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;image-4.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;但是这个扩展的默认输出格式是 &lt;code&gt;YYYY-MM-DD HH:mm:ss&lt;/code&gt;，并不符合我们博客的时间格式要求。&lt;/p&gt;
+&lt;p&gt;于是，我在 &lt;code&gt;vscode&lt;/code&gt; 的设置中，手动将输出格式修改为 &lt;code&gt;YYYY-MM-DDTHH:mm:ssZ&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;然而，这个插件自动识别了时区，并在输出的时间字符串中加入了时区偏移，例如 &lt;code&gt;2026-03-12T16:20:00+08&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;这显然是我们不愿看到的，因为 通过配置 &lt;code&gt;config.ts&lt;/code&gt; 中的 &lt;code&gt;timeZone&lt;/code&gt;，我们已经自行选择了时区，因此我们需要将这个时区偏移手动修改为 &lt;code&gt;Z&lt;/code&gt;，表示 UTC 时间。但是每次输入时间后都要修改一次时区，显然也是不合理的。&lt;/p&gt;
+&lt;p&gt;于是，我参考了自己先前打 &lt;code&gt;acm&lt;/code&gt; 时候使用的， &lt;code&gt;vscode&lt;/code&gt; 原生提供的 &lt;code&gt;配置代码片段&lt;/code&gt; 功能，在惊喜的发现这个功能支持时间相关的预定义变量后，事情就变得简单了。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;使用组合键 &lt;code&gt;ctrl + shift + p&lt;/code&gt; 打开命令面板，输入 &lt;code&gt;Snippets: Configure Snippets&lt;/code&gt; (&lt;code&gt;配置代码片段&lt;/code&gt;) 并选择它。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;选择 &lt;code&gt;New Global Snippets file&lt;/code&gt; (&lt;code&gt;新建代码片段&lt;/code&gt;) 来创建一个全局的代码片段文件，命名为 &lt;code&gt;全局.code-snippets&lt;/code&gt;。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;在打开的 &lt;code&gt;全局.code-snippets&lt;/code&gt; 文件中，添加以下代码片段：&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code&gt;&quot;Insert ISO Z Date&quot;: {
+  &quot;scope&quot;: &quot;typescript,markdown,mdx&quot;, // 只针对 TypeScript 和 Markdown 文件生效
+  &quot;prefix&quot;: &quot;isodate&quot;,
+  &quot;body&quot;: [
+    &quot;${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE}T${CURRENT_HOUR}:${CURRENT_MINUTE}:${CURRENT_SECOND}Z&quot;
+  ],
+  &quot;description&quot;: &quot;插入当前 UTC 时间 (Z)&quot;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;此时，完整的文件内容大致如下：
+&lt;img src=&quot;image-6.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;保存文件后，您就可以在任何地方输入 &lt;code&gt;isodate&lt;/code&gt;，然后按下 &lt;code&gt;Tab&lt;/code&gt; 键，就会自动插入当前的 UTC 时间，格式为 &lt;code&gt;YYYY-MM-DDTHH:mm:ssZ&lt;/code&gt;... 吗？&lt;/p&gt;
+&lt;p&gt;问题到此并没有结束，我发现在 &lt;code&gt;markdown&lt;/code&gt; 文件中无法触发补全，而在 &lt;code&gt;ts&lt;/code&gt; 文件中可以。&lt;/p&gt;
+&lt;p&gt;经过一番折腾，我发现这是因为 &lt;code&gt;markdown&lt;/code&gt; 文件默认没有启用代码片段补全功能。&lt;/p&gt;
+&lt;p&gt;于是，我打开了 &lt;code&gt;vscode&lt;/code&gt; 的设置，在右上角找到 &lt;code&gt;Edit in settings.json&lt;/code&gt; (&lt;code&gt;在 settings.json 中编辑&lt;/code&gt;) 的选项，点击它打开 &lt;code&gt;settings.json&lt;/code&gt; 文件。
+&lt;img src=&quot;image-7.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;在文件中，我添加了关于 &lt;code&gt;markdown&lt;/code&gt; 文件的代码片段补全配置：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&quot;[markdown]&quot;: {
+  &quot;editor.quickSuggestions&quot;: {
+    &quot;other&quot;: &quot;on&quot;,
+    &quot;comments&quot;: &quot;on&quot;,
+    &quot;strings&quot;: &quot;on&quot;
+  },
+  &quot;editor.snippetSuggestions&quot;: &quot;top&quot;, // 让代码片段排在最前面
+  &quot;editor.tabCompletion&quot;: &quot;on&quot; // 允许按 Tab 键直接补全
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;问题终于解决了，现在在 &lt;code&gt;markdown&lt;/code&gt; 文件中输入 &lt;code&gt;isodate&lt;/code&gt; 并按下 &lt;code&gt;Tab&lt;/code&gt; 键，正确格式的 UTC 时间就会被插入了...吗？？&lt;/p&gt;
+&lt;p&gt;仍然没有！在文章的表头中输入 &lt;code&gt;isodate&lt;/code&gt; 并按下 &lt;code&gt;Tab&lt;/code&gt; 键，竟然没有任何反应。&lt;/p&gt;
+&lt;p&gt;经过一番调查，我发现这是因为 &lt;code&gt;markdown&lt;/code&gt; 文件的表头部分（也就是 &lt;code&gt;---&lt;/code&gt; 包围的部分）被 &lt;code&gt;vscode&lt;/code&gt; 识别为 &lt;code&gt;yaml&lt;/code&gt; 语言，而不是 &lt;code&gt;markdown&lt;/code&gt;。...真是令人窒息。！&lt;/p&gt;
+&lt;p&gt;因此，我们回到 &lt;code&gt;全局.code-snippets&lt;/code&gt; 文件中，将代码片段的 &lt;code&gt;scope&lt;/code&gt; 属性增加一个 &lt;code&gt;yaml&lt;/code&gt;，使其变为：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&quot;scope&quot;: &quot;typescript,markdown,mdx,yaml&quot;, // 现在也针对 yaml 文件生效
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;更新后的完整文件内容应如下：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;请注意 29 行的更改&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src=&quot;image-8.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;终于，我做到了，我可以随心所欲地在表头插入当前的 UTC 时间，而且格式完全符合博客的要求。我真想&lt;strong&gt;狠狠地&lt;/strong&gt;吃掉一包放在旁边的香辣小鱼干来庆祝下！
+&lt;img src=&quot;image-9.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;h2&gt;评论功能的配置&lt;/h2&gt;
+&lt;p&gt;博客的评论功能是通过 &lt;code&gt;Twikoo&lt;/code&gt; 实现的，您可以在 &lt;code&gt;src/config.ts&lt;/code&gt; 文件中找到相关配置项:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;export const commentConfig: CommentConfig = {
+  enable: true, // 启用评论功能。当设置为 false 时，评论组件将不会显示在文章区域。
+  twikoo: {
+    envId: &quot;...&quot;, // Twikoo 环境 ID，通常是一个 URL 地址。
+    lang: SITE_LANG, // 评论界面语言设置，默认为站点语言。
+  },
+};
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;enable: 设置为 true 启用评论功能，设置为 false 则禁用评论功能。&lt;/li&gt;
+&lt;li&gt;envId: 这是 &lt;code&gt;Twikoo&lt;/code&gt; 的环境 ID，通常是一个 URL 地址，您需要将其替换为您自己的 &lt;code&gt;Twikoo&lt;/code&gt; 环境 ID。&lt;/li&gt;
+&lt;li&gt;lang: 这是评论界面的语言设置，默认为站点语言，不动就行。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;由是观之，我们操作的目的就是得到一个 以 &lt;code&gt;.app&lt;/code&gt; 结尾的 URL 地址，并将其填入 envId 中。&lt;/p&gt;
+&lt;p&gt;我们可以直接访问 &lt;a href=&quot;https://twikoo.js.org/backend.html#vercel-%E9%83%A8%E7%BD%B2&quot;&gt;Vercel 部署&lt;/a&gt; 的教程来获取这个 ID 。&lt;/p&gt;
+&lt;h2&gt;更多内容&lt;/h2&gt;
+&lt;p&gt;持续更新中...&lt;/p&gt;
+</content:encoded></item><item><title>2026东北赛 长春游 / 补题 / 感想</title><link>https://alisa22580.pages.dev/posts/2026-dbcpc/</link><guid isPermaLink="true">https://alisa22580.pages.dev/posts/2026-dbcpc/</guid><description>流水账一篇</description><pubDate>Sun, 24 May 2026 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;铜首了，倒闭4个小时，感觉心情不是很美妙...
+&lt;img src=&quot;image.png&quot; alt=&quot;alt text&quot; /&gt;
+姑且先放一个牌子在这里，剩下的再说吧。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;2026-05-28 update:&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;已经过去快一周啦，复杂的心情应该说平复了很多，虽然还是觉得挺可惜的，但也不至于太难过了。&lt;/p&gt;
+&lt;h1&gt;去往长春&lt;/h1&gt;
+&lt;p&gt;我决定和可爱的 &lt;a href=&quot;https://imicola.com/&quot;&gt;imicola&lt;/a&gt; 宝宝一起坐火车（其实就是我什么都没管，订票订酒店啥的全部给他处理了）。&lt;/p&gt;
+&lt;p&gt;我们是周四下午出发的，提前了一个多小时从学校坐火车准备去哈尔滨站，结果快到地方了发现是哈尔滨西站，给我笑得。&lt;/p&gt;
+&lt;p&gt;我说你怎么一点规划没有；他说我有规划的，只是规划错了；我说你怎么是路痴；他说你才知道啊。&lt;/p&gt;
+&lt;p&gt;好在也不是什么大问题，最后就是打车花更多的价钱去更近的西站。&lt;/p&gt;
+&lt;p&gt;上车之后我就开始狂笑，他问我怎么了我笑了半天跟他说：
+&quot;这个像不像悠和穹回乡下？&quot;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;5caf7ce0aa4eeffb4a10b33fd38cdc4a.jpg&quot; alt=&quot;alt text&quot; /&gt;
+&lt;img src=&quot;d31603442efc00b936ffe88bf9201cbc.jpg&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;是不是，还，蛮像的！&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;然后都想到这了，在车上就姑且听了那么一路 《飞向遥远的天空》，感觉莫名挺应景的。&lt;/p&gt;
+&lt;p&gt;我是不知道他怎么想的，但是我确实是在哈尔滨待得有点烦闷，心想我有不得不逃离这个地方的理由。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;19c599a62dc0cfabcfff980a78102d61.jpg&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;h1&gt;到达长春&lt;/h1&gt;
+&lt;p&gt;到达长春之后，我们就前往23一晚的豪华大酒店下榻了，好像是叫什么 东篱下宾馆 。我一开始还在幻视什么什么寄人篱下，结果 imicola 说 这是采菊东篱下。。&lt;/p&gt;
+&lt;p&gt;于是我感到十分欣慰，问他你的注意力能不能放在赛时。&lt;/p&gt;
+&lt;p&gt;这之后我们就去找&lt;/p&gt;
+&lt;h1&gt;关于比赛&lt;/h1&gt;
+&lt;p&gt;首先是最为关键的 比赛情况。&lt;/p&gt;
+&lt;p&gt;热身赛时候，好像是侥幸看了一道没人看的题，获得了一个首杀。
+&lt;img src=&quot;2c233ca7bfc4311acaf5a87112bacb82.jpg&quot; alt=&quot;alt text&quot; /&gt;
+当时非常兴奋啊！觉得自己这辈子应该是有了，然后 imicola 就给我泼冷水，说人家强校都要么不打要么看难题。。&lt;/p&gt;
+&lt;p&gt;热身最后开了三道题，第四道概率居然不会，，依稀记得高中数学还不错来着，怎么上大学变数学低手了，唉！都是 acm 害的。&lt;/p&gt;
+&lt;p&gt;总之热身赛结束后，感觉自己状态不错，回到宾馆把那道概率摸索了一下 就准备睡觉了。&lt;/p&gt;
+&lt;p&gt;结果出于一些神秘的原因 我死活睡不着 就这么耗到了凌晨三点多 第二天早上起来人都恍惚了&lt;/p&gt;
+</content:encoded></item><item><title>vscode 快速配置 g++</title><link>https://alisa22580.pages.dev/posts/vscode-run-code-tutorial/</link><guid isPermaLink="true">https://alisa22580.pages.dev/posts/vscode-run-code-tutorial/</guid><description>可以作为 从 Dev-C++ / CodeBlocks 等 古老 IDE 过渡到 vscode 的快速替代方案</description><pubDate>Mon, 13 Apr 2026 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;写在前面&lt;/h1&gt;
+&lt;p&gt;:::tip
+感觉，写的非常啰嗦啊！&lt;/p&gt;
+&lt;p&gt;了解这些内容可能对短期的比赛没有太大帮助，但是对于长期的计算机学习是意义重大的。
+:::&lt;/p&gt;
+&lt;p&gt;众所周知，打 acm 的各种比赛的时候，使用 vscode 作为代码编辑器是非常方便的。&lt;/p&gt;
+&lt;p&gt;:spoiler[如果不赞同上面这句话，请你立马关闭这篇文章(]&lt;/p&gt;
+&lt;p&gt;在机房或者考场拿到一台只装了 Dev-C++ / CodeBlocks 等古董 IDE 的电脑时，如何快速拯救自己的双手？&lt;/p&gt;
+&lt;p&gt;通过本教程，你将在&lt;strong&gt;极短的时间内&lt;/strong&gt;，利用已有 IDE 里的编译器，快速配置好 Windows 的环境变量，从而达成 &lt;strong&gt;在 VS Code 终端中丝滑使用 &lt;code&gt;g++&lt;/code&gt; 编译和运行 C++ 代码&lt;/strong&gt; 的目的。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;对于刚接触算法竞赛的新人，这个教程可以作为一个过渡方案，帮助你快速适应 VS Code 的开发环境，而不需要一开始就去下载和配置新的编译器；&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;对于已经习惯了 VS Code 的老手，这个教程可以帮助你在没有管理员权限的电脑上快速配置环境变量，继续使用熟悉的编译器，帮助你最大限度的优化比赛体验。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;基本了解&lt;/h1&gt;
+&lt;p&gt;这个教程的实质是针对 Windows 用户的 path 环境变量的配置扫盲。&lt;/p&gt;
+&lt;p&gt;让我们先了解几个概念：&lt;/p&gt;
+&lt;h2&gt;cpp代码的编译和运行&lt;/h2&gt;
+&lt;p&gt;cpp 代码大致的编译和运行流程是这样的：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;你在代码编辑器里写好 cpp 代码，保存为 main.cpp。&lt;/li&gt;
+&lt;li&gt;调用编译器（比如 g++）来翻译 main.cpp，生成一个可执行文件（比如 main.exe）。&lt;/li&gt;
+&lt;li&gt;运行这个可执行文件，看到程序的输出。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code&gt;sequenceDiagram
+    participant U as 👨‍💻 你 (VS Code)
+    participant E as 📝 代码编辑器
+    participant C as ⚙️ 编译器 (g++)
+    participant O as 🖥️ 操作系统
+
+    U-&amp;gt;&amp;gt;E: 在 VS Code 中编写 main.cpp
+    E--&amp;gt;&amp;gt;U: 提供语法高亮、自动补全等功能
+    U-&amp;gt;&amp;gt;C: 输入命令 `g++ main.cpp -o main` 调用编译器
+    C-&amp;gt;&amp;gt;C: 编译 main.cpp，生成 main.exe
+    C--&amp;gt;&amp;gt;U: 编译成功，生成 main.exe
+    U-&amp;gt;&amp;gt;O: 输入命令 `./main` 运行程序
+    O-&amp;gt;&amp;gt;O: 执行 main.exe，显示输出结果
+    O--&amp;gt;&amp;gt;U: 程序输出结果显示在终端
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;这里面具体涉及到了如下几个概念：&lt;/p&gt;
+&lt;h2&gt;代码编辑器&lt;/h2&gt;
+&lt;p&gt;代码编辑器是一个专门为编写代码设计的软件。它提供了语法高亮、自动补全、错误提示等功能，帮助程序员更高效地编写代码。常见的代码编辑器有 Visual Studio Code、Sublime Text、Atom 等。&lt;/p&gt;
+&lt;p&gt;这些编辑器本身并不包含编译器，它们只是提供了一个界面让你编写代码。因此需要与编译器配合使用。&lt;/p&gt;
+&lt;p&gt;这些软件大多具有很好的插件生态，是被推崇使用的一大重要原因。&lt;/p&gt;
+&lt;h2&gt;编译器&lt;/h2&gt;
+&lt;p&gt;编译器是一个将源代码（如 C++ 代码）翻译成机器语言的程序。它负责将你写的代码转换成计算机能够理解和执行的格式。&lt;/p&gt;
+&lt;p&gt;GNU Compiler Collection（GCC）是一个非常流行的开源编译器套件，其中 g++ 是专门用于编译 C++ 代码的部分。&lt;/p&gt;
+&lt;p&gt;:::note[g++]
+g++ 是 GNU Compiler Collection 的 C++ 开源编译器，支持多种平台和操作系统。&lt;/p&gt;
+&lt;p&gt;g++ 可以将 C++ 代码编译成可执行文件，或者将其编译成目标文件以供链接器使用。它支持 C++11、C++14、C++17 等多个 C++ 标准，并且提供了丰富的编译选项和优化功能。
+:::&lt;/p&gt;
+&lt;h2&gt;集成开发环境 (IDE)&lt;/h2&gt;
+&lt;p&gt;IDE 是一个集成了代码编辑器、编译器、调试器等工具的软件，提供了一个完整的开发环境。常见的 IDE 有 Dev-C++、CodeBlocks、Visual Studio 等。 这些 IDE 通常会自带一个编译器（比如 g++），但它们的编译器路径没有被添加到系统的环境变量中，因此只能在 IDE 内部使用。&lt;/p&gt;
+&lt;p&gt;这些软件虽然功能强大，但界面复杂，操作繁琐，存储占用臃肿，（大概）并不适合在比赛中使用。&lt;/p&gt;
+&lt;p&gt;知道了这些概念，问题的核心就变成了 如何让 VS Code 终端能够识别并使用 g++ 编译器。&lt;/p&gt;
+&lt;p&gt;针对这个问题，我们需要了解 Windows 的 path 环境变量是什么，以及如何配置它。&lt;/p&gt;
+&lt;h2&gt;path 环境变量&lt;/h2&gt;
+&lt;p&gt;在 Windows 系统中，path 环境变量是一个包含了系统可执行文件路径的列表。当你在命令行中输入一个命令时，系统会在这些路径中查找对应的可执行文件并运行它。&lt;/p&gt;
+&lt;p&gt;因此，如果你想在命令行中使用 g++ 编译器，你需要确保 g++ 的可执行文件所在的路径已经被添加到 path 环境变量中。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;sequenceDiagram
+    participant U as 👨‍💻 你 (VS Code终端)
+    participant W as 💻 Windows 系统
+    participant P as 📂 Path 环境变量
+    participant G as ⚙️ g++ 编译器
+
+    U-&amp;gt;&amp;gt;W: 输入命令: `g++ main.cpp`
+    W-&amp;gt;&amp;gt;W: 思考: 我认识 g++ 吗？
+    alt 没配置 Path
+        W--&amp;gt;&amp;gt;U: 报错: &quot;g++ 不是内部或外部命令&quot; ❌
+    else 配置了 Path
+        W-&amp;gt;&amp;gt;P: 翻找通讯录 (Path)
+        P--&amp;gt;&amp;gt;W: 找到了！它在 `D:\Dev-Cpp\MinGW64\bin`
+        W-&amp;gt;&amp;gt;G: 喂，g++，干活了！
+        G-&amp;gt;&amp;gt;G: 编译 main.cpp
+        G--&amp;gt;&amp;gt;U: 生成 `a.exe`，编译成功！ ✅
+    end
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1&gt;理论分析&lt;/h1&gt;
+&lt;p&gt;基于上面的概念 我们来分析一下当前都有什么，应该如何调整：&lt;/p&gt;
+&lt;p&gt;我们有：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;已经安装好的 Dev-C++ 或 CodeBlocks 等 IDE。&lt;/li&gt;
+&lt;li&gt;这些 IDE 自带了 g++ 编译器，但它们的路径没有被添加到 Windows 的 path 环境变量中，因此只可以在 IDE 内部使用。&lt;/li&gt;
+&lt;li&gt;一个 vscode 编辑器 但是无法用来编译和运行 C++ 代码。&lt;/li&gt;
+&lt;li&gt;一个渴望在 vscode 里使用 g++ 的，愿意折腾的你。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;我们需要：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;找到 g++ 编译器的路径。&lt;/li&gt;
+&lt;li&gt;将这个路径添加到 Windows 的 path 环境变量中。&lt;/li&gt;
+&lt;li&gt;重启 vscode 让它加载新的环境变量。&lt;/li&gt;
+&lt;li&gt;在 vscode 终端中畅快的使用 g++ 。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;正式配置&lt;/h1&gt;
+&lt;h2&gt;1. 白嫖现成的 g++ 编译器&lt;/h2&gt;
+&lt;p&gt;既然电脑里有 Dev-C++ 或 CodeBlocks，我们就直接“借用”它们自带的编译器，不需要重新下载！&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;找到 Dev-C++ 或 CodeBlocks 的安装目录。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&quot;image-1.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;顺藤摸瓜，找到名为 MinGW 或 MinGW64 的文件夹。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&quot;image-2.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;一直点进去，直到看到一个名为 bin 的文件夹。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&quot;image-3.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;打开&lt;/strong&gt; bin 文件夹，&lt;strong&gt;确认&lt;/strong&gt;里面有 g++.exe。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&quot;image-4.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;复制当前的文件路径（例如：C:\Program Files (x86)\Dev-Cpp\MinGW64\bin）。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&quot;image-5.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;h2&gt;2. 将路径写入 Path 环境变量&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;按下 Win 键，直接&lt;strong&gt;搜索&lt;/strong&gt; “编辑系统环境变量”，点击打开。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&quot;image-6.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;在弹出的窗口右下角，点击 “环境变量(N)...”，在下半部分的“系统变量”中，找到叫 Path 的那一行，双击它。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&quot;image-7.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;点击 “新建”，把你刚才复制的 bin 文件夹路径粘贴进去。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&quot;image-8.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;一路点击 “确定” 保存退出。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;3. 在 VS Code 中验证&lt;/h2&gt;
+&lt;p&gt;配置完成后，我们需要测试一下是否成功。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;重启 VS Code（必须重启，否则终端无法加载新的环境变量！）。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;使用快捷键 Ctrl + ` 打开集成终端。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;输入以下命令并回车：&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code&gt;g++ -v // 等效于 g++ --version 作用是查看 g++ 的版本信息
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;如果终端吐出了一大串包含 g++ (GCC) ... 的版本信息，恭喜你，配置大功告成！
+&lt;img src=&quot;image.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;现在，你可以使用这个终端方便的完成编译和运行了。&lt;/p&gt;
+&lt;h1&gt;如何使用&lt;/h1&gt;
+&lt;h2&gt;1. 最基础的编译&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;g++ main.cpp
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&quot;image-10.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;这是最简单的命令。它会把 main.cpp 编译成一个默认名为 a.exe（Windows）或 a.out（Linux/Mac）的可执行文件。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;缺点：每次都生成 a.exe，如果你有多个源代码，会互相覆盖。&lt;/p&gt;
+&lt;h2&gt;2. 指定输出文件名 (-o)&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;g++ main.cpp -o main
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&quot;image-11.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;-o 代表 Output。这条命令会把编译后的程序命名为 main.exe。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;运行方式：输入 ./main 即可运行。&lt;/p&gt;
+&lt;h2&gt;3. 开启标准警告 (-Wall)&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;g++ main.cpp -o main -Wall
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;W 代表 Warning，all 代表 all。它会提醒你代码中潜在的问题（比如变量定义了但没使用、非 void 函数没写 return 等）。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;:::tip
+赛时建议全程开启，能帮你规避很多低级 Bug。
+:::&lt;/p&gt;
+&lt;h2&gt;4. 指定 C++ 标准&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;g++ main.cpp -o main -std=c++11
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;强制编译器使用特定的 C++ 版本。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;为什么需要：有些现代语法在老版本编译器下会报错。&lt;/p&gt;
+&lt;p&gt;你知道的，:spoiler[蓝桥杯和哈理工的校赛只支持到 cpp11，我积累半生的语法糖全部！无法使用。]&lt;/p&gt;
+&lt;h2&gt;5. 进阶&lt;/h2&gt;
+&lt;p&gt;在命令行里，如果你想编译完立刻运行（如果编译失败则不运行），可以使用 &amp;amp;&amp;amp; 符号连接指令：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;g++ main.cpp -o main -Wall -std=c++11 &amp;amp;&amp;amp; ./main
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;指令分解说明：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;g++ main.cpp&lt;/code&gt;: 呼叫g++，开始翻译代码。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;-o main&lt;/code&gt;: 把翻译好的程序取名为 main.exe。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;-Wall&lt;/code&gt;: 开启所有警告，检查代码细节。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;-std=c++11&lt;/code&gt;: 使用 C++11 标准编译。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;&amp;amp;&amp;amp;&lt;/code&gt;: 这是一个逻辑门。只有当前面的编译操作成功了，才会执行后面的指令。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;./main&lt;/code&gt;: 运行刚才生成的可执行程序。&lt;/li&gt;
+&lt;/ul&gt;
+</content:encoded></item><item><title>蓝桥杯 C++ B 组省赛 A-H 题解（2026）</title><link>https://alisa22580.pages.dev/posts/lanqiao-cpp-b-solutions/</link><guid isPermaLink="true">https://alisa22580.pages.dev/posts/lanqiao-cpp-b-solutions/</guid><description>完整(?)复盘</description><pubDate>Sat, 11 Apr 2026 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;:::tip
+补题链接：&lt;a href=&quot;https://www.luogu.com.cn/contest/320659#problems&quot;&gt;蓝桥杯省赛自测 CB&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;代码模板请移步 &lt;a href=&quot;../lanqiao-cpp-b-common/&quot;&gt;蓝桥杯 C++ B 组常用板子&lt;/a&gt; 或 &lt;a href=&quot;https://github.com/2258009564/MYWORK/tree/main/CODES/CPPPROGRAM/%E6%9D%BF%E5%AD%90&quot;&gt;我的 github 存储库&lt;/a&gt;
+:::&lt;/p&gt;
+&lt;h1&gt;A. 青春常数（填空）&lt;/h1&gt;
+&lt;h2&gt;题意简述&lt;/h2&gt;
+&lt;p&gt;给定&lt;/p&gt;
+&lt;p&gt;$$
+N = 2026202520242023
+$$&lt;/p&gt;
+&lt;p&gt;求非负整数对 $(x, y)$ 的个数，满足：&lt;/p&gt;
+&lt;p&gt;$$
+x + y = N,
+\quad 0 \le x &amp;lt; y
+$$&lt;/p&gt;
+&lt;p&gt;:::note
+数一遍 &lt;code&gt;x&lt;/code&gt; 的取值范围，&lt;code&gt;x&lt;/code&gt; 确定后 &lt;code&gt;y&lt;/code&gt; 就唯一。
+:::&lt;/p&gt;
+&lt;h2&gt;一眼观察&lt;/h2&gt;
+&lt;p&gt;由 $y = N - x$ 代入 $x &amp;lt; y$：&lt;/p&gt;
+&lt;p&gt;$$
+x &amp;lt; N - x \iff 2x &amp;lt; N
+$$&lt;/p&gt;
+&lt;p&gt;因为 $N$ 是奇数，所以&lt;/p&gt;
+&lt;p&gt;$$
+x = 0, 1, 2, \dots, \frac{N-1}{2}
+$$&lt;/p&gt;
+&lt;p&gt;共&lt;/p&gt;
+&lt;p&gt;$$
+\frac{N+1}{2}
+$$&lt;/p&gt;
+&lt;p&gt;种。&lt;/p&gt;
+&lt;h2&gt;最终答案&lt;/h2&gt;
+&lt;p&gt;$$
+\boxed{1013101260121012}
+$$&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h1&gt;B. 双碳战略（填空）&lt;/h1&gt;
+&lt;h2&gt;题意简述&lt;/h2&gt;
+&lt;p&gt;有 $N=2026$ 盏灯，初始全亮。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;第奇数次操作：选 $i$，翻转后缀 $[i, N]$。&lt;/li&gt;
+&lt;li&gt;第偶数次操作：选 $i$，翻转前缀 $[1, i]$。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;每个状态都可达。定义某状态的最少操作步数，求所有 $2^N$ 个状态最少步数之和，对 $998244353$ 取模。&lt;/p&gt;
+&lt;p&gt;:::note
+神秘的结论题。据说可以推出来...据说。
+:::&lt;/p&gt;
+&lt;h2&gt;小规模自检&lt;/h2&gt;
+&lt;p&gt;赛时太闲了 手推了 $N=1..5$ 发现都满足：&lt;/p&gt;
+&lt;p&gt;$$
+S(N) = N \cdot 2^{N-1}
+$$&lt;/p&gt;
+&lt;p&gt;例如 $N=5$ 时总和是 $80$，刚好等于 $5\cdot2^4$。&lt;/p&gt;
+&lt;h2&gt;最终答案&lt;/h2&gt;
+&lt;p&gt;$$
+S(2026) = 2026 \cdot 2^{2025} \bmod 998244353 = \boxed{792264670}
+$$&lt;/p&gt;
+&lt;h2&gt;代码（计算答案）&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;const int MOD = 998244353;
+
+void solve()
+{
+	int n = 2026;
+	cout &amp;lt;&amp;lt; n * ksm(2, n - 1) % MOD;
+}
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;hr /&gt;
+&lt;h1&gt;C. 循环右移&lt;/h1&gt;
+&lt;h2&gt;题意简述&lt;/h2&gt;
+&lt;p&gt;长度为 $N$ 的数组 $A$，每个元素满足 $X \le A_i \le Y$。&lt;/p&gt;
+&lt;p&gt;要求：对任意连续子数组做一次循环右移后，子数组不变。求满足条件的数组个数。&lt;/p&gt;
+&lt;p&gt;:::note
+尝试从最短的子数组开始分析。
+:::&lt;/p&gt;
+&lt;h2&gt;一眼观察&lt;/h2&gt;
+&lt;p&gt;只看长度为 $2$ 的子数组 $[A_i, A_{i+1}]$：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;右移后变成 $[A_{i+1}, A_i]$&lt;/li&gt;
+&lt;li&gt;若右移前后相同，则必有 $A_i = A_{i+1}$&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;对所有 $i$ 成立，就得到全数组所有元素都相等。&lt;/p&gt;
+&lt;h2&gt;结论&lt;/h2&gt;
+&lt;p&gt;可选的常值就是区间 $[X, Y]$ 内整数个数：&lt;/p&gt;
+&lt;p&gt;$$
+\max(0ll, Y - X + 1)
+$$&lt;/p&gt;
+&lt;p&gt;与 $N$ 无关。&lt;/p&gt;
+&lt;h2&gt;复杂度&lt;/h2&gt;
+&lt;p&gt;每组 $O(1)$。&lt;/p&gt;
+&lt;h2&gt;code&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;void solve()
+{
+	int N, X, Y;
+	cin &amp;gt;&amp;gt; N &amp;gt;&amp;gt; X &amp;gt;&amp;gt; Y; 
+	cout &amp;lt;&amp;lt; max(0ll, Y - X + 1);
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;hr /&gt;
+&lt;h1&gt;D. 蓝桥竞技&lt;/h1&gt;
+&lt;h2&gt;题意简述&lt;/h2&gt;
+&lt;p&gt;有 $N$ 种位置，第 $i$ 种有 $A_i$ 人。要把所有人分成若干支 5 人队，每队 5 人且位置互不相同。&lt;/p&gt;
+&lt;p&gt;问是否存在合法分组。&lt;/p&gt;
+&lt;p&gt;:::note
+这是条件判定题，不是构造题。检查两个条件就够：总人数能否整除 5、最大职业人数会不会爆队伍数。&lt;/p&gt;
+&lt;p&gt;赛时尝试用大根堆模拟分配，满怀信心的出来发现果然过不了。
+:::&lt;/p&gt;
+&lt;h2&gt;一眼观察&lt;/h2&gt;
+&lt;p&gt;设总人数 $S = \sum A_i$，队伍数 $K = S/5$。&lt;/p&gt;
+&lt;p&gt;必要条件：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;$S$ 必须被 5 整除。&lt;/li&gt;
+&lt;li&gt;任意位置人数不能超过队伍数，即 $\max A_i \le K$。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;这两个条件也是充分条件（可由二分图度序列可行性 / Gale-Ryser 结论得到）。&lt;/p&gt;
+&lt;h2&gt;复杂度&lt;/h2&gt;
+&lt;p&gt;每组 $O(N)$。&lt;/p&gt;
+&lt;h2&gt;code&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;void solve()
+{
+	int N;
+	cin &amp;gt;&amp;gt; N;
+	int sum = 0, mx = 0;
+
+	for (int i = 0; i &amp;lt; N; i++)
+	{
+		int x;
+		cin &amp;gt;&amp;gt; x;
+		sum += x;
+		mx = max(mx, x);
+	}
+
+	if (sum % 5)
+	{
+		cout &amp;lt;&amp;lt; &quot;F&quot;;
+		return;
+	}
+
+	int K = sum / 5;
+	cout &amp;lt;&amp;lt; (mx &amp;lt;= K ? &quot;T&quot; : &quot;F&quot;);
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1&gt;E. LQ 聚合&lt;/h1&gt;
+&lt;h2&gt;题意简述&lt;/h2&gt;
+&lt;p&gt;长度 $N$ 的字符串，仅含 &lt;code&gt;L&lt;/code&gt;、&lt;code&gt;Q&lt;/code&gt;、&lt;code&gt;?&lt;/code&gt;。把所有 &lt;code&gt;?&lt;/code&gt; 替换为 &lt;code&gt;L&lt;/code&gt; 或 &lt;code&gt;Q&lt;/code&gt;，最大化满足 $i&amp;lt;j$ 且 $s_i=&apos;L&apos;, s_j=&apos;Q&apos;$ 的对数。&lt;/p&gt;
+&lt;p&gt;:::note
+赛时想了半天怎么 DP， 最后针对 $N &amp;lt; 10$ 的情况写了二进制枚举，依旧部分分。
+:::&lt;/p&gt;
+&lt;h2&gt;一眼观察&lt;/h2&gt;
+&lt;p&gt;最优方案一定是：某个分界点左边的 &lt;code&gt;?&lt;/code&gt; 尽量当 &lt;code&gt;L&lt;/code&gt;，右边的 &lt;code&gt;?&lt;/code&gt; 尽量当 &lt;code&gt;Q&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;因为假设存在一种最好的构造方案，那么把左侧的 &apos;Q&apos; 和右侧的 &apos;L&apos; 交换 后，结果不会变差。&lt;/p&gt;
+&lt;p&gt;所以可做「从左到右枚举把多少个 &lt;code&gt;?&lt;/code&gt; 变成 &lt;code&gt;L&lt;/code&gt;」的线性扫描。&lt;/p&gt;
+&lt;h2&gt;复杂度&lt;/h2&gt;
+&lt;p&gt;$O(N)$。&lt;/p&gt;
+&lt;h2&gt;code&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;void solve()
+{
+	int n;
+	string s;
+	cin &amp;gt;&amp;gt; n &amp;gt;&amp;gt; s;
+
+	int tot = 0;
+	for (int i = 0; i &amp;lt; n; i++)
+	{
+		if (s[i] == &apos;Q&apos; or s[i] == &apos;?&apos;)
+		{
+			tot++;
+		}
+	}
+
+	int cur = 0, q = tot;
+	for (int i = 0; i &amp;lt; n; i++)
+	{
+		if (s[i] == &apos;Q&apos; or s[i] == &apos;?&apos;)
+		{
+			q--;
+		}
+		else
+		{
+			cur += q;
+		}
+	}
+
+	int ans = cur, l = 0;
+	q = tot;
+	for (int i = 0; i &amp;lt; n; i++)
+	{
+		if (s[i] == &apos;?&apos;)
+		{
+			q--;
+			cur = cur - l + q;
+			ans = max(ans, cur);
+			l++;
+		}
+		else if (s[i] == &apos;L&apos;)
+		{
+			l++;
+		}
+		else
+		{
+			q--;
+		}
+	}
+
+	cout &amp;lt;&amp;lt; ans;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;hr /&gt;
+&lt;h1&gt;F. 应急布线&lt;/h1&gt;
+&lt;h2&gt;题意简述&lt;/h2&gt;
+&lt;p&gt;有 $N$ 台电脑、$M$ 条现有网线。现有网络可能分裂成多个连通块。&lt;/p&gt;
+&lt;p&gt;要加「应急跳线」使全图连通，目标分两层：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;新增边数最少。&lt;/li&gt;
+&lt;li&gt;在满足 1 的前提下，让单台机器接入跳线数的最大值尽量小。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;输出这两个值。&lt;/p&gt;
+&lt;p&gt;:::note
+感觉这居然是最简单的一题，该说昨天 DSU 复习对了吗。
+:::&lt;/p&gt;
+&lt;h2&gt;第一步：最少新增边数&lt;/h2&gt;
+&lt;p&gt;若连通块个数为 $C$，最少新增边数必为：&lt;/p&gt;
+&lt;p&gt;$$
+C-1
+$$&lt;/p&gt;
+&lt;h2&gt;第二步：最小化最大接入数&lt;/h2&gt;
+&lt;p&gt;设最大接入数为 $D$。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;若 $C=1$，显然答案是 $0$。&lt;/li&gt;
+&lt;li&gt;若 $C\ge 2$，至少需要 $C-1$ 条新增边，共有 $2(C-1)$ 个端点要挂在机器上。&lt;/li&gt;
+&lt;li&gt;每台机器最多承受 $D$ 个端点，总承载能力是 $N\cdot D$。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;所以必要条件：&lt;/p&gt;
+&lt;p&gt;$$
+N\cdot D \ge 2(C-1)
+$$&lt;/p&gt;
+&lt;p&gt;又因为 $C\le N$，可知最优 $D$ 不会超过 $2$。&lt;/p&gt;
+&lt;p&gt;因此：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;若 $C=1$，$D=0$。&lt;/li&gt;
+&lt;li&gt;若 $C&amp;gt;1$ 且 $N \ge 2C-2$，$D=1$。&lt;/li&gt;
+&lt;li&gt;否则 $D=2$。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;赛时&lt;/h2&gt;
+&lt;p&gt;赛时用了别的想法：&lt;/p&gt;
+&lt;p&gt;对于 &lt;code&gt;size &amp;gt; 1&lt;/code&gt; 的联通块，彼此先连起来，每一个联通块应当用掉两个点位（用于连接彼此），剩余的度数为0的点位数（红色标点）是 $\sum (size - 2)$
+&lt;img src=&quot;image.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;然而只需要保证连通性即可，并不需要成环，所以有一条边可以拆开。这样一来 就又多了两个红色标点。
+&lt;img src=&quot;image-1.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;因此剩余的度数为0的点位数实际上是 $\sum (size - 2) + 2$&lt;/p&gt;
+&lt;p&gt;现在还剩下 &lt;code&gt;X&lt;/code&gt; 个 &lt;code&gt;size = 1&lt;/code&gt; 的联通块没有连接。&lt;/p&gt;
+&lt;p&gt;如果 $X \le \sum (size - 2) + 2$，说明可以把这些孤立点直接插在已有的边上，不会增加最大接入数，此时答案为1;
+&lt;img src=&quot;image-2.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;否则需要额外的边来连接这些孤立点，答案为2。
+&lt;img src=&quot;image-3.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;h2&gt;复杂度&lt;/h2&gt;
+&lt;p&gt;并查集近似 $O((N+M)\alpha(N))$。&lt;/p&gt;
+&lt;h2&gt;code&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;void solve()
+{
+	int N, M;
+	cin &amp;gt;&amp;gt; N &amp;gt;&amp;gt; M;
+
+	DSU dsu(N);
+	for (int i = 0; i &amp;lt; M; i++)
+	{
+		int a, b;
+		cin &amp;gt;&amp;gt; a &amp;gt;&amp;gt; b;
+		dsu.merge(a, b);
+	}
+
+	int C = dsu.getgroups();
+	int minEdges = C - 1;
+	int minMaxDeg;
+
+	if (C == 1)
+	{
+		minMaxDeg = 0;
+	}
+	else if (1ll * N &amp;gt;= 2ll * C - 2)
+	{
+		minMaxDeg = 1;
+	}
+	else
+	{
+		minMaxDeg = 2;
+	}
+
+	cout &amp;lt;&amp;lt; minEdges &amp;lt;&amp;lt; &apos; &apos; &amp;lt;&amp;lt; minMaxDeg;
+}
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;:::warning&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;记得特判 $C=1$ 时第二问是 0，不是 1。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;不止一个人看错 第二问到底要求什么 求得其实是新增的边 如果加上老边这题就有点不可做了
+:::&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;p&gt;G 和 H 已经不属于我的能力范围了 ... qwq&lt;/p&gt;
+&lt;p&gt;虽然说出来很不甘心就是了，但是姑且把 ai 的题解放在这里，有空了补。&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h1&gt;G. 理想温度&lt;/h1&gt;
+&lt;h2&gt;题意简述&lt;/h2&gt;
+&lt;p&gt;给数组 $A,B$，可选一个连续区间 $[l,r]$，给区间每个元素都加同一个整数 $k$。&lt;/p&gt;
+&lt;p&gt;问操作后最多有多少位置满足 $A_i=B_i$。&lt;/p&gt;
+&lt;p&gt;:::note
+把 &lt;code&gt;B-A&lt;/code&gt; 当作差值数组 &lt;code&gt;D&lt;/code&gt;。你选一个区间加 &lt;code&gt;k&lt;/code&gt;，本质是在区间里“让 &lt;code&gt;D=k&lt;/code&gt; 的变好，让 &lt;code&gt;D=0&lt;/code&gt; 的变坏”。
+:::&lt;/p&gt;
+&lt;h2&gt;转化&lt;/h2&gt;
+&lt;p&gt;定义差值：&lt;/p&gt;
+&lt;p&gt;$$
+D_i = B_i - A_i
+$$&lt;/p&gt;
+&lt;p&gt;原本满足条件的位置是 $D_i=0$，记数量为 &lt;code&gt;base&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;若选择区间并加 $k$，则区间内：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;原来 $D_i=k$ 的位置会变成匹配（收益 +1）&lt;/li&gt;
+&lt;li&gt;原来 $D_i=0$ 的位置会被破坏（收益 -1）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;所以固定某个 $k\ne0$ 后，问题变成：&lt;/p&gt;
+&lt;p&gt;在数组上找一段区间，使&lt;/p&gt;
+&lt;p&gt;$$
+#(D_i=k)-#(D_i=0)
+$$&lt;/p&gt;
+&lt;p&gt;最大。&lt;/p&gt;
+&lt;h2&gt;做法&lt;/h2&gt;
+&lt;p&gt;对每个出现过的非零值 $k$：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;收集所有 &lt;code&gt;D_i = k&lt;/code&gt; 的位置。&lt;/li&gt;
+&lt;li&gt;用前缀统计零的个数，在线性扫描这些位置时做 Kadane 变体。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;总复杂度 $O(n\log n)$（用 map），或哈希近似 $O(n)$。&lt;/p&gt;
+&lt;h2&gt;code&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;void solve()
+{
+	int n;
+	cin &amp;gt;&amp;gt; n;
+
+	vector&amp;lt;int&amp;gt; a(n), b(n), d(n);
+	for (int i = 0; i &amp;lt; n; i++) cin &amp;gt;&amp;gt; a[i];
+	for (int i = 0; i &amp;lt; n; i++) cin &amp;gt;&amp;gt; b[i];
+
+	int base = 0, best = 0;
+	vector&amp;lt;int&amp;gt; pre0(n + 1, 0);
+	map&amp;lt;int, vector&amp;lt;int&amp;gt; &amp;gt; pos;
+
+	for (int i = 0; i &amp;lt; n; i++)
+	{
+		d[i] = b[i] - a[i];
+		pre0[i + 1] = pre0[i] + (d[i] == 0 ? 1 : 0);
+		if (d[i] == 0)
+		{
+			base++;
+		}
+		else
+		{
+			pos[d[i]].push_back(i);
+		}
+	}
+
+	for (auto it = pos.begin(); it != pos.end(); it++)
+	{
+		const vector&amp;lt;int&amp;gt;&amp;amp; v = it-&amp;gt;second;
+		int cur = 0;
+		for (int j = 0; j &amp;lt; (int)v.size(); j++)
+		{
+			if (j == 0)
+			{
+				cur = max(0, cur) + 1;
+			}
+			else
+			{
+				int l = v[j - 1] + 1;
+				int r = v[j] - 1;
+				int z = pre0[r + 1] - pre0[l];
+				cur -= z;
+				cur = max(0, cur) + 1;
+			}
+			best = max(best, cur);
+		}
+	}
+
+	cout &amp;lt;&amp;lt; base + best;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;hr /&gt;
+&lt;h1&gt;H. 足球训练&lt;/h1&gt;
+&lt;h2&gt;题意简述&lt;/h2&gt;
+&lt;p&gt;有 $n$ 名队员，第 $i$ 名初始实力 $a_i$、天赋 $b_i$。&lt;/p&gt;
+&lt;p&gt;给总训练天数 $m$，分配 $k_i$（非负整数，和为 $m$）后，最大化：&lt;/p&gt;
+&lt;p&gt;$$
+\prod_{i=1}^{n} (a_i + k_i b_i)
+$$&lt;/p&gt;
+&lt;p&gt;输出最大值对 $998244353$ 取模。&lt;/p&gt;
+&lt;p&gt;:::note
+这题本质是边际收益递减，直接一天一天贪心会超时，所以要做“二分水位 + 堆补尾巴”。
+:::&lt;/p&gt;
+&lt;h2&gt;核心思想&lt;/h2&gt;
+&lt;p&gt;把目标取对数，变成：&lt;/p&gt;
+&lt;p&gt;$$
+\max \sum_i \ln(a_i + k_i b_i)
+$$&lt;/p&gt;
+&lt;p&gt;这是离散凹优化。每给某人再加 1 天的边际收益为：&lt;/p&gt;
+&lt;p&gt;$$
+\Delta_i(k)=\ln(a_i+(k+1)b_i)-\ln(a_i+kb_i)
+$$&lt;/p&gt;
+&lt;p&gt;随 $k$ 递减。&lt;/p&gt;
+&lt;p&gt;所以可用「参数二分 + 少量堆补差」：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;二分一个阈值，先算每人应分配的大致天数。&lt;/li&gt;
+&lt;li&gt;为避免浮点误差导致超发，先保守减一点。&lt;/li&gt;
+&lt;li&gt;剩余少量天数用优先队列按当前最大边际收益补齐。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;复杂度&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;二分约 80 轮，每轮 $O(n)$。&lt;/li&gt;
+&lt;li&gt;补差阶段设剩余为 &lt;code&gt;rem&lt;/code&gt;，复杂度 $O((n+rem)\log n)$。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;实践上可过本题范围。&lt;/p&gt;
+&lt;h2&gt;code&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;
+const int MOD = 998244353;
+
+struct Node
+{
+	double gain;
+	int id;
+	bool operator&amp;lt;(const Node&amp;amp; other) const
+	{
+		return gain &amp;lt; other.gain; // 大根堆
+	}
+};
+
+void solve()
+{
+	int n;
+	int m;
+	cin &amp;gt;&amp;gt; n &amp;gt;&amp;gt; m;
+
+	vector&amp;lt;int&amp;gt; a(n), b(n);
+	for (int i = 0; i &amp;lt; n; i++) cin &amp;gt;&amp;gt; a[i] &amp;gt;&amp;gt; b[i];
+
+	double L = 0.0, R = 2e14;
+	for (int it = 0; it &amp;lt; 80; it++)
+	{
+		double mid = (L + R) * 0.5;
+		int cnt = 0;
+
+		for (int i = 0; i &amp;lt; n; i++)
+		{
+			if (mid * (double)b[i] &amp;gt;= (double)a[i])
+			{
+				int k = (int)(mid - (double)a[i] / (double)b[i]) + 1;
+				cnt += k;
+				if (cnt &amp;gt; m + 1000000LL) break; // 防溢出保护
+			}
+		}
+
+		if (cnt &amp;gt;= m) R = mid;
+		else L = mid;
+	}
+
+	vector&amp;lt;int&amp;gt; k(n, 0);
+	int used = 0;
+
+	for (int i = 0; i &amp;lt; n; i++)
+	{
+		if (L * (double)b[i] &amp;gt;= (double)a[i])
+		{
+			int x = (int)(L - (double)a[i] / (double)b[i]) + 1;
+			x = max(0LL, x - 5);
+			k[i] = x;
+			used += x;
+		}
+	}
+
+	priority_queue&amp;lt;Node&amp;gt; pq;
+	for (int i = 0; i &amp;lt; n; i++)
+	{
+		double g = (double)b[i] / (double)(a[i] + k[i] * b[i]);
+		pq.push((Node){g, i});
+	}
+
+	while (used &amp;lt; m)
+	{
+		Node cur = pq.top();
+		pq.pop();
+
+		int id = cur.id;
+		++k[id];
+		++used;
+
+		double g = (double)b[id] / (double)(a[id] + k[id] * b[id]);
+		pq.push((Node){g, id});
+	}
+
+	int ans = 1;
+	for (int i = 0; i &amp;lt; n; i++)
+	{
+		int val = (a[i] % MOD + (k[i] % MOD) * (b[i] % MOD)) % MOD;
+		ans = (ans * val) % MOD;
+	}
+
+	cout &amp;lt;&amp;lt; ans;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;易错点&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;直接贪心一天一天分配会超时（$m$ 可到 $10^9$）。&lt;/li&gt;
+&lt;li&gt;结果取模在最后乘法阶段做；$a_i + k_i b_i$ 先转成模意义即可。&lt;/li&gt;
+&lt;li&gt;该题实现对浮点精度较敏感，建议自测多组随机数据做稳定性检查。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h1&gt;总结&lt;/h1&gt;
+&lt;p&gt;我的分数大概是这么多（也可能再低一点吧。其实打的，相当一般啊，感觉就是零基础 / 半吊子 + DSU 板子熟练使用者
+&lt;img src=&quot;e0d7db8bf7ba8da65682724582540989.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;我曾经对 cf 有巨大的偏见，觉得它 &quot;除了 guessing 什么都练不到&quot; 但是这次的 B 题 居然被我手搓出规律了，在此我必须承认 cf 大人的强大，我将一直拥护 cf 。&lt;/p&gt;
+&lt;p&gt;当然黑龙江的 b 组 其实没啥含金量 约等于校内竞争了。但是我再怎么说也是训了那么久，打成这样终归不是很满意，心有不甘&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;2026-04-29 update:&lt;/p&gt;
+&lt;p&gt;全省第二！这下不再心有不甘了。哈哈哈&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;image-4.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+</content:encoded></item><item><title>蓝桥杯 C++ B 组常用板子</title><link>https://alisa22580.pages.dev/posts/lanqiao-cpp-b-common/</link><guid isPermaLink="true">https://alisa22580.pages.dev/posts/lanqiao-cpp-b-common/</guid><description>个人复习用</description><pubDate>Fri, 10 Apr 2026 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;:::note
+个人复习用，由于打的 B组 太难的也用不上，只整理了一点，用 ai 审核了一遍似乎是都能用在 cpp11 ，但是其实还是会心慌&lt;/p&gt;
+&lt;p&gt;希望一切顺利。
+:::&lt;/p&gt;
+&lt;h1&gt;1. 基础中的基础&lt;/h1&gt;
+&lt;h2&gt;1.1 基本板子&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;#include &amp;lt;bits/stdc++.h&amp;gt;
+using namespace std;
+#define int long long
+#define endl &apos;\n&apos;
+#define all(x) (x).begin(), (x).end()
+
+void solve()
+{
+
+}
+
+signed main()
+{
+    cin.tie(0)-&amp;gt;sync_with_stdio(0);
+    cout &amp;lt;&amp;lt; setiosflags(ios::fixed) &amp;lt;&amp;lt; setprecision(2);
+    int tt = 1;
+    cin &amp;gt;&amp;gt; tt;
+    while (tt--)
+    {
+        solve();
+        cout &amp;lt;&amp;lt; endl;
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;1.2 常见类型范围&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;int&lt;/code&gt; 约 $2.1 \times 10^9$。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;long long&lt;/code&gt; 约 $9 \times 10^{18}$。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;1.3 排序与比较器&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;vector&amp;lt;pair&amp;lt;int,int&amp;gt;&amp;gt; a;
+// cpp11 不支持 泛型lambda 因此传参时候不能使用 auto&amp;amp;&amp;amp; 可惜可惜
+sort(a.begin(), a.end(), [](pair&amp;lt;int, int&amp;gt; x, pair&amp;lt;int, int&amp;gt; y) {
+    if (x.first != y.first) return x.first &amp;lt; y.first;
+    return x.second &amp;gt; y.second;
+});
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1&gt;2. STL 高频容器和用法&lt;/h1&gt;
+&lt;h2&gt;2.1 &lt;code&gt;string&lt;/code&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;子串：&lt;code&gt;s.substr(pos, len)&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;查找：&lt;code&gt;s.find(&quot;abc&quot;)&lt;/code&gt;，找不到返回 &lt;code&gt;string::npos&lt;/code&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;2.2 &lt;code&gt;queue&lt;/code&gt; / &lt;code&gt;priority_queue&lt;/code&gt;&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;queue&amp;lt;int&amp;gt; q;
+q.push(1);
+q.pop();
+
+priority_queue&amp;lt;int&amp;gt; maxh; // 大根堆
+priority_queue&amp;lt;int, vector&amp;lt;int&amp;gt;, greater&amp;lt;int&amp;gt;&amp;gt; minh; // 小根堆
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;2.3 &lt;code&gt;set&lt;/code&gt; / &lt;code&gt;map&lt;/code&gt; 与 &lt;code&gt;unordered_set&lt;/code&gt; / &lt;code&gt;unordered_map&lt;/code&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;set/map&lt;/code&gt;：有序，复杂度通常 $O(\log n)$。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;unordered_*&lt;/code&gt;：均摊 $O(1)$，但极端可能退化。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code&gt;unordered_map&amp;lt;int, int&amp;gt; cnt;
+for (int x : {1,2,2,3,3,3}) cnt[x]++;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1&gt;3. 简单的板子&lt;/h1&gt;
+&lt;h2&gt;3.1 前缀和&lt;/h2&gt;
+&lt;p&gt;适用：区间和查询频繁。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;vector&amp;lt;int&amp;gt; v(n + 1), pre = v;
+for (int i = 1; i &amp;lt;= n; i++)
+{
+    pre[i] = pre[i - 1] + v[i];
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;3.2 差分&lt;/h2&gt;
+&lt;p&gt;适用：区间加法更新频繁。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;vector&amp;lt;int&amp;gt; diff(n + 2, 0);
+// 给 [l, r] +k
+diff[l] += k;
+diff[r + 1] -= k;
+
+for (int i = 1; i &amp;lt;= n; i++) 
+{
+    diff[i] += diff[i - 1];
+    // diff[i] 就是最终值
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;3.3 二分答案&lt;/h2&gt;
+&lt;p&gt;发现“答案满足单调性”时，优先考虑二分。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;int l = 0, r = 1e18;
+int ans = r;
+while (l &amp;lt;= r) {
+    auto mid = (l + r) &amp;gt;&amp;gt; 1;
+    if (check(mid))
+    {
+        r = (ans = mid) - 1;
+    }
+    else
+    {
+        l = mid + 1;
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;3.4 双指针&lt;/h2&gt;
+&lt;p&gt;适用：区间性质可维护（例如“窗口内不同元素数不超过 k”）。&lt;/p&gt;
+&lt;p&gt;核心套路：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;右指针扩展。&lt;/li&gt;
+&lt;li&gt;不满足条件时左指针收缩。&lt;/li&gt;
+&lt;li&gt;每步更新答案。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;:::note
+差不多是 枚举一个 更新另一个 这样
+:::&lt;/p&gt;
+&lt;h2&gt;3.5 BFS&lt;/h2&gt;
+&lt;p&gt;具有无优先级搜索的特性，稍加改造就变成 dijk
+适用：无权图最短路、迷宫最短步数。&lt;/p&gt;
+&lt;h2&gt;3.6 Dijkstra&lt;/h2&gt;
+&lt;p&gt;跟 bfs 是大致相同的，把 queue 换成 priority_queue 就行了。&lt;/p&gt;
+&lt;p&gt;要特别注意的是 插入优先队列的元素是 pair&amp;lt;距离, 节点&amp;gt;，而不是 pair&amp;lt;节点, 距离&amp;gt;，因为优先级是根据距离来排序的。&lt;/p&gt;
+&lt;h2&gt;3.7 DFS 与回溯&lt;/h2&gt;
+&lt;p&gt;适用：全排列、组合枚举、连通块统计。&lt;/p&gt;
+&lt;p&gt;回溯写法注意：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;进入下一层前“做选择”。&lt;/li&gt;
+&lt;li&gt;回来后“撤销选择”。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;:::tip
+全排列还可以用&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;do {
+
+} while (next_permutation(all(a)));
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;值得一提的是，上面的 &lt;code&gt;next_permutation&lt;/code&gt; 是 copilot 帮我补全的，可见我的补全依赖已经到达了一个叹为观止的地步。
+:::&lt;/p&gt;
+&lt;h2&gt;3.8 并查集（DSU）&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt; class DSU
+{
+private:
+    vector&amp;lt;int&amp;gt; parent, rank, size;
+    int count;
+
+public:
+    DSU(int n) : parent(n + 1), rank(n + 1, 0), size(n + 1, 1), count(n)
+    {
+        iota(all(parent), 0ll);
+    }
+
+    int find(int x)
+    {
+        return parent[x] == x ? x : parent[x] = find(parent[x]);
+    }
+
+    void merge(int i, int j)
+    {
+        int ri = find(i), rj = find(j);
+        if (ri == rj)
+        {
+            return;
+        }
+
+        if (rank[ri] &amp;lt; rank[rj])
+        {
+            swap(ri, rj);
+        }
+        parent[rj] = ri;
+        size[ri] += size[rj];
+        if (rank[ri] == rank[rj])
+        {
+            rank[ri]++;
+        }
+        count--;
+    }
+
+    bool issame(int i, int j)
+    {
+        return find(i) == find(j);
+    }
+
+    int getsize(int x)
+    {
+        return size[find(x)];
+    }
+
+    int getgroups()
+    {
+        return count;
+    }
+};
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;写的简短些似乎可以&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;vector&amp;lt;int&amp;gt; parent(n + 1);
+
+void init()
+{
+    iota(all(parent), 0ll);
+}
+
+int find(int x)
+{
+    return x == parent[x] ? x : parent[x] = find(parent[x]);
+}
+
+void merge(int i, int j)
+{
+    auto ri = find(i), rj = find(j);
+    parent[ri] = rj;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;剩下的 size, count 等属性自己慢慢往里面添加即可。&lt;/p&gt;
+&lt;h2&gt;3.9 BIT&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;适用于频繁的区间求和和单点更新。复杂度 $O(\log n)$。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code&gt;class Fenwick
+{
+private:
+    vector&amp;lt;int&amp;gt; tree;
+    int n;
+public:
+    Fenwick(int n) : tree(n + 1, 0), n(n) {}
+
+    int lowbit(int x)
+    {
+        return x &amp;amp; -x;
+    }
+
+    void update(int i, int delta)
+    {
+        for (; i &amp;lt;= n; i += lowbit(i))
+        {
+            tree[i] += delta;
+        }
+    }
+
+    int query(int i)
+    {
+        int sum = 0;
+        for (; i &amp;gt; 0; i -= lowbit(i))
+        {
+            sum += tree[i];
+        }
+        return sum;
+    }
+
+    int range_query(int l, int r)
+    {
+        return query(r) - query(l - 1);
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;3.10 线段树&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;代码量略大，基本不考虑了...&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code&gt;class SegTree
+{
+private:
+    int n;
+    vector&amp;lt;int&amp;gt; sum, ad;
+    vector&amp;lt;int&amp;gt; v;
+
+public:
+    void build(int l, int r, int i)
+    {
+        ad[i] = 0;
+        if (l == r)
+        {
+            sum[i] = v[l];
+            return;
+        }
+
+        auto mid = (l + r) &amp;gt;&amp;gt; 1;
+        build(l, mid, i &amp;lt;&amp;lt; 1);
+        build(mid + 1, r, i &amp;lt;&amp;lt; 1 | 1);
+        up(i);
+    }
+
+    SegTree(int n) : n(n), sum(n &amp;lt;&amp;lt; 2), ad(n &amp;lt;&amp;lt; 2), v(n + 1)
+    {
+        build(1, n, 1);
+    };
+
+    SegTree(vector&amp;lt;int&amp;gt; &amp;amp;v) : n(v.size() - 1), sum(n &amp;lt;&amp;lt; 2), ad(n &amp;lt;&amp;lt; 2), v(v)
+    {
+        build(1, n, 1);
+    }
+
+    void lazy(int i, int v, int len)
+    {
+        sum[i] += v * len;
+        ad[i] += v;
+    }
+
+    void up(int i)
+    {
+        sum[i] = sum[i &amp;lt;&amp;lt; 1] + sum[i &amp;lt;&amp;lt; 1 | 1];
+    }
+
+    void down(int i, int ln, int rn)
+    {
+        if (ad[i])
+        {
+            lazy(i &amp;lt;&amp;lt; 1, ad[i], ln);
+            lazy(i &amp;lt;&amp;lt; 1 | 1, ad[i], rn);
+            ad[i] = 0;
+        }
+    }
+
+    void update(int jobl, int jobr, int v, int l, int r, int i)
+    {
+        if (jobl &amp;lt;= l and jobr &amp;gt;= r)
+        {
+            lazy(i, v, r - l + 1);
+            return;
+        }
+
+        auto mid = (l + r) &amp;gt;&amp;gt; 1;
+        down(i, mid - l + 1, r - mid);
+
+        if (jobl &amp;lt;= mid)
+        {
+            update(jobl, jobr, v, l, mid, i &amp;lt;&amp;lt; 1);
+        }
+        if (jobr &amp;gt; mid)
+        {
+            update(jobl, jobr, v, mid + 1, r, i &amp;lt;&amp;lt; 1 | 1);
+        }
+        up(i);
+    }
+
+    void update(int jobl, int jobr, int v)
+    {
+        update(jobl, jobr, v, 1, n, 1);
+    }
+
+    int query(int jobl, int jobr, int l, int r, int i)
+    {
+        if (jobl &amp;lt;= l and jobr &amp;gt;= r)
+        {
+            return sum[i];
+        }
+        auto mid = (l + r) &amp;gt;&amp;gt; 1;
+        down(i, mid - l + 1, r - mid);
+        int res = 0;
+        if (jobl &amp;lt;= mid)
+        {
+            res += query(jobl, jobr, l, mid, i &amp;lt;&amp;lt; 1);
+        }
+        if (jobr &amp;gt; mid)
+        {
+            res += query(jobl, jobr, mid + 1, r, i &amp;lt;&amp;lt; 1 | 1);
+        }
+        return res;
+    }
+
+    int query(int jobl, int jobr)
+    {
+        return query(jobl, jobr, 1, n, 1);
+    }
+};
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1&gt;4. 动态规划入门框架&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;我能做到这玩意吗&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;大部分 DP 题目都可以从这些角度入手：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;状态是什么（&lt;code&gt;dp[i]&lt;/code&gt;、&lt;code&gt;dp[i][j]&lt;/code&gt;）？&lt;/li&gt;
+&lt;li&gt;转移从哪里来？&lt;/li&gt;
+&lt;li&gt;初始化和遍历顺序是什么？&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1&gt;5. 数学与数论高频点&lt;/h1&gt;
+&lt;h2&gt;5.1 gcd \ lcm&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;gcd&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code&gt;int gcd(int a, int b)
+{
+    return b == 0 ? a : gcd(b, a % b);
+    // 可以记 babab 
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;lcm&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code&gt;int lcm(int a, int b)
+{
+    return a / gcd(a, b) * b;
+    // 这是为了避免乘法溢出
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;5.2 快速幂&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;int ksm(int base, int exp)
+{
+    int ans = 1;
+    while (exp)
+    {
+        if (exp &amp;amp; 1)
+        {
+            ans = ans * base % MOD;
+        }
+        base = base * base % MOD;
+        exp &amp;gt;&amp;gt;= 1;
+    }
+    return ans;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;5.3 质数筛&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;const int N = 1e7;
+vector&amp;lt;int&amp;gt; isprime(N + 1, 1);
+vector&amp;lt;int&amp;gt; primes;
+isprime[0] = isprime[1] = 0;
+
+void init()
+{
+    for (int i = 2; i &amp;lt;= N / i; i++)
+    {
+        if (isprime[i])
+        {
+            primes.emplace_back(i);
+            for (int j = i * i; j &amp;lt;= N; j += i)
+            {
+                isprime[j] = 0;
+            }
+        }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;5.4 逆元&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;int inv(int x)
+{
+    return ksm(x, MOD - 2);
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;5.5 组合数&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;const int N = 1e6;
+// 预处理阶乘和逆元阶乘
+vector&amp;lt;int&amp;gt; fact(N + 1, 1), invf(N + 1, 1);
+void init()
+{
+    fact[0] = 1;
+    for (int i = 1; i &amp;lt;= N; i++)
+    {
+        fact[i] = fact[i - 1] * i % MOD;
+    }
+
+    invf[N] = inv(fact[N]);
+    for (int i = N - 1; i &amp;gt;= 1; i--)
+    {
+        invf[i] = invf[i + 1] * (i + 1) % MOD;
+        // 可以记成 1/(i!) = 1/((i+1)!) * (i+1)
+    }
+}
+
+/* C(n, k) = n! / (k! * (n - k)!)
+当 n &amp;lt; k 或 k &amp;lt; 0 时 C(n, k) = 0
+*/ 
+
+int C(int n, int k)
+{
+    if (n &amp;lt; k or k &amp;lt; 0) 
+    {
+        return 0;
+    }
+    return fact[n] * invf[k] % MOD * invf[n - k] % MOD;
+}
+&lt;/code&gt;&lt;/pre&gt;
+</content:encoded></item><item><title>GKD -- 李跳跳的平替推荐</title><link>https://alisa22580.pages.dev/posts/gkd-shizuku-usage-tutorial/</link><guid isPermaLink="true">https://alisa22580.pages.dev/posts/gkd-shizuku-usage-tutorial/</guid><description>GKD 使用教程，以及一些 Root、Shizuku、ADB 相关的原理学习</description><pubDate>Thu, 09 Apr 2026 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;写在前面&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;免责声明：本文仅用于学习和效率优化，不鼓励用于任何违规用途。自动点击有风险，尤其是付款、授权、删除、转账类页面，请务必谨慎。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1&gt;1. GKD 介绍&lt;/h1&gt;
+&lt;p&gt;::github{repo=&quot;gkd-kit/gkd&quot;}&lt;/p&gt;
+&lt;p&gt;GKD 是一个&lt;strong&gt;基于高级选择器和订阅规则的 Android 自动点击工具&lt;/strong&gt;。常见用途是减少重复点击流程，比如跳过某些开屏弹窗、关闭已知干扰提醒、做固定场景的一键确认。&lt;/p&gt;
+&lt;p&gt;通俗来说，GKD 可以让我们跳过各种广告、弹窗、提示，直接点击“同意”、“跳过”、“关闭”等按钮，提升使用体验和效率。包括但不限于 B站 拼多多 :spoiler[甚至还有&lt;strong&gt;运动世界&lt;/strong&gt;，非常之好用。]&lt;/p&gt;
+&lt;p&gt;GKD 本身核心依赖是无障碍服务，但是为了避免 Android 系统对无障碍权限的限制和误杀，GKD 的一些增强功能（比如更精准的界面元素识别、跨应用操作等）会借助 Shizuku 来调用系统级 API，从而实现更稳定和高效的自动化体验。&lt;/p&gt;
+&lt;h1&gt;2. 上文提到的一些概念&lt;/h1&gt;
+&lt;h2&gt;2.1 Root&lt;/h2&gt;
+&lt;p&gt;Root 可以理解为 Android 的最高权限。拿到它之后，你对系统的控制能力会显著增强。&lt;/p&gt;
+&lt;p&gt;优点是权限足够高，很多操作一把过；代价是安全风险和维护成本一起上来，系统完整性、保修、金融类应用兼容都可能受影响。&lt;/p&gt;
+&lt;p&gt;作为最强的权限方案，小米厂商对用户的 Root 权限管理也相当严格，若通过正常渠道申请，需要在小米社区提交申请，审核通过后才能获得 Root 权限，可谓十分麻烦。&lt;/p&gt;
+&lt;p&gt;因此，ADB 和 Shizuku 这两种 &quot;非 Root&quot; 方案就显得非常有吸引力。&lt;/p&gt;
+&lt;h2&gt;2.2 ADB&lt;/h2&gt;
+&lt;p&gt;ADB 全称 Android Debug Bridge，本质不是权限工具，而是开发调试桥。&lt;/p&gt;
+&lt;p&gt;它允许电脑（或无线调试通道）向手机发命令，完成调试、安装、授权、拉日志等操作。你可以把它理解成“官方调试后门”，前提是你主动开启了开发者选项和 USB 调试/无线调试。&lt;/p&gt;
+&lt;p&gt;ADB 的权限级别介于普通应用和 Root 之间，能执行一些系统级操作，但需要每次重启后重新授权启动服务。它的使用需要通过命令行，而且还要插线，具有一定门槛。&lt;/p&gt;
+&lt;h2&gt;2.3 Shizuku&lt;/h2&gt;
+&lt;p&gt;Shizuku 是一个中间件，核心功能是把“需要高权限的系统 API 调用”集中到一个后台服务里，再把能力安全地转交给支持它的应用。 它的出现让很多原本需要 Root 权限的功能，在不 Root 的情况下也能实现，能让用户方便地能在一定范围内让应用“借到”系统级能力。&lt;/p&gt;
+&lt;p&gt;Shizuku 有三种常见启动方式：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;通过 Root 启动：最省心，权限高，通常体验最好。&lt;/li&gt;
+&lt;li&gt;通过连接电脑启动（ADB）：最通用，稳定，但每次重启后也常要重新来一次。&lt;/li&gt;
+&lt;li&gt;通过无线调试启动（Android 11+）：不用电脑线，但重启后通常需要再次启动。这是我们推荐的方案，兼顾了便利和安全。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;2.4 关系总结&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Root：直接给系统最高权限。&lt;/li&gt;
+&lt;li&gt;ADB：提供命令桥接通道。&lt;/li&gt;
+&lt;li&gt;Shizuku：通过 Root 或 ADB 把系统调用能力转交给应用。&lt;/li&gt;
+&lt;li&gt;GKD：利用无障碍能力 + 规则匹配，在特定条件下执行点击等动作。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;3. 配置过程&lt;/h1&gt;
+&lt;h2&gt;3.1 安装 GKD&lt;/h2&gt;
+&lt;p&gt;建议优先从官方渠道安装：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;https://gkd.li/guide/&lt;/li&gt;
+&lt;li&gt;https://github.com/gkd-kit/gkd/releases&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;3.2 启用无障碍服务&lt;/h2&gt;
+&lt;p&gt;打开软件，勾选第一个选项，点击右上角进入配置。&lt;img src=&quot;image.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;h2&gt;3.3 安装并启动 Shizuku&lt;/h2&gt;
+&lt;p&gt;::github{repo=&quot;RikkaApps/Shizuku&quot;}
+&lt;a href=&quot;https://shizuku.rikka.app/zh-hans/guide/setup/&quot;&gt;Shizuku 官方文档&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;A. Root 启动&lt;/h3&gt;
+&lt;p&gt;如果你的设备已 Root，直接在 Shizuku 内点击启动即可。&lt;/p&gt;
+&lt;h3&gt;B. 无线调试启动（Android 11+）&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;打开 Shizuku，点击配对。&lt;img src=&quot;image-1.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/li&gt;
+&lt;li&gt;点击 开发者选项，找到无线调试。&lt;img src=&quot;image-2.png&quot; alt=&quot;alt text&quot; /&gt;
+&lt;img src=&quot;image-3.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/li&gt;
+&lt;li&gt;勾选 无线调试，点击 配对设备，输入 Shizuku 给出的配对码。&lt;img src=&quot;image-4.png&quot; alt=&quot;alt text&quot; /&gt;
+&lt;img src=&quot;image-5.png&quot; alt=&quot;alt text&quot; /&gt;
+&lt;img src=&quot;image-6.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/li&gt;
+&lt;li&gt;配对成功后，回到 Shizuku 点击启动。&lt;img src=&quot;image-7.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/li&gt;
+&lt;li&gt;在上方授权 gkd 。&lt;img src=&quot;image-8.png&quot; alt=&quot;alt text&quot; /&gt;
+&lt;img src=&quot;image-9.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3&gt;C. 连接电脑 ADB 启动&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;电脑安装 platform-tools（ADB）。&lt;/li&gt;
+&lt;li&gt;手机开启 USB 调试并连接电脑。&lt;/li&gt;
+&lt;li&gt;执行 adb devices，确认设备状态为 device。&lt;/li&gt;
+&lt;li&gt;按 Shizuku 页面给出的命令启动服务。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;:::note
+无线调试/ADB 启动在手机重启后通常需要重新启动，这是系统机制导致的正常现象。
+:::&lt;/p&gt;
+&lt;h2&gt;3.4 导入订阅规则&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;https://raw.githubusercontent.com/AIsouler/GKD_subscription/main/dist/AIsouler_gkd.json5
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;在 GKD 内导入路径一般是：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;打开 GKD，进入订阅页面，选择添加订阅，粘贴上述 URL。
+&lt;img src=&quot;image-10.png&quot; alt=&quot;alt text&quot; /&gt;
+&lt;img src=&quot;image-11.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/li&gt;
+&lt;li&gt;保存并拉取更新。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;如果看到订阅名称、版本、应用规则列表正常出现，说明导入成功。&lt;/p&gt;
+&lt;h2&gt;3.5 配置规则&lt;/h2&gt;
+&lt;p&gt;进入应用界面，逐一调整即可。
+&lt;img src=&quot;image-12.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;h1&gt;4. 注意事项&lt;/h1&gt;
+&lt;p&gt;:::warning
+自动点击虽然方便，但也有风险，尤其是涉及到资金、权限、账号安全等敏感操作的页面。为了避免误操作导致的损失，建议在以下场景一律禁用自动点击：
+以下场景建议默认禁用：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;付款与转账。&lt;/li&gt;
+&lt;li&gt;删除、卸载、格式化。&lt;/li&gt;
+&lt;li&gt;系统授权和隐私协议。&lt;/li&gt;
+&lt;li&gt;账号安全验证。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;这些页面宁愿手点，也不要赌自动化“刚好没错”。
+:::&lt;/p&gt;
+&lt;p&gt;大功告成，祝使用愉快。&lt;/p&gt;
+</content:encoded></item><item><title>简短的VPN使用教程</title><link>https://alisa22580.pages.dev/posts/vpn-usage-tutorial/</link><guid isPermaLink="true">https://alisa22580.pages.dev/posts/vpn-usage-tutorial/</guid><description>内涵丛雨云推荐（更适合二次元宝宝体质</description><pubDate>Fri, 03 Apr 2026 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;写在前面&lt;/h1&gt;
+&lt;p&gt;捣鼓博客的初衷就是想多发一些“经验分享帖”，但是又总会怀疑自己自作多情的搞这么一出 是不是其实无人在意。&lt;/p&gt;
+&lt;p&gt;但是还是有很多朋友问我这怎么搞那怎么搞，同样的东西解释很多次大概也会心烦。倒不如趁此机会一鼓作气把东西写出来，这样以后别人问起来就可以帅气（吗）地把博客链接甩出去，还能给博客加点浏览量。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;image.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;看到有人确实需要这些内容，我就觉得写出来也不是白写，活着也不是白活了。&lt;/p&gt;
+&lt;p&gt;换而言之，如果这篇帖子对你有帮助的话，欢迎多多分享！&lt;/p&gt;
+&lt;h1&gt;1. 环境讲解&lt;/h1&gt;
+&lt;p&gt;在进入具体操作之前，我们先来理清几个经常被混淆的概念。虽然它们最终的目的都是让你“科学上网”，但原理和使用体验却大不相同。&lt;/p&gt;
+&lt;h2&gt;1. “梯子” (The Ladder)：&lt;/h2&gt;
+&lt;p&gt;“梯子”并不是一个技术术语，而是中文互联网环境下的一个比喻。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;含义： 泛指一切能够绕过网络限制、访问海外网站的工具。&lt;/li&gt;
+&lt;li&gt;逻辑： 墙（GFW）挡住了去路，所以我们需要一把“梯子”翻过去。无论你用的是 VPN、SSR 还是 Clash，在口语中都可以统称为“找个梯子”。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;2. VPN (虚拟专用网络)：&lt;/h2&gt;
+&lt;p&gt;VPN 的全称是 &lt;code&gt;Virtual Private Network&lt;/code&gt; 。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;初衷：它的设计初衷不是为了“翻墙”，而是为了数据加密。比如出差的员工通过 VPN 安全地连接回公司内网。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;你哈埋土就需要 VPN 来访问教务在线，不可不谓是、、科学上网的先驱！此处或许应有掌声。
+&lt;img src=&quot;966167b05a75e7ee2e35a4ab64f522b5.jpg&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;特点：全局加密： 开启后，你电脑上所有的网络流量都会经过加密通道。&lt;/li&gt;
+&lt;li&gt;现状：虽然安全，但由于 VPN 的流量特征非常明显，容易被识别封锁，且开启后访问国内网站（如淘宝、百度）速度会变慢。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;3. 代理 (Proxy) 与协议：&lt;/h2&gt;
+&lt;p&gt;为了避开检测，技术圈开发了更灵活的代理协议（如 Shadowsocks, V2Ray, Trojan 等）。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;原理： 就像是在你的网络请求外包了一层“普通快递”的纸箱，让防火墙以为你只是在访问普通的海外网页。&lt;/li&gt;
+&lt;li&gt;服务商： 提供这些代理协议访问权限的网站，通常被称为 &lt;strong&gt;“机场”&lt;/strong&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;4. Clash：全能的“指挥中心”&lt;/h2&gt;
+&lt;p&gt;clash 是 基于规则的软件内代理核心 ...
+这个听起来很高端很专业，其实就是一个让订阅服务运行起来的平台。这样的平台当然不止一个，我在此推荐 clash 是因为它全平台通用，界面设计现代，足够方便。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;核心优势——分流 (Rule-based)： 这是它区别于传统 VPN 的最大优点。Clash 会根据预设规则自动判断：
+&lt;ul&gt;
+&lt;li&gt;当你访问 YouTube 时，它自动走加速通道；&lt;/li&gt;
+&lt;li&gt;当你访问 微信 时，它自动走国内直连，不消耗加速流量。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;我们可以用一个形象的比喻来总结：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;“科学上网” 是你的目的；&lt;/li&gt;
+&lt;li&gt;“梯子” 是你对这类工具的亲切称呼；&lt;/li&gt;
+&lt;li&gt;“机场（订阅服务）” 是为你提供服务的加油站/供应商；&lt;/li&gt;
+&lt;li&gt;“Clash” 是一台台配置豪华、带自动导航的赛车。
+你把“订阅链接”输入到“Clash”里，就像是给赛车加满了油并设定好了最优路线，然后你就可以畅通无阻地出发了。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;2. 正式的使用教程&lt;/h1&gt;
+&lt;p&gt;通过上文我们知道，我们需要从 机场 中获得订阅服务，并通过 clash 来使用。&lt;/p&gt;
+&lt;h2&gt;1. clash 的安装&lt;/h2&gt;
+&lt;h3&gt;windows&lt;/h3&gt;
+&lt;p&gt;推荐使用 &lt;a href=&quot;https://github.com/clash-verge-rev/clash-verge-rev/releases/tag/v2.4.7&quot;&gt;clash verge rev&lt;/a&gt;，界面友好，功能齐全，适合大多数用户。&lt;/p&gt;
+&lt;p&gt;::github{repo=&quot;clash-verge-rev/clash-verge-rev&quot;}&lt;/p&gt;
+&lt;h3&gt;Android&lt;/h3&gt;
+&lt;p&gt;推荐使用 &lt;a href=&quot;https://github.com/MetaCubeX/ClashMetaForAndroid&quot;&gt;Clash Meta&lt;/a&gt; ，它是目前安卓平台上功能最全、更新最活跃的 Clash 版本。
+::github{repo=&quot;MetaCubeX/ClashMetaForAndroid&quot;}&lt;/p&gt;
+&lt;h3&gt;ios&lt;/h3&gt;
+&lt;p&gt;没有用过ios呢...等个有缘人提PR。&lt;/p&gt;
+&lt;h2&gt;2. 获取订阅服务&lt;/h2&gt;
+&lt;p&gt;这个帖子仅负责必要的说明，因此 建议大家自行搜索评价稳定的机场，本站没有立场作推荐。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;preview.jpg&quot; alt=&quot;alt text&quot; /&gt;
+:spoiler[可爱的 &lt;a href=&quot;https://congyu.moe/auth/register?invite=fc84dcfb89&quot;&gt;丛雨宝宝&lt;/a&gt; 出现在这里，单纯是因为她是卡密sama，想去哪就去哪，跟作者本人并无联系。]&lt;/p&gt;
+&lt;h2&gt;3. 导入 / 使用&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;下面以 windows 版本的 clash 为例，其他平台的操作大同小异。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;完成购买步骤后，我们等待约五分钟，可以看到主页的订阅链接出现。
+&lt;img src=&quot;image-1.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;我们点击复制，把链接粘贴到 clash 的 url 粘贴栏里，保存。
+&lt;img src=&quot;image-2.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;现在，我们开启代理，看到状态栏的小猫从紫色变成橙色，一切就大功告成了！
+&lt;img src=&quot;image-4.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;可以尝试打开 &lt;a href=&quot;https://www.google.com/&quot;&gt;谷歌&lt;/a&gt;  进行测试。&lt;/p&gt;
+&lt;h2&gt;4. 使用建议与避坑&lt;/h2&gt;
+&lt;p&gt;我们应当选择 Rule (规则模式) 实现“国内直连，国外加速”。&lt;/p&gt;
+&lt;p&gt;​我们应当选择 日本 / 新加坡 节点： 物理距离近，延迟低，适合刷网页、看视频；适合访问ChatGPT 或某些有严格地区限制的资源。&lt;/p&gt;
+&lt;p&gt;:::tip
+我现在钟意 &lt;code&gt;Singapore 立華奏&lt;/code&gt;
+:::&lt;/p&gt;
+&lt;p&gt;:::warning
+安全提醒： 订阅链接包含你的个人账户信息，千万不要发给别人，否则流量会被蹭光，账号也可能被封。
+:::&lt;/p&gt;
+&lt;p&gt;祝大家在广阔的互联网海洋中愉悦自在。&lt;/p&gt;
+</content:encoded></item><item><title>SelectEcho 入门教程：从安装到第一次划词翻译</title><link>https://alisa22580.pages.dev/posts/selectecho-getting-started/</link><guid isPermaLink="true">https://alisa22580.pages.dev/posts/selectecho-getting-started/</guid><description>一篇给零基础用户的完整上手指南：安装、配置、实操、排错和进阶建议。</description><pubDate>Sun, 15 Mar 2026 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;写在前面&lt;/h1&gt;
+&lt;p&gt;这篇教程是给第一次接触浏览器扩展、或者第一次折腾划词翻译的朋友准备的，可以作为「SelectEcho」的快速上手指南。&lt;/p&gt;
+&lt;p&gt;::github{repo=&quot;2258009564/SelectEcho&quot;}&lt;/p&gt;
+&lt;p&gt;如果对你有帮助的话，欢迎在 GitHub 上给项目点个 star，或者把教程分享给需要的朋友！如果你在使用过程中遇到任何问题，也欢迎在 GitHub 上提交 issue，我会尽快回复。&lt;/p&gt;
+&lt;h1&gt;1. SelectEcho 是什么&lt;/h1&gt;
+&lt;p&gt;&lt;code&gt;SelectEcho&lt;/code&gt; 是一个基于 &lt;code&gt;Chrome&lt;/code&gt;/&lt;code&gt;Edge&lt;/code&gt; 的浏览器扩展，核心体验是：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;网页里选中文本。&lt;/li&gt;
+&lt;li&gt;松开左键。&lt;/li&gt;
+&lt;li&gt;在选区附近弹出翻译面板。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;也就是划词翻译啦！&lt;/p&gt;
+&lt;h2&gt;效果展示：&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&quot;image-9.png&quot; alt=&quot;alt text&quot; /&gt;
+&lt;img src=&quot;image-10.png&quot; alt=&quot;alt text&quot; /&gt;
+&lt;img src=&quot;image-11.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;h1&gt;2. 使用前准备&lt;/h1&gt;
+&lt;h2&gt;2.1 浏览器要求&lt;/h2&gt;
+&lt;p&gt;本项目当前定位是 Manifest V3 扩展，推荐环境：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Chrome 最新稳定版。&lt;/li&gt;
+&lt;li&gt;Edge 最新稳定版。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Firefox 和 Safari 暂不在主支持范围内。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;2.2 网络与权限认知&lt;/h2&gt;
+&lt;p&gt;扩展会用到：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;storage&lt;/code&gt;：保存你的配置。&lt;/li&gt;
+&lt;li&gt;Google 翻译接口域名权限。&lt;/li&gt;
+&lt;li&gt;百度翻译接口域名权限。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;这不是在读你的浏览历史，而是扩展正常工作需要的最小权限集合。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;2.3 获取项目文件&lt;/h2&gt;
+&lt;p&gt;你可以任选一种方式。&lt;/p&gt;
+&lt;h3&gt;方式 A：下载 Release 压缩包（最省事）&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;打开 SelectEcho Release 页面。&lt;/li&gt;
+&lt;li&gt;下载最新 &lt;code&gt;SelectEcho.zip&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;解压到一个你方便记住的目录。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;最新版本下载：&lt;a href=&quot;https://github.com/2258009564/SelectEcho/releases/latest/download/SelectEcho.zip&quot;&gt;最新稳定包直链&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;方式 B：Git 克隆（适合后续更新）&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;git clone https://github.com/2258009564/SelectEcho.git
+cd SelectEcho
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1&gt;3. 安装到 Chrome / Edge&lt;/h1&gt;
+&lt;p&gt;下面流程对 Chrome 和 Edge 都通用，只是扩展管理页地址不一样：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Chrome：&lt;code&gt;chrome://extensions&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Edge：&lt;code&gt;edge://extensions&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;我将以 Edge 为例说明安装步骤：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;复制上面的对应地址，打开扩展管理页。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;打开右上角「开发者模式」。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;点击「加载已解压的扩展程序」。
+&lt;img src=&quot;image.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;选择你刚才解压/克隆的 &lt;code&gt;SelectEcho&lt;/code&gt; 文件夹。
+&lt;img src=&quot;image-1.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;确认扩展出现在列表中，状态为启用。
+&lt;img src=&quot;image-2.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;如果您 &lt;em&gt;有&lt;/em&gt; &lt;a href=&quot;https://congyu.moe/auth/register?invite=fc84dcfb89&quot;&gt;科学上网工具&lt;/a&gt;，那么安装完成后，Google 翻译引擎应该能直接使用；如果没有，请跟着我继续往下看设置页配置百度翻译凭证的部分。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;上面，似乎！有些奇怪的东西可以点击...&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1&gt;4. 配置百度翻译凭证（可选）&lt;/h1&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;打开 &lt;a href=&quot;https://fanyi-api.baidu.com/&quot;&gt;百度翻译开放平台&lt;/a&gt;，点击 管理控制台。
+&lt;img src=&quot;image-3.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;在 总览处 注册成为 个人开发者。
+&lt;img src=&quot;91311f3962e4e340036b295baaa5506a.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;启用 通用文本翻译 服务。
+&lt;img src=&quot;c4bd8f6966e20d664c1354ea4b4b5130.png&quot; alt=&quot;alt text&quot; /&gt;
+&lt;img src=&quot;06ea73c2d9ee800b66cad00c94bc560a.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;选择高级版即可，应用名称填写 「SelectEcho」，其他选项按需填写。
+&lt;img src=&quot;9ca47df8418e5138c1e1117c91472e94.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;创建完成后，在 开发者信息 处，找到 APP ID 和 密钥，复制到 SelectEcho 设置页对应输入框里。
+&lt;img src=&quot;image-4.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;打开设置页， 填写相关配置。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&quot;image-5.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;image-6.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;h1&gt;5. 配置&lt;/h1&gt;
+&lt;p&gt;我们先追求「成功一次」，不要一上来就深挖所有参数。&lt;/p&gt;
+&lt;h2&gt;5.1 选择测试页面&lt;/h2&gt;
+&lt;p&gt;建议先用这些页面测试：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;GitHub &lt;a href=&quot;https://github.com/2258009564/SelectEcho/blob/main/README_EN.md&quot;&gt;en-README&lt;/a&gt;。&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://wikimediafoundation.org/&quot;&gt;Wikipedia&lt;/a&gt; 英文页面。&lt;/li&gt;
+&lt;li&gt;纯文本技术文档页。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;不建议第一站就去复杂 Web App（例如富交互编辑器页面），避免把问题混在一起。&lt;/p&gt;
+&lt;h2&gt;5.2 触发动作&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;在页面中用左键选中一段英文文本（至少 2 个字符）。&lt;/li&gt;
+&lt;li&gt;松开左键。&lt;/li&gt;
+&lt;li&gt;等待面板弹出。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;你应该看到：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;译文内容。&lt;/li&gt;
+&lt;li&gt;引擎状态（Google 或 Baidu）。&lt;/li&gt;
+&lt;li&gt;可关闭按钮和复制按钮。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&quot;image-8.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;h1&gt;5. 设置页&lt;/h1&gt;
+&lt;p&gt;打开设置页的方式：扩展图标 -&amp;gt; 选项（Options）。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;image-7.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;下面是最常见配置项：&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;配置项&lt;/th&gt;
+&lt;th&gt;默认值&lt;/th&gt;
+&lt;th&gt;你要知道什么&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;sourceLang&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;auto&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;源语言自动识别，绝大多数情况别改。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;targetLang&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;zh-CN&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;目标语言，入门阶段建议保持简体中文。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;engineMode&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;auto&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;核心开关：自动 / 仅百度 / 仅 Google。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;maxChars&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;2000&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;单次翻译字符上限，太大可能更慢。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;showSourceText&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;true&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;是否显示原文预览，嫌面板高可以关。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;panelTheme&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;classic&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;翻译框样式主题，不影响翻译质量。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;baiduAppId&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;空&lt;/td&gt;
+&lt;td&gt;百度凭证 App ID。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;baiduAppKey&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;空&lt;/td&gt;
+&lt;td&gt;百度凭证密钥，和 App ID 成对使用。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h1&gt;6. 常见问题排查&lt;/h1&gt;
+&lt;h2&gt;6.1 安装成功但划词没反应&lt;/h2&gt;
+&lt;p&gt;排查顺序：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;是否真的启用了扩展。&lt;/li&gt;
+&lt;li&gt;是否在普通网页（不是受限页面）测试。&lt;/li&gt;
+&lt;li&gt;是否用左键选中后松开。&lt;/li&gt;
+&lt;li&gt;选区是否至少 2 个字符。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;6.2 一直提示超时&lt;/h2&gt;
+&lt;p&gt;先看你当前模式：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;google&lt;/code&gt; 或 &lt;code&gt;auto&lt;/code&gt;（无百度凭证）时，网络条件不稳定更容易超时。&lt;/li&gt;
+&lt;li&gt;你可以切到 &lt;code&gt;baidu&lt;/code&gt; 并填好凭证测试。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;6.3 百度报错（例如凭证相关错误）&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;检查 AppID 和 AppKey 是否都填写。&lt;/li&gt;
+&lt;li&gt;检查是否有前后空格。&lt;/li&gt;
+&lt;li&gt;保存后刷新测试页再试。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;6.4 在输入框里为什么不触发&lt;/h2&gt;
+&lt;p&gt;这是设计行为。&lt;code&gt;input&lt;/code&gt;、&lt;code&gt;textarea&lt;/code&gt;、可编辑区域默认不触发，避免干扰正常输入。&lt;/p&gt;
+&lt;h1&gt;7. 进阶使用建议&lt;/h1&gt;
+&lt;h2&gt;7.1 配置 AI 翻译&lt;/h2&gt;
+&lt;p&gt;等待更新中...&lt;/p&gt;
+&lt;h1&gt;结语&lt;/h1&gt;
+&lt;p&gt;到这里，你已经成功安装并使用了 SelectEcho 进行划词翻译。希望这个工具能成为你日常浏览和学习的好帮手！如果你有任何问题或者建议，欢迎在 GitHub 上提交 issue 或者参与讨论。祝你翻译愉快！&lt;/p&gt;
+</content:encoded></item><item><title>test</title><link>https://alisa22580.pages.dev/posts/test/</link><guid isPermaLink="true">https://alisa22580.pages.dev/posts/test/</guid><description>这是一个测试文章，用于验证博客系统的功能是否正常。</description><pubDate>Wed, 11 Mar 2026 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;测试&lt;/h1&gt;
+&lt;p&gt;这是一个测试文章，用于验证博客系统的功能是否正常。文章内容可以是任何文本，这里我简单地贴一段我早已经忘却的组合数板子来测试。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;const int MAXN = 1e7;
+const int MOD = 1e9 + 7;
+
+vector&amp;lt;int&amp;gt; fact(MAXN), invfact(MAXN);
+bool inited = 0;
+int ksm(int base, int exp)
+{
+	int ans = 1;
+	while (exp)
+	{
+		if (exp &amp;amp; 1)
+		{
+			ans = ans * base % MOD;
+		}
+		base = base * base % MOD;
+		exp &amp;gt;&amp;gt;= 1;
+	}
+	return ans;
+}
+
+int inv(int x)
+{
+	return ksm(x, MOD - 2);
+}
+
+void pre()
+{
+	if (inited) return;
+	inited = 1;
+	fact[0] = 1;
+	for (int i = 1; i &amp;lt; MAXN; i++)
+	{
+		fact[i] = fact[i - 1] * i % MOD;
+	}
+
+	invfact[MAXN - 1] = inv(fact[MAXN - 1]);
+	for (int i = MAXN - 2; i &amp;gt;= 0; i--)
+	{
+		invfact[i] = invfact[i + 1] * (i + 1) % MOD;
+	}
+}
+
+int comb(int n, int k)
+{
+	if (!inited) 
+    {
+        pre();
+	}
+
+	if (k &amp;lt; 0 or k &amp;gt; n) 
+    {
+        return 0;
+    }
+    
+	return fact[n] * invfact[k] % MOD * invfact[n - k] % MOD;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;以下是更多功能的测试：&lt;/p&gt;
+&lt;h1&gt;heading 1&lt;/h1&gt;
+&lt;h2&gt;heading 2&lt;/h2&gt;
+&lt;h3&gt;heading 3&lt;/h3&gt;
+&lt;h4&gt;heading 4&lt;/h4&gt;
+&lt;h5&gt;heading 5&lt;/h5&gt;
+&lt;h6&gt;heading 6&lt;/h6&gt;
+&lt;p&gt;&lt;strong&gt;bold&lt;/strong&gt;
+&lt;em&gt;italic&lt;/em&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;bullet item 1&lt;/li&gt;
+&lt;li&gt;bullet item 2
+&lt;ul&gt;
+&lt;li&gt;nested item&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;bullet item 1&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol&gt;
+&lt;li&gt;no.1&lt;/li&gt;
+&lt;li&gt;no.2&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;[[学习笔记]]
+&lt;a href=&quot;https://www.google.com&quot;&gt;link text&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;==Highlight Text==
+～～ dont know why i cant use strikethrough ～～&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;[ ] checkbox&lt;/li&gt;
+&lt;li&gt;[x] put &apos;x&apos;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;[!node]
+1&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr /&gt;
+&lt;p&gt;%这是一个注释%&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;以下是 &lt;code&gt;latex&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;$$
++&lt;/h2&gt;
+&lt;h1&gt;\times
+\div&lt;/h1&gt;
+&lt;p&gt;\neq
+$$
+$$
+(a + b)
+{a + b}
+[a + b]
+\frac{a}{b}&lt;/p&gt;
+&lt;p&gt;a^2
+x_1
+\sqrt{a}
+$$
+$$
+\alpha \times \beta = \gamma
+\sum_{i = 1}^{n} i
+\Sigma_{i = 1}^{n} i
+\Pi_{i = 1}^{n} i
+$$&lt;/p&gt;
+&lt;p&gt;从中发现，高光、删除线、注释 等功能无法正常使用，但是无伤大雅，毕竟这些功能并不是博客系统的核心功能。总的来说，这篇测试文章成功地验证了博客系统的基本功能，并且展示了各种文本格式和数学公式的支持情况。可喜可贺，可喜可贺。&lt;/p&gt;
+</content:encoded></item></channel></rss>
