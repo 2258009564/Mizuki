@@ -5,7 +5,7 @@
   <link href="https://alisa22580.pages.dev/" rel="alternate" type="text/html"/>
   <link href="https://alisa22580.pages.dev/atom.xml" rel="self" type="application/atom+xml"/>
   <id>https://alisa22580.pages.dev/</id>
-  <updated>2026-06-07T10:08:32.321Z</updated>
+  <updated>2026-06-07T10:33:44.874Z</updated>
   <language>zh_CN</language>
   <entry>
     <title>本博客的搭建教程</title>
@@ -364,49 +364,53 @@ Root directory: /
     <link href="https://alisa22580.pages.dev/posts/cfbetter-deepseek-ai-translation/" rel="alternate" type="text/html"/>
     <id>https://alisa22580.pages.dev/posts/cfbetter-deepseek-ai-translation/</id>
     <published>2026-06-07T00:00:00.000Z</published>
-    <updated>2026-06-07T00:00:00.000Z</updated>
-    <summary>在 Codeforces Better 中接入 DeepSeek V4 Flash，三步搞定高质量 AI 翻译，告别机翻时代</summary>
+    <updated>2026-06-07T18:32:08.000Z</updated>
+    <summary>在 Codeforces Better 中接入 DeepSeek V4 Flash</summary>
     <content type="html"><![CDATA[<h1>写在前面</h1>
-<p>刷 Codeforces 的时候，题目读不懂怎么办？传统翻译工具翻译出来的东西，经常把题目里的数学公式和关键信息搞得面目全非，还不如自己硬啃英文。</p>
-<p><strong>CFBetter</strong>（也叫 OJBetter / Codeforces Better）是一个非常好用的 Codeforces 增强插件，它支持多种翻译服务，其中最推荐的就是 <strong>AI 翻译（ChatGPT 兼容接口）</strong> —— 因为 AI 能理解上下文，还能自动识别和保护 LaTeX 公式，翻译质量远超传统机翻。</p>
-<p>本文将教你如何<strong>快速配置</strong> CFBetter 的 AI 翻译功能，接入 <strong>DeepSeek V4 Flash</strong> 模型。整个配置过程不到 5 分钟，翻译质量极高，且花费极低。</p>
 <blockquote>
-<p>为什么选择 DeepSeek V4 Flash？</p>
-<ul>
-<li><strong>便宜</strong>：输入 1 元 / 百万 tokens，输出 2 元 / 百万 tokens（翻译一篇题目大概不到 0.01 元）</li>
-<li><strong>快</strong>：响应速度在 AI 模型中属于第一梯队</li>
-<li><strong>质量好</strong>：翻译准确，能正确保留 LaTeX 公式</li>
-<li><strong>兼容 OpenAI 格式</strong>：可以直接接入任何支持 OpenAI API 的工具</li>
-</ul>
+<p>曾经在 b 站发过一个 <a href="https://www.bilibili.com/opus/1117176875527962633?spm_id_from=333.1387.0.0">简易版本的教程</a>，其内容已经过时。</p>
 </blockquote>
+<p>刷 Codeforces 的时候，传统翻译工具翻译出来的东西，经常把题目里的数学公式和关键信息搞得面目全非，还不如自己硬啃英文。</p>
+<p><strong>CFBetter</strong> 是一个非常好用的 Codeforces 增强插件，它支持多种翻译服务，其中最推荐的就是 <strong>AI 翻译（ChatGPT 兼容接口）</strong> —— 因为 AI 能理解上下文，还能自动识别和保护 LaTeX 公式，翻译质量远超传统机翻。</p>
+<p>本文将教你如何<strong>快速配置</strong> CFBetter 的 AI 翻译功能，接入 <strong>DeepSeek V4 Flash</strong> 模型。</p>
 <h1>1. 准备工作</h1>
-<h2>1.1 安装 CFBetter</h2>
-<p>CFBetter 是一个 Tampermonkey 油猴脚本（也有 Chrome 扩展版本），你需要在浏览器中先安装它。</p>
-<p><strong>方式一：Chrome 扩展（推荐）</strong></p>
-<p>直接在 Chrome Web Store 搜索 "CF Better" 或 "OJBetter" 安装即可。</p>
-<p><strong>方式二：油猴脚本</strong></p>
+<h2>1.1 安装 油猴脚本</h2>
+<p>CFBetter 是一个 Tampermonkey 油猴脚本，你需要在浏览器中先安装它。</p>
 <ol>
-<li>安装 <a href="https://www.tampermonkey.net/">Tampermonkey</a> 浏览器扩展</li>
-<li>前往 <a href="https://github.com/beijixiaohu/OJBetter">OJBetter GitHub 仓库</a> 安装脚本</li>
+<li>
+<p>安装 <a href="https://microsoftedge.microsoft.com/addons/detail/%E7%AF%A1%E6%94%B9%E7%8C%B4/iikmkjmpaadaobahmlepeloendndfphd">Tampermonkey</a> 浏览器扩展。
+<img src="image.png" alt="alt text" /></p>
+</li>
+<li>
+<p>进入 <a>扩展管理</a> 确保 Tampermonkey 已启用，开发人员模式已打开。
+<img src="image-1.png" alt="alt text" /></p>
+</li>
+<li>
+<p>点击 篡改猴 的 详细信息， 像我图片那样设置相关权限。
+<img src="image-2.png" alt="alt text" />
+<img src="image-3.png" alt="alt text" /></p>
+</li>
 </ol>
+<h2>1.2 安装 CFBetter 脚本</h2>
+<p>访问 <a href="https://greasyfork.org/zh-CN/scripts/465777-codeforces-better">cf better 油猴脚本页面</a>, 点击安装按钮，按照提示完成安装即可。</p>
 <h2>1.2 获取 DeepSeek API Key</h2>
 <ol>
-<li>前往 <a href="https://platform.deepseek.com/">DeepSeek 开放平台</a> 注册账号（支持微信、手机号登录）</li>
+<li>前往 <a href="https://platform.deepseek.com/">DeepSeek 开放平台</a> 注册账号。</li>
 <li>登录后，点击左侧菜单的 <strong>「API Keys」</strong></li>
 <li>点击 <strong>「创建 API Key」</strong>，输入一个名称（比如 <code>CFBetter</code>）</li>
 <li>创建后，<strong>立刻复制并保存</strong> API Key（格式为 <code>sk-xxxx...</code>，只显示一次）</li>
 </ol>
-<p>:::tip
-新注册账号通常有赠送额度，可以直接使用，不需要立即充值。翻译 Codeforces 题目的消耗非常少，赠送额度足够用很久。
-:::</p>
 <h1>2. 配置 CFBetter 的 AI 翻译</h1>
+<p>进入 codeforces 主页，应当能看到 cf better 已经加载成功：
+<img src="image-4.png" alt="alt text" /></p>
 <h2>2.1 打开设置面板</h2>
 <p>在 Codeforces 任意页面，点击右上角的 <strong>「CodeforcesBetter 设置」</strong> 按钮，打开设置面板。</p>
-<p>也可以直接访问扩展的设置页面。</p>
 <h2>2.2 选择翻译服务</h2>
-<p>在设置面板中，找到 <strong>「翻译服务」</strong> 选项，从下拉菜单中选择 <strong>「使用 ChatGPT 翻译」</strong>。</p>
+<p>在设置面板中，找到 <strong>「翻译」</strong> 选项，从下拉菜单中选择 <strong>「AI 翻译」</strong>。
+<img src="image-5.png" alt="alt text" /></p>
 <h2>2.3 添加 DeepSeek 配置</h2>
-<p>选中 ChatGPT 翻译后，下方会出现 ChatGPT 的配置区域。点击 <strong>「添加」</strong> 按钮，新建一个配置，然后填写以下信息：</p>
+<p>向下滚动，找到 <strong>「ChatGPT」</strong> 区域，点击 <strong>「添加」</strong> 按钮，弹出配置表单。</p>
+<p><img src="image-6.png" alt="alt text" /></p>
 <table>
 <thead>
 <tr>
@@ -420,23 +424,30 @@ Root directory: /
 <td>随意，比如 <code>DeepSeek V4 Flash</code></td>
 </tr>
 <tr>
+<td><strong>模型</strong></td>
+<td><code>deepseek-v4-flash</code></td>
+</tr>
+<tr>
 <td><strong>KEY</strong></td>
 <td>你的 DeepSeek API Key（<code>sk-xxxx...</code> 格式）</td>
 </tr>
 <tr>
 <td><strong>Proxy API</strong></td>
-<td><code>https://api.deepseek.com/v1/chat/completions</code></td>
-</tr>
-<tr>
-<td><strong>Model</strong></td>
-<td><code>deepseek-v4-flash</code></td>
+<td><code>https://api.deepseek.com/chat/completions</code></td>
 </tr>
 </tbody>
 </table>
+<blockquote>
+<p>参考如下：
+<img src="image-7.png" alt="alt text" /></p>
+</blockquote>
+<h2>2.4 配置自动翻译</h2>
+<p>向下滚动，像图中一样配置即可。
+<img src="image-8.png" alt="alt text" /></p>
+<p>填写完成后直接关闭，会弹出保存提示，保存即可。</p>
 <p>:::warning
-<strong>Proxy API 地址一定要填完整！</strong> 包括 <code>/v1/chat/completions</code> 路径，不要只填 <code>https://api.deepseek.com</code>。
+完成之后多点几下 确认确实选择了AI翻译；确认确实选择了刚刚自己设置的接口；确认保存了设置！
 :::</p>
-<p>填写完成后保存即可。</p>
 <h3>配置参数说明</h3>
 <p><strong>关于模型名称：</strong></p>
 <table>
@@ -512,7 +523,7 @@ Root directory: /
 <h3>Q: 翻译报错 401 Unauthorized？</h3>
 <p>检查 API Key 是否正确，确保完整复制了 <code>sk-</code> 开头的整个 Key，没有多余空格。</p>
 <h3>Q: 翻译报错 402 Payment Required？</h3>
-<p>你的 DeepSeek 账号余额不足，前往 <a href="https://platform.deepseek.com/">DeepSeek 开放平台</a> 充值即可。支持微信、支付宝。</p>
+<p>你的 DeepSeek 账号余额不足，前往 <a href="https://platform.deepseek.com/">DeepSeek 开放平台</a> 充值即可。</p>
 <h3>Q: 翻译很慢怎么办？</h3>
 <p>AI 翻译的速度取决于 DeepSeek 服务器的响应时间，通常在 2-5 秒左右。如果经常很慢，可能是网络问题，建议检查网络连接。</p>
 <h3>Q: 公式显示异常？</h3>

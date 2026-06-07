@@ -337,47 +337,51 @@ Root directory: /
 &lt;p&gt;我们可以直接访问 &lt;a href=&quot;https://twikoo.js.org/backend.html#vercel-%E9%83%A8%E7%BD%B2&quot;&gt;Vercel 部署&lt;/a&gt; 的教程来获取这个 ID 。&lt;/p&gt;
 &lt;h2&gt;更多内容&lt;/h2&gt;
 &lt;p&gt;持续更新中...&lt;/p&gt;
-</content:encoded></item><item><title>CFBetter 快速配置 AI 翻译（接入 DeepSeek V4 Flash）</title><link>https://alisa22580.pages.dev/posts/cfbetter-deepseek-ai-translation/</link><guid isPermaLink="true">https://alisa22580.pages.dev/posts/cfbetter-deepseek-ai-translation/</guid><description>在 Codeforces Better 中接入 DeepSeek V4 Flash，三步搞定高质量 AI 翻译，告别机翻时代</description><pubDate>Sun, 07 Jun 2026 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;写在前面&lt;/h1&gt;
-&lt;p&gt;刷 Codeforces 的时候，题目读不懂怎么办？传统翻译工具翻译出来的东西，经常把题目里的数学公式和关键信息搞得面目全非，还不如自己硬啃英文。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;CFBetter&lt;/strong&gt;（也叫 OJBetter / Codeforces Better）是一个非常好用的 Codeforces 增强插件，它支持多种翻译服务，其中最推荐的就是 &lt;strong&gt;AI 翻译（ChatGPT 兼容接口）&lt;/strong&gt; —— 因为 AI 能理解上下文，还能自动识别和保护 LaTeX 公式，翻译质量远超传统机翻。&lt;/p&gt;
-&lt;p&gt;本文将教你如何&lt;strong&gt;快速配置&lt;/strong&gt; CFBetter 的 AI 翻译功能，接入 &lt;strong&gt;DeepSeek V4 Flash&lt;/strong&gt; 模型。整个配置过程不到 5 分钟，翻译质量极高，且花费极低。&lt;/p&gt;
+</content:encoded></item><item><title>CFBetter 快速配置 AI 翻译（接入 DeepSeek V4 Flash）</title><link>https://alisa22580.pages.dev/posts/cfbetter-deepseek-ai-translation/</link><guid isPermaLink="true">https://alisa22580.pages.dev/posts/cfbetter-deepseek-ai-translation/</guid><description>在 Codeforces Better 中接入 DeepSeek V4 Flash</description><pubDate>Sun, 07 Jun 2026 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;写在前面&lt;/h1&gt;
 &lt;blockquote&gt;
-&lt;p&gt;为什么选择 DeepSeek V4 Flash？&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;便宜&lt;/strong&gt;：输入 1 元 / 百万 tokens，输出 2 元 / 百万 tokens（翻译一篇题目大概不到 0.01 元）&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;快&lt;/strong&gt;：响应速度在 AI 模型中属于第一梯队&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;质量好&lt;/strong&gt;：翻译准确，能正确保留 LaTeX 公式&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;兼容 OpenAI 格式&lt;/strong&gt;：可以直接接入任何支持 OpenAI API 的工具&lt;/li&gt;
-&lt;/ul&gt;
+&lt;p&gt;曾经在 b 站发过一个 &lt;a href=&quot;https://www.bilibili.com/opus/1117176875527962633?spm_id_from=333.1387.0.0&quot;&gt;简易版本的教程&lt;/a&gt;，其内容已经过时。&lt;/p&gt;
 &lt;/blockquote&gt;
+&lt;p&gt;刷 Codeforces 的时候，传统翻译工具翻译出来的东西，经常把题目里的数学公式和关键信息搞得面目全非，还不如自己硬啃英文。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;CFBetter&lt;/strong&gt; 是一个非常好用的 Codeforces 增强插件，它支持多种翻译服务，其中最推荐的就是 &lt;strong&gt;AI 翻译（ChatGPT 兼容接口）&lt;/strong&gt; —— 因为 AI 能理解上下文，还能自动识别和保护 LaTeX 公式，翻译质量远超传统机翻。&lt;/p&gt;
+&lt;p&gt;本文将教你如何&lt;strong&gt;快速配置&lt;/strong&gt; CFBetter 的 AI 翻译功能，接入 &lt;strong&gt;DeepSeek V4 Flash&lt;/strong&gt; 模型。&lt;/p&gt;
 &lt;h1&gt;1. 准备工作&lt;/h1&gt;
-&lt;h2&gt;1.1 安装 CFBetter&lt;/h2&gt;
-&lt;p&gt;CFBetter 是一个 Tampermonkey 油猴脚本（也有 Chrome 扩展版本），你需要在浏览器中先安装它。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;方式一：Chrome 扩展（推荐）&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;直接在 Chrome Web Store 搜索 &quot;CF Better&quot; 或 &quot;OJBetter&quot; 安装即可。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;方式二：油猴脚本&lt;/strong&gt;&lt;/p&gt;
+&lt;h2&gt;1.1 安装 油猴脚本&lt;/h2&gt;
+&lt;p&gt;CFBetter 是一个 Tampermonkey 油猴脚本，你需要在浏览器中先安装它。&lt;/p&gt;
 &lt;ol&gt;
-&lt;li&gt;安装 &lt;a href=&quot;https://www.tampermonkey.net/&quot;&gt;Tampermonkey&lt;/a&gt; 浏览器扩展&lt;/li&gt;
-&lt;li&gt;前往 &lt;a href=&quot;https://github.com/beijixiaohu/OJBetter&quot;&gt;OJBetter GitHub 仓库&lt;/a&gt; 安装脚本&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;安装 &lt;a href=&quot;https://microsoftedge.microsoft.com/addons/detail/%E7%AF%A1%E6%94%B9%E7%8C%B4/iikmkjmpaadaobahmlepeloendndfphd&quot;&gt;Tampermonkey&lt;/a&gt; 浏览器扩展。
+&lt;img src=&quot;image.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;进入 &lt;a&gt;扩展管理&lt;/a&gt; 确保 Tampermonkey 已启用，开发人员模式已打开。
+&lt;img src=&quot;image-1.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;点击 篡改猴 的 详细信息， 像我图片那样设置相关权限。
+&lt;img src=&quot;image-2.png&quot; alt=&quot;alt text&quot; /&gt;
+&lt;img src=&quot;image-3.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;/li&gt;
 &lt;/ol&gt;
+&lt;h2&gt;1.2 安装 CFBetter 脚本&lt;/h2&gt;
+&lt;p&gt;访问 &lt;a href=&quot;https://greasyfork.org/zh-CN/scripts/465777-codeforces-better&quot;&gt;cf better 油猴脚本页面&lt;/a&gt;, 点击安装按钮，按照提示完成安装即可。&lt;/p&gt;
 &lt;h2&gt;1.2 获取 DeepSeek API Key&lt;/h2&gt;
 &lt;ol&gt;
-&lt;li&gt;前往 &lt;a href=&quot;https://platform.deepseek.com/&quot;&gt;DeepSeek 开放平台&lt;/a&gt; 注册账号（支持微信、手机号登录）&lt;/li&gt;
+&lt;li&gt;前往 &lt;a href=&quot;https://platform.deepseek.com/&quot;&gt;DeepSeek 开放平台&lt;/a&gt; 注册账号。&lt;/li&gt;
 &lt;li&gt;登录后，点击左侧菜单的 &lt;strong&gt;「API Keys」&lt;/strong&gt;&lt;/li&gt;
 &lt;li&gt;点击 &lt;strong&gt;「创建 API Key」&lt;/strong&gt;，输入一个名称（比如 &lt;code&gt;CFBetter&lt;/code&gt;）&lt;/li&gt;
 &lt;li&gt;创建后，&lt;strong&gt;立刻复制并保存&lt;/strong&gt; API Key（格式为 &lt;code&gt;sk-xxxx...&lt;/code&gt;，只显示一次）&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;:::tip
-新注册账号通常有赠送额度，可以直接使用，不需要立即充值。翻译 Codeforces 题目的消耗非常少，赠送额度足够用很久。
-:::&lt;/p&gt;
 &lt;h1&gt;2. 配置 CFBetter 的 AI 翻译&lt;/h1&gt;
+&lt;p&gt;进入 codeforces 主页，应当能看到 cf better 已经加载成功：
+&lt;img src=&quot;image-4.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;h2&gt;2.1 打开设置面板&lt;/h2&gt;
 &lt;p&gt;在 Codeforces 任意页面，点击右上角的 &lt;strong&gt;「CodeforcesBetter 设置」&lt;/strong&gt; 按钮，打开设置面板。&lt;/p&gt;
-&lt;p&gt;也可以直接访问扩展的设置页面。&lt;/p&gt;
 &lt;h2&gt;2.2 选择翻译服务&lt;/h2&gt;
-&lt;p&gt;在设置面板中，找到 &lt;strong&gt;「翻译服务」&lt;/strong&gt; 选项，从下拉菜单中选择 &lt;strong&gt;「使用 ChatGPT 翻译」&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;在设置面板中，找到 &lt;strong&gt;「翻译」&lt;/strong&gt; 选项，从下拉菜单中选择 &lt;strong&gt;「AI 翻译」&lt;/strong&gt;。
+&lt;img src=&quot;image-5.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;h2&gt;2.3 添加 DeepSeek 配置&lt;/h2&gt;
-&lt;p&gt;选中 ChatGPT 翻译后，下方会出现 ChatGPT 的配置区域。点击 &lt;strong&gt;「添加」&lt;/strong&gt; 按钮，新建一个配置，然后填写以下信息：&lt;/p&gt;
+&lt;p&gt;向下滚动，找到 &lt;strong&gt;「ChatGPT」&lt;/strong&gt; 区域，点击 &lt;strong&gt;「添加」&lt;/strong&gt; 按钮，弹出配置表单。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;image-6.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;table&gt;
 &lt;thead&gt;
 &lt;tr&gt;
@@ -391,23 +395,30 @@ Root directory: /
 &lt;td&gt;随意，比如 &lt;code&gt;DeepSeek V4 Flash&lt;/code&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;模型&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;deepseek-v4-flash&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
 &lt;td&gt;&lt;strong&gt;KEY&lt;/strong&gt;&lt;/td&gt;
 &lt;td&gt;你的 DeepSeek API Key（&lt;code&gt;sk-xxxx...&lt;/code&gt; 格式）&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;&lt;strong&gt;Proxy API&lt;/strong&gt;&lt;/td&gt;
-&lt;td&gt;&lt;code&gt;https://api.deepseek.com/v1/chat/completions&lt;/code&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;strong&gt;Model&lt;/strong&gt;&lt;/td&gt;
-&lt;td&gt;&lt;code&gt;deepseek-v4-flash&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;https://api.deepseek.com/chat/completions&lt;/code&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;参考如下：
+&lt;img src=&quot;image-7.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;2.4 配置自动翻译&lt;/h2&gt;
+&lt;p&gt;向下滚动，像图中一样配置即可。
+&lt;img src=&quot;image-8.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;填写完成后直接关闭，会弹出保存提示，保存即可。&lt;/p&gt;
 &lt;p&gt;:::warning
-&lt;strong&gt;Proxy API 地址一定要填完整！&lt;/strong&gt; 包括 &lt;code&gt;/v1/chat/completions&lt;/code&gt; 路径，不要只填 &lt;code&gt;https://api.deepseek.com&lt;/code&gt;。
+完成之后多点几下 确认确实选择了AI翻译；确认确实选择了刚刚自己设置的接口；确认保存了设置！
 :::&lt;/p&gt;
-&lt;p&gt;填写完成后保存即可。&lt;/p&gt;
 &lt;h3&gt;配置参数说明&lt;/h3&gt;
 &lt;p&gt;&lt;strong&gt;关于模型名称：&lt;/strong&gt;&lt;/p&gt;
 &lt;table&gt;
@@ -483,7 +494,7 @@ Root directory: /
 &lt;h3&gt;Q: 翻译报错 401 Unauthorized？&lt;/h3&gt;
 &lt;p&gt;检查 API Key 是否正确，确保完整复制了 &lt;code&gt;sk-&lt;/code&gt; 开头的整个 Key，没有多余空格。&lt;/p&gt;
 &lt;h3&gt;Q: 翻译报错 402 Payment Required？&lt;/h3&gt;
-&lt;p&gt;你的 DeepSeek 账号余额不足，前往 &lt;a href=&quot;https://platform.deepseek.com/&quot;&gt;DeepSeek 开放平台&lt;/a&gt; 充值即可。支持微信、支付宝。&lt;/p&gt;
+&lt;p&gt;你的 DeepSeek 账号余额不足，前往 &lt;a href=&quot;https://platform.deepseek.com/&quot;&gt;DeepSeek 开放平台&lt;/a&gt; 充值即可。&lt;/p&gt;
 &lt;h3&gt;Q: 翻译很慢怎么办？&lt;/h3&gt;
 &lt;p&gt;AI 翻译的速度取决于 DeepSeek 服务器的响应时间，通常在 2-5 秒左右。如果经常很慢，可能是网络问题，建议检查网络连接。&lt;/p&gt;
 &lt;h3&gt;Q: 公式显示异常？&lt;/h3&gt;
