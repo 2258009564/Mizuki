@@ -43,8 +43,8 @@ export const siteConfig: SiteConfig = {
 
 	// 页面自动缩放配置
 	pageScaling: {
-		enable: true, // 是否开启自动缩放
-		targetWidth: 2000, // 目标宽度，低于此宽度时开始缩放
+		enable: false, // 关闭自动缩放（移动端用 CSS 媒体查询适配）
+		targetWidth: 2000,
 	},
 
 	bangumi: {
