@@ -236,7 +236,7 @@ const bannerFormats = getImageFormats();
 				0% { transform: scale(1.03); }
 				100% { transform: scale(1.13); }
 			}
-			.banner-kb {
+			.banner-kb img {
 				animation: bannerKenBurns ${kbDurationMs}ms ease-out forwards;
 			}
 		</style>`} />
@@ -351,17 +351,17 @@ const bannerFormats = getImageFormats();
 
 				// 暂停 Ken Burns 动画（保持当前进度）
 				function pauseKenBurns() {
-					var slots = container.querySelectorAll('.banner-kb');
-					for (var i = 0; i < slots.length; i++) {
-						slots[i].style.animationPlayState = 'paused';
+					var imgs = container.querySelectorAll('.banner-kb img');
+					for (var i = 0; i < imgs.length; i++) {
+						imgs[i].style.animationPlayState = 'paused';
 					}
 				}
 
 				// 恢复 Ken Burns 动画（从暂停位置继续）
 				function resumeKenBurns() {
-					var slots = container.querySelectorAll('.banner-kb');
-					for (var i = 0; i < slots.length; i++) {
-						slots[i].style.animationPlayState = 'running';
+					var imgs = container.querySelectorAll('.banner-kb img');
+					for (var i = 0; i < imgs.length; i++) {
+						imgs[i].style.animationPlayState = 'running';
 					}
 				}
 
