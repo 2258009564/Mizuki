@@ -56,6 +56,16 @@ html {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* 移动端：防止 sidebar 的 min-width:auto 撑宽 grid 列导致页面溢出 */
+@media (max-width: 767px) {
+  #sidebar,
+  #sidebar-sticky {
+    min-width: 0 !important;
+    max-width: 100% !important;
+    overflow: hidden !important;
+  }
+}
+
 /* 页面顶部渐变高光效果 */
 .top-gradient-highlight {
   position: fixed;
