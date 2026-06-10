@@ -46,6 +46,8 @@
 /* 确保平滑滚动，并稳定滚动条宽度以避免布局左右抖动 */
 html {
   scroll-behavior: smooth;
+  /* 防止移动端内容溢出导致浏览器自动缩放（如 sidebar/grid 子元素超宽） */
+  overflow-x: hidden;
   /* 现代浏览器：为滚动条预留稳定空间 */
   scrollbar-gutter: stable;
   /* 优化字体渲染清晰度 */
