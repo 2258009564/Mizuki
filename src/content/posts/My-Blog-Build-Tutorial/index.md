@@ -258,13 +258,13 @@ Production branch: 设置主分支（通常为 `main` 或 `master`）
 ### 5. 获取部署信息
 部署完成后，您将获得：
 
-站点 URL：如 https://alisa22580.pages.dev
+站点 URL：如 https://alisa22580.com
 > URL: URL 是 Uniform Resource Locator 的缩写，中文通常翻译为统一资源定位符。它是互联网上资源的地址，用于指定和访问各种类型的资源，如网页、图片、视频等。URL 通常由以下几个部分组成：
 > - 协议（Protocol）：指定访问资源所使用的协议，如 http、https、ftp 等。
 > - 域名（Domain）：指定资源所在的服务器地址，如 www.example.com。
 > - 路径（Path）：指定资源在服务器上的具体位置，如 /blog/post1。
 > - 查询参数（Query Parameters）：用于传递额外的信息，如 ?id=123。
-> 例如 当前这篇文章的 URL 就是 https://alisa22580.pages.dev/posts/post1/#本博客的搭建教程
+> 例如 当前这篇文章的 URL 就是 https://alisa22580.com/posts/post1/#本博客的搭建教程
 
 自动生成的 SSL 证书
 > SSL: SSL 是 Secure Sockets Layer 的缩写，是一种安全协议，用于在互联网上加密数据传输，确保数据的机密性和完整性。SSL 证书是由受信任的证书颁发机构（CA）签发的数字证书，用于验证网站的身份并启用 HTTPS 协议。当用户访问启用了 SSL 的网站时，浏览器会显示一个锁形图标，表示连接是安全的。
