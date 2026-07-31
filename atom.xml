@@ -2,15 +2,15 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>from alisa</title>
   <subtitle>主页</subtitle>
-  <link href="https://alisa22580.pages.dev/" rel="alternate" type="text/html"/>
-  <link href="https://alisa22580.pages.dev/atom.xml" rel="self" type="application/atom+xml"/>
-  <id>https://alisa22580.pages.dev/</id>
-  <updated>2026-06-10T14:05:35.764Z</updated>
+  <link href="https://alisa22580.com/" rel="alternate" type="text/html"/>
+  <link href="https://alisa22580.com/atom.xml" rel="self" type="application/atom+xml"/>
+  <id>https://alisa22580.com/</id>
+  <updated>2026-07-31T14:15:08.956Z</updated>
   <language>zh_CN</language>
   <entry>
     <title>本博客的搭建教程</title>
-    <link href="https://alisa22580.pages.dev/posts/my-blog-build-tutorial/" rel="alternate" type="text/html"/>
-    <id>https://alisa22580.pages.dev/posts/my-blog-build-tutorial/</id>
+    <link href="https://alisa22580.com/posts/my-blog-build-tutorial/" rel="alternate" type="text/html"/>
+    <id>https://alisa22580.com/posts/my-blog-build-tutorial/</id>
     <published>2026-03-12T11:33:24.123Z</published>
     <updated>2026-03-13T21:16:48.000Z</updated>
     <summary>和我一起，开启博客生涯。</summary>
@@ -233,7 +233,7 @@ Root directory: /
 <p>首次部署可能需要几分钟时间。</p>
 <h3>5. 获取部署信息</h3>
 <p>部署完成后，您将获得：</p>
-<p>站点 URL：如 https://alisa22580.pages.dev</p>
+<p>站点 URL：如 https://alisa22580.com</p>
 <blockquote>
 <p>URL: URL 是 Uniform Resource Locator 的缩写，中文通常翻译为统一资源定位符。它是互联网上资源的地址，用于指定和访问各种类型的资源，如网页、图片、视频等。URL 通常由以下几个部分组成：</p>
 <ul>
@@ -241,7 +241,7 @@ Root directory: /
 <li>域名（Domain）：指定资源所在的服务器地址，如 www.example.com。</li>
 <li>路径（Path）：指定资源在服务器上的具体位置，如 /blog/post1。</li>
 <li>查询参数（Query Parameters）：用于传递额外的信息，如 ?id=123。
-例如 当前这篇文章的 URL 就是 https://alisa22580.pages.dev/posts/post1/#本博客的搭建教程</li>
+例如 当前这篇文章的 URL 就是 https://alisa22580.com/posts/post1/#本博客的搭建教程</li>
 </ul>
 </blockquote>
 <p>自动生成的 SSL 证书</p>
@@ -361,8 +361,8 @@ Root directory: /
   </entry>
   <entry>
     <title>CFBetter 快速配置 AI 翻译（接入 DeepSeek V4 Flash）</title>
-    <link href="https://alisa22580.pages.dev/posts/cfbetter-deepseek-ai-translation/" rel="alternate" type="text/html"/>
-    <id>https://alisa22580.pages.dev/posts/cfbetter-deepseek-ai-translation/</id>
+    <link href="https://alisa22580.com/posts/cfbetter-deepseek-ai-translation/" rel="alternate" type="text/html"/>
+    <id>https://alisa22580.com/posts/cfbetter-deepseek-ai-translation/</id>
     <published>2026-06-07T00:00:00.000Z</published>
     <updated>2026-06-07T18:32:08.000Z</updated>
     <summary>在 Codeforces Better 中接入 DeepSeek V4 Flash</summary>
@@ -553,8 +553,8 @@ Root directory: /
   </entry>
   <entry>
     <title>2026东北赛 长春游 / 补题 / 感想</title>
-    <link href="https://alisa22580.pages.dev/posts/2026-dbcpc/" rel="alternate" type="text/html"/>
-    <id>https://alisa22580.pages.dev/posts/2026-dbcpc/</id>
+    <link href="https://alisa22580.com/posts/2026-dbcpc/" rel="alternate" type="text/html"/>
+    <id>https://alisa22580.com/posts/2026-dbcpc/</id>
     <published>2026-05-24T00:00:00.000Z</published>
     <updated>2026-05-28T19:21:03.000Z</updated>
     <summary>流水账一篇</summary>
@@ -565,33 +565,6 @@ Root directory: /
 <p>2026-05-28 update:</p>
 </blockquote>
 <p>已经过去快一周啦，复杂的心情应该说平复了很多，虽然还是觉得挺可惜的，但也不至于太难过了。</p>
-<h1>去往长春</h1>
-<p>我决定和可爱的 <a href="https://imicola.com/">imicola</a> 宝宝一起坐火车（其实就是我什么都没管，订票订酒店啥的全部给他处理了）。</p>
-<p>我们是周四下午出发的，提前了一个多小时从学校坐火车准备去哈尔滨站，结果快到地方了发现是哈尔滨西站，给我笑得。</p>
-<p>我说你怎么一点规划没有；他说我有规划的，只是规划错了；我说你怎么是路痴；他说你才知道啊。</p>
-<p>好在也不是什么大问题，最后就是打车花更多的价钱去更近的西站。</p>
-<p>上车之后我就开始狂笑，他问我怎么了我笑了半天跟他说：
-"这个像不像悠和穹回乡下？"</p>
-<p><img src="5caf7ce0aa4eeffb4a10b33fd38cdc4a.jpg" alt="alt text" />
-<img src="d31603442efc00b936ffe88bf9201cbc.jpg" alt="alt text" /></p>
-<blockquote>
-<p>是不是，还，蛮像的！</p>
-</blockquote>
-<p>然后都想到这了，在车上就姑且听了那么一路 《飞向遥远的天空》，感觉莫名挺应景的。</p>
-<p>我是不知道他怎么想的，但是我确实是在哈尔滨待得有点烦闷，心想我有不得不逃离这个地方的理由。</p>
-<p><img src="19c599a62dc0cfabcfff980a78102d61.jpg" alt="alt text" /></p>
-<h1>到达长春</h1>
-<p>到达长春之后，我们就前往23一晚的豪华大酒店下榻了，好像是叫什么 东篱下宾馆 。我一开始还在幻视什么什么寄人篱下，结果 imicola 说 这是采菊东篱下。。</p>
-<p>于是我感到十分欣慰，问他你的注意力能不能放在赛时。</p>
-<p>这之后我们就去找</p>
-<h1>关于比赛</h1>
-<p>首先是最为关键的 比赛情况。</p>
-<p>热身赛时候，好像是侥幸看了一道没人看的题，获得了一个首杀。
-<img src="2c233ca7bfc4311acaf5a87112bacb82.jpg" alt="alt text" />
-当时非常兴奋啊！觉得自己这辈子应该是有了，然后 imicola 就给我泼冷水，说人家强校都要么不打要么看难题。。</p>
-<p>热身最后开了三道题，第四道概率居然不会，，依稀记得高中数学还不错来着，怎么上大学变数学低手了，唉！都是 acm 害的。</p>
-<p>总之热身赛结束后，感觉自己状态不错，回到宾馆把那道概率摸索了一下 就准备睡觉了。</p>
-<p>结果出于一些神秘的原因 我死活睡不着 就这么耗到了凌晨三点多 第二天早上起来人都恍惚了</p>
 ]]></content>
     <author>
       <name>alisa22580</name>
@@ -600,8 +573,8 @@ Root directory: /
   </entry>
   <entry>
     <title>vscode 快速配置 g++</title>
-    <link href="https://alisa22580.pages.dev/posts/vscode-run-code-tutorial/" rel="alternate" type="text/html"/>
-    <id>https://alisa22580.pages.dev/posts/vscode-run-code-tutorial/</id>
+    <link href="https://alisa22580.com/posts/vscode-run-code-tutorial/" rel="alternate" type="text/html"/>
+    <id>https://alisa22580.com/posts/vscode-run-code-tutorial/</id>
     <published>2026-04-13T00:00:00.000Z</published>
     <updated>2026-04-29T00:21:26.000Z</updated>
     <summary>可以作为 从 Dev-C++ / CodeBlocks 等 古老 IDE 过渡到 vscode 的快速替代方案</summary>
@@ -814,8 +787,8 @@ g++ 是 GNU Compiler Collection 的 C++ 开源编译器，支持多种平台和�
   </entry>
   <entry>
     <title>蓝桥杯 C++ B 组省赛 A-H 题解（2026）</title>
-    <link href="https://alisa22580.pages.dev/posts/lanqiao-cpp-b-solutions/" rel="alternate" type="text/html"/>
-    <id>https://alisa22580.pages.dev/posts/lanqiao-cpp-b-solutions/</id>
+    <link href="https://alisa22580.com/posts/lanqiao-cpp-b-solutions/" rel="alternate" type="text/html"/>
+    <id>https://alisa22580.com/posts/lanqiao-cpp-b-solutions/</id>
     <published>2026-04-11T00:00:00.000Z</published>
     <updated>2026-04-29T22:08:30.000Z</updated>
     <summary>完整(?)复盘</summary>
@@ -1356,8 +1329,8 @@ void solve()
   </entry>
   <entry>
     <title>蓝桥杯 C++ B 组常用板子</title>
-    <link href="https://alisa22580.pages.dev/posts/lanqiao-cpp-b-common/" rel="alternate" type="text/html"/>
-    <id>https://alisa22580.pages.dev/posts/lanqiao-cpp-b-common/</id>
+    <link href="https://alisa22580.com/posts/lanqiao-cpp-b-common/" rel="alternate" type="text/html"/>
+    <id>https://alisa22580.com/posts/lanqiao-cpp-b-common/</id>
     <published>2026-04-10T00:00:00.000Z</published>
     <updated>2026-04-10T22:22:49.000Z</updated>
     <summary>个人复习用</summary>
@@ -1837,8 +1810,8 @@ int C(int n, int k)
   </entry>
   <entry>
     <title>GKD -- 李跳跳的平替推荐</title>
-    <link href="https://alisa22580.pages.dev/posts/gkd-shizuku-usage-tutorial/" rel="alternate" type="text/html"/>
-    <id>https://alisa22580.pages.dev/posts/gkd-shizuku-usage-tutorial/</id>
+    <link href="https://alisa22580.com/posts/gkd-shizuku-usage-tutorial/" rel="alternate" type="text/html"/>
+    <id>https://alisa22580.com/posts/gkd-shizuku-usage-tutorial/</id>
     <published>2026-04-09T00:00:00.000Z</published>
     <updated>2026-04-09T19:28:27.000Z</updated>
     <summary>GKD 使用教程，以及一些 Root、Shizuku、ADB 相关的原理学习</summary>
@@ -1947,8 +1920,8 @@ int C(int n, int k)
   </entry>
   <entry>
     <title>简短的VPN使用教程</title>
-    <link href="https://alisa22580.pages.dev/posts/vpn-usage-tutorial/" rel="alternate" type="text/html"/>
-    <id>https://alisa22580.pages.dev/posts/vpn-usage-tutorial/</id>
+    <link href="https://alisa22580.com/posts/vpn-usage-tutorial/" rel="alternate" type="text/html"/>
+    <id>https://alisa22580.com/posts/vpn-usage-tutorial/</id>
     <published>2026-04-03T00:00:00.000Z</published>
     <updated>2026-05-28T15:34:59.000Z</updated>
     <summary>内涵丛雨云推荐（更适合二次元宝宝体质</summary>
@@ -2048,8 +2021,8 @@ int C(int n, int k)
   </entry>
   <entry>
     <title>SelectEcho 入门教程：从安装到第一次划词翻译</title>
-    <link href="https://alisa22580.pages.dev/posts/selectecho-getting-started/" rel="alternate" type="text/html"/>
-    <id>https://alisa22580.pages.dev/posts/selectecho-getting-started/</id>
+    <link href="https://alisa22580.com/posts/selectecho-getting-started/" rel="alternate" type="text/html"/>
+    <id>https://alisa22580.com/posts/selectecho-getting-started/</id>
     <published>2026-03-15T00:00:00.000Z</published>
     <updated>2026-03-15T22:01:26.000Z</updated>
     <summary>一篇给零基础用户的完整上手指南：安装、配置、实操、排错和进阶建议。</summary>
@@ -2276,8 +2249,8 @@ cd SelectEcho
   </entry>
   <entry>
     <title>test</title>
-    <link href="https://alisa22580.pages.dev/posts/test/" rel="alternate" type="text/html"/>
-    <id>https://alisa22580.pages.dev/posts/test/</id>
+    <link href="https://alisa22580.com/posts/test/" rel="alternate" type="text/html"/>
+    <id>https://alisa22580.com/posts/test/</id>
     <published>2026-03-11T00:00:00.000Z</published>
     <updated>2026-03-11T00:00:00.000Z</updated>
     <summary>这是一个测试文章，用于验证博客系统的功能是否正常。</summary>

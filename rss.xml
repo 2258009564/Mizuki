@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>from alisa</title><description>主页</description><link>https://alisa22580.pages.dev/</link><language>zh_CN</language><item><title>本博客的搭建教程</title><link>https://alisa22580.pages.dev/posts/my-blog-build-tutorial/</link><guid isPermaLink="true">https://alisa22580.pages.dev/posts/my-blog-build-tutorial/</guid><description>和我一起，开启博客生涯。</description><pubDate>Thu, 12 Mar 2026 11:33:24 GMT</pubDate><content:encoded>&lt;p&gt;&amp;lt;!-- ---
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>from alisa</title><description>主页</description><link>https://alisa22580.com/</link><language>zh_CN</language><item><title>本博客的搭建教程</title><link>https://alisa22580.com/posts/my-blog-build-tutorial/</link><guid isPermaLink="true">https://alisa22580.com/posts/my-blog-build-tutorial/</guid><description>和我一起，开启博客生涯。</description><pubDate>Thu, 12 Mar 2026 11:33:24 GMT</pubDate><content:encoded>&lt;p&gt;&amp;lt;!-- ---
 title: &quot;我的第一篇 Astro 博客&quot;      # 文章标题
 published: 2026-03-12            # 发布日期 (格式: YYYY-MM-DD)
 description: &quot;这是我使用 Mizuki 主题开启博客生涯的第一天。&quot; # 简短摘要，显示在列表页
@@ -217,7 +217,7 @@ Root directory: /
 &lt;p&gt;首次部署可能需要几分钟时间。&lt;/p&gt;
 &lt;h3&gt;5. 获取部署信息&lt;/h3&gt;
 &lt;p&gt;部署完成后，您将获得：&lt;/p&gt;
-&lt;p&gt;站点 URL：如 https://alisa22580.pages.dev&lt;/p&gt;
+&lt;p&gt;站点 URL：如 https://alisa22580.com&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;URL: URL 是 Uniform Resource Locator 的缩写，中文通常翻译为统一资源定位符。它是互联网上资源的地址，用于指定和访问各种类型的资源，如网页、图片、视频等。URL 通常由以下几个部分组成：&lt;/p&gt;
 &lt;ul&gt;
@@ -225,7 +225,7 @@ Root directory: /
 &lt;li&gt;域名（Domain）：指定资源所在的服务器地址，如 www.example.com。&lt;/li&gt;
 &lt;li&gt;路径（Path）：指定资源在服务器上的具体位置，如 /blog/post1。&lt;/li&gt;
 &lt;li&gt;查询参数（Query Parameters）：用于传递额外的信息，如 ?id=123。
-例如 当前这篇文章的 URL 就是 https://alisa22580.pages.dev/posts/post1/#本博客的搭建教程&lt;/li&gt;
+例如 当前这篇文章的 URL 就是 https://alisa22580.com/posts/post1/#本博客的搭建教程&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;自动生成的 SSL 证书&lt;/p&gt;
@@ -337,7 +337,7 @@ Root directory: /
 &lt;p&gt;我们可以直接访问 &lt;a href=&quot;https://twikoo.js.org/backend.html#vercel-%E9%83%A8%E7%BD%B2&quot;&gt;Vercel 部署&lt;/a&gt; 的教程来获取这个 ID 。&lt;/p&gt;
 &lt;h2&gt;更多内容&lt;/h2&gt;
 &lt;p&gt;持续更新中...&lt;/p&gt;
-</content:encoded></item><item><title>CFBetter 快速配置 AI 翻译（接入 DeepSeek V4 Flash）</title><link>https://alisa22580.pages.dev/posts/cfbetter-deepseek-ai-translation/</link><guid isPermaLink="true">https://alisa22580.pages.dev/posts/cfbetter-deepseek-ai-translation/</guid><description>在 Codeforces Better 中接入 DeepSeek V4 Flash</description><pubDate>Sun, 07 Jun 2026 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;写在前面&lt;/h1&gt;
+</content:encoded></item><item><title>CFBetter 快速配置 AI 翻译（接入 DeepSeek V4 Flash）</title><link>https://alisa22580.com/posts/cfbetter-deepseek-ai-translation/</link><guid isPermaLink="true">https://alisa22580.com/posts/cfbetter-deepseek-ai-translation/</guid><description>在 Codeforces Better 中接入 DeepSeek V4 Flash</description><pubDate>Sun, 07 Jun 2026 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;写在前面&lt;/h1&gt;
 &lt;blockquote&gt;
 &lt;p&gt;曾经在 b 站发过一个 &lt;a href=&quot;https://www.bilibili.com/opus/1117176875527962633?spm_id_from=333.1387.0.0&quot;&gt;简易版本的教程&lt;/a&gt;，其内容已经过时。&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -516,41 +516,14 @@ Root directory: /
 &lt;li&gt;&lt;a href=&quot;https://platform.deepseek.com/&quot;&gt;DeepSeek 开放平台&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://api-docs.deepseek.com/zh-cn/quick_start/pricing&quot;&gt;DeepSeek API 定价&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-</content:encoded></item><item><title>2026东北赛 长春游 / 补题 / 感想</title><link>https://alisa22580.pages.dev/posts/2026-dbcpc/</link><guid isPermaLink="true">https://alisa22580.pages.dev/posts/2026-dbcpc/</guid><description>流水账一篇</description><pubDate>Sun, 24 May 2026 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;铜首了，倒闭4个小时，感觉心情不是很美妙...
+</content:encoded></item><item><title>2026东北赛 长春游 / 补题 / 感想</title><link>https://alisa22580.com/posts/2026-dbcpc/</link><guid isPermaLink="true">https://alisa22580.com/posts/2026-dbcpc/</guid><description>流水账一篇</description><pubDate>Sun, 24 May 2026 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;铜首了，倒闭4个小时，感觉心情不是很美妙...
 &lt;img src=&quot;image.png&quot; alt=&quot;alt text&quot; /&gt;
 姑且先放一个牌子在这里，剩下的再说吧。&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;2026-05-28 update:&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;已经过去快一周啦，复杂的心情应该说平复了很多，虽然还是觉得挺可惜的，但也不至于太难过了。&lt;/p&gt;
-&lt;h1&gt;去往长春&lt;/h1&gt;
-&lt;p&gt;我决定和可爱的 &lt;a href=&quot;https://imicola.com/&quot;&gt;imicola&lt;/a&gt; 宝宝一起坐火车（其实就是我什么都没管，订票订酒店啥的全部给他处理了）。&lt;/p&gt;
-&lt;p&gt;我们是周四下午出发的，提前了一个多小时从学校坐火车准备去哈尔滨站，结果快到地方了发现是哈尔滨西站，给我笑得。&lt;/p&gt;
-&lt;p&gt;我说你怎么一点规划没有；他说我有规划的，只是规划错了；我说你怎么是路痴；他说你才知道啊。&lt;/p&gt;
-&lt;p&gt;好在也不是什么大问题，最后就是打车花更多的价钱去更近的西站。&lt;/p&gt;
-&lt;p&gt;上车之后我就开始狂笑，他问我怎么了我笑了半天跟他说：
-&quot;这个像不像悠和穹回乡下？&quot;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;5caf7ce0aa4eeffb4a10b33fd38cdc4a.jpg&quot; alt=&quot;alt text&quot; /&gt;
-&lt;img src=&quot;d31603442efc00b936ffe88bf9201cbc.jpg&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;是不是，还，蛮像的！&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;然后都想到这了，在车上就姑且听了那么一路 《飞向遥远的天空》，感觉莫名挺应景的。&lt;/p&gt;
-&lt;p&gt;我是不知道他怎么想的，但是我确实是在哈尔滨待得有点烦闷，心想我有不得不逃离这个地方的理由。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;19c599a62dc0cfabcfff980a78102d61.jpg&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
-&lt;h1&gt;到达长春&lt;/h1&gt;
-&lt;p&gt;到达长春之后，我们就前往23一晚的豪华大酒店下榻了，好像是叫什么 东篱下宾馆 。我一开始还在幻视什么什么寄人篱下，结果 imicola 说 这是采菊东篱下。。&lt;/p&gt;
-&lt;p&gt;于是我感到十分欣慰，问他你的注意力能不能放在赛时。&lt;/p&gt;
-&lt;p&gt;这之后我们就去找&lt;/p&gt;
-&lt;h1&gt;关于比赛&lt;/h1&gt;
-&lt;p&gt;首先是最为关键的 比赛情况。&lt;/p&gt;
-&lt;p&gt;热身赛时候，好像是侥幸看了一道没人看的题，获得了一个首杀。
-&lt;img src=&quot;2c233ca7bfc4311acaf5a87112bacb82.jpg&quot; alt=&quot;alt text&quot; /&gt;
-当时非常兴奋啊！觉得自己这辈子应该是有了，然后 imicola 就给我泼冷水，说人家强校都要么不打要么看难题。。&lt;/p&gt;
-&lt;p&gt;热身最后开了三道题，第四道概率居然不会，，依稀记得高中数学还不错来着，怎么上大学变数学低手了，唉！都是 acm 害的。&lt;/p&gt;
-&lt;p&gt;总之热身赛结束后，感觉自己状态不错，回到宾馆把那道概率摸索了一下 就准备睡觉了。&lt;/p&gt;
-&lt;p&gt;结果出于一些神秘的原因 我死活睡不着 就这么耗到了凌晨三点多 第二天早上起来人都恍惚了&lt;/p&gt;
-</content:encoded></item><item><title>vscode 快速配置 g++</title><link>https://alisa22580.pages.dev/posts/vscode-run-code-tutorial/</link><guid isPermaLink="true">https://alisa22580.pages.dev/posts/vscode-run-code-tutorial/</guid><description>可以作为 从 Dev-C++ / CodeBlocks 等 古老 IDE 过渡到 vscode 的快速替代方案</description><pubDate>Mon, 13 Apr 2026 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;写在前面&lt;/h1&gt;
+</content:encoded></item><item><title>vscode 快速配置 g++</title><link>https://alisa22580.com/posts/vscode-run-code-tutorial/</link><guid isPermaLink="true">https://alisa22580.com/posts/vscode-run-code-tutorial/</guid><description>可以作为 从 Dev-C++ / CodeBlocks 等 古老 IDE 过渡到 vscode 的快速替代方案</description><pubDate>Mon, 13 Apr 2026 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;写在前面&lt;/h1&gt;
 &lt;p&gt;:::tip
 感觉，写的非常啰嗦啊！&lt;/p&gt;
 &lt;p&gt;了解这些内容可能对短期的比赛没有太大帮助，但是对于长期的计算机学习是意义重大的。
@@ -751,7 +724,7 @@ g++ 是 GNU Compiler Collection 的 C++ 开源编译器，支持多种平台和�
 &lt;li&gt;&lt;code&gt;&amp;amp;&amp;amp;&lt;/code&gt;: 这是一个逻辑门。只有当前面的编译操作成功了，才会执行后面的指令。&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;./main&lt;/code&gt;: 运行刚才生成的可执行程序。&lt;/li&gt;
 &lt;/ul&gt;
-</content:encoded></item><item><title>蓝桥杯 C++ B 组省赛 A-H 题解（2026）</title><link>https://alisa22580.pages.dev/posts/lanqiao-cpp-b-solutions/</link><guid isPermaLink="true">https://alisa22580.pages.dev/posts/lanqiao-cpp-b-solutions/</guid><description>完整(?)复盘</description><pubDate>Sat, 11 Apr 2026 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;:::tip
+</content:encoded></item><item><title>蓝桥杯 C++ B 组省赛 A-H 题解（2026）</title><link>https://alisa22580.com/posts/lanqiao-cpp-b-solutions/</link><guid isPermaLink="true">https://alisa22580.com/posts/lanqiao-cpp-b-solutions/</guid><description>完整(?)复盘</description><pubDate>Sat, 11 Apr 2026 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;:::tip
 补题链接：&lt;a href=&quot;https://www.luogu.com.cn/contest/320659#problems&quot;&gt;蓝桥杯省赛自测 CB&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;代码模板请移步 &lt;a href=&quot;../lanqiao-cpp-b-common/&quot;&gt;蓝桥杯 C++ B 组常用板子&lt;/a&gt; 或 &lt;a href=&quot;https://github.com/2258009564/MYWORK/tree/main/CODES/CPPPROGRAM/%E6%9D%BF%E5%AD%90&quot;&gt;我的 github 存储库&lt;/a&gt;
 :::&lt;/p&gt;
@@ -1280,7 +1253,7 @@ void solve()
 &lt;p&gt;全省第二！这下不再心有不甘了。哈哈哈&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;image-4.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
-</content:encoded></item><item><title>蓝桥杯 C++ B 组常用板子</title><link>https://alisa22580.pages.dev/posts/lanqiao-cpp-b-common/</link><guid isPermaLink="true">https://alisa22580.pages.dev/posts/lanqiao-cpp-b-common/</guid><description>个人复习用</description><pubDate>Fri, 10 Apr 2026 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;:::note
+</content:encoded></item><item><title>蓝桥杯 C++ B 组常用板子</title><link>https://alisa22580.com/posts/lanqiao-cpp-b-common/</link><guid isPermaLink="true">https://alisa22580.com/posts/lanqiao-cpp-b-common/</guid><description>个人复习用</description><pubDate>Fri, 10 Apr 2026 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;:::note
 个人复习用，由于打的 B组 太难的也用不上，只整理了一点，用 ai 审核了一遍似乎是都能用在 cpp11 ，但是其实还是会心慌&lt;/p&gt;
 &lt;p&gt;希望一切顺利。
 :::&lt;/p&gt;
@@ -1748,7 +1721,7 @@ int C(int n, int k)
     return fact[n] * invf[k] % MOD * invf[n - k] % MOD;
 }
 &lt;/code&gt;&lt;/pre&gt;
-</content:encoded></item><item><title>GKD -- 李跳跳的平替推荐</title><link>https://alisa22580.pages.dev/posts/gkd-shizuku-usage-tutorial/</link><guid isPermaLink="true">https://alisa22580.pages.dev/posts/gkd-shizuku-usage-tutorial/</guid><description>GKD 使用教程，以及一些 Root、Shizuku、ADB 相关的原理学习</description><pubDate>Thu, 09 Apr 2026 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;写在前面&lt;/h1&gt;
+</content:encoded></item><item><title>GKD -- 李跳跳的平替推荐</title><link>https://alisa22580.com/posts/gkd-shizuku-usage-tutorial/</link><guid isPermaLink="true">https://alisa22580.com/posts/gkd-shizuku-usage-tutorial/</guid><description>GKD 使用教程，以及一些 Root、Shizuku、ADB 相关的原理学习</description><pubDate>Thu, 09 Apr 2026 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;写在前面&lt;/h1&gt;
 &lt;blockquote&gt;
 &lt;p&gt;免责声明：本文仅用于学习和效率优化，不鼓励用于任何违规用途。自动点击有风险，尤其是付款、授权、删除、转账类页面，请务必谨慎。&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -1845,7 +1818,7 @@ int C(int n, int k)
 &lt;p&gt;这些页面宁愿手点，也不要赌自动化“刚好没错”。
 :::&lt;/p&gt;
 &lt;p&gt;大功告成，祝使用愉快。&lt;/p&gt;
-</content:encoded></item><item><title>简短的VPN使用教程</title><link>https://alisa22580.pages.dev/posts/vpn-usage-tutorial/</link><guid isPermaLink="true">https://alisa22580.pages.dev/posts/vpn-usage-tutorial/</guid><description>内涵丛雨云推荐（更适合二次元宝宝体质</description><pubDate>Fri, 03 Apr 2026 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;写在前面&lt;/h1&gt;
+</content:encoded></item><item><title>简短的VPN使用教程</title><link>https://alisa22580.com/posts/vpn-usage-tutorial/</link><guid isPermaLink="true">https://alisa22580.com/posts/vpn-usage-tutorial/</guid><description>内涵丛雨云推荐（更适合二次元宝宝体质</description><pubDate>Fri, 03 Apr 2026 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;写在前面&lt;/h1&gt;
 &lt;p&gt;捣鼓博客的初衷就是想多发一些“经验分享帖”，但是又总会怀疑自己自作多情的搞这么一出 是不是其实无人在意。&lt;/p&gt;
 &lt;p&gt;但是还是有很多朋友问我这怎么搞那怎么搞，同样的东西解释很多次大概也会心烦。倒不如趁此机会一鼓作气把东西写出来，这样以后别人问起来就可以帅气（吗）地把博客链接甩出去，还能给博客加点浏览量。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;image.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
@@ -1933,7 +1906,7 @@ int C(int n, int k)
 安全提醒： 订阅链接包含你的个人账户信息，千万不要发给别人，否则流量会被蹭光，账号也可能被封。
 :::&lt;/p&gt;
 &lt;p&gt;祝大家在广阔的互联网海洋中愉悦自在。&lt;/p&gt;
-</content:encoded></item><item><title>SelectEcho 入门教程：从安装到第一次划词翻译</title><link>https://alisa22580.pages.dev/posts/selectecho-getting-started/</link><guid isPermaLink="true">https://alisa22580.pages.dev/posts/selectecho-getting-started/</guid><description>一篇给零基础用户的完整上手指南：安装、配置、实操、排错和进阶建议。</description><pubDate>Sun, 15 Mar 2026 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;写在前面&lt;/h1&gt;
+</content:encoded></item><item><title>SelectEcho 入门教程：从安装到第一次划词翻译</title><link>https://alisa22580.com/posts/selectecho-getting-started/</link><guid isPermaLink="true">https://alisa22580.com/posts/selectecho-getting-started/</guid><description>一篇给零基础用户的完整上手指南：安装、配置、实操、排错和进阶建议。</description><pubDate>Sun, 15 Mar 2026 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;写在前面&lt;/h1&gt;
 &lt;p&gt;这篇教程是给第一次接触浏览器扩展、或者第一次折腾划词翻译的朋友准备的，可以作为「SelectEcho」的快速上手指南。&lt;/p&gt;
 &lt;p&gt;::github{repo=&quot;2258009564/SelectEcho&quot;}&lt;/p&gt;
 &lt;p&gt;如果对你有帮助的话，欢迎在 GitHub 上给项目点个 star，或者把教程分享给需要的朋友！如果你在使用过程中遇到任何问题，也欢迎在 GitHub 上提交 issue，我会尽快回复。&lt;/p&gt;
@@ -2148,7 +2121,7 @@ cd SelectEcho
 &lt;p&gt;等待更新中...&lt;/p&gt;
 &lt;h1&gt;结语&lt;/h1&gt;
 &lt;p&gt;到这里，你已经成功安装并使用了 SelectEcho 进行划词翻译。希望这个工具能成为你日常浏览和学习的好帮手！如果你有任何问题或者建议，欢迎在 GitHub 上提交 issue 或者参与讨论。祝你翻译愉快！&lt;/p&gt;
-</content:encoded></item><item><title>test</title><link>https://alisa22580.pages.dev/posts/test/</link><guid isPermaLink="true">https://alisa22580.pages.dev/posts/test/</guid><description>这是一个测试文章，用于验证博客系统的功能是否正常。</description><pubDate>Wed, 11 Mar 2026 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;测试&lt;/h1&gt;
+</content:encoded></item><item><title>test</title><link>https://alisa22580.com/posts/test/</link><guid isPermaLink="true">https://alisa22580.com/posts/test/</guid><description>这是一个测试文章，用于验证博客系统的功能是否正常。</description><pubDate>Wed, 11 Mar 2026 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;测试&lt;/h1&gt;
 &lt;p&gt;这是一个测试文章，用于验证博客系统的功能是否正常。文章内容可以是任何文本，这里我简单地贴一段我早已经忘却的组合数板子来测试。&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;const int MAXN = 1e7;
 const int MOD = 1e9 + 7;
