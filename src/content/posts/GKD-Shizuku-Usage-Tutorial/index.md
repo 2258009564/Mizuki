@@ -1,5 +1,5 @@
 ---
-title: GKD -- 李跳跳的平替推荐 
+title: GKD：李跳跳的平替推荐
 published: 2026-04-09
 updated: 2026-04-09T19:28:27Z
 description: "GKD 使用教程，以及一些 Root、Shizuku、ADB 相关的原理学习"
@@ -69,9 +69,11 @@ Shizuku 有三种常见启动方式：
 
 ## 3.2 启用无障碍服务
 
-打开软件，勾选第一个选项，点击右上角进入配置。![alt text](image.png)
+打开软件，勾选第一个选项，点击右上角进入配置。
 
-## 3.3 安装并启动 Shizuku 
+![alt text](image.png)
+
+## 3.3 安装并启动 Shizuku
 
 ::github{repo="RikkaApps/Shizuku"}
 [Shizuku 官方文档](https://shizuku.rikka.app/zh-hans/guide/setup/)
@@ -82,16 +84,29 @@ Shizuku 有三种常见启动方式：
 
 ### B. 无线调试启动（Android 11+）
 
-1. 打开 Shizuku，点击配对。![alt text](image-1.png)
-2. 点击 开发者选项，找到无线调试。![alt text](image-2.png)
-![alt text](image-3.png)
-3. 勾选 无线调试，点击 配对设备，输入 Shizuku 给出的配对码。![alt text](image-4.png)
-![alt text](image-5.png)
-![alt text](image-6.png)
-4. 配对成功后，回到 Shizuku 点击启动。![alt text](image-7.png)
-5. 在上方授权 gkd 。![alt text](image-8.png)
-![alt text](image-9.png)
+1. 打开 Shizuku，点击配对。
 
+   ![alt text](image-1.png)
+
+2. 点击“开发者选项”，找到无线调试。
+
+   ![alt text](image-2.png)
+   ![alt text](image-3.png)
+
+3. 勾选“无线调试”，点击“配对设备”，输入 Shizuku 给出的配对码。
+
+   ![alt text](image-4.png)
+   ![alt text](image-5.png)
+   ![alt text](image-6.png)
+
+4. 配对成功后，回到 Shizuku 点击启动。
+
+   ![alt text](image-7.png)
+
+5. 在上方授权 GKD。
+
+   ![alt text](image-8.png)
+   ![alt text](image-9.png)
 
 ### C. 连接电脑 ADB 启动
 
@@ -113,14 +128,18 @@ https://raw.githubusercontent.com/AIsouler/GKD_subscription/main/dist/AIsouler_g
 在 GKD 内导入路径一般是：
 
 - 打开 GKD，进入订阅页面，选择添加订阅，粘贴上述 URL。
-![alt text](image-10.png)
-![alt text](image-11.png)
+
+  ![alt text](image-10.png)
+  ![alt text](image-11.png)
+
 - 保存并拉取更新。
 
 如果看到订阅名称、版本、应用规则列表正常出现，说明导入成功。
 
 ## 3.5 配置规则
+
 进入应用界面，逐一调整即可。
+
 ![alt text](image-12.png)
 
 # 4. 注意事项

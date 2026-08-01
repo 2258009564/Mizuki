@@ -1,8 +1,8 @@
 ---
-title: 简短的VPN使用教程
+title: 简短的 VPN 使用教程
 published: 2026-04-03
 updated: 2026-05-28T15:34:59Z
-description: "内涵丛雨云推荐（更适合二次元宝宝体质"
+description: "内含丛雨云推荐（更适合二次元宝宝体质）"
 tags: [Tutorial, VPN]
 category: Tutorial
 draft: false
@@ -23,11 +23,11 @@ licenseName: "MIT"
 
 # 1. 环境讲解
 在进入具体操作之前，我们先来理清几个经常被混淆的概念。虽然它们最终的目的都是让你“科学上网”，但原理和使用体验却大不相同。
-## 1. “梯子” (The Ladder)：
+## 1. “梯子”（The Ladder）
 “梯子”并不是一个技术术语，而是中文互联网环境下的一个比喻。
 - 含义： 泛指一切能够绕过网络限制、访问海外网站的工具。
 - 逻辑： 墙（GFW）挡住了去路，所以我们需要一把“梯子”翻过去。无论你用的是 VPN、SSR 还是 Clash，在口语中都可以统称为“找个梯子”。
-## 2. VPN (虚拟专用网络)：
+## 2. VPN（虚拟专用网络）
 VPN 的全称是 `Virtual Private Network` 。
 - 初衷：它的设计初衷不是为了“翻墙”，而是为了数据加密。比如出差的员工通过 VPN 安全地连接回公司内网。
 
@@ -35,7 +35,7 @@ VPN 的全称是 `Virtual Private Network` 。
 > ![alt text](966167b05a75e7ee2e35a4ab64f522b5.jpg)
 - 特点：全局加密： 开启后，你电脑上所有的网络流量都会经过加密通道。
 - 现状：虽然安全，但由于 VPN 的流量特征非常明显，容易被识别封锁，且开启后访问国内网站（如淘宝、百度）速度会变慢。
-## 3. 代理 (Proxy) 与协议：
+## 3. 代理（Proxy）与协议
 为了避开检测，技术圈开发了更灵活的代理协议（如 Shadowsocks, V2Ray, Trojan 等）。
 - 原理： 就像是在你的网络请求外包了一层“普通快递”的纸箱，让防火墙以为你只是在访问普通的海外网页。
 - 服务商： 提供这些代理协议访问权限的网站，通常被称为 **“机场”**。
@@ -56,16 +56,18 @@ clash 是 基于规则的软件内代理核心 ...
 # 2. 正式的使用教程
 通过上文我们知道，我们需要从 机场 中获得订阅服务，并通过 clash 来使用。
 
-## 1. clash 的安装
-### windows
+## 1. Clash 的安装
+
+### Windows
 推荐使用 [clash verge rev](https://github.com/clash-verge-rev/clash-verge-rev/releases/tag/v2.4.7)，界面友好，功能齐全，适合大多数用户。
 
 ::github{repo="clash-verge-rev/clash-verge-rev"}
 ### Android
 推荐使用 [Clash Meta](https://github.com/MetaCubeX/ClashMetaForAndroid) ，它是目前安卓平台上功能最全、更新最活跃的 Clash 版本。
 ::github{repo="MetaCubeX/ClashMetaForAndroid"}
-### ios
-没有用过ios呢...等个有缘人提PR。
+### iOS
+
+没有用过 iOS 呢……等个有缘人提 PR。
 
 ## 2. 获取订阅服务
 这个帖子仅负责必要的说明，因此 建议大家自行搜索评价稳定的机场，本站没有立场作推荐。
@@ -73,18 +75,18 @@ clash 是 基于规则的软件内代理核心 ...
 ![alt text](preview.jpg)
 :spoiler[可爱的 [丛雨宝宝](https://congyu.moe/auth/register?invite=fc84dcfb89) 出现在这里，单纯是因为她是卡密sama，想去哪就去哪，跟作者本人并无联系。]
 ## 3. 导入 / 使用
-> 下面以 windows 版本的 clash 为例，其他平台的操作大同小异。
+> 下面以 Windows 版本的 Clash 为例，其他平台的操作大同小异。
 
 完成购买步骤后，我们等待约五分钟，可以看到主页的订阅链接出现。
 ![alt text](image-1.png)
 
-我们点击复制，把链接粘贴到 clash 的 url 粘贴栏里，保存。
+我们点击复制，把链接粘贴到 Clash 的 URL 粘贴栏里，保存。
 ![alt text](image-2.png)
 
 现在，我们开启代理，看到状态栏的小猫从紫色变成橙色，一切就大功告成了！
 ![alt text](image-4.png)
 
-可以尝试打开 [谷歌](https://www.google.com/)  进行测试。
+可以尝试打开[谷歌](https://www.google.com/)进行测试。
 
 ## 4. 使用建议与避坑
 我们应当选择 Rule (规则模式) 实现“国内直连，国外加速”。  

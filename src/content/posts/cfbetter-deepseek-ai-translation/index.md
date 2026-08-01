@@ -21,7 +21,7 @@ comment: true
 
 # 1. 准备工作
 
-## 1.1 安装 油猴脚本
+## 1.1 安装油猴脚本
 
 CFBetter 是一个 Tampermonkey 油猴脚本，你需要在浏览器中先安装它。
 
@@ -39,7 +39,7 @@ CFBetter 是一个 Tampermonkey 油猴脚本，你需要在浏览器中先安装
 
 访问 [cf better 油猴脚本页面](https://greasyfork.org/zh-CN/scripts/465777-codeforces-better), 点击安装按钮，按照提示完成安装即可。
 
-## 1.2 获取 DeepSeek API Key
+## 1.3 获取 DeepSeek API Key
 
 1. 前往 [DeepSeek 开放平台](https://platform.deepseek.com/) 注册账号。
 2. 登录后，点击左侧菜单的 **「API Keys」**
@@ -59,6 +59,7 @@ CFBetter 是一个 Tampermonkey 油猴脚本，你需要在浏览器中先安装
 
 在设置面板中，找到 **「翻译」** 选项，从下拉菜单中选择 **「AI 翻译」**。
 ![alt text](image-5.png)
+
 ## 2.3 添加 DeepSeek 配置
 
 向下滚动，找到 **「ChatGPT」** 区域，点击 **「添加」** 按钮，弹出配置表单。
@@ -134,27 +135,27 @@ DeepSeek V4 Flash 的定价如下（截至 2026 年 6 月）：
 
 # 5. 常见问题
 
-### Q: 翻译报错 401 Unauthorized？
+## Q: 翻译报错 401 Unauthorized？
 
 检查 API Key 是否正确，确保完整复制了 `sk-` 开头的整个 Key，没有多余空格。
 
-### Q: 翻译报错 402 Payment Required？
+## Q: 翻译报错 402 Payment Required？
 
 你的 DeepSeek 账号余额不足，前往 [DeepSeek 开放平台](https://platform.deepseek.com/) 充值即可。
 
-### Q: 翻译很慢怎么办？
+## Q: 翻译很慢怎么办？
 
 AI 翻译的速度取决于 DeepSeek 服务器的响应时间，通常在 2-5 秒左右。如果经常很慢，可能是网络问题，建议检查网络连接。
 
-### Q: 公式显示异常？
+## Q: 公式显示异常？
 
 使用 ChatGPT/AI 翻译时，CFBetter 会通过提示词告知 AI 保留 LaTeX 公式，通常不会出现公式被破坏的情况。如果偶尔出现，可以重新翻译一次。
 
-### Q: Tampermonkey 弹出跨域警告？
+## Q: Tampermonkey 弹出跨域警告？
 
 这是正常现象，因为你在使用自定义 API 地址。点击「允许」或「始终允许」即可。
 
-### Q: 可以用其他 AI 模型吗？
+## Q: 可以用其他 AI 模型吗？
 
 可以！只要模型支持 OpenAI 兼容的 API 格式（`/v1/chat/completions`），都可以使用。例如：
 - **OpenAI**：`https://api.openai.com/v1/chat/completions`，模型 `gpt-4o`
