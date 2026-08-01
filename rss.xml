@@ -337,6 +337,23 @@ Root directory: /
 &lt;p&gt;我们可以直接访问 &lt;a href=&quot;https://twikoo.js.org/backend.html#vercel-%E9%83%A8%E7%BD%B2&quot;&gt;Vercel 部署&lt;/a&gt; 的教程来获取这个 ID 。&lt;/p&gt;
 &lt;h2&gt;更多内容&lt;/h2&gt;
 &lt;p&gt;持续更新中...&lt;/p&gt;
+</content:encoded></item><item><title>一场幻梦</title><link>https://alisa22580.com/posts/a-dream/</link><guid isPermaLink="true">https://alisa22580.com/posts/a-dream/</guid><description>希望我将来也不要留下遗憾。</description><pubDate>Sun, 26 Jul 2026 21:57:00 GMT</pubDate><content:encoded>&lt;p&gt;学习，打 A，工作。&lt;/p&gt;
+&lt;p&gt;上了大学，我离自己从小到大的生活圈子愈发变远了。&lt;/p&gt;
+&lt;p&gt;这次回来深圳，满打满算十一天。跟爸妈弟弟聊天，跟小学初中的好朋友叙旧，又因为前程之类的事情不得不匆匆离开。&lt;/p&gt;
+&lt;p&gt;睡在原来属于我、现在属于弟弟的小床上，恍惚间分不清楚这到底是我的家，还是一个陌生的房间。整理东西时候发现抽屉柜子里封存的物件，我只能有模糊的记忆。我不是一个念旧的人吗，为什么竟因为遗忘而感到有点害怕？&lt;/p&gt;
+&lt;p&gt;爸妈，不想这么说，但是确实老了，也自然地把我当个大人对待。我出门不再需要跟他们报备；爸妈捣鼓电子产品的时候会询问我的意见；在家爸妈知道我要学习，给了我极高的宽容。我每天起床睡觉时间都极其阴间，好几天都跟他们几乎错开，就这样我妈还每天中午给我买两份肠粉打包带回家。&lt;/p&gt;
+&lt;p&gt;弟弟长大了，但是其实没那么长大。成绩还不错，现在小学学的东西比我们以前难了，但是他考得其实比我那时候要好；但是他很调皮捣蛋，比我那时候要更调皮。这次回来我骂了一顿弟弟，把他骂哭了。其实我很爱他，我不想对他发脾气，但是我爸妈可能对他太溺爱了，这个家需要一个坏人，反正我才回来十天（笑）。&lt;/p&gt;
+&lt;p&gt;朋友们外表的变化不大，但是一个个眼里好像失去光了。有的已经基本告别校园生活参加工作了，有的大概决定留在学校所在地当小老师，有的放假了还去图书馆努力学习制图，想要不被 AI 取代。&lt;/p&gt;
+&lt;p&gt;在我不打 A、不心理扭曲地吵着要当小男娘穿小裙子的时候，我会跟他们畅聊未来。从很多年前就保留了去乐城公园散步的习惯，只是慢慢地从几周一聚、几月一聚，变成如今半年一聚了。不知道下次见面是多久之后。&lt;/p&gt;
+&lt;p&gt;回来这几天也算是用双脚走过了自己曾经的活动范围，也对自己没能参加港中深举办的深圳邀请赛感到遗憾，明明这个赛站小时候抱过我；然而我的高中我还是不敢回去，不夸张地说，想到这个我就浑身发抖。&lt;/p&gt;
+&lt;p&gt;临近期末准备放假买票的时候，我说找到工作的话其实假期不回深圳也行，反正回家也是十多天的事。我妈说，回来吧，回来看看。&lt;/p&gt;
+&lt;p&gt;结果要走的时候还真有点舍不得。&lt;/p&gt;
+&lt;p&gt;好在我牵挂的其实只有以上这些。回来这几天我很开心，大概算是没给东北人的深圳之旅留下遗憾吧？&lt;/p&gt;
+&lt;p&gt;希望我将来也不要留下遗憾。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;2026-08-01 update:&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/c24aeeeff6ca72539d0ae794c2115642.BjxuAAmJ_72oAt.webp&quot; alt=&quot;我在出租屋码字，妹妹在看我 w-100%&quot; title=&quot;我在出租屋码字，妹妹在看我&quot; /&gt;&lt;/p&gt;
 </content:encoded></item><item><title>CFBetter 快速配置 AI 翻译（接入 DeepSeek V4 Flash）</title><link>https://alisa22580.com/posts/cfbetter-deepseek-ai-translation/</link><guid isPermaLink="true">https://alisa22580.com/posts/cfbetter-deepseek-ai-translation/</guid><description>在 Codeforces Better 中接入 DeepSeek V4 Flash</description><pubDate>Sun, 07 Jun 2026 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;写在前面&lt;/h1&gt;
 &lt;blockquote&gt;
 &lt;p&gt;曾经在 b 站发过一个 &lt;a href=&quot;https://www.bilibili.com/opus/1117176875527962633?spm_id_from=333.1387.0.0&quot;&gt;简易版本的教程&lt;/a&gt;，其内容已经过时。&lt;/p&gt;
@@ -345,7 +362,7 @@ Root directory: /
 &lt;p&gt;&lt;strong&gt;CFBetter&lt;/strong&gt; 是一个非常好用的 Codeforces 增强插件，它支持多种翻译服务，其中最推荐的就是 &lt;strong&gt;AI 翻译（ChatGPT 兼容接口）&lt;/strong&gt; —— 因为 AI 能理解上下文，还能自动识别和保护 LaTeX 公式，翻译质量远超传统机翻。&lt;/p&gt;
 &lt;p&gt;本文将教你如何&lt;strong&gt;快速配置&lt;/strong&gt; CFBetter 的 AI 翻译功能，接入 &lt;strong&gt;DeepSeek V4 Flash&lt;/strong&gt; 模型。&lt;/p&gt;
 &lt;h1&gt;1. 准备工作&lt;/h1&gt;
-&lt;h2&gt;1.1 安装 油猴脚本&lt;/h2&gt;
+&lt;h2&gt;1.1 安装油猴脚本&lt;/h2&gt;
 &lt;p&gt;CFBetter 是一个 Tampermonkey 油猴脚本，你需要在浏览器中先安装它。&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;
@@ -364,7 +381,7 @@ Root directory: /
 &lt;/ol&gt;
 &lt;h2&gt;1.2 安装 CFBetter 脚本&lt;/h2&gt;
 &lt;p&gt;访问 &lt;a href=&quot;https://greasyfork.org/zh-CN/scripts/465777-codeforces-better&quot;&gt;cf better 油猴脚本页面&lt;/a&gt;, 点击安装按钮，按照提示完成安装即可。&lt;/p&gt;
-&lt;h2&gt;1.2 获取 DeepSeek API Key&lt;/h2&gt;
+&lt;h2&gt;1.3 获取 DeepSeek API Key&lt;/h2&gt;
 &lt;ol&gt;
 &lt;li&gt;前往 &lt;a href=&quot;https://platform.deepseek.com/&quot;&gt;DeepSeek 开放平台&lt;/a&gt; 注册账号。&lt;/li&gt;
 &lt;li&gt;登录后，点击左侧菜单的 &lt;strong&gt;「API Keys」&lt;/strong&gt;&lt;/li&gt;
@@ -491,17 +508,17 @@ Root directory: /
 &lt;p&gt;实际使用中，翻译一道 Codeforces 题目（包括题目描述、输入输出说明、样例等）大约消耗 500-2000 tokens，折合人民币 &lt;strong&gt;不到 0.01 元&lt;/strong&gt;。&lt;/p&gt;
 &lt;p&gt;也就是说，&lt;strong&gt;充 10 块钱，能翻译上千道题目&lt;/strong&gt;，基本等于白嫖。&lt;/p&gt;
 &lt;h1&gt;5. 常见问题&lt;/h1&gt;
-&lt;h3&gt;Q: 翻译报错 401 Unauthorized？&lt;/h3&gt;
+&lt;h2&gt;Q: 翻译报错 401 Unauthorized？&lt;/h2&gt;
 &lt;p&gt;检查 API Key 是否正确，确保完整复制了 &lt;code&gt;sk-&lt;/code&gt; 开头的整个 Key，没有多余空格。&lt;/p&gt;
-&lt;h3&gt;Q: 翻译报错 402 Payment Required？&lt;/h3&gt;
+&lt;h2&gt;Q: 翻译报错 402 Payment Required？&lt;/h2&gt;
 &lt;p&gt;你的 DeepSeek 账号余额不足，前往 &lt;a href=&quot;https://platform.deepseek.com/&quot;&gt;DeepSeek 开放平台&lt;/a&gt; 充值即可。&lt;/p&gt;
-&lt;h3&gt;Q: 翻译很慢怎么办？&lt;/h3&gt;
+&lt;h2&gt;Q: 翻译很慢怎么办？&lt;/h2&gt;
 &lt;p&gt;AI 翻译的速度取决于 DeepSeek 服务器的响应时间，通常在 2-5 秒左右。如果经常很慢，可能是网络问题，建议检查网络连接。&lt;/p&gt;
-&lt;h3&gt;Q: 公式显示异常？&lt;/h3&gt;
+&lt;h2&gt;Q: 公式显示异常？&lt;/h2&gt;
 &lt;p&gt;使用 ChatGPT/AI 翻译时，CFBetter 会通过提示词告知 AI 保留 LaTeX 公式，通常不会出现公式被破坏的情况。如果偶尔出现，可以重新翻译一次。&lt;/p&gt;
-&lt;h3&gt;Q: Tampermonkey 弹出跨域警告？&lt;/h3&gt;
+&lt;h2&gt;Q: Tampermonkey 弹出跨域警告？&lt;/h2&gt;
 &lt;p&gt;这是正常现象，因为你在使用自定义 API 地址。点击「允许」或「始终允许」即可。&lt;/p&gt;
-&lt;h3&gt;Q: 可以用其他 AI 模型吗？&lt;/h3&gt;
+&lt;h2&gt;Q: 可以用其他 AI 模型吗？&lt;/h2&gt;
 &lt;p&gt;可以！只要模型支持 OpenAI 兼容的 API 格式（&lt;code&gt;/v1/chat/completions&lt;/code&gt;），都可以使用。例如：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;OpenAI&lt;/strong&gt;：&lt;code&gt;https://api.openai.com/v1/chat/completions&lt;/code&gt;，模型 &lt;code&gt;gpt-4o&lt;/code&gt;&lt;/li&gt;
@@ -516,9 +533,9 @@ Root directory: /
 &lt;li&gt;&lt;a href=&quot;https://platform.deepseek.com/&quot;&gt;DeepSeek 开放平台&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://api-docs.deepseek.com/zh-cn/quick_start/pricing&quot;&gt;DeepSeek API 定价&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-</content:encoded></item><item><title>2026东北赛 长春游 / 补题 / 感想</title><link>https://alisa22580.com/posts/2026-dbcpc/</link><guid isPermaLink="true">https://alisa22580.com/posts/2026-dbcpc/</guid><description>流水账一篇</description><pubDate>Sun, 24 May 2026 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;铜首了，倒闭4个小时，感觉心情不是很美妙...
-&lt;img src=&quot;https://alisa22580.com/_astro/image.CUvhJZwi_Z9fOY8.webp&quot; alt=&quot;alt text&quot; /&gt;
-姑且先放一个牌子在这里，剩下的再说吧。&lt;/p&gt;
+</content:encoded></item><item><title>2026东北赛 长春游 / 补题 / 感想</title><link>https://alisa22580.com/posts/2026-dbcpc/</link><guid isPermaLink="true">https://alisa22580.com/posts/2026-dbcpc/</guid><description>流水账一篇</description><pubDate>Sun, 24 May 2026 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;铜首了，倒闭4个小时，感觉心情不是很美妙...&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/image.CUvhJZwi_Z9fOY8.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;姑且先放一个牌子在这里，剩下的再说吧。&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;2026-05-28 update:&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -1721,7 +1738,7 @@ int C(int n, int k)
     return fact[n] * invf[k] % MOD * invf[n - k] % MOD;
 }
 &lt;/code&gt;&lt;/pre&gt;
-</content:encoded></item><item><title>GKD -- 李跳跳的平替推荐</title><link>https://alisa22580.com/posts/gkd-shizuku-usage-tutorial/</link><guid isPermaLink="true">https://alisa22580.com/posts/gkd-shizuku-usage-tutorial/</guid><description>GKD 使用教程，以及一些 Root、Shizuku、ADB 相关的原理学习</description><pubDate>Thu, 09 Apr 2026 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;写在前面&lt;/h1&gt;
+</content:encoded></item><item><title>GKD：李跳跳的平替推荐</title><link>https://alisa22580.com/posts/gkd-shizuku-usage-tutorial/</link><guid isPermaLink="true">https://alisa22580.com/posts/gkd-shizuku-usage-tutorial/</guid><description>GKD 使用教程，以及一些 Root、Shizuku、ADB 相关的原理学习</description><pubDate>Thu, 09 Apr 2026 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;写在前面&lt;/h1&gt;
 &lt;blockquote&gt;
 &lt;p&gt;免责声明：本文仅用于学习和效率优化，不鼓励用于任何违规用途。自动点击有风险，尤其是付款、授权、删除、转账类页面，请务必谨慎。&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -1763,7 +1780,8 @@ int C(int n, int k)
 &lt;li&gt;https://github.com/gkd-kit/gkd/releases&lt;/li&gt;
 &lt;/ol&gt;
 &lt;h2&gt;3.2 启用无障碍服务&lt;/h2&gt;
-&lt;p&gt;打开软件，勾选第一个选项，点击右上角进入配置。&lt;img src=&quot;https://alisa22580.com/_astro/image.BGlBej5U_ZtbO5D.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;打开软件，勾选第一个选项，点击右上角进入配置。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/image.BGlBej5U_ZtbO5D.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;h2&gt;3.3 安装并启动 Shizuku&lt;/h2&gt;
 &lt;p&gt;::github{repo=&quot;RikkaApps/Shizuku&quot;}
 &lt;a href=&quot;https://shizuku.rikka.app/zh-hans/guide/setup/&quot;&gt;Shizuku 官方文档&lt;/a&gt;&lt;/p&gt;
@@ -1771,15 +1789,30 @@ int C(int n, int k)
 &lt;p&gt;如果你的设备已 Root，直接在 Shizuku 内点击启动即可。&lt;/p&gt;
 &lt;h3&gt;B. 无线调试启动（Android 11+）&lt;/h3&gt;
 &lt;ol&gt;
-&lt;li&gt;打开 Shizuku，点击配对。&lt;img src=&quot;https://alisa22580.com/_astro/image-1.Dc0w8Rmr_1aRFLF.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/li&gt;
-&lt;li&gt;点击 开发者选项，找到无线调试。&lt;img src=&quot;https://alisa22580.com/_astro/image-2.CnWDCezu_Z1aJDDw.webp&quot; alt=&quot;alt text&quot; /&gt;
-&lt;img src=&quot;https://alisa22580.com/_astro/image-3.DnCVRYHH_Z1jzmqp.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/li&gt;
-&lt;li&gt;勾选 无线调试，点击 配对设备，输入 Shizuku 给出的配对码。&lt;img src=&quot;https://alisa22580.com/_astro/image-4.BiCyydPC_WffyQ.webp&quot; alt=&quot;alt text&quot; /&gt;
+&lt;li&gt;
+&lt;p&gt;打开 Shizuku，点击配对。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/image-1.Dc0w8Rmr_1aRFLF.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;点击“开发者选项”，找到无线调试。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/image-2.CnWDCezu_Z1aJDDw.webp&quot; alt=&quot;alt text&quot; /&gt;
+&lt;img src=&quot;https://alisa22580.com/_astro/image-3.DnCVRYHH_Z1jzmqp.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;勾选“无线调试”，点击“配对设备”，输入 Shizuku 给出的配对码。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/image-4.BiCyydPC_WffyQ.webp&quot; alt=&quot;alt text&quot; /&gt;
 &lt;img src=&quot;https://alisa22580.com/_astro/image-5.DUqbo7PG_Z21luVk.webp&quot; alt=&quot;alt text&quot; /&gt;
-&lt;img src=&quot;https://alisa22580.com/_astro/image-6.DHnGhzZh_Z1zkJxM.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/li&gt;
-&lt;li&gt;配对成功后，回到 Shizuku 点击启动。&lt;img src=&quot;https://alisa22580.com/_astro/image-7.CoNEpoSA_1olhmz.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/li&gt;
-&lt;li&gt;在上方授权 gkd 。&lt;img src=&quot;https://alisa22580.com/_astro/image-8.zpjb5Ak2_1GlNBK.webp&quot; alt=&quot;alt text&quot; /&gt;
-&lt;img src=&quot;https://alisa22580.com/_astro/image-9.Ba77v4Z5_Z2bClIi.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/li&gt;
+&lt;img src=&quot;https://alisa22580.com/_astro/image-6.DHnGhzZh_Z1zkJxM.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;配对成功后，回到 Shizuku 点击启动。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/image-7.CoNEpoSA_1olhmz.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;在上方授权 GKD。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/image-8.zpjb5Ak2_1GlNBK.webp&quot; alt=&quot;alt text&quot; /&gt;
+&lt;img src=&quot;https://alisa22580.com/_astro/image-9.Ba77v4Z5_Z2bClIi.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;/li&gt;
 &lt;/ol&gt;
 &lt;h3&gt;C. 连接电脑 ADB 启动&lt;/h3&gt;
 &lt;ol&gt;
@@ -1796,15 +1829,19 @@ int C(int n, int k)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;在 GKD 内导入路径一般是：&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;打开 GKD，进入订阅页面，选择添加订阅，粘贴上述 URL。
-&lt;img src=&quot;https://alisa22580.com/_astro/image-10.W58itvCr_ZzLiAI.webp&quot; alt=&quot;alt text&quot; /&gt;
-&lt;img src=&quot;https://alisa22580.com/_astro/image-11.Dm5hMuGT_5TbYh.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/li&gt;
-&lt;li&gt;保存并拉取更新。&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;打开 GKD，进入订阅页面，选择添加订阅，粘贴上述 URL。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/image-10.W58itvCr_ZzLiAI.webp&quot; alt=&quot;alt text&quot; /&gt;
+&lt;img src=&quot;https://alisa22580.com/_astro/image-11.Dm5hMuGT_5TbYh.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;保存并拉取更新。&lt;/p&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;如果看到订阅名称、版本、应用规则列表正常出现，说明导入成功。&lt;/p&gt;
 &lt;h2&gt;3.5 配置规则&lt;/h2&gt;
-&lt;p&gt;进入应用界面，逐一调整即可。
-&lt;img src=&quot;https://alisa22580.com/_astro/image-12.BbbR4XuW_Z1WAHqc.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;进入应用界面，逐一调整即可。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/image-12.BbbR4XuW_Z1WAHqc.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;h1&gt;4. 注意事项&lt;/h1&gt;
 &lt;p&gt;:::warning
 自动点击虽然方便，但也有风险，尤其是涉及到资金、权限、账号安全等敏感操作的页面。为了避免误操作导致的损失，建议在以下场景一律禁用自动点击：
@@ -1818,7 +1855,7 @@ int C(int n, int k)
 &lt;p&gt;这些页面宁愿手点，也不要赌自动化“刚好没错”。
 :::&lt;/p&gt;
 &lt;p&gt;大功告成，祝使用愉快。&lt;/p&gt;
-</content:encoded></item><item><title>简短的VPN使用教程</title><link>https://alisa22580.com/posts/vpn-usage-tutorial/</link><guid isPermaLink="true">https://alisa22580.com/posts/vpn-usage-tutorial/</guid><description>内涵丛雨云推荐（更适合二次元宝宝体质</description><pubDate>Fri, 03 Apr 2026 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;写在前面&lt;/h1&gt;
+</content:encoded></item><item><title>简短的 VPN 使用教程</title><link>https://alisa22580.com/posts/vpn-usage-tutorial/</link><guid isPermaLink="true">https://alisa22580.com/posts/vpn-usage-tutorial/</guid><description>内含丛雨云推荐（更适合二次元宝宝体质）</description><pubDate>Fri, 03 Apr 2026 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;写在前面&lt;/h1&gt;
 &lt;p&gt;捣鼓博客的初衷就是想多发一些“经验分享帖”，但是又总会怀疑自己自作多情的搞这么一出 是不是其实无人在意。&lt;/p&gt;
 &lt;p&gt;但是还是有很多朋友问我这怎么搞那怎么搞，同样的东西解释很多次大概也会心烦。倒不如趁此机会一鼓作气把东西写出来，这样以后别人问起来就可以帅气（吗）地把博客链接甩出去，还能给博客加点浏览量。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/image.T-k8h0Uo_ZguMsM.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
@@ -1826,13 +1863,13 @@ int C(int n, int k)
 &lt;p&gt;换而言之，如果这篇帖子对你有帮助的话，欢迎多多分享！&lt;/p&gt;
 &lt;h1&gt;1. 环境讲解&lt;/h1&gt;
 &lt;p&gt;在进入具体操作之前，我们先来理清几个经常被混淆的概念。虽然它们最终的目的都是让你“科学上网”，但原理和使用体验却大不相同。&lt;/p&gt;
-&lt;h2&gt;1. “梯子” (The Ladder)：&lt;/h2&gt;
+&lt;h2&gt;1. “梯子”（The Ladder）&lt;/h2&gt;
 &lt;p&gt;“梯子”并不是一个技术术语，而是中文互联网环境下的一个比喻。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;含义： 泛指一切能够绕过网络限制、访问海外网站的工具。&lt;/li&gt;
 &lt;li&gt;逻辑： 墙（GFW）挡住了去路，所以我们需要一把“梯子”翻过去。无论你用的是 VPN、SSR 还是 Clash，在口语中都可以统称为“找个梯子”。&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2&gt;2. VPN (虚拟专用网络)：&lt;/h2&gt;
+&lt;h2&gt;2. VPN（虚拟专用网络）&lt;/h2&gt;
 &lt;p&gt;VPN 的全称是 &lt;code&gt;Virtual Private Network&lt;/code&gt; 。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;初衷：它的设计初衷不是为了“翻墙”，而是为了数据加密。比如出差的员工通过 VPN 安全地连接回公司内网。&lt;/li&gt;
@@ -1845,7 +1882,7 @@ int C(int n, int k)
 &lt;li&gt;特点：全局加密： 开启后，你电脑上所有的网络流量都会经过加密通道。&lt;/li&gt;
 &lt;li&gt;现状：虽然安全，但由于 VPN 的流量特征非常明显，容易被识别封锁，且开启后访问国内网站（如淘宝、百度）速度会变慢。&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2&gt;3. 代理 (Proxy) 与协议：&lt;/h2&gt;
+&lt;h2&gt;3. 代理（Proxy）与协议&lt;/h2&gt;
 &lt;p&gt;为了避开检测，技术圈开发了更灵活的代理协议（如 Shadowsocks, V2Ray, Trojan 等）。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;原理： 就像是在你的网络请求外包了一层“普通快递”的纸箱，让防火墙以为你只是在访问普通的海外网页。&lt;/li&gt;
@@ -1872,30 +1909,30 @@ int C(int n, int k)
 &lt;/ul&gt;
 &lt;h1&gt;2. 正式的使用教程&lt;/h1&gt;
 &lt;p&gt;通过上文我们知道，我们需要从 机场 中获得订阅服务，并通过 clash 来使用。&lt;/p&gt;
-&lt;h2&gt;1. clash 的安装&lt;/h2&gt;
-&lt;h3&gt;windows&lt;/h3&gt;
+&lt;h2&gt;1. Clash 的安装&lt;/h2&gt;
+&lt;h3&gt;Windows&lt;/h3&gt;
 &lt;p&gt;推荐使用 &lt;a href=&quot;https://github.com/clash-verge-rev/clash-verge-rev/releases/tag/v2.4.7&quot;&gt;clash verge rev&lt;/a&gt;，界面友好，功能齐全，适合大多数用户。&lt;/p&gt;
 &lt;p&gt;::github{repo=&quot;clash-verge-rev/clash-verge-rev&quot;}&lt;/p&gt;
 &lt;h3&gt;Android&lt;/h3&gt;
 &lt;p&gt;推荐使用 &lt;a href=&quot;https://github.com/MetaCubeX/ClashMetaForAndroid&quot;&gt;Clash Meta&lt;/a&gt; ，它是目前安卓平台上功能最全、更新最活跃的 Clash 版本。
 ::github{repo=&quot;MetaCubeX/ClashMetaForAndroid&quot;}&lt;/p&gt;
-&lt;h3&gt;ios&lt;/h3&gt;
-&lt;p&gt;没有用过ios呢...等个有缘人提PR。&lt;/p&gt;
+&lt;h3&gt;iOS&lt;/h3&gt;
+&lt;p&gt;没有用过 iOS 呢……等个有缘人提 PR。&lt;/p&gt;
 &lt;h2&gt;2. 获取订阅服务&lt;/h2&gt;
 &lt;p&gt;这个帖子仅负责必要的说明，因此 建议大家自行搜索评价稳定的机场，本站没有立场作推荐。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/preview.DQOwhN-V_1BULD9.webp&quot; alt=&quot;alt text&quot; /&gt;
 :spoiler[可爱的 &lt;a href=&quot;https://congyu.moe/auth/register?invite=fc84dcfb89&quot;&gt;丛雨宝宝&lt;/a&gt; 出现在这里，单纯是因为她是卡密sama，想去哪就去哪，跟作者本人并无联系。]&lt;/p&gt;
 &lt;h2&gt;3. 导入 / 使用&lt;/h2&gt;
 &lt;blockquote&gt;
-&lt;p&gt;下面以 windows 版本的 clash 为例，其他平台的操作大同小异。&lt;/p&gt;
+&lt;p&gt;下面以 Windows 版本的 Clash 为例，其他平台的操作大同小异。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;完成购买步骤后，我们等待约五分钟，可以看到主页的订阅链接出现。
 &lt;img src=&quot;https://alisa22580.com/_astro/image-1.CGsoXY2L_Zu8pjn.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
-&lt;p&gt;我们点击复制，把链接粘贴到 clash 的 url 粘贴栏里，保存。
+&lt;p&gt;我们点击复制，把链接粘贴到 Clash 的 URL 粘贴栏里，保存。
 &lt;img src=&quot;https://alisa22580.com/_astro/image-2.awuSyw3O_1YsiPF.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;p&gt;现在，我们开启代理，看到状态栏的小猫从紫色变成橙色，一切就大功告成了！
 &lt;img src=&quot;https://alisa22580.com/_astro/image-4.DvRuAIg3_rROnl.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
-&lt;p&gt;可以尝试打开 &lt;a href=&quot;https://www.google.com/&quot;&gt;谷歌&lt;/a&gt;  进行测试。&lt;/p&gt;
+&lt;p&gt;可以尝试打开&lt;a href=&quot;https://www.google.com/&quot;&gt;谷歌&lt;/a&gt;进行测试。&lt;/p&gt;
 &lt;h2&gt;4. 使用建议与避坑&lt;/h2&gt;
 &lt;p&gt;我们应当选择 Rule (规则模式) 实现“国内直连，国外加速”。&lt;/p&gt;
 &lt;p&gt;​我们应当选择 日本 / 新加坡 节点： 物理距离近，延迟低，适合刷网页、看视频；适合访问ChatGPT 或某些有严格地区限制的资源。&lt;/p&gt;
@@ -1918,7 +1955,7 @@ int C(int n, int k)
 &lt;li&gt;在选区附近弹出翻译面板。&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;也就是划词翻译啦！&lt;/p&gt;
-&lt;h2&gt;效果展示：&lt;/h2&gt;
+&lt;h2&gt;效果展示&lt;/h2&gt;
 &lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/image-8.pPahUfpy_1GGCwH.webp&quot; alt=&quot;alt text&quot; /&gt;
 &lt;img src=&quot;https://alisa22580.com/_astro/image-10.Bp3lpxgP_ZnjJ7o.webp&quot; alt=&quot;alt text&quot; /&gt;
 &lt;img src=&quot;https://alisa22580.com/_astro/image-11.y5jyUOUr_1EWiOs.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
@@ -2038,7 +2075,7 @@ cd SelectEcho
 &lt;li&gt;可关闭按钮和复制按钮。&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/image-8.pPahUfpy_1GGCwH.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
-&lt;h1&gt;5. 设置页&lt;/h1&gt;
+&lt;h1&gt;6. 设置页&lt;/h1&gt;
 &lt;p&gt;打开设置页的方式：扩展图标 -&amp;gt; 选项（Options）。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/image-5.BY-GZ7m3_Z2aaRdE.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;p&gt;下面是最常见配置项：&lt;/p&gt;
@@ -2093,8 +2130,8 @@ cd SelectEcho
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;h1&gt;6. 常见问题排查&lt;/h1&gt;
-&lt;h2&gt;6.1 安装成功但划词没反应&lt;/h2&gt;
+&lt;h1&gt;7. 常见问题排查&lt;/h1&gt;
+&lt;h2&gt;7.1 安装成功但划词没反应&lt;/h2&gt;
 &lt;p&gt;排查顺序：&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;是否真的启用了扩展。&lt;/li&gt;
@@ -2102,22 +2139,22 @@ cd SelectEcho
 &lt;li&gt;是否用左键选中后松开。&lt;/li&gt;
 &lt;li&gt;选区是否至少 2 个字符。&lt;/li&gt;
 &lt;/ol&gt;
-&lt;h2&gt;6.2 一直提示超时&lt;/h2&gt;
+&lt;h2&gt;7.2 一直提示超时&lt;/h2&gt;
 &lt;p&gt;先看你当前模式：&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;&lt;code&gt;google&lt;/code&gt; 或 &lt;code&gt;auto&lt;/code&gt;（无百度凭证）时，网络条件不稳定更容易超时。&lt;/li&gt;
 &lt;li&gt;你可以切到 &lt;code&gt;baidu&lt;/code&gt; 并填好凭证测试。&lt;/li&gt;
 &lt;/ol&gt;
-&lt;h2&gt;6.3 百度报错（例如凭证相关错误）&lt;/h2&gt;
+&lt;h2&gt;7.3 百度报错（例如凭证相关错误）&lt;/h2&gt;
 &lt;ol&gt;
 &lt;li&gt;检查 AppID 和 AppKey 是否都填写。&lt;/li&gt;
 &lt;li&gt;检查是否有前后空格。&lt;/li&gt;
 &lt;li&gt;保存后刷新测试页再试。&lt;/li&gt;
 &lt;/ol&gt;
-&lt;h2&gt;6.4 在输入框里为什么不触发&lt;/h2&gt;
+&lt;h2&gt;7.4 在输入框里为什么不触发&lt;/h2&gt;
 &lt;p&gt;这是设计行为。&lt;code&gt;input&lt;/code&gt;、&lt;code&gt;textarea&lt;/code&gt;、可编辑区域默认不触发，避免干扰正常输入。&lt;/p&gt;
-&lt;h1&gt;7. 进阶使用建议&lt;/h1&gt;
-&lt;h2&gt;7.1 配置 AI 翻译&lt;/h2&gt;
+&lt;h1&gt;8. 进阶使用建议&lt;/h1&gt;
+&lt;h2&gt;8.1 配置 AI 翻译&lt;/h2&gt;
 &lt;p&gt;等待更新中...&lt;/p&gt;
 &lt;h1&gt;结语&lt;/h1&gt;
 &lt;p&gt;到这里，你已经成功安装并使用了 SelectEcho 进行划词翻译。希望这个工具能成为你日常浏览和学习的好帮手！如果你有任何问题或者建议，欢迎在 GitHub 上提交 issue 或者参与讨论。祝你翻译愉快！&lt;/p&gt;
