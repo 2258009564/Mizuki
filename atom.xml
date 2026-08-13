@@ -5,7 +5,7 @@
   <link href="https://alisa22580.com/" rel="alternate" type="text/html"/>
   <link href="https://alisa22580.com/atom.xml" rel="self" type="application/atom+xml"/>
   <id>https://alisa22580.com/</id>
-  <updated>2026-08-13T02:32:23.905Z</updated>
+  <updated>2026-08-13T02:33:52.137Z</updated>
   <language>zh_CN</language>
   <entry>
     <title>本博客的搭建教程</title>
@@ -360,1052 +360,6 @@ Root directory: /
     <category term="Tutorial"></category>
   </entry>
   <entry>
-    <title>2026ICPC沈阳 赛站游记</title>
-    <link href="https://alisa22580.com/posts/2026-icpcsy/" rel="alternate" type="text/html"/>
-    <id>https://alisa22580.com/posts/2026-icpcsy/</id>
-    <published>2026-07-29T00:00:00.000Z</published>
-    <updated>2026-08-13T09:31:21.000Z</updated>
-    <summary>流水账一篇</summary>
-    <content type="html"><![CDATA[<h3>前言</h3>
-<h5>和天妹妹一起从深圳飞来沈阳 历经5h</h5>
-<p><img src="https://alisa22580.com/_astro/730eb6afce6e2d2e56f38e20f7d34e93.YEUCykBM_Z2wplu8.webp" alt="alt text" /></p>
-<h5>大晚上想吃东西 找售货机找到自助售烟机 难绷</h5>
-<p><img src="https://alisa22580.com/_astro/78f6341029d4dbb2495d29bbd470248e.D47BkWIH_ZxfGDb.webp" alt="alt text" /></p>
-<h5>偶遇一只几何造型</h5>
-<p><img src="https://alisa22580.com/_astro/65ec2665468674c1a6c7d15329824916.B65kJ7Ri_1cLAYV.webp" alt="alt text" /></p>
-<h5>东北大学的餐券 这一顿有肉有菜有碳水 仅仅15r</h5>
-<p><img src="https://alisa22580.com/_astro/28f8c27ffa87e809cc7ff3ebd9cc9d2c.D1_B38b6_1IeTeq.webp" alt="alt text" /></p>
-<h5>很好看的赛站服，可惜朋友说有登味</h5>
-<p><img src="https://alisa22580.com/_astro/d45edd05185806f837b7b4248311f3c5.DRyy8nYY_Vkr34.webp" alt="alt text" /></p>
-<h3>赛中</h3>
-<p><img src="https://alisa22580.com/_astro/4da21f433041122031d0e5be2bdebed7.COPyGKX5_1cJRcW.webp" alt="alt text" />
-全场第一个提交，但是是E题wwq猜了个结论 错了之后才倒回去跟榜看签到。</p>
-<p>12min 做出来L 三个人开始集体发呆，直到 70min 才以两发罚时做出来第二道签到K</p>
-<p>做出来3题之后还在铁牌区，当时感觉这场打的想哭</p>
-<p>好在qxh在我之前开始动脑，把E的总体排序计算改为分别计算每个位置的贡献，这样推导了一会儿发现是一个for循环+一个排序不等式，但是他🍬的看不懂数据范围，我说 $n^{2} logn$ 是肯定可以过的 然后光速写了一发 过了。 此时来到银牌中游 大家重燃希望。</p>
-<p>查看I题 qxh发力 约莫猜了两三个结论吧 推导的七七八八了，但是实现上，内层枚举因数的时候发现极端情况下因数可能超过300个 这样会导致超时；</p>
-<p>此时我充分发扬多校乱搞的经验，跟他们说 可以考虑循环上界设为 <code>min(200ll, 因数个数)</code> 试了一发 过了 此时来到金牌区</p>
-<p>如果我们再做一道J 几乎是百分百稳金牌的 这样我们也算是后起之秀了 于是三个人开始一起看J</p>
-<p>我提出 与其计算每一个点可以看到哪些柱子 不如计算每一个柱子可以被多少点看到，这样y轴只有1e5数量级个本质不同的点 维护一个离线区间加的方法是多样的 剩下就是推导每个柱子可以如何被看到 一通推导之后发现是一个类似并查集find的东西 需要不断记录前驱节点 后来才知道其实相当于赛时发明凸包了 但是一时间想的东西太多 没有想到斜率的比较其实应该 统一把分母移上去 这样整个代码里都没有 <code>double</code> 了</p>
-<p>总之 debug了十几发 也没能成功通过 最后遗憾银牌 rk42 姑且也可以算是银首。</p>
-<p>总结来说 客观原因是三个人可能线下没休息好，主观原因是三个人在赛前没有充分讨论好各自的分工，导致在赛中出现了很多重复劳动，以及互相不知道对方在说什么 仍需磨合啊！</p>
-<h3>赛后</h3>
-<h5>其实新海天才是参赛队员</h5>
-<p><img src="https://alisa22580.com/_astro/3c45cfab72ee537c2ec1fe648b31c252.BN0rxD7W_Zd4KVV.webp" alt="alt text" /></p>
-<h5>acm特有的赛后头像合影</h5>
-<p><img src="https://alisa22580.com/_astro/c534b00fa7260faccf8bd377402160af.DhXwBri8_Z12uezU.webp" alt="alt text" /></p>
-<h5>沈阳量大管饱 这一顿把三个人吃死了</h5>
-<p><img src="https://alisa22580.com/_astro/c0239e098e23f73e5e47c3ce99569a91.D39NGK62_Z2wU3Dx.webp" alt="alt text" /></p>
-<h5>半夜看痴迷 看的手脚冰凉</h5>
-<p><img src="https://alisa22580.com/_astro/f83b96b4f0d5e7ca26ab7f12c1622abf.BiaAHm6i_1pcqAL.webp" alt="alt text" /></p>
-<h5>走啦 奔赴下一站</h5>
-<p><img src="https://alisa22580.com/_astro/b5062141a8164588d0829506b3c61721.BrwyflgA_28wFvI.webp" alt="alt text" /></p>
-]]></content>
-    <author>
-      <name>alisa22580</name>
-    </author>
-    <category term="杂谈"></category>
-  </entry>
-  <entry>
-    <title>一场幻梦</title>
-    <link href="https://alisa22580.com/posts/a-dream/" rel="alternate" type="text/html"/>
-    <id>https://alisa22580.com/posts/a-dream/</id>
-    <published>2026-07-26T21:57:00.000Z</published>
-    <updated>2026-08-01T10:27:06.000Z</updated>
-    <summary>希望我将来也不要留下遗憾。</summary>
-    <content type="html"><![CDATA[<p>学习，打 A，工作。</p>
-<p>上了大学，我离自己从小到大的生活圈子愈发变远了。</p>
-<p>这次回来深圳，满打满算十一天。跟爸妈弟弟聊天，跟小学初中的好朋友叙旧，又因为前程之类的事情不得不匆匆离开。</p>
-<p>睡在原来属于我、现在属于弟弟的小床上，恍惚间分不清楚这到底是我的家，还是一个陌生的房间。整理东西时候发现抽屉柜子里封存的物件，我只能有模糊的记忆。我不是一个念旧的人吗，为什么竟因为遗忘而感到有点害怕？</p>
-<p>爸妈，不想这么说，但是确实老了，也自然地把我当个大人对待。我出门不再需要跟他们报备；爸妈捣鼓电子产品的时候会询问我的意见；在家爸妈知道我要学习，给了我极高的宽容。我每天起床睡觉时间都极其阴间，好几天都跟他们几乎错开，就这样我妈还每天中午给我买两份肠粉打包带回家。</p>
-<p>弟弟长大了，但是其实没那么长大。成绩还不错，现在小学学的东西比我们以前难了，但是他考得其实比我那时候要好；但是他很调皮捣蛋，比我那时候要更调皮。这次回来我骂了一顿弟弟，把他骂哭了。其实我很爱他，我不想对他发脾气，但是我爸妈可能对他太溺爱了，这个家需要一个坏人，反正我才回来十天（笑）。</p>
-<p>朋友们外表的变化不大，但是一个个眼里好像失去光了。有的已经基本告别校园生活参加工作了，有的大概决定留在学校所在地当小老师，有的放假了还去图书馆努力学习制图，想要不被 AI 取代。</p>
-<p>在我不打 A、不心理扭曲地吵着要当小男娘穿小裙子的时候，我会跟他们畅聊未来。从很多年前就保留了去乐城公园散步的习惯，只是慢慢地从几周一聚、几月一聚，变成如今半年一聚了。不知道下次见面是多久之后。</p>
-<p>回来这几天也算是用双脚走过了自己曾经的活动范围，也对自己没能参加港中深举办的深圳邀请赛感到遗憾，明明这个赛站小时候抱过我；然而我的高中我还是不敢回去，不夸张地说，想到这个我就浑身发抖。</p>
-<hr />
-<p>临近期末准备放假买票的时候，我说找到工作的话其实假期不回深圳也行，反正回家也是十多天的事。我妈说，回来吧，回来看看。</p>
-<p>结果要走的时候还真有点舍不得。</p>
-<p>好在我牵挂的其实只有以上这些。回来这几天我很开心，大概算是没给东北人的深圳之旅留下遗憾吧？</p>
-<p>希望我将来也不要留下遗憾。</p>
-<blockquote>
-<p>2026-08-01 update:</p>
-</blockquote>
-<p><img src="https://alisa22580.com/_astro/c24aeeeff6ca72539d0ae794c2115642.BjxuAAmJ_72oAt.webp" alt="我在出租屋码字，妹妹在看我 w-100%" title="我在出租屋码字，妹妹在看我" /></p>
-]]></content>
-    <author>
-      <name>alisa22580</name>
-    </author>
-    <category term="杂谈"></category>
-  </entry>
-  <entry>
-    <title>CFBetter 快速配置 AI 翻译（接入 DeepSeek V4 Flash）</title>
-    <link href="https://alisa22580.com/posts/cfbetter-deepseek-ai-translation/" rel="alternate" type="text/html"/>
-    <id>https://alisa22580.com/posts/cfbetter-deepseek-ai-translation/</id>
-    <published>2026-06-07T00:00:00.000Z</published>
-    <updated>2026-06-07T18:32:08.000Z</updated>
-    <summary>在 Codeforces Better 中接入 DeepSeek V4 Flash</summary>
-    <content type="html"><![CDATA[<h1>写在前面</h1>
-<blockquote>
-<p>曾经在 b 站发过一个 <a href="https://www.bilibili.com/opus/1117176875527962633?spm_id_from=333.1387.0.0">简易版本的教程</a>，其内容已经过时。</p>
-</blockquote>
-<p>刷 Codeforces 的时候，传统翻译工具翻译出来的东西，经常把题目里的数学公式和关键信息搞得面目全非，还不如自己硬啃英文。</p>
-<p><strong>CFBetter</strong> 是一个非常好用的 Codeforces 增强插件，它支持多种翻译服务，其中最推荐的就是 <strong>AI 翻译（ChatGPT 兼容接口）</strong> —— 因为 AI 能理解上下文，还能自动识别和保护 LaTeX 公式，翻译质量远超传统机翻。</p>
-<p>本文将教你如何<strong>快速配置</strong> CFBetter 的 AI 翻译功能，接入 <strong>DeepSeek V4 Flash</strong> 模型。</p>
-<h1>1. 准备工作</h1>
-<h2>1.1 安装油猴脚本</h2>
-<p>CFBetter 是一个 Tampermonkey 油猴脚本，你需要在浏览器中先安装它。</p>
-<ol>
-<li>
-<p>安装 <a href="https://microsoftedge.microsoft.com/addons/detail/%E7%AF%A1%E6%94%B9%E7%8C%B4/iikmkjmpaadaobahmlepeloendndfphd">Tampermonkey</a> 浏览器扩展。
-<img src="https://alisa22580.com/_astro/image.BuQFAQQ__Z2ojToS.webp" alt="alt text" /></p>
-</li>
-<li>
-<p>进入 <a>扩展管理</a> 确保 Tampermonkey 已启用，开发人员模式已打开。
-<img src="https://alisa22580.com/_astro/image-1.DB44ZkgD_Z7A7Ye.webp" alt="alt text" /></p>
-</li>
-<li>
-<p>点击 篡改猴 的 详细信息， 像我图片那样设置相关权限。
-<img src="https://alisa22580.com/_astro/image-2.C9Q4k2O__ZkrBtY.webp" alt="alt text" />
-<img src="https://alisa22580.com/_astro/image-3.CZ81ylp5_1WYhT5.webp" alt="alt text" /></p>
-</li>
-</ol>
-<h2>1.2 安装 CFBetter 脚本</h2>
-<p>访问 <a href="https://greasyfork.org/zh-CN/scripts/465777-codeforces-better">cf better 油猴脚本页面</a>, 点击安装按钮，按照提示完成安装即可。</p>
-<h2>1.3 获取 DeepSeek API Key</h2>
-<ol>
-<li>前往 <a href="https://platform.deepseek.com/">DeepSeek 开放平台</a> 注册账号。</li>
-<li>登录后，点击左侧菜单的 <strong>「API Keys」</strong></li>
-<li>点击 <strong>「创建 API Key」</strong>，输入一个名称（比如 <code>CFBetter</code>）</li>
-<li>创建后，<strong>立刻复制并保存</strong> API Key（格式为 <code>sk-xxxx...</code>，只显示一次）</li>
-</ol>
-<h1>2. 配置 CFBetter 的 AI 翻译</h1>
-<p>进入 codeforces 主页，应当能看到 cf better 已经加载成功：
-<img src="https://alisa22580.com/_astro/image-4._xaqFk6I_27FHRY.webp" alt="alt text" /></p>
-<h2>2.1 打开设置面板</h2>
-<p>在 Codeforces 任意页面，点击右上角的 <strong>「CodeforcesBetter 设置」</strong> 按钮，打开设置面板。</p>
-<h2>2.2 选择翻译服务</h2>
-<p>在设置面板中，找到 <strong>「翻译」</strong> 选项，从下拉菜单中选择 <strong>「AI 翻译」</strong>。
-<img src="https://alisa22580.com/_astro/image-5.BqRWUIw6_ZqVvNI.webp" alt="alt text" /></p>
-<h2>2.3 添加 DeepSeek 配置</h2>
-<p>向下滚动，找到 <strong>「ChatGPT」</strong> 区域，点击 <strong>「添加」</strong> 按钮，弹出配置表单。</p>
-<p><img src="https://alisa22580.com/_astro/image-6.CUWDggX2_Z1D2uPD.webp" alt="alt text" /></p>
-<table>
-<thead>
-<tr>
-<th>配置项</th>
-<th>填写内容</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>名称</strong></td>
-<td>随意，比如 <code>DeepSeek V4 Flash</code></td>
-</tr>
-<tr>
-<td><strong>模型</strong></td>
-<td><code>deepseek-v4-flash</code></td>
-</tr>
-<tr>
-<td><strong>KEY</strong></td>
-<td>你的 DeepSeek API Key（<code>sk-xxxx...</code> 格式）</td>
-</tr>
-<tr>
-<td><strong>Proxy API</strong></td>
-<td><code>https://api.deepseek.com/chat/completions</code></td>
-</tr>
-</tbody>
-</table>
-<blockquote>
-<p>参考如下：
-<img src="https://alisa22580.com/_astro/image-7.d13jeozg_1nYd7l.webp" alt="alt text" /></p>
-</blockquote>
-<h2>2.4 配置自动翻译</h2>
-<p>向下滚动，像图中一样配置即可。
-<img src="https://alisa22580.com/_astro/image-8.CQdPbA7X_Z2uYtjr.webp" alt="alt text" /></p>
-<p>填写完成后直接关闭，会弹出保存提示，保存即可。</p>
-<p>:::warning
-完成之后多点几下 确认确实选择了AI翻译；确认确实选择了刚刚自己设置的接口；确认保存了设置！
-:::</p>
-<h3>配置参数说明</h3>
-<p><strong>关于模型名称：</strong></p>
-<table>
-<thead>
-<tr>
-<th>模型名称</th>
-<th>说明</th>
-<th>推荐</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>deepseek-v4-flash</code></td>
-<td>DeepSeek V4 Flash 模型，速度快、便宜</td>
-<td>✅ 推荐</td>
-</tr>
-<tr>
-<td><code>deepseek-v4-pro</code></td>
-<td>DeepSeek V4 Pro 模型，推理能力更强</td>
-<td>复杂题目可选</td>
-</tr>
-<tr>
-<td><code>deepseek-chat</code></td>
-<td>旧版模型名，对应 V4 Flash 非思考模式（2026/07/24 弃用）</td>
-<td>不推荐</td>
-</tr>
-</tbody>
-</table>
-<p><strong>对于翻译场景，<code>deepseek-v4-flash</code> 完全够用，不建议使用 <code>deepseek-v4-pro</code>，因为翻译不需要复杂推理能力，用 Pro 纯属浪费钱。</strong></p>
-<h1>3. 使用与测试</h1>
-<p>配置完成后，在任意 Codeforces 题目页面，点击翻译按钮即可使用 AI 翻译。</p>
-<ul>
-<li>翻译会自动保留 LaTeX 数学公式不被破坏</li>
-<li>翻译质量远超 DeepL、Google 等传统翻译工具</li>
-<li>首次翻译可能需要授权 Tampermonkey 的跨域请求，点击允许即可</li>
-</ul>
-<h2>3.1 推荐的翻译设置</h2>
-<p>回到 CFBetter 的设置面板，建议进行以下调整：</p>
-<ul>
-<li><strong>翻译模式</strong>：选择「普通模式」（一次性翻译整个区域，上下文更完整）</li>
-<li><strong>自动翻译</strong>：可以开启，建议设置短文本阈值为 200 字符</li>
-<li><strong>历史翻译恢复</strong>：建议开启，避免重复翻译消耗 API 额度</li>
-</ul>
-<h2>3.2 快速切换翻译服务</h2>
-<p>右键页面上的任意<strong>翻译图标按钮</strong>，可以快速切换翻译服务，不需要每次都打开设置面板。</p>
-<h1>4. 费用估算</h1>
-<p>DeepSeek V4 Flash 的定价如下（截至 2026 年 6 月）：</p>
-<table>
-<thead>
-<tr>
-<th>项目</th>
-<th>价格</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>输入（缓存命中）</td>
-<td>0.02 元 / 百万 tokens</td>
-</tr>
-<tr>
-<td>输入（缓存未命中）</td>
-<td>1 元 / 百万 tokens</td>
-</tr>
-<tr>
-<td>输出</td>
-<td>2 元 / 百万 tokens</td>
-</tr>
-</tbody>
-</table>
-<p>实际使用中，翻译一道 Codeforces 题目（包括题目描述、输入输出说明、样例等）大约消耗 500-2000 tokens，折合人民币 <strong>不到 0.01 元</strong>。</p>
-<p>也就是说，<strong>充 10 块钱，能翻译上千道题目</strong>，基本等于白嫖。</p>
-<h1>5. 常见问题</h1>
-<h2>Q: 翻译报错 401 Unauthorized？</h2>
-<p>检查 API Key 是否正确，确保完整复制了 <code>sk-</code> 开头的整个 Key，没有多余空格。</p>
-<h2>Q: 翻译报错 402 Payment Required？</h2>
-<p>你的 DeepSeek 账号余额不足，前往 <a href="https://platform.deepseek.com/">DeepSeek 开放平台</a> 充值即可。</p>
-<h2>Q: 翻译很慢怎么办？</h2>
-<p>AI 翻译的速度取决于 DeepSeek 服务器的响应时间，通常在 2-5 秒左右。如果经常很慢，可能是网络问题，建议检查网络连接。</p>
-<h2>Q: 公式显示异常？</h2>
-<p>使用 ChatGPT/AI 翻译时，CFBetter 会通过提示词告知 AI 保留 LaTeX 公式，通常不会出现公式被破坏的情况。如果偶尔出现，可以重新翻译一次。</p>
-<h2>Q: Tampermonkey 弹出跨域警告？</h2>
-<p>这是正常现象，因为你在使用自定义 API 地址。点击「允许」或「始终允许」即可。</p>
-<h2>Q: 可以用其他 AI 模型吗？</h2>
-<p>可以！只要模型支持 OpenAI 兼容的 API 格式（<code>/v1/chat/completions</code>），都可以使用。例如：</p>
-<ul>
-<li><strong>OpenAI</strong>：<code>https://api.openai.com/v1/chat/completions</code>，模型 <code>gpt-4o</code></li>
-<li><strong>硅基流动 (SiliconFlow)</strong>：填入对应的 API 地址和模型名</li>
-<li><strong>其他代理服务</strong>：填入代理商提供的完整 API 地址</li>
-</ul>
-<p>只需要修改 <strong>KEY</strong>、<strong>Proxy API</strong> 和 <strong>Model</strong> 三个字段即可。</p>
-<h1>参考</h1>
-<ul>
-<li><a href="https://github.com/beijixiaohu/OJBetter">OJBetter GitHub 仓库</a></li>
-<li><a href="https://github.com/beijixiaohu/OJBetter/wiki/%E7%BF%BB%E8%AF%91">OJBetter 翻译配置 Wiki</a></li>
-<li><a href="https://platform.deepseek.com/">DeepSeek 开放平台</a></li>
-<li><a href="https://api-docs.deepseek.com/zh-cn/quick_start/pricing">DeepSeek API 定价</a></li>
-</ul>
-]]></content>
-    <author>
-      <name>alisa22580</name>
-    </author>
-    <category term="Tutorial"></category>
-  </entry>
-  <entry>
-    <title>2026东北赛 长春游</title>
-    <link href="https://alisa22580.com/posts/2026-dbcpc/" rel="alternate" type="text/html"/>
-    <id>https://alisa22580.com/posts/2026-dbcpc/</id>
-    <published>2026-05-24T00:00:00.000Z</published>
-    <updated>2026-05-28T19:21:03.000Z</updated>
-    <summary>流水账一篇</summary>
-    <content type="html"><![CDATA[<p>铜首了，倒闭4个小时，感觉心情不是很美妙...</p>
-<p><img src="https://alisa22580.com/_astro/image.CUvhJZwi_Z9fOY8.webp" alt="alt text" /></p>
-<p>姑且先放一个牌子在这里，剩下的再说吧。</p>
-<blockquote>
-<p>2026-05-28 update:</p>
-</blockquote>
-<p>已经过去快一周啦，复杂的心情应该说平复了很多，虽然还是觉得挺可惜的，但也不至于太难过了。</p>
-]]></content>
-    <author>
-      <name>alisa22580</name>
-    </author>
-    <category term="杂谈"></category>
-  </entry>
-  <entry>
-    <title>vscode 快速配置 g++</title>
-    <link href="https://alisa22580.com/posts/vscode-run-code-tutorial/" rel="alternate" type="text/html"/>
-    <id>https://alisa22580.com/posts/vscode-run-code-tutorial/</id>
-    <published>2026-04-13T00:00:00.000Z</published>
-    <updated>2026-04-29T00:21:26.000Z</updated>
-    <summary>可以作为 从 Dev-C++ / CodeBlocks 等 古老 IDE 过渡到 vscode 的快速替代方案</summary>
-    <content type="html"><![CDATA[<h1>写在前面</h1>
-<p>:::tip
-感觉，写的非常啰嗦啊！</p>
-<p>了解这些内容可能对短期的比赛没有太大帮助，但是对于长期的计算机学习是意义重大的。
-:::</p>
-<p>众所周知，打 acm 的各种比赛的时候，使用 vscode 作为代码编辑器是非常方便的。</p>
-<p>:spoiler[如果不赞同上面这句话，请你立马关闭这篇文章(]</p>
-<p>在机房或者考场拿到一台只装了 Dev-C++ / CodeBlocks 等古董 IDE 的电脑时，如何快速拯救自己的双手？</p>
-<p>通过本教程，你将在<strong>极短的时间内</strong>，利用已有 IDE 里的编译器，快速配置好 Windows 的环境变量，从而达成 <strong>在 VS Code 终端中丝滑使用 <code>g++</code> 编译和运行 C++ 代码</strong> 的目的。</p>
-<ul>
-<li>
-<p>对于刚接触算法竞赛的新人，这个教程可以作为一个过渡方案，帮助你快速适应 VS Code 的开发环境，而不需要一开始就去下载和配置新的编译器；</p>
-</li>
-<li>
-<p>对于已经习惯了 VS Code 的老手，这个教程可以帮助你在没有管理员权限的电脑上快速配置环境变量，继续使用熟悉的编译器，帮助你最大限度的优化比赛体验。</p>
-</li>
-</ul>
-<h1>基本了解</h1>
-<p>这个教程的实质是针对 Windows 用户的 path 环境变量的配置扫盲。</p>
-<p>让我们先了解几个概念：</p>
-<h2>cpp代码的编译和运行</h2>
-<p>cpp 代码大致的编译和运行流程是这样的：</p>
-<ol>
-<li>你在代码编辑器里写好 cpp 代码，保存为 main.cpp。</li>
-<li>调用编译器（比如 g++）来翻译 main.cpp，生成一个可执行文件（比如 main.exe）。</li>
-<li>运行这个可执行文件，看到程序的输出。</li>
-</ol>
-<pre><code>sequenceDiagram
-    participant U as 👨‍💻 你 (VS Code)
-    participant E as 📝 代码编辑器
-    participant C as ⚙️ 编译器 (g++)
-    participant O as 🖥️ 操作系统
-
-    U-&gt;&gt;E: 在 VS Code 中编写 main.cpp
-    E--&gt;&gt;U: 提供语法高亮、自动补全等功能
-    U-&gt;&gt;C: 输入命令 `g++ main.cpp -o main` 调用编译器
-    C-&gt;&gt;C: 编译 main.cpp，生成 main.exe
-    C--&gt;&gt;U: 编译成功，生成 main.exe
-    U-&gt;&gt;O: 输入命令 `./main` 运行程序
-    O-&gt;&gt;O: 执行 main.exe，显示输出结果
-    O--&gt;&gt;U: 程序输出结果显示在终端
-
-</code></pre>
-<p>这里面具体涉及到了如下几个概念：</p>
-<h2>代码编辑器</h2>
-<p>代码编辑器是一个专门为编写代码设计的软件。它提供了语法高亮、自动补全、错误提示等功能，帮助程序员更高效地编写代码。常见的代码编辑器有 Visual Studio Code、Sublime Text、Atom 等。</p>
-<p>这些编辑器本身并不包含编译器，它们只是提供了一个界面让你编写代码。因此需要与编译器配合使用。</p>
-<p>这些软件大多具有很好的插件生态，是被推崇使用的一大重要原因。</p>
-<h2>编译器</h2>
-<p>编译器是一个将源代码（如 C++ 代码）翻译成机器语言的程序。它负责将你写的代码转换成计算机能够理解和执行的格式。</p>
-<p>GNU Compiler Collection（GCC）是一个非常流行的开源编译器套件，其中 g++ 是专门用于编译 C++ 代码的部分。</p>
-<p>:::note[g++]
-g++ 是 GNU Compiler Collection 的 C++ 开源编译器，支持多种平台和操作系统。</p>
-<p>g++ 可以将 C++ 代码编译成可执行文件，或者将其编译成目标文件以供链接器使用。它支持 C++11、C++14、C++17 等多个 C++ 标准，并且提供了丰富的编译选项和优化功能。
-:::</p>
-<h2>集成开发环境 (IDE)</h2>
-<p>IDE 是一个集成了代码编辑器、编译器、调试器等工具的软件，提供了一个完整的开发环境。常见的 IDE 有 Dev-C++、CodeBlocks、Visual Studio 等。 这些 IDE 通常会自带一个编译器（比如 g++），但它们的编译器路径没有被添加到系统的环境变量中，因此只能在 IDE 内部使用。</p>
-<p>这些软件虽然功能强大，但界面复杂，操作繁琐，存储占用臃肿，（大概）并不适合在比赛中使用。</p>
-<p>知道了这些概念，问题的核心就变成了 如何让 VS Code 终端能够识别并使用 g++ 编译器。</p>
-<p>针对这个问题，我们需要了解 Windows 的 path 环境变量是什么，以及如何配置它。</p>
-<h2>path 环境变量</h2>
-<p>在 Windows 系统中，path 环境变量是一个包含了系统可执行文件路径的列表。当你在命令行中输入一个命令时，系统会在这些路径中查找对应的可执行文件并运行它。</p>
-<p>因此，如果你想在命令行中使用 g++ 编译器，你需要确保 g++ 的可执行文件所在的路径已经被添加到 path 环境变量中。</p>
-<pre><code>sequenceDiagram
-    participant U as 👨‍💻 你 (VS Code终端)
-    participant W as 💻 Windows 系统
-    participant P as 📂 Path 环境变量
-    participant G as ⚙️ g++ 编译器
-
-    U-&gt;&gt;W: 输入命令: `g++ main.cpp`
-    W-&gt;&gt;W: 思考: 我认识 g++ 吗？
-    alt 没配置 Path
-        W--&gt;&gt;U: 报错: "g++ 不是内部或外部命令" ❌
-    else 配置了 Path
-        W-&gt;&gt;P: 翻找通讯录 (Path)
-        P--&gt;&gt;W: 找到了！它在 `D:\Dev-Cpp\MinGW64\bin`
-        W-&gt;&gt;G: 喂，g++，干活了！
-        G-&gt;&gt;G: 编译 main.cpp
-        G--&gt;&gt;U: 生成 `a.exe`，编译成功！ ✅
-    end
-</code></pre>
-<h1>理论分析</h1>
-<p>基于上面的概念 我们来分析一下当前都有什么，应该如何调整：</p>
-<p>我们有：</p>
-<ul>
-<li>已经安装好的 Dev-C++ 或 CodeBlocks 等 IDE。</li>
-<li>这些 IDE 自带了 g++ 编译器，但它们的路径没有被添加到 Windows 的 path 环境变量中，因此只可以在 IDE 内部使用。</li>
-<li>一个 vscode 编辑器 但是无法用来编译和运行 C++ 代码。</li>
-<li>一个渴望在 vscode 里使用 g++ 的，愿意折腾的你。</li>
-</ul>
-<p>我们需要：</p>
-<ul>
-<li>找到 g++ 编译器的路径。</li>
-<li>将这个路径添加到 Windows 的 path 环境变量中。</li>
-<li>重启 vscode 让它加载新的环境变量。</li>
-<li>在 vscode 终端中畅快的使用 g++ 。</li>
-</ul>
-<h1>正式配置</h1>
-<h2>1. 白嫖现成的 g++ 编译器</h2>
-<p>既然电脑里有 Dev-C++ 或 CodeBlocks，我们就直接“借用”它们自带的编译器，不需要重新下载！</p>
-<ol>
-<li>找到 Dev-C++ 或 CodeBlocks 的安装目录。</li>
-</ol>
-<p><img src="https://alisa22580.com/_astro/image-1.BXyAxvwy_1EigDc.webp" alt="alt text" /></p>
-<ol>
-<li>顺藤摸瓜，找到名为 MinGW 或 MinGW64 的文件夹。</li>
-</ol>
-<p><img src="https://alisa22580.com/_astro/image-2.PYuAuKO1_ekVlQ.webp" alt="alt text" /></p>
-<ol>
-<li>一直点进去，直到看到一个名为 bin 的文件夹。</li>
-</ol>
-<p><img src="https://alisa22580.com/_astro/image-3.npLJulo9_QiIJy.webp" alt="alt text" /></p>
-<ol>
-<li><strong>打开</strong> bin 文件夹，<strong>确认</strong>里面有 g++.exe。</li>
-</ol>
-<p><img src="https://alisa22580.com/_astro/image-4.CFPv4GC7_ZLvoit.webp" alt="alt text" /></p>
-<ol>
-<li>复制当前的文件路径（例如：C:\Program Files (x86)\Dev-Cpp\MinGW64\bin）。</li>
-</ol>
-<p><img src="https://alisa22580.com/_astro/image-5.NrdLR-5C_ZnJWgP.webp" alt="alt text" /></p>
-<h2>2. 将路径写入 Path 环境变量</h2>
-<ol>
-<li>按下 Win 键，直接<strong>搜索</strong> “编辑系统环境变量”，点击打开。</li>
-</ol>
-<p><img src="https://alisa22580.com/_astro/image-6.BBkvSJC3_Z197LD2.webp" alt="alt text" /></p>
-<ol>
-<li>在弹出的窗口右下角，点击 “环境变量(N)...”，在下半部分的“系统变量”中，找到叫 Path 的那一行，双击它。</li>
-</ol>
-<p><img src="https://alisa22580.com/_astro/image-7.lkI1wH00_IeMqI.webp" alt="alt text" /></p>
-<ol>
-<li>点击 “新建”，把你刚才复制的 bin 文件夹路径粘贴进去。</li>
-</ol>
-<p><img src="https://alisa22580.com/_astro/image-8.hd8XQlSD_Zaq8GL.webp" alt="alt text" /></p>
-<ol>
-<li>一路点击 “确定” 保存退出。</li>
-</ol>
-<h2>3. 在 VS Code 中验证</h2>
-<p>配置完成后，我们需要测试一下是否成功。</p>
-<ul>
-<li>
-<p>重启 VS Code（必须重启，否则终端无法加载新的环境变量！）。</p>
-</li>
-<li>
-<p>使用快捷键 Ctrl + ` 打开集成终端。</p>
-</li>
-<li>
-<p>输入以下命令并回车：</p>
-</li>
-</ul>
-<pre><code>g++ -v // 等效于 g++ --version 作用是查看 g++ 的版本信息
-</code></pre>
-<p>如果终端吐出了一大串包含 g++ (GCC) ... 的版本信息，恭喜你，配置大功告成！
-<img src="https://alisa22580.com/_astro/image.DEcZu35s_1o01w2.webp" alt="alt text" /></p>
-<p>现在，你可以使用这个终端方便的完成编译和运行了。</p>
-<h1>如何使用</h1>
-<h2>1. 最基础的编译</h2>
-<pre><code>g++ main.cpp
-</code></pre>
-<p><img src="https://alisa22580.com/_astro/image-10.CDl_5nHd_Z20f5Ab.webp" alt="alt text" /></p>
-<ul>
-<li>这是最简单的命令。它会把 main.cpp 编译成一个默认名为 a.exe（Windows）或 a.out（Linux/Mac）的可执行文件。</li>
-</ul>
-<p>缺点：每次都生成 a.exe，如果你有多个源代码，会互相覆盖。</p>
-<h2>2. 指定输出文件名 (-o)</h2>
-<pre><code>g++ main.cpp -o main
-</code></pre>
-<p><img src="https://alisa22580.com/_astro/image-11.D33leQ1o_Zxt29S.webp" alt="alt text" /></p>
-<ul>
-<li>-o 代表 Output。这条命令会把编译后的程序命名为 main.exe。</li>
-</ul>
-<p>运行方式：输入 ./main 即可运行。</p>
-<h2>3. 开启标准警告 (-Wall)</h2>
-<pre><code>g++ main.cpp -o main -Wall
-</code></pre>
-<ul>
-<li>W 代表 Warning，all 代表 all。它会提醒你代码中潜在的问题（比如变量定义了但没使用、非 void 函数没写 return 等）。</li>
-</ul>
-<p>:::tip
-赛时建议全程开启，能帮你规避很多低级 Bug。
-:::</p>
-<h2>4. 指定 C++ 标准</h2>
-<pre><code>g++ main.cpp -o main -std=c++11
-</code></pre>
-<ul>
-<li>强制编译器使用特定的 C++ 版本。</li>
-</ul>
-<p>为什么需要：有些现代语法在老版本编译器下会报错。</p>
-<p>你知道的，:spoiler[蓝桥杯和哈理工的校赛只支持到 cpp11，我积累半生的语法糖全部！无法使用。]</p>
-<h2>5. 进阶</h2>
-<p>在命令行里，如果你想编译完立刻运行（如果编译失败则不运行），可以使用 &amp;&amp; 符号连接指令：</p>
-<pre><code>g++ main.cpp -o main -Wall -std=c++11 &amp;&amp; ./main
-</code></pre>
-<p>指令分解说明：</p>
-<ul>
-<li><code>g++ main.cpp</code>: 呼叫g++，开始翻译代码。</li>
-<li><code>-o main</code>: 把翻译好的程序取名为 main.exe。</li>
-<li><code>-Wall</code>: 开启所有警告，检查代码细节。</li>
-<li><code>-std=c++11</code>: 使用 C++11 标准编译。</li>
-<li><code>&amp;&amp;</code>: 这是一个逻辑门。只有当前面的编译操作成功了，才会执行后面的指令。</li>
-<li><code>./main</code>: 运行刚才生成的可执行程序。</li>
-</ul>
-]]></content>
-    <author>
-      <name>alisa22580</name>
-    </author>
-    <category term="Tutorial"></category>
-  </entry>
-  <entry>
-    <title>蓝桥杯 C++ B 组省赛 A-H 题解（2026）</title>
-    <link href="https://alisa22580.com/posts/lanqiao-cpp-b-solutions/" rel="alternate" type="text/html"/>
-    <id>https://alisa22580.com/posts/lanqiao-cpp-b-solutions/</id>
-    <published>2026-04-11T00:00:00.000Z</published>
-    <updated>2026-04-29T22:08:30.000Z</updated>
-    <summary>完整(?)复盘</summary>
-    <content type="html"><![CDATA[<p>:::tip
-补题链接：<a href="https://www.luogu.com.cn/contest/320659#problems">蓝桥杯省赛自测 CB</a></p>
-<p>代码模板请移步 <a href="../lanqiao-cpp-b-common/">蓝桥杯 C++ B 组常用板子</a> 或 <a href="https://github.com/2258009564/MYWORK/tree/main/CODES/CPPPROGRAM/%E6%9D%BF%E5%AD%90">我的 github 存储库</a>
-:::</p>
-<h1>A. 青春常数（填空）</h1>
-<h2>题意简述</h2>
-<p>给定</p>
-<p>$$
-N = 2026202520242023
-$$</p>
-<p>求非负整数对 $(x, y)$ 的个数，满足：</p>
-<p>$$
-x + y = N,
-\quad 0 \le x &lt; y
-$$</p>
-<p>:::note
-数一遍 <code>x</code> 的取值范围，<code>x</code> 确定后 <code>y</code> 就唯一。
-:::</p>
-<h2>一眼观察</h2>
-<p>由 $y = N - x$ 代入 $x &lt; y$：</p>
-<p>$$
-x &lt; N - x \iff 2x &lt; N
-$$</p>
-<p>因为 $N$ 是奇数，所以</p>
-<p>$$
-x = 0, 1, 2, \dots, \frac{N-1}{2}
-$$</p>
-<p>共</p>
-<p>$$
-\frac{N+1}{2}
-$$</p>
-<p>种。</p>
-<h2>最终答案</h2>
-<p>$$
-\boxed{1013101260121012}
-$$</p>
-<hr />
-<h1>B. 双碳战略（填空）</h1>
-<h2>题意简述</h2>
-<p>有 $N=2026$ 盏灯，初始全亮。</p>
-<ul>
-<li>第奇数次操作：选 $i$，翻转后缀 $[i, N]$。</li>
-<li>第偶数次操作：选 $i$，翻转前缀 $[1, i]$。</li>
-</ul>
-<p>每个状态都可达。定义某状态的最少操作步数，求所有 $2^N$ 个状态最少步数之和，对 $998244353$ 取模。</p>
-<p>:::note
-神秘的结论题。据说可以推出来...据说。
-:::</p>
-<h2>小规模自检</h2>
-<p>赛时太闲了 手推了 $N=1..5$ 发现都满足：</p>
-<p>$$
-S(N) = N \cdot 2^{N-1}
-$$</p>
-<p>例如 $N=5$ 时总和是 $80$，刚好等于 $5\cdot2^4$。</p>
-<h2>最终答案</h2>
-<p>$$
-S(2026) = 2026 \cdot 2^{2025} \bmod 998244353 = \boxed{792264670}
-$$</p>
-<h2>代码（计算答案）</h2>
-<pre><code>const int MOD = 998244353;
-
-void solve()
-{
-	int n = 2026;
-	cout &lt;&lt; n * ksm(2, n - 1) % MOD;
-}
-
-</code></pre>
-<hr />
-<h1>C. 循环右移</h1>
-<h2>题意简述</h2>
-<p>长度为 $N$ 的数组 $A$，每个元素满足 $X \le A_i \le Y$。</p>
-<p>要求：对任意连续子数组做一次循环右移后，子数组不变。求满足条件的数组个数。</p>
-<p>:::note
-尝试从最短的子数组开始分析。
-:::</p>
-<h2>一眼观察</h2>
-<p>只看长度为 $2$ 的子数组 $[A_i, A_{i+1}]$：</p>
-<ul>
-<li>右移后变成 $[A_{i+1}, A_i]$</li>
-<li>若右移前后相同，则必有 $A_i = A_{i+1}$</li>
-</ul>
-<p>对所有 $i$ 成立，就得到全数组所有元素都相等。</p>
-<h2>结论</h2>
-<p>可选的常值就是区间 $[X, Y]$ 内整数个数：</p>
-<p>$$
-\max(0ll, Y - X + 1)
-$$</p>
-<p>与 $N$ 无关。</p>
-<h2>复杂度</h2>
-<p>每组 $O(1)$。</p>
-<h2>code</h2>
-<pre><code>void solve()
-{
-	int N, X, Y;
-	cin &gt;&gt; N &gt;&gt; X &gt;&gt; Y; 
-	cout &lt;&lt; max(0ll, Y - X + 1);
-}
-</code></pre>
-<hr />
-<h1>D. 蓝桥竞技</h1>
-<h2>题意简述</h2>
-<p>有 $N$ 种位置，第 $i$ 种有 $A_i$ 人。要把所有人分成若干支 5 人队，每队 5 人且位置互不相同。</p>
-<p>问是否存在合法分组。</p>
-<p>:::note
-这是条件判定题，不是构造题。检查两个条件就够：总人数能否整除 5、最大职业人数会不会爆队伍数。</p>
-<p>赛时尝试用大根堆模拟分配，满怀信心的出来发现果然过不了。
-:::</p>
-<h2>一眼观察</h2>
-<p>设总人数 $S = \sum A_i$，队伍数 $K = S/5$。</p>
-<p>必要条件：</p>
-<ol>
-<li>$S$ 必须被 5 整除。</li>
-<li>任意位置人数不能超过队伍数，即 $\max A_i \le K$。</li>
-</ol>
-<p>这两个条件也是充分条件（可由二分图度序列可行性 / Gale-Ryser 结论得到）。</p>
-<h2>复杂度</h2>
-<p>每组 $O(N)$。</p>
-<h2>code</h2>
-<pre><code>void solve()
-{
-	int N;
-	cin &gt;&gt; N;
-	int sum = 0, mx = 0;
-
-	for (int i = 0; i &lt; N; i++)
-	{
-		int x;
-		cin &gt;&gt; x;
-		sum += x;
-		mx = max(mx, x);
-	}
-
-	if (sum % 5)
-	{
-		cout &lt;&lt; "F";
-		return;
-	}
-
-	int K = sum / 5;
-	cout &lt;&lt; (mx &lt;= K ? "T" : "F");
-}
-</code></pre>
-<h1>E. LQ 聚合</h1>
-<h2>题意简述</h2>
-<p>长度 $N$ 的字符串，仅含 <code>L</code>、<code>Q</code>、<code>?</code>。把所有 <code>?</code> 替换为 <code>L</code> 或 <code>Q</code>，最大化满足 $i&lt;j$ 且 $s_i='L', s_j='Q'$ 的对数。</p>
-<p>:::note
-赛时想了半天怎么 DP， 最后针对 $N &lt; 10$ 的情况写了二进制枚举，依旧部分分。
-:::</p>
-<h2>一眼观察</h2>
-<p>最优方案一定是：某个分界点左边的 <code>?</code> 尽量当 <code>L</code>，右边的 <code>?</code> 尽量当 <code>Q</code>。</p>
-<p>因为假设存在一种最好的构造方案，那么把左侧的 'Q' 和右侧的 'L' 交换 后，结果不会变差。</p>
-<p>所以可做「从左到右枚举把多少个 <code>?</code> 变成 <code>L</code>」的线性扫描。</p>
-<h2>复杂度</h2>
-<p>$O(N)$。</p>
-<h2>code</h2>
-<pre><code>void solve()
-{
-	int n;
-	string s;
-	cin &gt;&gt; n &gt;&gt; s;
-
-	int tot = 0;
-	for (int i = 0; i &lt; n; i++)
-	{
-		if (s[i] == 'Q' or s[i] == '?')
-		{
-			tot++;
-		}
-	}
-
-	int cur = 0, q = tot;
-	for (int i = 0; i &lt; n; i++)
-	{
-		if (s[i] == 'Q' or s[i] == '?')
-		{
-			q--;
-		}
-		else
-		{
-			cur += q;
-		}
-	}
-
-	int ans = cur, l = 0;
-	q = tot;
-	for (int i = 0; i &lt; n; i++)
-	{
-		if (s[i] == '?')
-		{
-			q--;
-			cur = cur - l + q;
-			ans = max(ans, cur);
-			l++;
-		}
-		else if (s[i] == 'L')
-		{
-			l++;
-		}
-		else
-		{
-			q--;
-		}
-	}
-
-	cout &lt;&lt; ans;
-}
-</code></pre>
-<hr />
-<h1>F. 应急布线</h1>
-<h2>题意简述</h2>
-<p>有 $N$ 台电脑、$M$ 条现有网线。现有网络可能分裂成多个连通块。</p>
-<p>要加「应急跳线」使全图连通，目标分两层：</p>
-<ol>
-<li>新增边数最少。</li>
-<li>在满足 1 的前提下，让单台机器接入跳线数的最大值尽量小。</li>
-</ol>
-<p>输出这两个值。</p>
-<p>:::note
-感觉这居然是最简单的一题，该说昨天 DSU 复习对了吗。
-:::</p>
-<h2>第一步：最少新增边数</h2>
-<p>若连通块个数为 $C$，最少新增边数必为：</p>
-<p>$$
-C-1
-$$</p>
-<h2>第二步：最小化最大接入数</h2>
-<p>设最大接入数为 $D$。</p>
-<ul>
-<li>若 $C=1$，显然答案是 $0$。</li>
-<li>若 $C\ge 2$，至少需要 $C-1$ 条新增边，共有 $2(C-1)$ 个端点要挂在机器上。</li>
-<li>每台机器最多承受 $D$ 个端点，总承载能力是 $N\cdot D$。</li>
-</ul>
-<p>所以必要条件：</p>
-<p>$$
-N\cdot D \ge 2(C-1)
-$$</p>
-<p>又因为 $C\le N$，可知最优 $D$ 不会超过 $2$。</p>
-<p>因此：</p>
-<ul>
-<li>若 $C=1$，$D=0$。</li>
-<li>若 $C&gt;1$ 且 $N \ge 2C-2$，$D=1$。</li>
-<li>否则 $D=2$。</li>
-</ul>
-<h2>赛时</h2>
-<p>赛时用了别的想法：</p>
-<p>对于 <code>size &gt; 1</code> 的联通块，彼此先连起来，每一个联通块应当用掉两个点位（用于连接彼此），剩余的度数为0的点位数（红色标点）是 $\sum (size - 2)$
-<img src="https://alisa22580.com/_astro/image.C6u_2H7X_Z6vmzY.webp" alt="alt text" /></p>
-<p>然而只需要保证连通性即可，并不需要成环，所以有一条边可以拆开。这样一来 就又多了两个红色标点。
-<img src="https://alisa22580.com/_astro/image-1.YfXa_nVs_Z2aTdnh.webp" alt="alt text" /></p>
-<p>因此剩余的度数为0的点位数实际上是 $\sum (size - 2) + 2$</p>
-<p>现在还剩下 <code>X</code> 个 <code>size = 1</code> 的联通块没有连接。</p>
-<p>如果 $X \le \sum (size - 2) + 2$，说明可以把这些孤立点直接插在已有的边上，不会增加最大接入数，此时答案为1;
-<img src="https://alisa22580.com/_astro/image-2.CMjrEOrr_aDn6r.webp" alt="alt text" /></p>
-<p>否则需要额外的边来连接这些孤立点，答案为2。
-<img src="https://alisa22580.com/_astro/image-3.R8QbHLub_Z1Fwpgh.webp" alt="alt text" /></p>
-<h2>复杂度</h2>
-<p>并查集近似 $O((N+M)\alpha(N))$。</p>
-<h2>code</h2>
-<pre><code>void solve()
-{
-	int N, M;
-	cin &gt;&gt; N &gt;&gt; M;
-
-	DSU dsu(N);
-	for (int i = 0; i &lt; M; i++)
-	{
-		int a, b;
-		cin &gt;&gt; a &gt;&gt; b;
-		dsu.merge(a, b);
-	}
-
-	int C = dsu.getgroups();
-	int minEdges = C - 1;
-	int minMaxDeg;
-
-	if (C == 1)
-	{
-		minMaxDeg = 0;
-	}
-	else if (1ll * N &gt;= 2ll * C - 2)
-	{
-		minMaxDeg = 1;
-	}
-	else
-	{
-		minMaxDeg = 2;
-	}
-
-	cout &lt;&lt; minEdges &lt;&lt; ' ' &lt;&lt; minMaxDeg;
-}
-
-</code></pre>
-<p>:::warning</p>
-<ul>
-<li>
-<p>记得特判 $C=1$ 时第二问是 0，不是 1。</p>
-</li>
-<li>
-<p>不止一个人看错 第二问到底要求什么 求得其实是新增的边 如果加上老边这题就有点不可做了
-:::</p>
-</li>
-</ul>
-<hr />
-<p>G 和 H 已经不属于我的能力范围了 ... qwq</p>
-<p>虽然说出来很不甘心就是了，但是姑且把 ai 的题解放在这里，有空了补。</p>
-<hr />
-<h1>G. 理想温度</h1>
-<h2>题意简述</h2>
-<p>给数组 $A,B$，可选一个连续区间 $[l,r]$，给区间每个元素都加同一个整数 $k$。</p>
-<p>问操作后最多有多少位置满足 $A_i=B_i$。</p>
-<p>:::note
-把 <code>B-A</code> 当作差值数组 <code>D</code>。你选一个区间加 <code>k</code>，本质是在区间里“让 <code>D=k</code> 的变好，让 <code>D=0</code> 的变坏”。
-:::</p>
-<h2>转化</h2>
-<p>定义差值：</p>
-<p>$$
-D_i = B_i - A_i
-$$</p>
-<p>原本满足条件的位置是 $D_i=0$，记数量为 <code>base</code>。</p>
-<p>若选择区间并加 $k$，则区间内：</p>
-<ul>
-<li>原来 $D_i=k$ 的位置会变成匹配（收益 +1）</li>
-<li>原来 $D_i=0$ 的位置会被破坏（收益 -1）</li>
-</ul>
-<p>所以固定某个 $k\ne0$ 后，问题变成：</p>
-<p>在数组上找一段区间，使</p>
-<p>$$
-#(D_i=k)-#(D_i=0)
-$$</p>
-<p>最大。</p>
-<h2>做法</h2>
-<p>对每个出现过的非零值 $k$：</p>
-<ol>
-<li>收集所有 <code>D_i = k</code> 的位置。</li>
-<li>用前缀统计零的个数，在线性扫描这些位置时做 Kadane 变体。</li>
-</ol>
-<p>总复杂度 $O(n\log n)$（用 map），或哈希近似 $O(n)$。</p>
-<h2>code</h2>
-<pre><code>void solve()
-{
-	int n;
-	cin &gt;&gt; n;
-
-	vector&lt;int&gt; a(n), b(n), d(n);
-	for (int i = 0; i &lt; n; i++) cin &gt;&gt; a[i];
-	for (int i = 0; i &lt; n; i++) cin &gt;&gt; b[i];
-
-	int base = 0, best = 0;
-	vector&lt;int&gt; pre0(n + 1, 0);
-	map&lt;int, vector&lt;int&gt; &gt; pos;
-
-	for (int i = 0; i &lt; n; i++)
-	{
-		d[i] = b[i] - a[i];
-		pre0[i + 1] = pre0[i] + (d[i] == 0 ? 1 : 0);
-		if (d[i] == 0)
-		{
-			base++;
-		}
-		else
-		{
-			pos[d[i]].push_back(i);
-		}
-	}
-
-	for (auto it = pos.begin(); it != pos.end(); it++)
-	{
-		const vector&lt;int&gt;&amp; v = it-&gt;second;
-		int cur = 0;
-		for (int j = 0; j &lt; (int)v.size(); j++)
-		{
-			if (j == 0)
-			{
-				cur = max(0, cur) + 1;
-			}
-			else
-			{
-				int l = v[j - 1] + 1;
-				int r = v[j] - 1;
-				int z = pre0[r + 1] - pre0[l];
-				cur -= z;
-				cur = max(0, cur) + 1;
-			}
-			best = max(best, cur);
-		}
-	}
-
-	cout &lt;&lt; base + best;
-}
-</code></pre>
-<hr />
-<h1>H. 足球训练</h1>
-<h2>题意简述</h2>
-<p>有 $n$ 名队员，第 $i$ 名初始实力 $a_i$、天赋 $b_i$。</p>
-<p>给总训练天数 $m$，分配 $k_i$（非负整数，和为 $m$）后，最大化：</p>
-<p>$$
-\prod_{i=1}^{n} (a_i + k_i b_i)
-$$</p>
-<p>输出最大值对 $998244353$ 取模。</p>
-<p>:::note
-这题本质是边际收益递减，直接一天一天贪心会超时，所以要做“二分水位 + 堆补尾巴”。
-:::</p>
-<h2>核心思想</h2>
-<p>把目标取对数，变成：</p>
-<p>$$
-\max \sum_i \ln(a_i + k_i b_i)
-$$</p>
-<p>这是离散凹优化。每给某人再加 1 天的边际收益为：</p>
-<p>$$
-\Delta_i(k)=\ln(a_i+(k+1)b_i)-\ln(a_i+kb_i)
-$$</p>
-<p>随 $k$ 递减。</p>
-<p>所以可用「参数二分 + 少量堆补差」：</p>
-<ol>
-<li>二分一个阈值，先算每人应分配的大致天数。</li>
-<li>为避免浮点误差导致超发，先保守减一点。</li>
-<li>剩余少量天数用优先队列按当前最大边际收益补齐。</li>
-</ol>
-<h2>复杂度</h2>
-<ul>
-<li>二分约 80 轮，每轮 $O(n)$。</li>
-<li>补差阶段设剩余为 <code>rem</code>，复杂度 $O((n+rem)\log n)$。</li>
-</ul>
-<p>实践上可过本题范围。</p>
-<h2>code</h2>
-<pre><code>
-const int MOD = 998244353;
-
-struct Node
-{
-	double gain;
-	int id;
-	bool operator&lt;(const Node&amp; other) const
-	{
-		return gain &lt; other.gain; // 大根堆
-	}
-};
-
-void solve()
-{
-	int n;
-	int m;
-	cin &gt;&gt; n &gt;&gt; m;
-
-	vector&lt;int&gt; a(n), b(n);
-	for (int i = 0; i &lt; n; i++) cin &gt;&gt; a[i] &gt;&gt; b[i];
-
-	double L = 0.0, R = 2e14;
-	for (int it = 0; it &lt; 80; it++)
-	{
-		double mid = (L + R) * 0.5;
-		int cnt = 0;
-
-		for (int i = 0; i &lt; n; i++)
-		{
-			if (mid * (double)b[i] &gt;= (double)a[i])
-			{
-				int k = (int)(mid - (double)a[i] / (double)b[i]) + 1;
-				cnt += k;
-				if (cnt &gt; m + 1000000LL) break; // 防溢出保护
-			}
-		}
-
-		if (cnt &gt;= m) R = mid;
-		else L = mid;
-	}
-
-	vector&lt;int&gt; k(n, 0);
-	int used = 0;
-
-	for (int i = 0; i &lt; n; i++)
-	{
-		if (L * (double)b[i] &gt;= (double)a[i])
-		{
-			int x = (int)(L - (double)a[i] / (double)b[i]) + 1;
-			x = max(0LL, x - 5);
-			k[i] = x;
-			used += x;
-		}
-	}
-
-	priority_queue&lt;Node&gt; pq;
-	for (int i = 0; i &lt; n; i++)
-	{
-		double g = (double)b[i] / (double)(a[i] + k[i] * b[i]);
-		pq.push((Node){g, i});
-	}
-
-	while (used &lt; m)
-	{
-		Node cur = pq.top();
-		pq.pop();
-
-		int id = cur.id;
-		++k[id];
-		++used;
-
-		double g = (double)b[id] / (double)(a[id] + k[id] * b[id]);
-		pq.push((Node){g, id});
-	}
-
-	int ans = 1;
-	for (int i = 0; i &lt; n; i++)
-	{
-		int val = (a[i] % MOD + (k[i] % MOD) * (b[i] % MOD)) % MOD;
-		ans = (ans * val) % MOD;
-	}
-
-	cout &lt;&lt; ans;
-}
-</code></pre>
-<h2>易错点</h2>
-<ul>
-<li>直接贪心一天一天分配会超时（$m$ 可到 $10^9$）。</li>
-<li>结果取模在最后乘法阶段做；$a_i + k_i b_i$ 先转成模意义即可。</li>
-<li>该题实现对浮点精度较敏感，建议自测多组随机数据做稳定性检查。</li>
-</ul>
-<hr />
-<h1>总结</h1>
-<p>我的分数大概是这么多（也可能再低一点吧。其实打的，相当一般啊，感觉就是零基础 / 半吊子 + DSU 板子熟练使用者
-<img src="https://alisa22580.com/_astro/e0d7db8bf7ba8da65682724582540989.C3G9XHFC_R5Vzh.webp" alt="alt text" /></p>
-<p>我曾经对 cf 有巨大的偏见，觉得它 "除了 guessing 什么都练不到" 但是这次的 B 题 居然被我手搓出规律了，在此我必须承认 cf 大人的强大，我将一直拥护 cf 。</p>
-<p>当然黑龙江的 b 组 其实没啥含金量 约等于校内竞争了。但是我再怎么说也是训了那么久，打成这样终归不是很满意，心有不甘</p>
-<blockquote>
-<p>2026-04-29 update:</p>
-<p>全省第二！这下不再心有不甘了。哈哈哈</p>
-<p><img src="https://alisa22580.com/_astro/image-4.qh7KjKf-_1kv9bq.webp" alt="alt text" /></p>
-</blockquote>
-]]></content>
-    <author>
-      <name>alisa22580</name>
-    </author>
-    <category term="Tutorial"></category>
-  </entry>
-  <entry>
     <title>个人常用算法模板</title>
     <link href="https://alisa22580.com/posts/lanqiao-cpp-b-common/" rel="alternate" type="text/html"/>
     <id>https://alisa22580.com/posts/lanqiao-cpp-b-common/</id>
@@ -1413,7 +367,7 @@ void solve()
     <updated>2026-08-13T10:30:42.000Z</updated>
     <summary>算法竞赛常用 C++ 模板与临场速查</summary>
     <content type="html"><![CDATA[<p>:::note
-自用的算法竞赛模板合集。最初只为蓝桥杯 B 组准备，后来越补越多，已经和蓝桥杯没有太大关系了，于是干脆改成通用板子集合。</p>
+自用的算法竞赛模板合集。最初只为蓝桥杯准备，后来越补越多，已经和蓝桥杯没有太大关系了，于是干脆改成通用板子集合。</p>
 <p>这里以“赛场上能快速找到、复制后容易改”为第一目标，不追求把每个知识点讲成完整教程。部分模板彼此有依赖，使用前先看下面的约定。
 :::</p>
 <h2>使用约定</h2>
@@ -4047,6 +3001,1052 @@ vector&lt;long long&gt; complete_knapsack(
 </ul>
 <blockquote>
 <p>最后更新：2026-08-13。把原来的蓝桥杯速查扩充为个人通用模板合集，并统一了目录与说明。</p>
+</blockquote>
+]]></content>
+    <author>
+      <name>alisa22580</name>
+    </author>
+    <category term="Tutorial"></category>
+  </entry>
+  <entry>
+    <title>2026ICPC沈阳 赛站游记</title>
+    <link href="https://alisa22580.com/posts/2026-icpcsy/" rel="alternate" type="text/html"/>
+    <id>https://alisa22580.com/posts/2026-icpcsy/</id>
+    <published>2026-07-29T00:00:00.000Z</published>
+    <updated>2026-08-13T09:31:21.000Z</updated>
+    <summary>流水账一篇</summary>
+    <content type="html"><![CDATA[<h3>前言</h3>
+<h5>和天妹妹一起从深圳飞来沈阳 历经5h</h5>
+<p><img src="https://alisa22580.com/_astro/730eb6afce6e2d2e56f38e20f7d34e93.YEUCykBM_Z2wplu8.webp" alt="alt text" /></p>
+<h5>大晚上想吃东西 找售货机找到自助售烟机 难绷</h5>
+<p><img src="https://alisa22580.com/_astro/78f6341029d4dbb2495d29bbd470248e.D47BkWIH_ZxfGDb.webp" alt="alt text" /></p>
+<h5>偶遇一只几何造型</h5>
+<p><img src="https://alisa22580.com/_astro/65ec2665468674c1a6c7d15329824916.B65kJ7Ri_1cLAYV.webp" alt="alt text" /></p>
+<h5>东北大学的餐券 这一顿有肉有菜有碳水 仅仅15r</h5>
+<p><img src="https://alisa22580.com/_astro/28f8c27ffa87e809cc7ff3ebd9cc9d2c.D1_B38b6_1IeTeq.webp" alt="alt text" /></p>
+<h5>很好看的赛站服，可惜朋友说有登味</h5>
+<p><img src="https://alisa22580.com/_astro/d45edd05185806f837b7b4248311f3c5.DRyy8nYY_Vkr34.webp" alt="alt text" /></p>
+<h3>赛中</h3>
+<p><img src="https://alisa22580.com/_astro/4da21f433041122031d0e5be2bdebed7.COPyGKX5_1cJRcW.webp" alt="alt text" />
+全场第一个提交，但是是E题wwq猜了个结论 错了之后才倒回去跟榜看签到。</p>
+<p>12min 做出来L 三个人开始集体发呆，直到 70min 才以两发罚时做出来第二道签到K</p>
+<p>做出来3题之后还在铁牌区，当时感觉这场打的想哭</p>
+<p>好在qxh在我之前开始动脑，把E的总体排序计算改为分别计算每个位置的贡献，这样推导了一会儿发现是一个for循环+一个排序不等式，但是他🍬的看不懂数据范围，我说 $n^{2} logn$ 是肯定可以过的 然后光速写了一发 过了。 此时来到银牌中游 大家重燃希望。</p>
+<p>查看I题 qxh发力 约莫猜了两三个结论吧 推导的七七八八了，但是实现上，内层枚举因数的时候发现极端情况下因数可能超过300个 这样会导致超时；</p>
+<p>此时我充分发扬多校乱搞的经验，跟他们说 可以考虑循环上界设为 <code>min(200ll, 因数个数)</code> 试了一发 过了 此时来到金牌区</p>
+<p>如果我们再做一道J 几乎是百分百稳金牌的 这样我们也算是后起之秀了 于是三个人开始一起看J</p>
+<p>我提出 与其计算每一个点可以看到哪些柱子 不如计算每一个柱子可以被多少点看到，这样y轴只有1e5数量级个本质不同的点 维护一个离线区间加的方法是多样的 剩下就是推导每个柱子可以如何被看到 一通推导之后发现是一个类似并查集find的东西 需要不断记录前驱节点 后来才知道其实相当于赛时发明凸包了 但是一时间想的东西太多 没有想到斜率的比较其实应该 统一把分母移上去 这样整个代码里都没有 <code>double</code> 了</p>
+<p>总之 debug了十几发 也没能成功通过 最后遗憾银牌 rk42 姑且也可以算是银首。</p>
+<p>总结来说 客观原因是三个人可能线下没休息好，主观原因是三个人在赛前没有充分讨论好各自的分工，导致在赛中出现了很多重复劳动，以及互相不知道对方在说什么 仍需磨合啊！</p>
+<h3>赛后</h3>
+<h5>其实新海天才是参赛队员</h5>
+<p><img src="https://alisa22580.com/_astro/3c45cfab72ee537c2ec1fe648b31c252.BN0rxD7W_Zd4KVV.webp" alt="alt text" /></p>
+<h5>acm特有的赛后头像合影</h5>
+<p><img src="https://alisa22580.com/_astro/c534b00fa7260faccf8bd377402160af.DhXwBri8_Z12uezU.webp" alt="alt text" /></p>
+<h5>沈阳量大管饱 这一顿把三个人吃死了</h5>
+<p><img src="https://alisa22580.com/_astro/c0239e098e23f73e5e47c3ce99569a91.D39NGK62_Z2wU3Dx.webp" alt="alt text" /></p>
+<h5>半夜看痴迷 看的手脚冰凉</h5>
+<p><img src="https://alisa22580.com/_astro/f83b96b4f0d5e7ca26ab7f12c1622abf.BiaAHm6i_1pcqAL.webp" alt="alt text" /></p>
+<h5>走啦 奔赴下一站</h5>
+<p><img src="https://alisa22580.com/_astro/b5062141a8164588d0829506b3c61721.BrwyflgA_28wFvI.webp" alt="alt text" /></p>
+]]></content>
+    <author>
+      <name>alisa22580</name>
+    </author>
+    <category term="杂谈"></category>
+  </entry>
+  <entry>
+    <title>一场幻梦</title>
+    <link href="https://alisa22580.com/posts/a-dream/" rel="alternate" type="text/html"/>
+    <id>https://alisa22580.com/posts/a-dream/</id>
+    <published>2026-07-26T21:57:00.000Z</published>
+    <updated>2026-08-01T10:27:06.000Z</updated>
+    <summary>希望我将来也不要留下遗憾。</summary>
+    <content type="html"><![CDATA[<p>学习，打 A，工作。</p>
+<p>上了大学，我离自己从小到大的生活圈子愈发变远了。</p>
+<p>这次回来深圳，满打满算十一天。跟爸妈弟弟聊天，跟小学初中的好朋友叙旧，又因为前程之类的事情不得不匆匆离开。</p>
+<p>睡在原来属于我、现在属于弟弟的小床上，恍惚间分不清楚这到底是我的家，还是一个陌生的房间。整理东西时候发现抽屉柜子里封存的物件，我只能有模糊的记忆。我不是一个念旧的人吗，为什么竟因为遗忘而感到有点害怕？</p>
+<p>爸妈，不想这么说，但是确实老了，也自然地把我当个大人对待。我出门不再需要跟他们报备；爸妈捣鼓电子产品的时候会询问我的意见；在家爸妈知道我要学习，给了我极高的宽容。我每天起床睡觉时间都极其阴间，好几天都跟他们几乎错开，就这样我妈还每天中午给我买两份肠粉打包带回家。</p>
+<p>弟弟长大了，但是其实没那么长大。成绩还不错，现在小学学的东西比我们以前难了，但是他考得其实比我那时候要好；但是他很调皮捣蛋，比我那时候要更调皮。这次回来我骂了一顿弟弟，把他骂哭了。其实我很爱他，我不想对他发脾气，但是我爸妈可能对他太溺爱了，这个家需要一个坏人，反正我才回来十天（笑）。</p>
+<p>朋友们外表的变化不大，但是一个个眼里好像失去光了。有的已经基本告别校园生活参加工作了，有的大概决定留在学校所在地当小老师，有的放假了还去图书馆努力学习制图，想要不被 AI 取代。</p>
+<p>在我不打 A、不心理扭曲地吵着要当小男娘穿小裙子的时候，我会跟他们畅聊未来。从很多年前就保留了去乐城公园散步的习惯，只是慢慢地从几周一聚、几月一聚，变成如今半年一聚了。不知道下次见面是多久之后。</p>
+<p>回来这几天也算是用双脚走过了自己曾经的活动范围，也对自己没能参加港中深举办的深圳邀请赛感到遗憾，明明这个赛站小时候抱过我；然而我的高中我还是不敢回去，不夸张地说，想到这个我就浑身发抖。</p>
+<hr />
+<p>临近期末准备放假买票的时候，我说找到工作的话其实假期不回深圳也行，反正回家也是十多天的事。我妈说，回来吧，回来看看。</p>
+<p>结果要走的时候还真有点舍不得。</p>
+<p>好在我牵挂的其实只有以上这些。回来这几天我很开心，大概算是没给东北人的深圳之旅留下遗憾吧？</p>
+<p>希望我将来也不要留下遗憾。</p>
+<blockquote>
+<p>2026-08-01 update:</p>
+</blockquote>
+<p><img src="https://alisa22580.com/_astro/c24aeeeff6ca72539d0ae794c2115642.BjxuAAmJ_72oAt.webp" alt="我在出租屋码字，妹妹在看我 w-100%" title="我在出租屋码字，妹妹在看我" /></p>
+]]></content>
+    <author>
+      <name>alisa22580</name>
+    </author>
+    <category term="杂谈"></category>
+  </entry>
+  <entry>
+    <title>CFBetter 快速配置 AI 翻译（接入 DeepSeek V4 Flash）</title>
+    <link href="https://alisa22580.com/posts/cfbetter-deepseek-ai-translation/" rel="alternate" type="text/html"/>
+    <id>https://alisa22580.com/posts/cfbetter-deepseek-ai-translation/</id>
+    <published>2026-06-07T00:00:00.000Z</published>
+    <updated>2026-06-07T18:32:08.000Z</updated>
+    <summary>在 Codeforces Better 中接入 DeepSeek V4 Flash</summary>
+    <content type="html"><![CDATA[<h1>写在前面</h1>
+<blockquote>
+<p>曾经在 b 站发过一个 <a href="https://www.bilibili.com/opus/1117176875527962633?spm_id_from=333.1387.0.0">简易版本的教程</a>，其内容已经过时。</p>
+</blockquote>
+<p>刷 Codeforces 的时候，传统翻译工具翻译出来的东西，经常把题目里的数学公式和关键信息搞得面目全非，还不如自己硬啃英文。</p>
+<p><strong>CFBetter</strong> 是一个非常好用的 Codeforces 增强插件，它支持多种翻译服务，其中最推荐的就是 <strong>AI 翻译（ChatGPT 兼容接口）</strong> —— 因为 AI 能理解上下文，还能自动识别和保护 LaTeX 公式，翻译质量远超传统机翻。</p>
+<p>本文将教你如何<strong>快速配置</strong> CFBetter 的 AI 翻译功能，接入 <strong>DeepSeek V4 Flash</strong> 模型。</p>
+<h1>1. 准备工作</h1>
+<h2>1.1 安装油猴脚本</h2>
+<p>CFBetter 是一个 Tampermonkey 油猴脚本，你需要在浏览器中先安装它。</p>
+<ol>
+<li>
+<p>安装 <a href="https://microsoftedge.microsoft.com/addons/detail/%E7%AF%A1%E6%94%B9%E7%8C%B4/iikmkjmpaadaobahmlepeloendndfphd">Tampermonkey</a> 浏览器扩展。
+<img src="https://alisa22580.com/_astro/image.BuQFAQQ__Z2ojToS.webp" alt="alt text" /></p>
+</li>
+<li>
+<p>进入 <a>扩展管理</a> 确保 Tampermonkey 已启用，开发人员模式已打开。
+<img src="https://alisa22580.com/_astro/image-1.DB44ZkgD_Z7A7Ye.webp" alt="alt text" /></p>
+</li>
+<li>
+<p>点击 篡改猴 的 详细信息， 像我图片那样设置相关权限。
+<img src="https://alisa22580.com/_astro/image-2.C9Q4k2O__ZkrBtY.webp" alt="alt text" />
+<img src="https://alisa22580.com/_astro/image-3.CZ81ylp5_1WYhT5.webp" alt="alt text" /></p>
+</li>
+</ol>
+<h2>1.2 安装 CFBetter 脚本</h2>
+<p>访问 <a href="https://greasyfork.org/zh-CN/scripts/465777-codeforces-better">cf better 油猴脚本页面</a>, 点击安装按钮，按照提示完成安装即可。</p>
+<h2>1.3 获取 DeepSeek API Key</h2>
+<ol>
+<li>前往 <a href="https://platform.deepseek.com/">DeepSeek 开放平台</a> 注册账号。</li>
+<li>登录后，点击左侧菜单的 <strong>「API Keys」</strong></li>
+<li>点击 <strong>「创建 API Key」</strong>，输入一个名称（比如 <code>CFBetter</code>）</li>
+<li>创建后，<strong>立刻复制并保存</strong> API Key（格式为 <code>sk-xxxx...</code>，只显示一次）</li>
+</ol>
+<h1>2. 配置 CFBetter 的 AI 翻译</h1>
+<p>进入 codeforces 主页，应当能看到 cf better 已经加载成功：
+<img src="https://alisa22580.com/_astro/image-4._xaqFk6I_27FHRY.webp" alt="alt text" /></p>
+<h2>2.1 打开设置面板</h2>
+<p>在 Codeforces 任意页面，点击右上角的 <strong>「CodeforcesBetter 设置」</strong> 按钮，打开设置面板。</p>
+<h2>2.2 选择翻译服务</h2>
+<p>在设置面板中，找到 <strong>「翻译」</strong> 选项，从下拉菜单中选择 <strong>「AI 翻译」</strong>。
+<img src="https://alisa22580.com/_astro/image-5.BqRWUIw6_ZqVvNI.webp" alt="alt text" /></p>
+<h2>2.3 添加 DeepSeek 配置</h2>
+<p>向下滚动，找到 <strong>「ChatGPT」</strong> 区域，点击 <strong>「添加」</strong> 按钮，弹出配置表单。</p>
+<p><img src="https://alisa22580.com/_astro/image-6.CUWDggX2_Z1D2uPD.webp" alt="alt text" /></p>
+<table>
+<thead>
+<tr>
+<th>配置项</th>
+<th>填写内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>名称</strong></td>
+<td>随意，比如 <code>DeepSeek V4 Flash</code></td>
+</tr>
+<tr>
+<td><strong>模型</strong></td>
+<td><code>deepseek-v4-flash</code></td>
+</tr>
+<tr>
+<td><strong>KEY</strong></td>
+<td>你的 DeepSeek API Key（<code>sk-xxxx...</code> 格式）</td>
+</tr>
+<tr>
+<td><strong>Proxy API</strong></td>
+<td><code>https://api.deepseek.com/chat/completions</code></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>参考如下：
+<img src="https://alisa22580.com/_astro/image-7.d13jeozg_1nYd7l.webp" alt="alt text" /></p>
+</blockquote>
+<h2>2.4 配置自动翻译</h2>
+<p>向下滚动，像图中一样配置即可。
+<img src="https://alisa22580.com/_astro/image-8.CQdPbA7X_Z2uYtjr.webp" alt="alt text" /></p>
+<p>填写完成后直接关闭，会弹出保存提示，保存即可。</p>
+<p>:::warning
+完成之后多点几下 确认确实选择了AI翻译；确认确实选择了刚刚自己设置的接口；确认保存了设置！
+:::</p>
+<h3>配置参数说明</h3>
+<p><strong>关于模型名称：</strong></p>
+<table>
+<thead>
+<tr>
+<th>模型名称</th>
+<th>说明</th>
+<th>推荐</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>deepseek-v4-flash</code></td>
+<td>DeepSeek V4 Flash 模型，速度快、便宜</td>
+<td>✅ 推荐</td>
+</tr>
+<tr>
+<td><code>deepseek-v4-pro</code></td>
+<td>DeepSeek V4 Pro 模型，推理能力更强</td>
+<td>复杂题目可选</td>
+</tr>
+<tr>
+<td><code>deepseek-chat</code></td>
+<td>旧版模型名，对应 V4 Flash 非思考模式（2026/07/24 弃用）</td>
+<td>不推荐</td>
+</tr>
+</tbody>
+</table>
+<p><strong>对于翻译场景，<code>deepseek-v4-flash</code> 完全够用，不建议使用 <code>deepseek-v4-pro</code>，因为翻译不需要复杂推理能力，用 Pro 纯属浪费钱。</strong></p>
+<h1>3. 使用与测试</h1>
+<p>配置完成后，在任意 Codeforces 题目页面，点击翻译按钮即可使用 AI 翻译。</p>
+<ul>
+<li>翻译会自动保留 LaTeX 数学公式不被破坏</li>
+<li>翻译质量远超 DeepL、Google 等传统翻译工具</li>
+<li>首次翻译可能需要授权 Tampermonkey 的跨域请求，点击允许即可</li>
+</ul>
+<h2>3.1 推荐的翻译设置</h2>
+<p>回到 CFBetter 的设置面板，建议进行以下调整：</p>
+<ul>
+<li><strong>翻译模式</strong>：选择「普通模式」（一次性翻译整个区域，上下文更完整）</li>
+<li><strong>自动翻译</strong>：可以开启，建议设置短文本阈值为 200 字符</li>
+<li><strong>历史翻译恢复</strong>：建议开启，避免重复翻译消耗 API 额度</li>
+</ul>
+<h2>3.2 快速切换翻译服务</h2>
+<p>右键页面上的任意<strong>翻译图标按钮</strong>，可以快速切换翻译服务，不需要每次都打开设置面板。</p>
+<h1>4. 费用估算</h1>
+<p>DeepSeek V4 Flash 的定价如下（截至 2026 年 6 月）：</p>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>价格</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>输入（缓存命中）</td>
+<td>0.02 元 / 百万 tokens</td>
+</tr>
+<tr>
+<td>输入（缓存未命中）</td>
+<td>1 元 / 百万 tokens</td>
+</tr>
+<tr>
+<td>输出</td>
+<td>2 元 / 百万 tokens</td>
+</tr>
+</tbody>
+</table>
+<p>实际使用中，翻译一道 Codeforces 题目（包括题目描述、输入输出说明、样例等）大约消耗 500-2000 tokens，折合人民币 <strong>不到 0.01 元</strong>。</p>
+<p>也就是说，<strong>充 10 块钱，能翻译上千道题目</strong>，基本等于白嫖。</p>
+<h1>5. 常见问题</h1>
+<h2>Q: 翻译报错 401 Unauthorized？</h2>
+<p>检查 API Key 是否正确，确保完整复制了 <code>sk-</code> 开头的整个 Key，没有多余空格。</p>
+<h2>Q: 翻译报错 402 Payment Required？</h2>
+<p>你的 DeepSeek 账号余额不足，前往 <a href="https://platform.deepseek.com/">DeepSeek 开放平台</a> 充值即可。</p>
+<h2>Q: 翻译很慢怎么办？</h2>
+<p>AI 翻译的速度取决于 DeepSeek 服务器的响应时间，通常在 2-5 秒左右。如果经常很慢，可能是网络问题，建议检查网络连接。</p>
+<h2>Q: 公式显示异常？</h2>
+<p>使用 ChatGPT/AI 翻译时，CFBetter 会通过提示词告知 AI 保留 LaTeX 公式，通常不会出现公式被破坏的情况。如果偶尔出现，可以重新翻译一次。</p>
+<h2>Q: Tampermonkey 弹出跨域警告？</h2>
+<p>这是正常现象，因为你在使用自定义 API 地址。点击「允许」或「始终允许」即可。</p>
+<h2>Q: 可以用其他 AI 模型吗？</h2>
+<p>可以！只要模型支持 OpenAI 兼容的 API 格式（<code>/v1/chat/completions</code>），都可以使用。例如：</p>
+<ul>
+<li><strong>OpenAI</strong>：<code>https://api.openai.com/v1/chat/completions</code>，模型 <code>gpt-4o</code></li>
+<li><strong>硅基流动 (SiliconFlow)</strong>：填入对应的 API 地址和模型名</li>
+<li><strong>其他代理服务</strong>：填入代理商提供的完整 API 地址</li>
+</ul>
+<p>只需要修改 <strong>KEY</strong>、<strong>Proxy API</strong> 和 <strong>Model</strong> 三个字段即可。</p>
+<h1>参考</h1>
+<ul>
+<li><a href="https://github.com/beijixiaohu/OJBetter">OJBetter GitHub 仓库</a></li>
+<li><a href="https://github.com/beijixiaohu/OJBetter/wiki/%E7%BF%BB%E8%AF%91">OJBetter 翻译配置 Wiki</a></li>
+<li><a href="https://platform.deepseek.com/">DeepSeek 开放平台</a></li>
+<li><a href="https://api-docs.deepseek.com/zh-cn/quick_start/pricing">DeepSeek API 定价</a></li>
+</ul>
+]]></content>
+    <author>
+      <name>alisa22580</name>
+    </author>
+    <category term="Tutorial"></category>
+  </entry>
+  <entry>
+    <title>2026东北赛 长春游</title>
+    <link href="https://alisa22580.com/posts/2026-dbcpc/" rel="alternate" type="text/html"/>
+    <id>https://alisa22580.com/posts/2026-dbcpc/</id>
+    <published>2026-05-24T00:00:00.000Z</published>
+    <updated>2026-05-28T19:21:03.000Z</updated>
+    <summary>流水账一篇</summary>
+    <content type="html"><![CDATA[<p>铜首了，倒闭4个小时，感觉心情不是很美妙...</p>
+<p><img src="https://alisa22580.com/_astro/image.CUvhJZwi_Z9fOY8.webp" alt="alt text" /></p>
+<p>姑且先放一个牌子在这里，剩下的再说吧。</p>
+<blockquote>
+<p>2026-05-28 update:</p>
+</blockquote>
+<p>已经过去快一周啦，复杂的心情应该说平复了很多，虽然还是觉得挺可惜的，但也不至于太难过了。</p>
+]]></content>
+    <author>
+      <name>alisa22580</name>
+    </author>
+    <category term="杂谈"></category>
+  </entry>
+  <entry>
+    <title>vscode 快速配置 g++</title>
+    <link href="https://alisa22580.com/posts/vscode-run-code-tutorial/" rel="alternate" type="text/html"/>
+    <id>https://alisa22580.com/posts/vscode-run-code-tutorial/</id>
+    <published>2026-04-13T00:00:00.000Z</published>
+    <updated>2026-04-29T00:21:26.000Z</updated>
+    <summary>可以作为 从 Dev-C++ / CodeBlocks 等 古老 IDE 过渡到 vscode 的快速替代方案</summary>
+    <content type="html"><![CDATA[<h1>写在前面</h1>
+<p>:::tip
+感觉，写的非常啰嗦啊！</p>
+<p>了解这些内容可能对短期的比赛没有太大帮助，但是对于长期的计算机学习是意义重大的。
+:::</p>
+<p>众所周知，打 acm 的各种比赛的时候，使用 vscode 作为代码编辑器是非常方便的。</p>
+<p>:spoiler[如果不赞同上面这句话，请你立马关闭这篇文章(]</p>
+<p>在机房或者考场拿到一台只装了 Dev-C++ / CodeBlocks 等古董 IDE 的电脑时，如何快速拯救自己的双手？</p>
+<p>通过本教程，你将在<strong>极短的时间内</strong>，利用已有 IDE 里的编译器，快速配置好 Windows 的环境变量，从而达成 <strong>在 VS Code 终端中丝滑使用 <code>g++</code> 编译和运行 C++ 代码</strong> 的目的。</p>
+<ul>
+<li>
+<p>对于刚接触算法竞赛的新人，这个教程可以作为一个过渡方案，帮助你快速适应 VS Code 的开发环境，而不需要一开始就去下载和配置新的编译器；</p>
+</li>
+<li>
+<p>对于已经习惯了 VS Code 的老手，这个教程可以帮助你在没有管理员权限的电脑上快速配置环境变量，继续使用熟悉的编译器，帮助你最大限度的优化比赛体验。</p>
+</li>
+</ul>
+<h1>基本了解</h1>
+<p>这个教程的实质是针对 Windows 用户的 path 环境变量的配置扫盲。</p>
+<p>让我们先了解几个概念：</p>
+<h2>cpp代码的编译和运行</h2>
+<p>cpp 代码大致的编译和运行流程是这样的：</p>
+<ol>
+<li>你在代码编辑器里写好 cpp 代码，保存为 main.cpp。</li>
+<li>调用编译器（比如 g++）来翻译 main.cpp，生成一个可执行文件（比如 main.exe）。</li>
+<li>运行这个可执行文件，看到程序的输出。</li>
+</ol>
+<pre><code>sequenceDiagram
+    participant U as 👨‍💻 你 (VS Code)
+    participant E as 📝 代码编辑器
+    participant C as ⚙️ 编译器 (g++)
+    participant O as 🖥️ 操作系统
+
+    U-&gt;&gt;E: 在 VS Code 中编写 main.cpp
+    E--&gt;&gt;U: 提供语法高亮、自动补全等功能
+    U-&gt;&gt;C: 输入命令 `g++ main.cpp -o main` 调用编译器
+    C-&gt;&gt;C: 编译 main.cpp，生成 main.exe
+    C--&gt;&gt;U: 编译成功，生成 main.exe
+    U-&gt;&gt;O: 输入命令 `./main` 运行程序
+    O-&gt;&gt;O: 执行 main.exe，显示输出结果
+    O--&gt;&gt;U: 程序输出结果显示在终端
+
+</code></pre>
+<p>这里面具体涉及到了如下几个概念：</p>
+<h2>代码编辑器</h2>
+<p>代码编辑器是一个专门为编写代码设计的软件。它提供了语法高亮、自动补全、错误提示等功能，帮助程序员更高效地编写代码。常见的代码编辑器有 Visual Studio Code、Sublime Text、Atom 等。</p>
+<p>这些编辑器本身并不包含编译器，它们只是提供了一个界面让你编写代码。因此需要与编译器配合使用。</p>
+<p>这些软件大多具有很好的插件生态，是被推崇使用的一大重要原因。</p>
+<h2>编译器</h2>
+<p>编译器是一个将源代码（如 C++ 代码）翻译成机器语言的程序。它负责将你写的代码转换成计算机能够理解和执行的格式。</p>
+<p>GNU Compiler Collection（GCC）是一个非常流行的开源编译器套件，其中 g++ 是专门用于编译 C++ 代码的部分。</p>
+<p>:::note[g++]
+g++ 是 GNU Compiler Collection 的 C++ 开源编译器，支持多种平台和操作系统。</p>
+<p>g++ 可以将 C++ 代码编译成可执行文件，或者将其编译成目标文件以供链接器使用。它支持 C++11、C++14、C++17 等多个 C++ 标准，并且提供了丰富的编译选项和优化功能。
+:::</p>
+<h2>集成开发环境 (IDE)</h2>
+<p>IDE 是一个集成了代码编辑器、编译器、调试器等工具的软件，提供了一个完整的开发环境。常见的 IDE 有 Dev-C++、CodeBlocks、Visual Studio 等。 这些 IDE 通常会自带一个编译器（比如 g++），但它们的编译器路径没有被添加到系统的环境变量中，因此只能在 IDE 内部使用。</p>
+<p>这些软件虽然功能强大，但界面复杂，操作繁琐，存储占用臃肿，（大概）并不适合在比赛中使用。</p>
+<p>知道了这些概念，问题的核心就变成了 如何让 VS Code 终端能够识别并使用 g++ 编译器。</p>
+<p>针对这个问题，我们需要了解 Windows 的 path 环境变量是什么，以及如何配置它。</p>
+<h2>path 环境变量</h2>
+<p>在 Windows 系统中，path 环境变量是一个包含了系统可执行文件路径的列表。当你在命令行中输入一个命令时，系统会在这些路径中查找对应的可执行文件并运行它。</p>
+<p>因此，如果你想在命令行中使用 g++ 编译器，你需要确保 g++ 的可执行文件所在的路径已经被添加到 path 环境变量中。</p>
+<pre><code>sequenceDiagram
+    participant U as 👨‍💻 你 (VS Code终端)
+    participant W as 💻 Windows 系统
+    participant P as 📂 Path 环境变量
+    participant G as ⚙️ g++ 编译器
+
+    U-&gt;&gt;W: 输入命令: `g++ main.cpp`
+    W-&gt;&gt;W: 思考: 我认识 g++ 吗？
+    alt 没配置 Path
+        W--&gt;&gt;U: 报错: "g++ 不是内部或外部命令" ❌
+    else 配置了 Path
+        W-&gt;&gt;P: 翻找通讯录 (Path)
+        P--&gt;&gt;W: 找到了！它在 `D:\Dev-Cpp\MinGW64\bin`
+        W-&gt;&gt;G: 喂，g++，干活了！
+        G-&gt;&gt;G: 编译 main.cpp
+        G--&gt;&gt;U: 生成 `a.exe`，编译成功！ ✅
+    end
+</code></pre>
+<h1>理论分析</h1>
+<p>基于上面的概念 我们来分析一下当前都有什么，应该如何调整：</p>
+<p>我们有：</p>
+<ul>
+<li>已经安装好的 Dev-C++ 或 CodeBlocks 等 IDE。</li>
+<li>这些 IDE 自带了 g++ 编译器，但它们的路径没有被添加到 Windows 的 path 环境变量中，因此只可以在 IDE 内部使用。</li>
+<li>一个 vscode 编辑器 但是无法用来编译和运行 C++ 代码。</li>
+<li>一个渴望在 vscode 里使用 g++ 的，愿意折腾的你。</li>
+</ul>
+<p>我们需要：</p>
+<ul>
+<li>找到 g++ 编译器的路径。</li>
+<li>将这个路径添加到 Windows 的 path 环境变量中。</li>
+<li>重启 vscode 让它加载新的环境变量。</li>
+<li>在 vscode 终端中畅快的使用 g++ 。</li>
+</ul>
+<h1>正式配置</h1>
+<h2>1. 白嫖现成的 g++ 编译器</h2>
+<p>既然电脑里有 Dev-C++ 或 CodeBlocks，我们就直接“借用”它们自带的编译器，不需要重新下载！</p>
+<ol>
+<li>找到 Dev-C++ 或 CodeBlocks 的安装目录。</li>
+</ol>
+<p><img src="https://alisa22580.com/_astro/image-1.BXyAxvwy_1EigDc.webp" alt="alt text" /></p>
+<ol>
+<li>顺藤摸瓜，找到名为 MinGW 或 MinGW64 的文件夹。</li>
+</ol>
+<p><img src="https://alisa22580.com/_astro/image-2.PYuAuKO1_ekVlQ.webp" alt="alt text" /></p>
+<ol>
+<li>一直点进去，直到看到一个名为 bin 的文件夹。</li>
+</ol>
+<p><img src="https://alisa22580.com/_astro/image-3.npLJulo9_QiIJy.webp" alt="alt text" /></p>
+<ol>
+<li><strong>打开</strong> bin 文件夹，<strong>确认</strong>里面有 g++.exe。</li>
+</ol>
+<p><img src="https://alisa22580.com/_astro/image-4.CFPv4GC7_ZLvoit.webp" alt="alt text" /></p>
+<ol>
+<li>复制当前的文件路径（例如：C:\Program Files (x86)\Dev-Cpp\MinGW64\bin）。</li>
+</ol>
+<p><img src="https://alisa22580.com/_astro/image-5.NrdLR-5C_ZnJWgP.webp" alt="alt text" /></p>
+<h2>2. 将路径写入 Path 环境变量</h2>
+<ol>
+<li>按下 Win 键，直接<strong>搜索</strong> “编辑系统环境变量”，点击打开。</li>
+</ol>
+<p><img src="https://alisa22580.com/_astro/image-6.BBkvSJC3_Z197LD2.webp" alt="alt text" /></p>
+<ol>
+<li>在弹出的窗口右下角，点击 “环境变量(N)...”，在下半部分的“系统变量”中，找到叫 Path 的那一行，双击它。</li>
+</ol>
+<p><img src="https://alisa22580.com/_astro/image-7.lkI1wH00_IeMqI.webp" alt="alt text" /></p>
+<ol>
+<li>点击 “新建”，把你刚才复制的 bin 文件夹路径粘贴进去。</li>
+</ol>
+<p><img src="https://alisa22580.com/_astro/image-8.hd8XQlSD_Zaq8GL.webp" alt="alt text" /></p>
+<ol>
+<li>一路点击 “确定” 保存退出。</li>
+</ol>
+<h2>3. 在 VS Code 中验证</h2>
+<p>配置完成后，我们需要测试一下是否成功。</p>
+<ul>
+<li>
+<p>重启 VS Code（必须重启，否则终端无法加载新的环境变量！）。</p>
+</li>
+<li>
+<p>使用快捷键 Ctrl + ` 打开集成终端。</p>
+</li>
+<li>
+<p>输入以下命令并回车：</p>
+</li>
+</ul>
+<pre><code>g++ -v // 等效于 g++ --version 作用是查看 g++ 的版本信息
+</code></pre>
+<p>如果终端吐出了一大串包含 g++ (GCC) ... 的版本信息，恭喜你，配置大功告成！
+<img src="https://alisa22580.com/_astro/image.DEcZu35s_1o01w2.webp" alt="alt text" /></p>
+<p>现在，你可以使用这个终端方便的完成编译和运行了。</p>
+<h1>如何使用</h1>
+<h2>1. 最基础的编译</h2>
+<pre><code>g++ main.cpp
+</code></pre>
+<p><img src="https://alisa22580.com/_astro/image-10.CDl_5nHd_Z20f5Ab.webp" alt="alt text" /></p>
+<ul>
+<li>这是最简单的命令。它会把 main.cpp 编译成一个默认名为 a.exe（Windows）或 a.out（Linux/Mac）的可执行文件。</li>
+</ul>
+<p>缺点：每次都生成 a.exe，如果你有多个源代码，会互相覆盖。</p>
+<h2>2. 指定输出文件名 (-o)</h2>
+<pre><code>g++ main.cpp -o main
+</code></pre>
+<p><img src="https://alisa22580.com/_astro/image-11.D33leQ1o_Zxt29S.webp" alt="alt text" /></p>
+<ul>
+<li>-o 代表 Output。这条命令会把编译后的程序命名为 main.exe。</li>
+</ul>
+<p>运行方式：输入 ./main 即可运行。</p>
+<h2>3. 开启标准警告 (-Wall)</h2>
+<pre><code>g++ main.cpp -o main -Wall
+</code></pre>
+<ul>
+<li>W 代表 Warning，all 代表 all。它会提醒你代码中潜在的问题（比如变量定义了但没使用、非 void 函数没写 return 等）。</li>
+</ul>
+<p>:::tip
+赛时建议全程开启，能帮你规避很多低级 Bug。
+:::</p>
+<h2>4. 指定 C++ 标准</h2>
+<pre><code>g++ main.cpp -o main -std=c++11
+</code></pre>
+<ul>
+<li>强制编译器使用特定的 C++ 版本。</li>
+</ul>
+<p>为什么需要：有些现代语法在老版本编译器下会报错。</p>
+<p>你知道的，:spoiler[蓝桥杯和哈理工的校赛只支持到 cpp11，我积累半生的语法糖全部！无法使用。]</p>
+<h2>5. 进阶</h2>
+<p>在命令行里，如果你想编译完立刻运行（如果编译失败则不运行），可以使用 &amp;&amp; 符号连接指令：</p>
+<pre><code>g++ main.cpp -o main -Wall -std=c++11 &amp;&amp; ./main
+</code></pre>
+<p>指令分解说明：</p>
+<ul>
+<li><code>g++ main.cpp</code>: 呼叫g++，开始翻译代码。</li>
+<li><code>-o main</code>: 把翻译好的程序取名为 main.exe。</li>
+<li><code>-Wall</code>: 开启所有警告，检查代码细节。</li>
+<li><code>-std=c++11</code>: 使用 C++11 标准编译。</li>
+<li><code>&amp;&amp;</code>: 这是一个逻辑门。只有当前面的编译操作成功了，才会执行后面的指令。</li>
+<li><code>./main</code>: 运行刚才生成的可执行程序。</li>
+</ul>
+]]></content>
+    <author>
+      <name>alisa22580</name>
+    </author>
+    <category term="Tutorial"></category>
+  </entry>
+  <entry>
+    <title>蓝桥杯 C++ B 组省赛 A-H 题解（2026）</title>
+    <link href="https://alisa22580.com/posts/lanqiao-cpp-b-solutions/" rel="alternate" type="text/html"/>
+    <id>https://alisa22580.com/posts/lanqiao-cpp-b-solutions/</id>
+    <published>2026-04-11T00:00:00.000Z</published>
+    <updated>2026-04-29T22:08:30.000Z</updated>
+    <summary>完整(?)复盘</summary>
+    <content type="html"><![CDATA[<p>:::tip
+补题链接：<a href="https://www.luogu.com.cn/contest/320659#problems">蓝桥杯省赛自测 CB</a></p>
+<p>代码模板请移步 <a href="../lanqiao-cpp-b-common/">蓝桥杯 C++ B 组常用板子</a> 或 <a href="https://github.com/2258009564/MYWORK/tree/main/CODES/CPPPROGRAM/%E6%9D%BF%E5%AD%90">我的 github 存储库</a>
+:::</p>
+<h1>A. 青春常数（填空）</h1>
+<h2>题意简述</h2>
+<p>给定</p>
+<p>$$
+N = 2026202520242023
+$$</p>
+<p>求非负整数对 $(x, y)$ 的个数，满足：</p>
+<p>$$
+x + y = N,
+\quad 0 \le x &lt; y
+$$</p>
+<p>:::note
+数一遍 <code>x</code> 的取值范围，<code>x</code> 确定后 <code>y</code> 就唯一。
+:::</p>
+<h2>一眼观察</h2>
+<p>由 $y = N - x$ 代入 $x &lt; y$：</p>
+<p>$$
+x &lt; N - x \iff 2x &lt; N
+$$</p>
+<p>因为 $N$ 是奇数，所以</p>
+<p>$$
+x = 0, 1, 2, \dots, \frac{N-1}{2}
+$$</p>
+<p>共</p>
+<p>$$
+\frac{N+1}{2}
+$$</p>
+<p>种。</p>
+<h2>最终答案</h2>
+<p>$$
+\boxed{1013101260121012}
+$$</p>
+<hr />
+<h1>B. 双碳战略（填空）</h1>
+<h2>题意简述</h2>
+<p>有 $N=2026$ 盏灯，初始全亮。</p>
+<ul>
+<li>第奇数次操作：选 $i$，翻转后缀 $[i, N]$。</li>
+<li>第偶数次操作：选 $i$，翻转前缀 $[1, i]$。</li>
+</ul>
+<p>每个状态都可达。定义某状态的最少操作步数，求所有 $2^N$ 个状态最少步数之和，对 $998244353$ 取模。</p>
+<p>:::note
+神秘的结论题。据说可以推出来...据说。
+:::</p>
+<h2>小规模自检</h2>
+<p>赛时太闲了 手推了 $N=1..5$ 发现都满足：</p>
+<p>$$
+S(N) = N \cdot 2^{N-1}
+$$</p>
+<p>例如 $N=5$ 时总和是 $80$，刚好等于 $5\cdot2^4$。</p>
+<h2>最终答案</h2>
+<p>$$
+S(2026) = 2026 \cdot 2^{2025} \bmod 998244353 = \boxed{792264670}
+$$</p>
+<h2>代码（计算答案）</h2>
+<pre><code>const int MOD = 998244353;
+
+void solve()
+{
+	int n = 2026;
+	cout &lt;&lt; n * ksm(2, n - 1) % MOD;
+}
+
+</code></pre>
+<hr />
+<h1>C. 循环右移</h1>
+<h2>题意简述</h2>
+<p>长度为 $N$ 的数组 $A$，每个元素满足 $X \le A_i \le Y$。</p>
+<p>要求：对任意连续子数组做一次循环右移后，子数组不变。求满足条件的数组个数。</p>
+<p>:::note
+尝试从最短的子数组开始分析。
+:::</p>
+<h2>一眼观察</h2>
+<p>只看长度为 $2$ 的子数组 $[A_i, A_{i+1}]$：</p>
+<ul>
+<li>右移后变成 $[A_{i+1}, A_i]$</li>
+<li>若右移前后相同，则必有 $A_i = A_{i+1}$</li>
+</ul>
+<p>对所有 $i$ 成立，就得到全数组所有元素都相等。</p>
+<h2>结论</h2>
+<p>可选的常值就是区间 $[X, Y]$ 内整数个数：</p>
+<p>$$
+\max(0ll, Y - X + 1)
+$$</p>
+<p>与 $N$ 无关。</p>
+<h2>复杂度</h2>
+<p>每组 $O(1)$。</p>
+<h2>code</h2>
+<pre><code>void solve()
+{
+	int N, X, Y;
+	cin &gt;&gt; N &gt;&gt; X &gt;&gt; Y; 
+	cout &lt;&lt; max(0ll, Y - X + 1);
+}
+</code></pre>
+<hr />
+<h1>D. 蓝桥竞技</h1>
+<h2>题意简述</h2>
+<p>有 $N$ 种位置，第 $i$ 种有 $A_i$ 人。要把所有人分成若干支 5 人队，每队 5 人且位置互不相同。</p>
+<p>问是否存在合法分组。</p>
+<p>:::note
+这是条件判定题，不是构造题。检查两个条件就够：总人数能否整除 5、最大职业人数会不会爆队伍数。</p>
+<p>赛时尝试用大根堆模拟分配，满怀信心的出来发现果然过不了。
+:::</p>
+<h2>一眼观察</h2>
+<p>设总人数 $S = \sum A_i$，队伍数 $K = S/5$。</p>
+<p>必要条件：</p>
+<ol>
+<li>$S$ 必须被 5 整除。</li>
+<li>任意位置人数不能超过队伍数，即 $\max A_i \le K$。</li>
+</ol>
+<p>这两个条件也是充分条件（可由二分图度序列可行性 / Gale-Ryser 结论得到）。</p>
+<h2>复杂度</h2>
+<p>每组 $O(N)$。</p>
+<h2>code</h2>
+<pre><code>void solve()
+{
+	int N;
+	cin &gt;&gt; N;
+	int sum = 0, mx = 0;
+
+	for (int i = 0; i &lt; N; i++)
+	{
+		int x;
+		cin &gt;&gt; x;
+		sum += x;
+		mx = max(mx, x);
+	}
+
+	if (sum % 5)
+	{
+		cout &lt;&lt; "F";
+		return;
+	}
+
+	int K = sum / 5;
+	cout &lt;&lt; (mx &lt;= K ? "T" : "F");
+}
+</code></pre>
+<h1>E. LQ 聚合</h1>
+<h2>题意简述</h2>
+<p>长度 $N$ 的字符串，仅含 <code>L</code>、<code>Q</code>、<code>?</code>。把所有 <code>?</code> 替换为 <code>L</code> 或 <code>Q</code>，最大化满足 $i&lt;j$ 且 $s_i='L', s_j='Q'$ 的对数。</p>
+<p>:::note
+赛时想了半天怎么 DP， 最后针对 $N &lt; 10$ 的情况写了二进制枚举，依旧部分分。
+:::</p>
+<h2>一眼观察</h2>
+<p>最优方案一定是：某个分界点左边的 <code>?</code> 尽量当 <code>L</code>，右边的 <code>?</code> 尽量当 <code>Q</code>。</p>
+<p>因为假设存在一种最好的构造方案，那么把左侧的 'Q' 和右侧的 'L' 交换 后，结果不会变差。</p>
+<p>所以可做「从左到右枚举把多少个 <code>?</code> 变成 <code>L</code>」的线性扫描。</p>
+<h2>复杂度</h2>
+<p>$O(N)$。</p>
+<h2>code</h2>
+<pre><code>void solve()
+{
+	int n;
+	string s;
+	cin &gt;&gt; n &gt;&gt; s;
+
+	int tot = 0;
+	for (int i = 0; i &lt; n; i++)
+	{
+		if (s[i] == 'Q' or s[i] == '?')
+		{
+			tot++;
+		}
+	}
+
+	int cur = 0, q = tot;
+	for (int i = 0; i &lt; n; i++)
+	{
+		if (s[i] == 'Q' or s[i] == '?')
+		{
+			q--;
+		}
+		else
+		{
+			cur += q;
+		}
+	}
+
+	int ans = cur, l = 0;
+	q = tot;
+	for (int i = 0; i &lt; n; i++)
+	{
+		if (s[i] == '?')
+		{
+			q--;
+			cur = cur - l + q;
+			ans = max(ans, cur);
+			l++;
+		}
+		else if (s[i] == 'L')
+		{
+			l++;
+		}
+		else
+		{
+			q--;
+		}
+	}
+
+	cout &lt;&lt; ans;
+}
+</code></pre>
+<hr />
+<h1>F. 应急布线</h1>
+<h2>题意简述</h2>
+<p>有 $N$ 台电脑、$M$ 条现有网线。现有网络可能分裂成多个连通块。</p>
+<p>要加「应急跳线」使全图连通，目标分两层：</p>
+<ol>
+<li>新增边数最少。</li>
+<li>在满足 1 的前提下，让单台机器接入跳线数的最大值尽量小。</li>
+</ol>
+<p>输出这两个值。</p>
+<p>:::note
+感觉这居然是最简单的一题，该说昨天 DSU 复习对了吗。
+:::</p>
+<h2>第一步：最少新增边数</h2>
+<p>若连通块个数为 $C$，最少新增边数必为：</p>
+<p>$$
+C-1
+$$</p>
+<h2>第二步：最小化最大接入数</h2>
+<p>设最大接入数为 $D$。</p>
+<ul>
+<li>若 $C=1$，显然答案是 $0$。</li>
+<li>若 $C\ge 2$，至少需要 $C-1$ 条新增边，共有 $2(C-1)$ 个端点要挂在机器上。</li>
+<li>每台机器最多承受 $D$ 个端点，总承载能力是 $N\cdot D$。</li>
+</ul>
+<p>所以必要条件：</p>
+<p>$$
+N\cdot D \ge 2(C-1)
+$$</p>
+<p>又因为 $C\le N$，可知最优 $D$ 不会超过 $2$。</p>
+<p>因此：</p>
+<ul>
+<li>若 $C=1$，$D=0$。</li>
+<li>若 $C&gt;1$ 且 $N \ge 2C-2$，$D=1$。</li>
+<li>否则 $D=2$。</li>
+</ul>
+<h2>赛时</h2>
+<p>赛时用了别的想法：</p>
+<p>对于 <code>size &gt; 1</code> 的联通块，彼此先连起来，每一个联通块应当用掉两个点位（用于连接彼此），剩余的度数为0的点位数（红色标点）是 $\sum (size - 2)$
+<img src="https://alisa22580.com/_astro/image.C6u_2H7X_Z6vmzY.webp" alt="alt text" /></p>
+<p>然而只需要保证连通性即可，并不需要成环，所以有一条边可以拆开。这样一来 就又多了两个红色标点。
+<img src="https://alisa22580.com/_astro/image-1.YfXa_nVs_Z2aTdnh.webp" alt="alt text" /></p>
+<p>因此剩余的度数为0的点位数实际上是 $\sum (size - 2) + 2$</p>
+<p>现在还剩下 <code>X</code> 个 <code>size = 1</code> 的联通块没有连接。</p>
+<p>如果 $X \le \sum (size - 2) + 2$，说明可以把这些孤立点直接插在已有的边上，不会增加最大接入数，此时答案为1;
+<img src="https://alisa22580.com/_astro/image-2.CMjrEOrr_aDn6r.webp" alt="alt text" /></p>
+<p>否则需要额外的边来连接这些孤立点，答案为2。
+<img src="https://alisa22580.com/_astro/image-3.R8QbHLub_Z1Fwpgh.webp" alt="alt text" /></p>
+<h2>复杂度</h2>
+<p>并查集近似 $O((N+M)\alpha(N))$。</p>
+<h2>code</h2>
+<pre><code>void solve()
+{
+	int N, M;
+	cin &gt;&gt; N &gt;&gt; M;
+
+	DSU dsu(N);
+	for (int i = 0; i &lt; M; i++)
+	{
+		int a, b;
+		cin &gt;&gt; a &gt;&gt; b;
+		dsu.merge(a, b);
+	}
+
+	int C = dsu.getgroups();
+	int minEdges = C - 1;
+	int minMaxDeg;
+
+	if (C == 1)
+	{
+		minMaxDeg = 0;
+	}
+	else if (1ll * N &gt;= 2ll * C - 2)
+	{
+		minMaxDeg = 1;
+	}
+	else
+	{
+		minMaxDeg = 2;
+	}
+
+	cout &lt;&lt; minEdges &lt;&lt; ' ' &lt;&lt; minMaxDeg;
+}
+
+</code></pre>
+<p>:::warning</p>
+<ul>
+<li>
+<p>记得特判 $C=1$ 时第二问是 0，不是 1。</p>
+</li>
+<li>
+<p>不止一个人看错 第二问到底要求什么 求得其实是新增的边 如果加上老边这题就有点不可做了
+:::</p>
+</li>
+</ul>
+<hr />
+<p>G 和 H 已经不属于我的能力范围了 ... qwq</p>
+<p>虽然说出来很不甘心就是了，但是姑且把 ai 的题解放在这里，有空了补。</p>
+<hr />
+<h1>G. 理想温度</h1>
+<h2>题意简述</h2>
+<p>给数组 $A,B$，可选一个连续区间 $[l,r]$，给区间每个元素都加同一个整数 $k$。</p>
+<p>问操作后最多有多少位置满足 $A_i=B_i$。</p>
+<p>:::note
+把 <code>B-A</code> 当作差值数组 <code>D</code>。你选一个区间加 <code>k</code>，本质是在区间里“让 <code>D=k</code> 的变好，让 <code>D=0</code> 的变坏”。
+:::</p>
+<h2>转化</h2>
+<p>定义差值：</p>
+<p>$$
+D_i = B_i - A_i
+$$</p>
+<p>原本满足条件的位置是 $D_i=0$，记数量为 <code>base</code>。</p>
+<p>若选择区间并加 $k$，则区间内：</p>
+<ul>
+<li>原来 $D_i=k$ 的位置会变成匹配（收益 +1）</li>
+<li>原来 $D_i=0$ 的位置会被破坏（收益 -1）</li>
+</ul>
+<p>所以固定某个 $k\ne0$ 后，问题变成：</p>
+<p>在数组上找一段区间，使</p>
+<p>$$
+#(D_i=k)-#(D_i=0)
+$$</p>
+<p>最大。</p>
+<h2>做法</h2>
+<p>对每个出现过的非零值 $k$：</p>
+<ol>
+<li>收集所有 <code>D_i = k</code> 的位置。</li>
+<li>用前缀统计零的个数，在线性扫描这些位置时做 Kadane 变体。</li>
+</ol>
+<p>总复杂度 $O(n\log n)$（用 map），或哈希近似 $O(n)$。</p>
+<h2>code</h2>
+<pre><code>void solve()
+{
+	int n;
+	cin &gt;&gt; n;
+
+	vector&lt;int&gt; a(n), b(n), d(n);
+	for (int i = 0; i &lt; n; i++) cin &gt;&gt; a[i];
+	for (int i = 0; i &lt; n; i++) cin &gt;&gt; b[i];
+
+	int base = 0, best = 0;
+	vector&lt;int&gt; pre0(n + 1, 0);
+	map&lt;int, vector&lt;int&gt; &gt; pos;
+
+	for (int i = 0; i &lt; n; i++)
+	{
+		d[i] = b[i] - a[i];
+		pre0[i + 1] = pre0[i] + (d[i] == 0 ? 1 : 0);
+		if (d[i] == 0)
+		{
+			base++;
+		}
+		else
+		{
+			pos[d[i]].push_back(i);
+		}
+	}
+
+	for (auto it = pos.begin(); it != pos.end(); it++)
+	{
+		const vector&lt;int&gt;&amp; v = it-&gt;second;
+		int cur = 0;
+		for (int j = 0; j &lt; (int)v.size(); j++)
+		{
+			if (j == 0)
+			{
+				cur = max(0, cur) + 1;
+			}
+			else
+			{
+				int l = v[j - 1] + 1;
+				int r = v[j] - 1;
+				int z = pre0[r + 1] - pre0[l];
+				cur -= z;
+				cur = max(0, cur) + 1;
+			}
+			best = max(best, cur);
+		}
+	}
+
+	cout &lt;&lt; base + best;
+}
+</code></pre>
+<hr />
+<h1>H. 足球训练</h1>
+<h2>题意简述</h2>
+<p>有 $n$ 名队员，第 $i$ 名初始实力 $a_i$、天赋 $b_i$。</p>
+<p>给总训练天数 $m$，分配 $k_i$（非负整数，和为 $m$）后，最大化：</p>
+<p>$$
+\prod_{i=1}^{n} (a_i + k_i b_i)
+$$</p>
+<p>输出最大值对 $998244353$ 取模。</p>
+<p>:::note
+这题本质是边际收益递减，直接一天一天贪心会超时，所以要做“二分水位 + 堆补尾巴”。
+:::</p>
+<h2>核心思想</h2>
+<p>把目标取对数，变成：</p>
+<p>$$
+\max \sum_i \ln(a_i + k_i b_i)
+$$</p>
+<p>这是离散凹优化。每给某人再加 1 天的边际收益为：</p>
+<p>$$
+\Delta_i(k)=\ln(a_i+(k+1)b_i)-\ln(a_i+kb_i)
+$$</p>
+<p>随 $k$ 递减。</p>
+<p>所以可用「参数二分 + 少量堆补差」：</p>
+<ol>
+<li>二分一个阈值，先算每人应分配的大致天数。</li>
+<li>为避免浮点误差导致超发，先保守减一点。</li>
+<li>剩余少量天数用优先队列按当前最大边际收益补齐。</li>
+</ol>
+<h2>复杂度</h2>
+<ul>
+<li>二分约 80 轮，每轮 $O(n)$。</li>
+<li>补差阶段设剩余为 <code>rem</code>，复杂度 $O((n+rem)\log n)$。</li>
+</ul>
+<p>实践上可过本题范围。</p>
+<h2>code</h2>
+<pre><code>
+const int MOD = 998244353;
+
+struct Node
+{
+	double gain;
+	int id;
+	bool operator&lt;(const Node&amp; other) const
+	{
+		return gain &lt; other.gain; // 大根堆
+	}
+};
+
+void solve()
+{
+	int n;
+	int m;
+	cin &gt;&gt; n &gt;&gt; m;
+
+	vector&lt;int&gt; a(n), b(n);
+	for (int i = 0; i &lt; n; i++) cin &gt;&gt; a[i] &gt;&gt; b[i];
+
+	double L = 0.0, R = 2e14;
+	for (int it = 0; it &lt; 80; it++)
+	{
+		double mid = (L + R) * 0.5;
+		int cnt = 0;
+
+		for (int i = 0; i &lt; n; i++)
+		{
+			if (mid * (double)b[i] &gt;= (double)a[i])
+			{
+				int k = (int)(mid - (double)a[i] / (double)b[i]) + 1;
+				cnt += k;
+				if (cnt &gt; m + 1000000LL) break; // 防溢出保护
+			}
+		}
+
+		if (cnt &gt;= m) R = mid;
+		else L = mid;
+	}
+
+	vector&lt;int&gt; k(n, 0);
+	int used = 0;
+
+	for (int i = 0; i &lt; n; i++)
+	{
+		if (L * (double)b[i] &gt;= (double)a[i])
+		{
+			int x = (int)(L - (double)a[i] / (double)b[i]) + 1;
+			x = max(0LL, x - 5);
+			k[i] = x;
+			used += x;
+		}
+	}
+
+	priority_queue&lt;Node&gt; pq;
+	for (int i = 0; i &lt; n; i++)
+	{
+		double g = (double)b[i] / (double)(a[i] + k[i] * b[i]);
+		pq.push((Node){g, i});
+	}
+
+	while (used &lt; m)
+	{
+		Node cur = pq.top();
+		pq.pop();
+
+		int id = cur.id;
+		++k[id];
+		++used;
+
+		double g = (double)b[id] / (double)(a[id] + k[id] * b[id]);
+		pq.push((Node){g, id});
+	}
+
+	int ans = 1;
+	for (int i = 0; i &lt; n; i++)
+	{
+		int val = (a[i] % MOD + (k[i] % MOD) * (b[i] % MOD)) % MOD;
+		ans = (ans * val) % MOD;
+	}
+
+	cout &lt;&lt; ans;
+}
+</code></pre>
+<h2>易错点</h2>
+<ul>
+<li>直接贪心一天一天分配会超时（$m$ 可到 $10^9$）。</li>
+<li>结果取模在最后乘法阶段做；$a_i + k_i b_i$ 先转成模意义即可。</li>
+<li>该题实现对浮点精度较敏感，建议自测多组随机数据做稳定性检查。</li>
+</ul>
+<hr />
+<h1>总结</h1>
+<p>我的分数大概是这么多（也可能再低一点吧。其实打的，相当一般啊，感觉就是零基础 / 半吊子 + DSU 板子熟练使用者
+<img src="https://alisa22580.com/_astro/e0d7db8bf7ba8da65682724582540989.C3G9XHFC_R5Vzh.webp" alt="alt text" /></p>
+<p>我曾经对 cf 有巨大的偏见，觉得它 "除了 guessing 什么都练不到" 但是这次的 B 题 居然被我手搓出规律了，在此我必须承认 cf 大人的强大，我将一直拥护 cf 。</p>
+<p>当然黑龙江的 b 组 其实没啥含金量 约等于校内竞争了。但是我再怎么说也是训了那么久，打成这样终归不是很满意，心有不甘</p>
+<blockquote>
+<p>2026-04-29 update:</p>
+<p>全省第二！这下不再心有不甘了。哈哈哈</p>
+<p><img src="https://alisa22580.com/_astro/image-4.qh7KjKf-_1kv9bq.webp" alt="alt text" /></p>
 </blockquote>
 ]]></content>
     <author>
