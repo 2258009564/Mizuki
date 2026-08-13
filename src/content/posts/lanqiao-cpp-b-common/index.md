@@ -2,7 +2,7 @@
 title: 个人常用算法模板
 description: 算法竞赛常用 C++ 模板与临场速查
 published: 2026-04-10
-updated: 2026-08-13T00:00:00+08:00
+updated: 2026-08-13T10:30:42Z
 # image: ""
 category: Tutorial
 tags: [算法竞赛, C++, 代码模板]
