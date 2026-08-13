@@ -5,7 +5,7 @@
   <link href="https://alisa22580.com/" rel="alternate" type="text/html"/>
   <link href="https://alisa22580.com/atom.xml" rel="self" type="application/atom+xml"/>
   <id>https://alisa22580.com/</id>
-  <updated>2026-08-13T02:19:39.253Z</updated>
+  <updated>2026-08-13T02:32:23.905Z</updated>
   <language>zh_CN</language>
   <entry>
     <title>本博客的搭建教程</title>
@@ -1410,7 +1410,7 @@ void solve()
     <link href="https://alisa22580.com/posts/lanqiao-cpp-b-common/" rel="alternate" type="text/html"/>
     <id>https://alisa22580.com/posts/lanqiao-cpp-b-common/</id>
     <published>2026-04-10T00:00:00.000Z</published>
-    <updated>2026-08-12T16:00:00.000Z</updated>
+    <updated>2026-08-13T10:30:42.000Z</updated>
     <summary>算法竞赛常用 C++ 模板与临场速查</summary>
     <content type="html"><![CDATA[<p>:::note
 自用的算法竞赛模板合集。最初只为蓝桥杯 B 组准备，后来越补越多，已经和蓝桥杯没有太大关系了，于是干脆改成通用板子集合。</p>
