@@ -1,5 +1,5 @@
 ---
-title: 2026东北赛 长春游 / 补题 / 感想
+title: 2026东北赛 长春游
 description: 流水账一篇
 published: 2026-05-24
 updated: 2026-05-28T19:21:03Z
