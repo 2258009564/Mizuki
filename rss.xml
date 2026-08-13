@@ -120,7 +120,7 @@ npm -v
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/li&gt;
 &lt;li&gt;打开浏览器，访问 &lt;code&gt;http://localhost:4321&lt;/code&gt;，您应该能够看到博客的默认界面。
-&lt;img src=&quot;https://alisa22580.com/_astro/image.B4OXnoYB_Z19xQga.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/li&gt;
+&lt;img src=&quot;https://alisa22580.com/_astro/image.BXnTYzFq_Z1qmU5e.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2&gt;5. 打包网站&lt;/h2&gt;
 &lt;ul&gt;
@@ -205,7 +205,7 @@ Build output directory: dist
 Root directory: /
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;参考如下：
-&lt;img src=&quot;https://alisa22580.com/_astro/image-1.DLnO_2fp_Z1OTzMv.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;https://alisa22580.com/_astro/image-1.D2RAUxmV_1UNnkK.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;h3&gt;4. 部署项目&lt;/h3&gt;
 &lt;p&gt;配置完成后，点击 &quot;Save and Deploy&quot; 开始首次部署：&lt;/p&gt;
 &lt;ol&gt;
@@ -251,17 +251,17 @@ Root directory: /
 &lt;ul&gt;
 &lt;li&gt;如果您使用vscode编辑项目，可以在左侧任务栏找到搜索框，输入关键词进行整个工作区目录下的相关查找。&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/image-2.xoGynKOE_2fB5oU.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/image-2.DfzZh74o_Z1jRKAy.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;也可以通过快捷键 &lt;code&gt;ctrl + f&lt;/code&gt; 进行当前文件下的关键词查找。&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/image-3.DZ21rzFP_HwXTq.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/image-3.L_DXuC37_Z1iL2X4.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;h2&gt;更好的时间输入&lt;/h2&gt;
 &lt;p&gt;博客中很多地方需要输入时间，例如文章的发布时间、日记的日期等。&lt;/p&gt;
 &lt;p&gt;通过官方文档的介绍，我们可以知道，博客中使用的时间格式是 ISO 8601 格式，例如：&lt;code&gt;2026-03-12T16:20:00Z&lt;/code&gt;。&lt;/p&gt;
 &lt;p&gt;这种格式虽然标准，但由于这个博客并没有自动化的时间输入工具（比如说日历选择器），因此我们的手动输入、修改显得繁琐且没必要。&lt;/p&gt;
 &lt;p&gt;因此，我尝试了 &lt;code&gt;vscode&lt;/code&gt; 的 &lt;code&gt;Insert Date String&lt;/code&gt; 扩展。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/image-4.CwJZT9Ix_ZyWi2d.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/image-4.D1pMMr00_ZEsERz.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;p&gt;但是这个扩展的默认输出格式是 &lt;code&gt;YYYY-MM-DD HH:mm:ss&lt;/code&gt;，并不符合我们博客的时间格式要求。&lt;/p&gt;
 &lt;p&gt;于是，我在 &lt;code&gt;vscode&lt;/code&gt; 的设置中，手动将输出格式修改为 &lt;code&gt;YYYY-MM-DDTHH:mm:ssZ&lt;/code&gt;。&lt;/p&gt;
 &lt;p&gt;然而，这个插件自动识别了时区，并在输出的时间字符串中加入了时区偏移，例如 &lt;code&gt;2026-03-12T16:20:00+08&lt;/code&gt;。&lt;/p&gt;
@@ -288,12 +288,12 @@ Root directory: /
 }
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;此时，完整的文件内容大致如下：
-&lt;img src=&quot;https://alisa22580.com/_astro/image-6.CoDDUG1S_2gizEK.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;https://alisa22580.com/_astro/image-6.D8UVTFnX_1YKKf6.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;p&gt;保存文件后，您就可以在任何地方输入 &lt;code&gt;isodate&lt;/code&gt;，然后按下 &lt;code&gt;Tab&lt;/code&gt; 键，就会自动插入当前的 UTC 时间，格式为 &lt;code&gt;YYYY-MM-DDTHH:mm:ssZ&lt;/code&gt;... 吗？&lt;/p&gt;
 &lt;p&gt;问题到此并没有结束，我发现在 &lt;code&gt;markdown&lt;/code&gt; 文件中无法触发补全，而在 &lt;code&gt;ts&lt;/code&gt; 文件中可以。&lt;/p&gt;
 &lt;p&gt;经过一番折腾，我发现这是因为 &lt;code&gt;markdown&lt;/code&gt; 文件默认没有启用代码片段补全功能。&lt;/p&gt;
 &lt;p&gt;于是，我打开了 &lt;code&gt;vscode&lt;/code&gt; 的设置，在右上角找到 &lt;code&gt;Edit in settings.json&lt;/code&gt; (&lt;code&gt;在 settings.json 中编辑&lt;/code&gt;) 的选项，点击它打开 &lt;code&gt;settings.json&lt;/code&gt; 文件。
-&lt;img src=&quot;https://alisa22580.com/_astro/image-7.gJeGmUzz_ZOl7Ne.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;https://alisa22580.com/_astro/image-7.BmoBW-ev_Z1fym8R.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;p&gt;在文件中，我添加了关于 &lt;code&gt;markdown&lt;/code&gt; 文件的代码片段补全配置：&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;&quot;[markdown]&quot;: {
   &quot;editor.quickSuggestions&quot;: {
@@ -315,9 +315,9 @@ Root directory: /
 &lt;blockquote&gt;
 &lt;p&gt;请注意 29 行的更改&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/image-8.BtLWzw0j_ZhGS17.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/image-8.DfQmQY3C_Z2oaCLG.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;p&gt;终于，我做到了，我可以随心所欲地在表头插入当前的 UTC 时间，而且格式完全符合博客的要求。我真想&lt;strong&gt;狠狠地&lt;/strong&gt;吃掉一包放在旁边的香辣小鱼干来庆祝下！
-&lt;img src=&quot;https://alisa22580.com/_astro/image-9.BsRoiQJi_ZobCJf.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;https://alisa22580.com/_astro/image-9.lx6ki_28_Z2reb7a.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;h2&gt;评论功能的配置&lt;/h2&gt;
 &lt;p&gt;博客的评论功能是通过 &lt;code&gt;Twikoo&lt;/code&gt; 实现的，您可以在 &lt;code&gt;src/config.ts&lt;/code&gt; 文件中找到相关配置项:&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;export const commentConfig: CommentConfig = {
@@ -2975,17 +2975,17 @@ vector&amp;lt;long long&amp;gt; complete_knapsack(
 &lt;/blockquote&gt;
 </content:encoded></item><item><title>2026ICPC沈阳 赛站游记</title><link>https://alisa22580.com/posts/2026-icpcsy/</link><guid isPermaLink="true">https://alisa22580.com/posts/2026-icpcsy/</guid><description>流水账一篇</description><pubDate>Wed, 29 Jul 2026 00:00:00 GMT</pubDate><content:encoded>&lt;h3&gt;前言&lt;/h3&gt;
 &lt;h5&gt;和天妹妹一起从深圳飞来沈阳 历经5h&lt;/h5&gt;
-&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/730eb6afce6e2d2e56f38e20f7d34e93.YEUCykBM_Z2wplu8.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/730eb6afce6e2d2e56f38e20f7d34e93.DBdON_aA_eOv5B.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;h5&gt;大晚上想吃东西 找售货机找到自助售烟机 难绷&lt;/h5&gt;
-&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/78f6341029d4dbb2495d29bbd470248e.D47BkWIH_ZxfGDb.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/78f6341029d4dbb2495d29bbd470248e.xQpukRbK_ZAx6rK.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;h5&gt;偶遇一只几何造型&lt;/h5&gt;
-&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/65ec2665468674c1a6c7d15329824916.B65kJ7Ri_1cLAYV.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/65ec2665468674c1a6c7d15329824916.DaJ_SU_U_ZdMPKj.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;h5&gt;东北大学的餐券 这一顿有肉有菜有碳水 仅仅15r&lt;/h5&gt;
-&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/28f8c27ffa87e809cc7ff3ebd9cc9d2c.D1_B38b6_1IeTeq.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/28f8c27ffa87e809cc7ff3ebd9cc9d2c.CkrmNn7g_19nauB.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;h5&gt;很好看的赛站服，可惜朋友说有登味&lt;/h5&gt;
-&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/d45edd05185806f837b7b4248311f3c5.DRyy8nYY_Vkr34.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/d45edd05185806f837b7b4248311f3c5.C94oFEdx_2rhtCi.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;h3&gt;赛中&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/4da21f433041122031d0e5be2bdebed7.COPyGKX5_1cJRcW.webp&quot; alt=&quot;alt text&quot; /&gt;
+&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/4da21f433041122031d0e5be2bdebed7.bkK4z_Fn_11rhnR.webp&quot; alt=&quot;alt text&quot; /&gt;
 全场第一个提交，但是是E题wwq猜了个结论 错了之后才倒回去跟榜看签到。&lt;/p&gt;
 &lt;p&gt;12min 做出来L 三个人开始集体发呆，直到 70min 才以两发罚时做出来第二道签到K&lt;/p&gt;
 &lt;p&gt;做出来3题之后还在铁牌区，当时感觉这场打的想哭&lt;/p&gt;
@@ -2998,15 +2998,15 @@ vector&amp;lt;long long&amp;gt; complete_knapsack(
 &lt;p&gt;总结来说 客观原因是三个人可能线下没休息好，主观原因是三个人在赛前没有充分讨论好各自的分工，导致在赛中出现了很多重复劳动，以及互相不知道对方在说什么 仍需磨合啊！&lt;/p&gt;
 &lt;h3&gt;赛后&lt;/h3&gt;
 &lt;h5&gt;其实新海天才是参赛队员&lt;/h5&gt;
-&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/3c45cfab72ee537c2ec1fe648b31c252.BN0rxD7W_Zd4KVV.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/3c45cfab72ee537c2ec1fe648b31c252.D6PFz5Ux_Z1LSyFk.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;h5&gt;acm特有的赛后头像合影&lt;/h5&gt;
-&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/c534b00fa7260faccf8bd377402160af.DhXwBri8_Z12uezU.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/c534b00fa7260faccf8bd377402160af.DK2m3ydX_ZGVhg0.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;h5&gt;沈阳量大管饱 这一顿把三个人吃死了&lt;/h5&gt;
-&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/c0239e098e23f73e5e47c3ce99569a91.D39NGK62_Z2wU3Dx.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/c0239e098e23f73e5e47c3ce99569a91.CUOUiKfV_Z1G8CNd.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;h5&gt;半夜看痴迷 看的手脚冰凉&lt;/h5&gt;
-&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/f83b96b4f0d5e7ca26ab7f12c1622abf.BiaAHm6i_1pcqAL.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/f83b96b4f0d5e7ca26ab7f12c1622abf.BtBvKvEz_Z2uDanS.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;h5&gt;走啦 奔赴下一站&lt;/h5&gt;
-&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/b5062141a8164588d0829506b3c61721.BrwyflgA_28wFvI.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/b5062141a8164588d0829506b3c61721.C18TH65P_1pblcL.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 </content:encoded></item><item><title>一场幻梦</title><link>https://alisa22580.com/posts/a-dream/</link><guid isPermaLink="true">https://alisa22580.com/posts/a-dream/</guid><description>希望我将来也不要留下遗憾。</description><pubDate>Sun, 26 Jul 2026 21:57:00 GMT</pubDate><content:encoded>&lt;p&gt;学习，打 A，工作。&lt;/p&gt;
 &lt;p&gt;上了大学，我离自己从小到大的生活圈子愈发变远了。&lt;/p&gt;
 &lt;p&gt;这次回来深圳，满打满算十一天。跟爸妈弟弟聊天，跟小学初中的好朋友叙旧，又因为前程之类的事情不得不匆匆离开。&lt;/p&gt;
@@ -3024,7 +3024,7 @@ vector&amp;lt;long long&amp;gt; complete_knapsack(
 &lt;blockquote&gt;
 &lt;p&gt;2026-08-01 update:&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/c24aeeeff6ca72539d0ae794c2115642.BjxuAAmJ_72oAt.webp&quot; alt=&quot;我在出租屋码字，妹妹在看我 w-100%&quot; title=&quot;我在出租屋码字，妹妹在看我&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/c24aeeeff6ca72539d0ae794c2115642.D5pEXvbB_2lT3Tc.webp&quot; alt=&quot;我在出租屋码字，妹妹在看我 w-100%&quot; title=&quot;我在出租屋码字，妹妹在看我&quot; /&gt;&lt;/p&gt;
 </content:encoded></item><item><title>CFBetter 快速配置 AI 翻译（接入 DeepSeek V4 Flash）</title><link>https://alisa22580.com/posts/cfbetter-deepseek-ai-translation/</link><guid isPermaLink="true">https://alisa22580.com/posts/cfbetter-deepseek-ai-translation/</guid><description>在 Codeforces Better 中接入 DeepSeek V4 Flash</description><pubDate>Sun, 07 Jun 2026 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;写在前面&lt;/h1&gt;
 &lt;blockquote&gt;
 &lt;p&gt;曾经在 b 站发过一个 &lt;a href=&quot;https://www.bilibili.com/opus/1117176875527962633?spm_id_from=333.1387.0.0&quot;&gt;简易版本的教程&lt;/a&gt;，其内容已经过时。&lt;/p&gt;
@@ -3038,16 +3038,16 @@ vector&amp;lt;long long&amp;gt; complete_knapsack(
 &lt;ol&gt;
 &lt;li&gt;
 &lt;p&gt;安装 &lt;a href=&quot;https://microsoftedge.microsoft.com/addons/detail/%E7%AF%A1%E6%94%B9%E7%8C%B4/iikmkjmpaadaobahmlepeloendndfphd&quot;&gt;Tampermonkey&lt;/a&gt; 浏览器扩展。
-&lt;img src=&quot;https://alisa22580.com/_astro/image.BuQFAQQ__Z2ojToS.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;https://alisa22580.com/_astro/image.CzgFKjEd_ZkNSHi.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;进入 &lt;a&gt;扩展管理&lt;/a&gt; 确保 Tampermonkey 已启用，开发人员模式已打开。
-&lt;img src=&quot;https://alisa22580.com/_astro/image-1.DB44ZkgD_Z7A7Ye.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;https://alisa22580.com/_astro/image-1.B1ZoAvh4_26HjjA.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;点击 篡改猴 的 详细信息， 像我图片那样设置相关权限。
-&lt;img src=&quot;https://alisa22580.com/_astro/image-2.C9Q4k2O__ZkrBtY.webp&quot; alt=&quot;alt text&quot; /&gt;
-&lt;img src=&quot;https://alisa22580.com/_astro/image-3.CZ81ylp5_1WYhT5.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;https://alisa22580.com/_astro/image-2.ize0Hezs_ZLm22i.webp&quot; alt=&quot;alt text&quot; /&gt;
+&lt;img src=&quot;https://alisa22580.com/_astro/image-3.D8k2ft6t_27XXMY.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;h2&gt;1.2 安装 CFBetter 脚本&lt;/h2&gt;
@@ -3061,15 +3061,15 @@ vector&amp;lt;long long&amp;gt; complete_knapsack(
 &lt;/ol&gt;
 &lt;h1&gt;2. 配置 CFBetter 的 AI 翻译&lt;/h1&gt;
 &lt;p&gt;进入 codeforces 主页，应当能看到 cf better 已经加载成功：
-&lt;img src=&quot;https://alisa22580.com/_astro/image-4._xaqFk6I_27FHRY.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;https://alisa22580.com/_astro/image-4.pLn4nwfO_2vvTIG.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;h2&gt;2.1 打开设置面板&lt;/h2&gt;
 &lt;p&gt;在 Codeforces 任意页面，点击右上角的 &lt;strong&gt;「CodeforcesBetter 设置」&lt;/strong&gt; 按钮，打开设置面板。&lt;/p&gt;
 &lt;h2&gt;2.2 选择翻译服务&lt;/h2&gt;
 &lt;p&gt;在设置面板中，找到 &lt;strong&gt;「翻译」&lt;/strong&gt; 选项，从下拉菜单中选择 &lt;strong&gt;「AI 翻译」&lt;/strong&gt;。
-&lt;img src=&quot;https://alisa22580.com/_astro/image-5.BqRWUIw6_ZqVvNI.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;https://alisa22580.com/_astro/image-5.e_rJWbX4_tLVPt.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;h2&gt;2.3 添加 DeepSeek 配置&lt;/h2&gt;
 &lt;p&gt;向下滚动，找到 &lt;strong&gt;「ChatGPT」&lt;/strong&gt; 区域，点击 &lt;strong&gt;「添加」&lt;/strong&gt; 按钮，弹出配置表单。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/image-6.CUWDggX2_Z1D2uPD.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/image-6.BsNHZdsb_2mms2B.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;table&gt;
 &lt;thead&gt;
 &lt;tr&gt;
@@ -3098,11 +3098,11 @@ vector&amp;lt;long long&amp;gt; complete_knapsack(
 &lt;/table&gt;
 &lt;blockquote&gt;
 &lt;p&gt;参考如下：
-&lt;img src=&quot;https://alisa22580.com/_astro/image-7.d13jeozg_1nYd7l.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;https://alisa22580.com/_astro/image-7.kHKwiVNP_ZKjtxl.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h2&gt;2.4 配置自动翻译&lt;/h2&gt;
 &lt;p&gt;向下滚动，像图中一样配置即可。
-&lt;img src=&quot;https://alisa22580.com/_astro/image-8.CQdPbA7X_Z2uYtjr.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;https://alisa22580.com/_astro/image-8.CZsac13r_1Kfyly.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;p&gt;填写完成后直接关闭，会弹出保存提示，保存即可。&lt;/p&gt;
 &lt;p&gt;:::warning
 完成之后多点几下 确认确实选择了AI翻译；确认确实选择了刚刚自己设置的接口；确认保存了设置！
@@ -3205,7 +3205,7 @@ vector&amp;lt;long long&amp;gt; complete_knapsack(
 &lt;li&gt;&lt;a href=&quot;https://api-docs.deepseek.com/zh-cn/quick_start/pricing&quot;&gt;DeepSeek API 定价&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </content:encoded></item><item><title>2026东北赛 长春游</title><link>https://alisa22580.com/posts/2026-dbcpc/</link><guid isPermaLink="true">https://alisa22580.com/posts/2026-dbcpc/</guid><description>流水账一篇</description><pubDate>Sun, 24 May 2026 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;铜首了，倒闭4个小时，感觉心情不是很美妙...&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/image.CUvhJZwi_Z9fOY8.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/image.B5kasAJa_Z4wIKe.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;p&gt;姑且先放一个牌子在这里，剩下的再说吧。&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;2026-05-28 update:&lt;/p&gt;
@@ -3314,36 +3314,36 @@ g++ 是 GNU Compiler Collection 的 C++ 开源编译器，支持多种平台和�
 &lt;ol&gt;
 &lt;li&gt;找到 Dev-C++ 或 CodeBlocks 的安装目录。&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/image-1.BXyAxvwy_1EigDc.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/image-1.Dp8NJko0_Virgi.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;顺藤摸瓜，找到名为 MinGW 或 MinGW64 的文件夹。&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/image-2.PYuAuKO1_ekVlQ.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/image-2.8mnew1-l_ZIVsAV.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;一直点进去，直到看到一个名为 bin 的文件夹。&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/image-3.npLJulo9_QiIJy.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/image-3.ZtBPbXmX_Z1sNIts.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;&lt;strong&gt;打开&lt;/strong&gt; bin 文件夹，&lt;strong&gt;确认&lt;/strong&gt;里面有 g++.exe。&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/image-4.CFPv4GC7_ZLvoit.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/image-4.CVSzT9rv_KcA0Y.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;复制当前的文件路径（例如：C:\Program Files (x86)\Dev-Cpp\MinGW64\bin）。&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/image-5.NrdLR-5C_ZnJWgP.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/image-5.B0n8ci3Z_1hR4vh.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;h2&gt;2. 将路径写入 Path 环境变量&lt;/h2&gt;
 &lt;ol&gt;
 &lt;li&gt;按下 Win 键，直接&lt;strong&gt;搜索&lt;/strong&gt; “编辑系统环境变量”，点击打开。&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/image-6.BBkvSJC3_Z197LD2.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/image-6.BUPiW8Xz_1W6P11.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;在弹出的窗口右下角，点击 “环境变量(N)...”，在下半部分的“系统变量”中，找到叫 Path 的那一行，双击它。&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/image-7.lkI1wH00_IeMqI.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/image-7.NfvWo8Y8_Z5GYSY.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;点击 “新建”，把你刚才复制的 bin 文件夹路径粘贴进去。&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/image-8.hd8XQlSD_Zaq8GL.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/image-8.B6qrIFBH_1pn6v5.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;一路点击 “确定” 保存退出。&lt;/li&gt;
 &lt;/ol&gt;
@@ -3363,13 +3363,13 @@ g++ 是 GNU Compiler Collection 的 C++ 开源编译器，支持多种平台和�
 &lt;pre&gt;&lt;code&gt;g++ -v // 等效于 g++ --version 作用是查看 g++ 的版本信息
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;如果终端吐出了一大串包含 g++ (GCC) ... 的版本信息，恭喜你，配置大功告成！
-&lt;img src=&quot;https://alisa22580.com/_astro/image.DEcZu35s_1o01w2.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;https://alisa22580.com/_astro/image.B8B6KxN6_I3tkb.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;p&gt;现在，你可以使用这个终端方便的完成编译和运行了。&lt;/p&gt;
 &lt;h1&gt;如何使用&lt;/h1&gt;
 &lt;h2&gt;1. 最基础的编译&lt;/h2&gt;
 &lt;pre&gt;&lt;code&gt;g++ main.cpp
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/image-10.CDl_5nHd_Z20f5Ab.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/image-10.jcTw2Vhm_Z1LY1bv.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;这是最简单的命令。它会把 main.cpp 编译成一个默认名为 a.exe（Windows）或 a.out（Linux/Mac）的可执行文件。&lt;/li&gt;
 &lt;/ul&gt;
@@ -3377,7 +3377,7 @@ g++ 是 GNU Compiler Collection 的 C++ 开源编译器，支持多种平台和�
 &lt;h2&gt;2. 指定输出文件名 (-o)&lt;/h2&gt;
 &lt;pre&gt;&lt;code&gt;g++ main.cpp -o main
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/image-11.D33leQ1o_Zxt29S.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/image-11.D-P_xlYf_1FpJTB.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;-o 代表 Output。这条命令会把编译后的程序命名为 main.exe。&lt;/li&gt;
 &lt;/ul&gt;
@@ -3659,15 +3659,15 @@ $$&lt;/p&gt;
 &lt;h2&gt;赛时&lt;/h2&gt;
 &lt;p&gt;赛时用了别的想法：&lt;/p&gt;
 &lt;p&gt;对于 &lt;code&gt;size &amp;gt; 1&lt;/code&gt; 的联通块，彼此先连起来，每一个联通块应当用掉两个点位（用于连接彼此），剩余的度数为0的点位数（红色标点）是 $\sum (size - 2)$
-&lt;img src=&quot;https://alisa22580.com/_astro/image.C6u_2H7X_Z6vmzY.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;https://alisa22580.com/_astro/image.CWICuXFA_1vA91W.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;p&gt;然而只需要保证连通性即可，并不需要成环，所以有一条边可以拆开。这样一来 就又多了两个红色标点。
-&lt;img src=&quot;https://alisa22580.com/_astro/image-1.YfXa_nVs_Z2aTdnh.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;https://alisa22580.com/_astro/image-1.CDaK4x9h_Z11POVU.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;p&gt;因此剩余的度数为0的点位数实际上是 $\sum (size - 2) + 2$&lt;/p&gt;
 &lt;p&gt;现在还剩下 &lt;code&gt;X&lt;/code&gt; 个 &lt;code&gt;size = 1&lt;/code&gt; 的联通块没有连接。&lt;/p&gt;
 &lt;p&gt;如果 $X \le \sum (size - 2) + 2$，说明可以把这些孤立点直接插在已有的边上，不会增加最大接入数，此时答案为1;
-&lt;img src=&quot;https://alisa22580.com/_astro/image-2.CMjrEOrr_aDn6r.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;https://alisa22580.com/_astro/image-2.HGujhMBE_2oeHUU.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;p&gt;否则需要额外的边来连接这些孤立点，答案为2。
-&lt;img src=&quot;https://alisa22580.com/_astro/image-3.R8QbHLub_Z1Fwpgh.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;https://alisa22580.com/_astro/image-3.E2tHWrXm_NRoN8.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;h2&gt;复杂度&lt;/h2&gt;
 &lt;p&gt;并查集近似 $O((N+M)\alpha(N))$。&lt;/p&gt;
 &lt;h2&gt;code&lt;/h2&gt;
@@ -3933,13 +3933,13 @@ void solve()
 &lt;hr /&gt;
 &lt;h1&gt;总结&lt;/h1&gt;
 &lt;p&gt;我的分数大概是这么多（也可能再低一点吧。其实打的，相当一般啊，感觉就是零基础 / 半吊子 + DSU 板子熟练使用者
-&lt;img src=&quot;https://alisa22580.com/_astro/e0d7db8bf7ba8da65682724582540989.C3G9XHFC_R5Vzh.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;https://alisa22580.com/_astro/e0d7db8bf7ba8da65682724582540989.CET0UMRv_Z1VgBrg.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;p&gt;我曾经对 cf 有巨大的偏见，觉得它 &quot;除了 guessing 什么都练不到&quot; 但是这次的 B 题 居然被我手搓出规律了，在此我必须承认 cf 大人的强大，我将一直拥护 cf 。&lt;/p&gt;
 &lt;p&gt;当然黑龙江的 b 组 其实没啥含金量 约等于校内竞争了。但是我再怎么说也是训了那么久，打成这样终归不是很满意，心有不甘&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;2026-04-29 update:&lt;/p&gt;
 &lt;p&gt;全省第二！这下不再心有不甘了。哈哈哈&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/image-4.qh7KjKf-_1kv9bq.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/image-4.Rq_zJD_l_Zc9ALa.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 </content:encoded></item><item><title>GKD：李跳跳的平替推荐</title><link>https://alisa22580.com/posts/gkd-shizuku-usage-tutorial/</link><guid isPermaLink="true">https://alisa22580.com/posts/gkd-shizuku-usage-tutorial/</guid><description>GKD 使用教程，以及一些 Root、Shizuku、ADB 相关的原理学习</description><pubDate>Thu, 09 Apr 2026 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;写在前面&lt;/h1&gt;
 &lt;blockquote&gt;
@@ -3984,7 +3984,7 @@ void solve()
 &lt;/ol&gt;
 &lt;h2&gt;3.2 启用无障碍服务&lt;/h2&gt;
 &lt;p&gt;打开软件，勾选第一个选项，点击右上角进入配置。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/image.BGlBej5U_ZtbO5D.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/image.DA1BUL6W_9Wrzh.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;h2&gt;3.3 安装并启动 Shizuku&lt;/h2&gt;
 &lt;p&gt;::github{repo=&quot;RikkaApps/Shizuku&quot;}
 &lt;a href=&quot;https://shizuku.rikka.app/zh-hans/guide/setup/&quot;&gt;Shizuku 官方文档&lt;/a&gt;&lt;/p&gt;
@@ -3994,27 +3994,27 @@ void solve()
 &lt;ol&gt;
 &lt;li&gt;
 &lt;p&gt;打开 Shizuku，点击配对。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/image-1.Dc0w8Rmr_1aRFLF.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/image-1.aVeqcuDZ_Z1MwYes.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;点击“开发者选项”，找到无线调试。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/image-2.CnWDCezu_Z1aJDDw.webp&quot; alt=&quot;alt text&quot; /&gt;
-&lt;img src=&quot;https://alisa22580.com/_astro/image-3.DnCVRYHH_Z1jzmqp.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/image-2.BMlp1LnK_1iW5hT.webp&quot; alt=&quot;alt text&quot; /&gt;
+&lt;img src=&quot;https://alisa22580.com/_astro/image-3.BF_Jkd-9_Z5PC8M.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;勾选“无线调试”，点击“配对设备”，输入 Shizuku 给出的配对码。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/image-4.BiCyydPC_WffyQ.webp&quot; alt=&quot;alt text&quot; /&gt;
-&lt;img src=&quot;https://alisa22580.com/_astro/image-5.DUqbo7PG_Z21luVk.webp&quot; alt=&quot;alt text&quot; /&gt;
-&lt;img src=&quot;https://alisa22580.com/_astro/image-6.DHnGhzZh_Z1zkJxM.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/image-4.BqrLiZt5_1pzPfx.webp&quot; alt=&quot;alt text&quot; /&gt;
+&lt;img src=&quot;https://alisa22580.com/_astro/image-5.B87-Vrwx_g0FVL.webp&quot; alt=&quot;alt text&quot; /&gt;
+&lt;img src=&quot;https://alisa22580.com/_astro/image-6.CvWSX9sF_Zo1nC8.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;配对成功后，回到 Shizuku 点击启动。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/image-7.CoNEpoSA_1olhmz.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/image-7.U9SI9baQ_IvnPs.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;在上方授权 GKD。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/image-8.zpjb5Ak2_1GlNBK.webp&quot; alt=&quot;alt text&quot; /&gt;
-&lt;img src=&quot;https://alisa22580.com/_astro/image-9.Ba77v4Z5_Z2bClIi.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/image-8.7_OUgfmA_xspL9.webp&quot; alt=&quot;alt text&quot; /&gt;
+&lt;img src=&quot;https://alisa22580.com/_astro/image-9.C5Q3BN_r_2ejvQl.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;h3&gt;C. 连接电脑 ADB 启动&lt;/h3&gt;
@@ -4034,8 +4034,8 @@ void solve()
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;打开 GKD，进入订阅页面，选择添加订阅，粘贴上述 URL。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/image-10.W58itvCr_ZzLiAI.webp&quot; alt=&quot;alt text&quot; /&gt;
-&lt;img src=&quot;https://alisa22580.com/_astro/image-11.Dm5hMuGT_5TbYh.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/image-10.BgF5mCoc_1Yd8p3.webp&quot; alt=&quot;alt text&quot; /&gt;
+&lt;img src=&quot;https://alisa22580.com/_astro/image-11.9l39bOG6_YBGKD.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;保存并拉取更新。&lt;/p&gt;
@@ -4044,7 +4044,7 @@ void solve()
 &lt;p&gt;如果看到订阅名称、版本、应用规则列表正常出现，说明导入成功。&lt;/p&gt;
 &lt;h2&gt;3.5 配置规则&lt;/h2&gt;
 &lt;p&gt;进入应用界面，逐一调整即可。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/image-12.BbbR4XuW_Z1WAHqc.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/image-12.Bn175w_l_Z1zolQg.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;h1&gt;4. 注意事项&lt;/h1&gt;
 &lt;p&gt;:::warning
 自动点击虽然方便，但也有风险，尤其是涉及到资金、权限、账号安全等敏感操作的页面。为了避免误操作导致的损失，建议在以下场景一律禁用自动点击：
@@ -4061,7 +4061,7 @@ void solve()
 </content:encoded></item><item><title>简短的 VPN 使用教程</title><link>https://alisa22580.com/posts/vpn-usage-tutorial/</link><guid isPermaLink="true">https://alisa22580.com/posts/vpn-usage-tutorial/</guid><description>内含丛雨云推荐（更适合二次元宝宝体质）</description><pubDate>Fri, 03 Apr 2026 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;写在前面&lt;/h1&gt;
 &lt;p&gt;捣鼓博客的初衷就是想多发一些“经验分享帖”，但是又总会怀疑自己自作多情的搞这么一出 是不是其实无人在意。&lt;/p&gt;
 &lt;p&gt;但是还是有很多朋友问我这怎么搞那怎么搞，同样的东西解释很多次大概也会心烦。倒不如趁此机会一鼓作气把东西写出来，这样以后别人问起来就可以帅气（吗）地把博客链接甩出去，还能给博客加点浏览量。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/image.T-k8h0Uo_ZguMsM.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/image.B6jwaNiH_Z1btEu0.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;p&gt;看到有人确实需要这些内容，我就觉得写出来也不是白写，活着也不是白活了。&lt;/p&gt;
 &lt;p&gt;换而言之，如果这篇帖子对你有帮助的话，欢迎多多分享！&lt;/p&gt;
 &lt;h1&gt;1. 环境讲解&lt;/h1&gt;
@@ -4079,7 +4079,7 @@ void solve()
 &lt;/ul&gt;
 &lt;blockquote&gt;
 &lt;p&gt;你哈埋土就需要 VPN 来访问教务在线，不可不谓是、、科学上网的先驱！此处或许应有掌声。
-&lt;img src=&quot;https://alisa22580.com/_astro/966167b05a75e7ee2e35a4ab64f522b5.DTgp1S21_Zu6wrc.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;https://alisa22580.com/_astro/966167b05a75e7ee2e35a4ab64f522b5.rd5rBO6G_Z1SJDr.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;ul&gt;
 &lt;li&gt;特点：全局加密： 开启后，你电脑上所有的网络流量都会经过加密通道。&lt;/li&gt;
@@ -4123,18 +4123,18 @@ void solve()
 &lt;p&gt;没有用过 iOS 呢……等个有缘人提 PR。&lt;/p&gt;
 &lt;h2&gt;2. 获取订阅服务&lt;/h2&gt;
 &lt;p&gt;这个帖子仅负责必要的说明，因此 建议大家自行搜索评价稳定的机场，本站没有立场作推荐。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/preview.DQOwhN-V_1BULD9.webp&quot; alt=&quot;alt text&quot; /&gt;
+&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/preview.C0mo6TJe_ZO9Yw8.webp&quot; alt=&quot;alt text&quot; /&gt;
 :spoiler[可爱的 &lt;a href=&quot;https://congyu.moe/auth/register?invite=fc84dcfb89&quot;&gt;丛雨宝宝&lt;/a&gt; 出现在这里，单纯是因为她是卡密sama，想去哪就去哪，跟作者本人并无联系。]&lt;/p&gt;
 &lt;h2&gt;3. 导入 / 使用&lt;/h2&gt;
 &lt;blockquote&gt;
 &lt;p&gt;下面以 Windows 版本的 Clash 为例，其他平台的操作大同小异。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;完成购买步骤后，我们等待约五分钟，可以看到主页的订阅链接出现。
-&lt;img src=&quot;https://alisa22580.com/_astro/image-1.CGsoXY2L_Zu8pjn.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;https://alisa22580.com/_astro/image-1.C83Eoe5s_Z170asd.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;p&gt;我们点击复制，把链接粘贴到 Clash 的 URL 粘贴栏里，保存。
-&lt;img src=&quot;https://alisa22580.com/_astro/image-2.awuSyw3O_1YsiPF.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;https://alisa22580.com/_astro/image-2.yIC5_N8O_ZnB6UV.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;p&gt;现在，我们开启代理，看到状态栏的小猫从紫色变成橙色，一切就大功告成了！
-&lt;img src=&quot;https://alisa22580.com/_astro/image-4.DvRuAIg3_rROnl.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;https://alisa22580.com/_astro/image-4.ovswxCXP_ZFtIVm.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;p&gt;可以尝试打开&lt;a href=&quot;https://www.google.com/&quot;&gt;谷歌&lt;/a&gt;进行测试。&lt;/p&gt;
 &lt;h2&gt;4. 使用建议与避坑&lt;/h2&gt;
 &lt;p&gt;我们应当选择 Rule (规则模式) 实现“国内直连，国外加速”。&lt;/p&gt;
@@ -4159,9 +4159,9 @@ void solve()
 &lt;/ol&gt;
 &lt;p&gt;也就是划词翻译啦！&lt;/p&gt;
 &lt;h2&gt;效果展示&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/image-8.pPahUfpy_1GGCwH.webp&quot; alt=&quot;alt text&quot; /&gt;
-&lt;img src=&quot;https://alisa22580.com/_astro/image-10.Bp3lpxgP_ZnjJ7o.webp&quot; alt=&quot;alt text&quot; /&gt;
-&lt;img src=&quot;https://alisa22580.com/_astro/image-11.y5jyUOUr_1EWiOs.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/image-8.Dqir3X3a_c4A3L.webp&quot; alt=&quot;alt text&quot; /&gt;
+&lt;img src=&quot;https://alisa22580.com/_astro/image-10.O3IRDhe8_Z1TzwOt.webp&quot; alt=&quot;alt text&quot; /&gt;
+&lt;img src=&quot;https://alisa22580.com/_astro/image-11.BR_gxWGI_ZWbE0d.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;h1&gt;2. 使用前准备&lt;/h1&gt;
 &lt;h2&gt;2.1 浏览器要求&lt;/h2&gt;
 &lt;p&gt;本项目当前定位是 Manifest V3 扩展，推荐环境：&lt;/p&gt;
@@ -4211,15 +4211,15 @@ cd SelectEcho
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;点击「加载已解压的扩展程序」。
-&lt;img src=&quot;https://alisa22580.com/_astro/image.BURcQG-H_2tjAch.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;https://alisa22580.com/_astro/image.BuWo8-1E_ERQR.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;选择你刚才解压/克隆的 &lt;code&gt;SelectEcho&lt;/code&gt; 文件夹。
-&lt;img src=&quot;https://alisa22580.com/_astro/image-1.BHnbU6es_Z12AlNK.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;https://alisa22580.com/_astro/image-1.BLdoV_G6_P957V.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;确认扩展出现在列表中，状态为启用。
-&lt;img src=&quot;https://alisa22580.com/_astro/image-2.BYxNRrmb_1Pm2ny.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;https://alisa22580.com/_astro/image-2.CkUZGw08_ZoylQh.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;如果您 &lt;em&gt;有&lt;/em&gt; &lt;a href=&quot;https://congyu.moe/auth/register?invite=fc84dcfb89&quot;&gt;科学上网工具&lt;/a&gt;，那么安装完成后，Google 翻译引擎应该能直接使用；如果没有，请跟着我继续往下看设置页配置百度翻译凭证的部分。&lt;/p&gt;
@@ -4230,31 +4230,31 @@ cd SelectEcho
 &lt;ol&gt;
 &lt;li&gt;
 &lt;p&gt;打开 &lt;a href=&quot;https://fanyi-api.baidu.com/&quot;&gt;百度翻译开放平台&lt;/a&gt;，点击 管理控制台。
-&lt;img src=&quot;https://alisa22580.com/_astro/image-3.DE8JUYpi_1nbtES.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;https://alisa22580.com/_astro/image-3.C7BXPUrp_qgnV5.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;在 总览处 注册成为 个人开发者。
-&lt;img src=&quot;https://alisa22580.com/_astro/91311f3962e4e340036b295baaa5506a.CojcY_p6_Z25motf.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;https://alisa22580.com/_astro/91311f3962e4e340036b295baaa5506a.BteBL28I_1euTJj.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;启用 通用文本翻译 服务。
-&lt;img src=&quot;https://alisa22580.com/_astro/c4bd8f6966e20d664c1354ea4b4b5130.nkAcsebM_Z1cjKDe.webp&quot; alt=&quot;alt text&quot; /&gt;
-&lt;img src=&quot;https://alisa22580.com/_astro/06ea73c2d9ee800b66cad00c94bc560a.C1WOSaSa_1vlGlS.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;https://alisa22580.com/_astro/c4bd8f6966e20d664c1354ea4b4b5130.C87fAlk1_Z1ughFj.webp&quot; alt=&quot;alt text&quot; /&gt;
+&lt;img src=&quot;https://alisa22580.com/_astro/06ea73c2d9ee800b66cad00c94bc560a.SG0iv4-n_Z16MTGe.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;选择高级版即可，应用名称填写 「SelectEcho」，其他选项按需填写。
-&lt;img src=&quot;https://alisa22580.com/_astro/9ca47df8418e5138c1e1117c91472e94.rY7kLktr_ZaiMxg.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;https://alisa22580.com/_astro/9ca47df8418e5138c1e1117c91472e94.Qd5pzO81_dcqme.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;
 &lt;p&gt;创建完成后，在 开发者信息 处，找到 APP ID 和 密钥，复制到 SelectEcho 设置页对应输入框里。
-&lt;img src=&quot;https://alisa22580.com/_astro/image-4.D-xUadv1_Z2okbio.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;https://alisa22580.com/_astro/image-4.8YCrwvD__Z2vl0z2.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;打开设置页， 填写相关配置。&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/image-5.BY-GZ7m3_Z2aaRdE.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/image-6.DCgTvLfX_2rJoiv.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/image-5.Do9KK5up_Lv3gx.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/image-6.bMM6R7zM_1IlLqQ.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;h1&gt;5. 配置&lt;/h1&gt;
 &lt;p&gt;我们先追求「成功一次」，不要一上来就深挖所有参数。&lt;/p&gt;
 &lt;h2&gt;5.1 选择测试页面&lt;/h2&gt;
@@ -4277,10 +4277,10 @@ cd SelectEcho
 &lt;li&gt;引擎状态（Google 或 Baidu）。&lt;/li&gt;
 &lt;li&gt;可关闭按钮和复制按钮。&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/image-8.pPahUfpy_1GGCwH.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/image-8.Dqir3X3a_c4A3L.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;h1&gt;6. 设置页&lt;/h1&gt;
 &lt;p&gt;打开设置页的方式：扩展图标 -&amp;gt; 选项（Options）。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/image-5.BY-GZ7m3_Z2aaRdE.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/image-5.Do9KK5up_Lv3gx.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;p&gt;下面是最常见配置项：&lt;/p&gt;
 &lt;table&gt;
 &lt;thead&gt;

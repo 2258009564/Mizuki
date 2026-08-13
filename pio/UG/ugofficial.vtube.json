@@ -3,7 +3,7 @@
     "Name": "ugofficial",
     "ModelID": "e86a0ff2131748f093829330c989b5f7",
     "FileReferences": {
-        "Icon": "icon.png",
+        "Icon": "icon.webp",
         "Model": "ugofficial.model3.json",
         "IdleAnimation": "loop.motion3.json",
         "IdleAnimationWhenTrackingLost": ""

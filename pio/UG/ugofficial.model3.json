@@ -3,8 +3,8 @@
 	"FileReferences": {
 		"Moc": "UGOfficial.moc3",
 		"Textures": [
-			"UGOfficial.2048/texture_00.png",
-			"UGOfficial.2048/texture_01.png"
+			"UGOfficial.2048/texture_00.webp",
+			"UGOfficial.2048/texture_01.webp"
 		],
 		"Physics": "UGOfficial.physics3.json",
 		"DisplayInfo": "UGOfficial.cdi3.json",
