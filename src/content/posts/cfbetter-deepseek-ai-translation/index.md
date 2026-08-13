@@ -26,14 +26,14 @@ comment: true
 CFBetter 是一个 Tampermonkey 油猴脚本，你需要在浏览器中先安装它。
 
 1. 安装 [Tampermonkey](https://microsoftedge.microsoft.com/addons/detail/%E7%AF%A1%E6%94%B9%E7%8C%B4/iikmkjmpaadaobahmlepeloendndfphd) 浏览器扩展。
-![alt text](image.png)
+![alt text](image.webp)
 
 2. 进入 [扩展管理](edge://extensions/) 确保 Tampermonkey 已启用，开发人员模式已打开。
-![alt text](image-1.png)
+![alt text](image-1.webp)
 
 3. 点击 篡改猴 的 详细信息， 像我图片那样设置相关权限。
-![alt text](image-2.png)
-![alt text](image-3.png)
+![alt text](image-2.webp)
+![alt text](image-3.webp)
 
 ## 1.2 安装 CFBetter 脚本
 
@@ -49,7 +49,7 @@ CFBetter 是一个 Tampermonkey 油猴脚本，你需要在浏览器中先安装
 # 2. 配置 CFBetter 的 AI 翻译
 
 进入 codeforces 主页，应当能看到 cf better 已经加载成功：
-![alt text](image-4.png)
+![alt text](image-4.webp)
 
 ## 2.1 打开设置面板
 
@@ -58,13 +58,13 @@ CFBetter 是一个 Tampermonkey 油猴脚本，你需要在浏览器中先安装
 ## 2.2 选择翻译服务
 
 在设置面板中，找到 **「翻译」** 选项，从下拉菜单中选择 **「AI 翻译」**。
-![alt text](image-5.png)
+![alt text](image-5.webp)
 
 ## 2.3 添加 DeepSeek 配置
 
 向下滚动，找到 **「ChatGPT」** 区域，点击 **「添加」** 按钮，弹出配置表单。
 
-![alt text](image-6.png)
+![alt text](image-6.webp)
 
 | 配置项 | 填写内容 |
 |--------|---------|
@@ -74,12 +74,12 @@ CFBetter 是一个 Tampermonkey 油猴脚本，你需要在浏览器中先安装
 | **Proxy API** | `https://api.deepseek.com/chat/completions` |
 
 > 参考如下：
-> ![alt text](image-7.png)
+> ![alt text](image-7.webp)
 
 ## 2.4 配置自动翻译
 
 向下滚动，像图中一样配置即可。
-![alt text](image-8.png)
+![alt text](image-8.webp)
 
 填写完成后直接关闭，会弹出保存提示，保存即可。
 

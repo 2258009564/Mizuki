@@ -35,10 +35,10 @@ export const siteConfig: SiteConfig = {
 		mode: "text-icon",
 		// 顶栏标题文本
 		text: "alisa22580",
-		// 顶栏标题图标路径，默认使用 public/assets/home/alisa22580透明背景.png
-		icon: "assets/home/alisa22580-avatar.png",
+		// 顶栏标题图标路径
+		icon: "assets/home/alisa22580-avatar.webp",
 		// 网站Logo图片路径
-		logo: "assets/home/default-logo.png",
+		logo: "assets/home/default-logo.webp",
 	},
 
 	// 页面自动缩放配置
@@ -111,22 +111,30 @@ export const siteConfig: SiteConfig = {
 			desktop: [
 				"/assets/desktop-banner/wp01.webp",
 				"/assets/desktop-banner/wp02.webp",
-				// "/assets/desktop-banner/wp03.gif",
+				// "/assets/desktop-banner/wp03.webp",
 				"/assets/desktop-banner/wp06.webp",
 				"/assets/desktop-banner/wp09.webp",
-				// "/assets/desktop-banner/wp10.jpg",
+				// "/assets/desktop-banner/wp10.webp",
 				"/assets/desktop-banner/wp12.webp",
 				"/assets/desktop-banner/wp13.webp",
 				"/assets/desktop-banner/wp14.webp",
 				"/assets/desktop-banner/wp15.webp",
 				"/assets/desktop-banner/wp16.webp",
 				"/assets/desktop-banner/wp18.webp",
-				// "/assets/desktop-banner/pc5.jpg",
+				// "/assets/desktop-banner/pc5.webp",
 				"/assets/desktop-banner/pc2.webp",
 				"/assets/desktop-banner/pc3.webp",
 				"/assets/desktop-banner/pc4.webp",
 				"/assets/desktop-banner/pc7.webp",
 				"/assets/desktop-banner/pc8.webp",
+				// Wallpaper Engine 当前播放列表「12」（实际 16:9 画面）
+				"/assets/wallpaper-engine/we-3589501086-sora.webp",
+				"/assets/wallpaper-engine/we-3398909502-miyako.webp",
+				"/assets/wallpaper-engine/we-2073577741-nine.webp",
+				"/assets/wallpaper-engine/we-2788932765-sorairo.webp",
+				"/assets/wallpaper-engine/we-3323836229-nine.webp",
+				"/assets/wallpaper-engine/we-3324374235-nine.webp",
+				"/assets/wallpaper-engine/we-2451341185-haruka.webp",
 			],
 			mobile: [
 				"/assets/mobile-banner/an5.webp",

@@ -350,21 +350,21 @@ $$
 赛时用了别的想法：
 
 对于 `size > 1` 的联通块，彼此先连起来，每一个联通块应当用掉两个点位（用于连接彼此），剩余的度数为0的点位数（红色标点）是 $\sum (size - 2)$ 
-![alt text](image.png)
+![alt text](image.webp)
 
 然而只需要保证连通性即可，并不需要成环，所以有一条边可以拆开。这样一来 就又多了两个红色标点。
-![alt text](image-1.png)
+![alt text](image-1.webp)
 
 因此剩余的度数为0的点位数实际上是 $\sum (size - 2) + 2$
 
 现在还剩下 `X` 个 `size = 1` 的联通块没有连接。
 
 如果 $X \le \sum (size - 2) + 2$，说明可以把这些孤立点直接插在已有的边上，不会增加最大接入数，此时答案为1;
-![alt text](image-2.png)
+![alt text](image-2.webp)
 
 
 否则需要额外的边来连接这些孤立点，答案为2。
-![alt text](image-3.png)
+![alt text](image-3.webp)
 
 ## 复杂度
 
@@ -670,7 +670,7 @@ void solve()
 
 # 总结
 我的分数大概是这么多（也可能再低一点吧。其实打的，相当一般啊，感觉就是零基础 / 半吊子 + DSU 板子熟练使用者
-![alt text](e0d7db8bf7ba8da65682724582540989.png)
+![alt text](e0d7db8bf7ba8da65682724582540989.webp)
 
 我曾经对 cf 有巨大的偏见，觉得它 "除了 guessing 什么都练不到" 但是这次的 B 题 居然被我手搓出规律了，在此我必须承认 cf 大人的强大，我将一直拥护 cf 。
 
@@ -680,4 +680,4 @@ void solve()
 >
 > 全省第二！这下不再心有不甘了。哈哈哈
 >
-> ![alt text](image-4.png)
+> ![alt text](image-4.webp)

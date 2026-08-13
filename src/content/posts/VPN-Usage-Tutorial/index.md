@@ -15,7 +15,7 @@ licenseName: "MIT"
 
 但是还是有很多朋友问我这怎么搞那怎么搞，同样的东西解释很多次大概也会心烦。倒不如趁此机会一鼓作气把东西写出来，这样以后别人问起来就可以帅气（吗）地把博客链接甩出去，还能给博客加点浏览量。
 
-![alt text](image.png)
+![alt text](image.webp)
 
 看到有人确实需要这些内容，我就觉得写出来也不是白写，活着也不是白活了。
 
@@ -32,7 +32,7 @@ VPN 的全称是 `Virtual Private Network` 。
 - 初衷：它的设计初衷不是为了“翻墙”，而是为了数据加密。比如出差的员工通过 VPN 安全地连接回公司内网。
 
 > 你哈埋土就需要 VPN 来访问教务在线，不可不谓是、、科学上网的先驱！此处或许应有掌声。
-> ![alt text](966167b05a75e7ee2e35a4ab64f522b5.jpg)
+> ![alt text](966167b05a75e7ee2e35a4ab64f522b5.webp)
 - 特点：全局加密： 开启后，你电脑上所有的网络流量都会经过加密通道。
 - 现状：虽然安全，但由于 VPN 的流量特征非常明显，容易被识别封锁，且开启后访问国内网站（如淘宝、百度）速度会变慢。
 ## 3. 代理（Proxy）与协议
@@ -72,19 +72,19 @@ clash 是 基于规则的软件内代理核心 ...
 ## 2. 获取订阅服务
 这个帖子仅负责必要的说明，因此 建议大家自行搜索评价稳定的机场，本站没有立场作推荐。
 
-![alt text](preview.jpg)
+![alt text](preview.webp)
 :spoiler[可爱的 [丛雨宝宝](https://congyu.moe/auth/register?invite=fc84dcfb89) 出现在这里，单纯是因为她是卡密sama，想去哪就去哪，跟作者本人并无联系。]
 ## 3. 导入 / 使用
 > 下面以 Windows 版本的 Clash 为例，其他平台的操作大同小异。
 
 完成购买步骤后，我们等待约五分钟，可以看到主页的订阅链接出现。
-![alt text](image-1.png)
+![alt text](image-1.webp)
 
 我们点击复制，把链接粘贴到 Clash 的 URL 粘贴栏里，保存。
-![alt text](image-2.png)
+![alt text](image-2.webp)
 
 现在，我们开启代理，看到状态栏的小猫从紫色变成橙色，一切就大功告成了！
-![alt text](image-4.png)
+![alt text](image-4.webp)
 
 可以尝试打开[谷歌](https://www.google.com/)进行测试。
 

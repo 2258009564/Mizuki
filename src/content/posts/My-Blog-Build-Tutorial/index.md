@@ -146,7 +146,7 @@ updated: 2026-03-12T16:54:24.123Z # 最后更新时间 (格式: YYYY-MM-DDTHH:mm
     pnpm dev
     ```
 - 打开浏览器，访问 `http://localhost:4321`，您应该能够看到博客的默认界面。
-  ![alt text](image.png)
+  ![alt text](image.webp)
 
 ## 5. 打包网站
 - 运行以下命令将网站打包成静态文件，生成到 dist 目录中：
@@ -243,7 +243,7 @@ Production branch: 设置主分支（通常为 `main` 或 `master`）
   Root directory: /
   ```
 参考如下：
-![alt text](image-1.png)
+![alt text](image-1.webp)
 
 ### 4. 部署项目
 配置完成后，点击 "Save and Deploy" 开始首次部署：
@@ -296,11 +296,11 @@ graph TD
 ## 配置文件的查找与修改
 - 如果您使用vscode编辑项目，可以在左侧任务栏找到搜索框，输入关键词进行整个工作区目录下的相关查找。
 
-![alt text](image-2.png)
+![alt text](image-2.webp)
 
 - 也可以通过快捷键 `ctrl + f` 进行当前文件下的关键词查找。
 
-![alt text](image-3.png)
+![alt text](image-3.webp)
 
 ## 更好的时间输入
 博客中很多地方需要输入时间，例如文章的发布时间、日记的日期等。
@@ -311,7 +311,7 @@ graph TD
 
 因此，我尝试了 `vscode` 的 `Insert Date String` 扩展。
 
-![alt text](image-4.png)
+![alt text](image-4.webp)
 
 但是这个扩展的默认输出格式是 `YYYY-MM-DD HH:mm:ss`，并不符合我们博客的时间格式要求。
 
@@ -341,7 +341,7 @@ graph TD
 ```
 
 此时，完整的文件内容大致如下：
-![alt text](image-6.png)
+![alt text](image-6.webp)
 
 保存文件后，您就可以在任何地方输入 `isodate`，然后按下 `Tab` 键，就会自动插入当前的 UTC 时间，格式为 `YYYY-MM-DDTHH:mm:ssZ`... 吗？
 
@@ -350,7 +350,7 @@ graph TD
 经过一番折腾，我发现这是因为 `markdown` 文件默认没有启用代码片段补全功能。
 
 于是，我打开了 `vscode` 的设置，在右上角找到 `Edit in settings.json` (`在 settings.json 中编辑`) 的选项，点击它打开 `settings.json` 文件。
-![alt text](image-7.png)
+![alt text](image-7.webp)
 
 
 在文件中，我添加了关于 `markdown` 文件的代码片段补全配置：
@@ -383,11 +383,11 @@ graph TD
 > 请注意 29 行的更改
 
 
-![alt text](image-8.png)
+![alt text](image-8.webp)
 
 
 终于，我做到了，我可以随心所欲地在表头插入当前的 UTC 时间，而且格式完全符合博客的要求。我真想**狠狠地**吃掉一包放在旁边的香辣小鱼干来庆祝下！
-![alt text](image-9.png)
+![alt text](image-9.webp)
 
 
 ## 评论功能的配置

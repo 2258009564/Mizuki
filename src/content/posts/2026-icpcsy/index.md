@@ -11,22 +11,22 @@ comment: true
 ---
 ### 前言
 ##### 和天妹妹一起从深圳飞来沈阳 历经5h
-![alt text](730eb6afce6e2d2e56f38e20f7d34e93.jpg)
+![alt text](730eb6afce6e2d2e56f38e20f7d34e93.webp)
 
 ##### 大晚上想吃东西 找售货机找到自助售烟机 难绷
-![alt text](78f6341029d4dbb2495d29bbd470248e.jpg)
+![alt text](78f6341029d4dbb2495d29bbd470248e.webp)
 
 ##### 偶遇一只几何造型
-![alt text](65ec2665468674c1a6c7d15329824916.jpg)
+![alt text](65ec2665468674c1a6c7d15329824916.webp)
 
 ##### 东北大学的餐券 这一顿有肉有菜有碳水 仅仅15r
-![alt text](28f8c27ffa87e809cc7ff3ebd9cc9d2c.jpg)
+![alt text](28f8c27ffa87e809cc7ff3ebd9cc9d2c.webp)
 
 ##### 很好看的赛站服，可惜朋友说有登味
-![alt text](d45edd05185806f837b7b4248311f3c5.jpg)
+![alt text](d45edd05185806f837b7b4248311f3c5.webp)
 
 ### 赛中
-![alt text](4da21f433041122031d0e5be2bdebed7.jpg)
+![alt text](4da21f433041122031d0e5be2bdebed7.webp)
 全场第一个提交，但是是E题wwq猜了个结论 错了之后才倒回去跟榜看签到。
 
 12min 做出来L 三个人开始集体发呆，直到 70min 才以两发罚时做出来第二道签到K
@@ -49,16 +49,16 @@ comment: true
 
 ### 赛后
 ##### 其实新海天才是参赛队员
-![alt text](3c45cfab72ee537c2ec1fe648b31c252.jpg)
+![alt text](3c45cfab72ee537c2ec1fe648b31c252.webp)
 
 ##### acm特有的赛后头像合影
-![alt text](c534b00fa7260faccf8bd377402160af.jpg)
+![alt text](c534b00fa7260faccf8bd377402160af.webp)
 
 ##### 沈阳量大管饱 这一顿把三个人吃死了
-![alt text](c0239e098e23f73e5e47c3ce99569a91.jpg)
+![alt text](c0239e098e23f73e5e47c3ce99569a91.webp)
 
 ##### 半夜看痴迷 看的手脚冰凉
-![alt text](f83b96b4f0d5e7ca26ab7f12c1622abf.jpg)
+![alt text](f83b96b4f0d5e7ca26ab7f12c1622abf.webp)
 
 ##### 走啦 奔赴下一站
-![alt text](b5062141a8164588d0829506b3c61721.jpg)
+![alt text](b5062141a8164588d0829506b3c61721.webp)

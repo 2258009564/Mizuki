@@ -18,7 +18,7 @@ const diaryData: DiaryItem[] = [
 		content:
 			"超时空辉夜姬真好看！好吧也没那么好看，看了七八集，怎么讲的是一样的东西。",
 		date: "2026-03-12T16:20:00Z",
-		images: ["/images/diary/pc6.jpg"],
+		images: ["/images/diary/pc6.webp"],
 	},
 	{
 		id: 2,
@@ -26,8 +26,8 @@ const diaryData: DiaryItem[] = [
 			"打了一下午羽毛球，感觉不运动一下人要腐烂了。虽然水平下降的很严重，但总体是开心的，大概吧。",
 		date: "2026-03-13T20:18:21Z",
 		images: [
-			"/images/diary/51eeafee168445c8616f6eb489f6c00e.jpg",
-			"/images/diary/f164495ed0ecaf5a8cf0f7f815f94f13.jpg",
+			"/images/diary/51eeafee168445c8616f6eb489f6c00e.webp",
+			"/images/diary/f164495ed0ecaf5a8cf0f7f815f94f13.webp",
 		],
 	},
 	{
@@ -35,13 +35,13 @@ const diaryData: DiaryItem[] = [
 		content:
 			"今天写了一下午划词翻译，结果发现好像是在手造轮子，心累。不过本身是为了满足个人需求，看到确实有朋友需要，我还是很开心的。",
 		date: "2026-03-15T22:41:38Z",
-		images: ["/images/diary/image.png"],
+		images: ["/images/diary/image.webp"],
 	},
 	{
 		id: 4,
 		content: "我一直做噩梦，我一周能做五天噩梦。我怎么了...？",
 		date: "2026-03-20T21:59:36Z",
-		// images: ["/images/diary/image.png"],
+		// images: ["/images/diary/image.webp"],
 	},
 	{
 		id: 5,

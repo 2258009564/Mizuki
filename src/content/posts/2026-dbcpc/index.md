@@ -12,7 +12,7 @@ comment: true
 
 铜首了，倒闭4个小时，感觉心情不是很美妙...
 
-![alt text](image.png)
+![alt text](image.webp)
 
 姑且先放一个牌子在这里，剩下的再说吧。
 

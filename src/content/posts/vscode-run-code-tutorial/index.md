@@ -139,37 +139,37 @@ sequenceDiagram
 
 1. 找到 Dev-C++ 或 CodeBlocks 的安装目录。
 
-![alt text](image-1.png)
+![alt text](image-1.webp)
 
 2. 顺藤摸瓜，找到名为 MinGW 或 MinGW64 的文件夹。
 
-![alt text](image-2.png)
+![alt text](image-2.webp)
 
 3. 一直点进去，直到看到一个名为 bin 的文件夹。
 
-![alt text](image-3.png)
+![alt text](image-3.webp)
 
 4. **打开** bin 文件夹，**确认**里面有 g++.exe。
 
-![alt text](image-4.png)
+![alt text](image-4.webp)
 
 5. 复制当前的文件路径（例如：C:\Program Files (x86)\Dev-Cpp\MinGW64\bin）。
 
-![alt text](image-5.png)
+![alt text](image-5.webp)
 
 ## 2. 将路径写入 Path 环境变量
 
 1. 按下 Win 键，直接**搜索** “编辑系统环境变量”，点击打开。
 
-![alt text](image-6.png)
+![alt text](image-6.webp)
 
 2. 在弹出的窗口右下角，点击 “环境变量(N)...”，在下半部分的“系统变量”中，找到叫 Path 的那一行，双击它。
 
-![alt text](image-7.png)
+![alt text](image-7.webp)
 
 3. 点击 “新建”，把你刚才复制的 bin 文件夹路径粘贴进去。
 
-![alt text](image-8.png)
+![alt text](image-8.webp)
 
 4. 一路点击 “确定” 保存退出。
 
@@ -187,7 +187,7 @@ sequenceDiagram
 g++ -v // 等效于 g++ --version 作用是查看 g++ 的版本信息
 ```
 如果终端吐出了一大串包含 g++ (GCC) ... 的版本信息，恭喜你，配置大功告成！
-![alt text](image.png)
+![alt text](image.webp)
 
 现在，你可以使用这个终端方便的完成编译和运行了。
 
@@ -198,7 +198,7 @@ g++ -v // 等效于 g++ --version 作用是查看 g++ 的版本信息
 ```bash
 g++ main.cpp
 ```
-![alt text](image-10.png)
+![alt text](image-10.webp)
 - 这是最简单的命令。它会把 main.cpp 编译成一个默认名为 a.exe（Windows）或 a.out（Linux/Mac）的可执行文件。
 
 缺点：每次都生成 a.exe，如果你有多个源代码，会互相覆盖。
@@ -208,7 +208,7 @@ g++ main.cpp
 ```bash
 g++ main.cpp -o main
 ```
-![alt text](image-11.png)
+![alt text](image-11.webp)
 - -o 代表 Output。这条命令会把编译后的程序命名为 main.exe。
 
 运行方式：输入 ./main 即可运行。

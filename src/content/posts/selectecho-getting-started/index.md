@@ -30,9 +30,9 @@ licenseName: "MIT"
 也就是划词翻译啦！
 
 ## 效果展示
-![alt text](image-9.png)
-![alt text](image-10.png)
-![alt text](image-11.png)
+![alt text](image-9.webp)
+![alt text](image-10.webp)
+![alt text](image-11.webp)
 
 # 2. 使用前准备
 
@@ -88,13 +88,13 @@ cd SelectEcho
 2. 打开右上角「开发者模式」。
 
 3. 点击「加载已解压的扩展程序」。
-![alt text](image.png)
+![alt text](image.webp)
 
 4. 选择你刚才解压/克隆的 `SelectEcho` 文件夹。
-![alt text](image-1.png)
+![alt text](image-1.webp)
 
 5. 确认扩展出现在列表中，状态为启用。
-![alt text](image-2.png)
+![alt text](image-2.webp)
 
 如果您 *有* [科学上网工具](https://congyu.moe/auth/register?invite=fc84dcfb89)，那么安装完成后，Google 翻译引擎应该能直接使用；如果没有，请跟着我继续往下看设置页配置百度翻译凭证的部分。
 
@@ -103,26 +103,26 @@ cd SelectEcho
 # 4. 配置百度翻译凭证（可选）
 
 1. 打开 [百度翻译开放平台](https://fanyi-api.baidu.com/)，点击 管理控制台。
-![alt text](image-3.png)
+![alt text](image-3.webp)
 
 2. 在 总览处 注册成为 个人开发者。
-![alt text](91311f3962e4e340036b295baaa5506a.png)
+![alt text](91311f3962e4e340036b295baaa5506a.webp)
 
 3. 启用 通用文本翻译 服务。
-![alt text](c4bd8f6966e20d664c1354ea4b4b5130.png)
-![alt text](06ea73c2d9ee800b66cad00c94bc560a.png)
+![alt text](c4bd8f6966e20d664c1354ea4b4b5130.webp)
+![alt text](06ea73c2d9ee800b66cad00c94bc560a.webp)
 
 选择高级版即可，应用名称填写 「SelectEcho」，其他选项按需填写。
-![alt text](9ca47df8418e5138c1e1117c91472e94.png)
+![alt text](9ca47df8418e5138c1e1117c91472e94.webp)
 
 4. 创建完成后，在 开发者信息 处，找到 APP ID 和 密钥，复制到 SelectEcho 设置页对应输入框里。
-![alt text](image-4.png)
+![alt text](image-4.webp)
 
 5. 打开设置页， 填写相关配置。
 
-![alt text](image-5.png)
+![alt text](image-5.webp)
 
-![alt text](image-6.png)
+![alt text](image-6.webp)
 
 # 5. 配置
 
@@ -150,13 +150,13 @@ cd SelectEcho
 2. 引擎状态（Google 或 Baidu）。
 3. 可关闭按钮和复制按钮。
 
-![alt text](image-8.png)
+![alt text](image-8.webp)
  
 # 6. 设置页
 
 打开设置页的方式：扩展图标 -> 选项（Options）。
 
-![alt text](image-7.png)
+![alt text](image-7.webp)
 
 下面是最常见配置项：
 

@@ -71,7 +71,7 @@ Shizuku 有三种常见启动方式：
 
 打开软件，勾选第一个选项，点击右上角进入配置。
 
-![alt text](image.png)
+![alt text](image.webp)
 
 ## 3.3 安装并启动 Shizuku
 
@@ -86,27 +86,27 @@ Shizuku 有三种常见启动方式：
 
 1. 打开 Shizuku，点击配对。
 
-   ![alt text](image-1.png)
+   ![alt text](image-1.webp)
 
 2. 点击“开发者选项”，找到无线调试。
 
-   ![alt text](image-2.png)
-   ![alt text](image-3.png)
+   ![alt text](image-2.webp)
+   ![alt text](image-3.webp)
 
 3. 勾选“无线调试”，点击“配对设备”，输入 Shizuku 给出的配对码。
 
-   ![alt text](image-4.png)
-   ![alt text](image-5.png)
-   ![alt text](image-6.png)
+   ![alt text](image-4.webp)
+   ![alt text](image-5.webp)
+   ![alt text](image-6.webp)
 
 4. 配对成功后，回到 Shizuku 点击启动。
 
-   ![alt text](image-7.png)
+   ![alt text](image-7.webp)
 
 5. 在上方授权 GKD。
 
-   ![alt text](image-8.png)
-   ![alt text](image-9.png)
+   ![alt text](image-8.webp)
+   ![alt text](image-9.webp)
 
 ### C. 连接电脑 ADB 启动
 
@@ -129,8 +129,8 @@ https://raw.githubusercontent.com/AIsouler/GKD_subscription/main/dist/AIsouler_g
 
 - 打开 GKD，进入订阅页面，选择添加订阅，粘贴上述 URL。
 
-  ![alt text](image-10.png)
-  ![alt text](image-11.png)
+  ![alt text](image-10.webp)
+  ![alt text](image-11.webp)
 
 - 保存并拉取更新。
 
@@ -140,7 +140,7 @@ https://raw.githubusercontent.com/AIsouler/GKD_subscription/main/dist/AIsouler_g
 
 进入应用界面，逐一调整即可。
 
-![alt text](image-12.png)
+![alt text](image-12.webp)
 
 # 4. 注意事项
 :::warning
