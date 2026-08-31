@@ -242,5 +242,7 @@ export function initFilterHandler() {
 declare global {
 	interface Window {
 		animeFilterEventListeners: [Element, string, () => void][];
+		animeSortEventListeners: [Element, string, () => void][];
+		animeOrderEventListeners: [Element, string, () => void][];
 	}
 }

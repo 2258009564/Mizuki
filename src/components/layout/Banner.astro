@@ -262,17 +262,14 @@ const bannerFormats = getImageFormats();
 					window.__bannerCarouselCleanup = null;
 				}
 
-				// 保存初始帧 HTML，供帧收集使用
-				if (typeof window.__bannerInitialFrameHtml === 'undefined') {
-					window.__bannerInitialFrameHtml = {};
-				}
+				// 每次初始化都从当前页面重新收集帧，避免热更新或 Swup 导航后
+				// 继续使用修改配置前缓存的旧轮播列表。
+				var initialFrameHtml = {};
 
 				function rememberInitialFrame(slotClass) {
 					var slot = container.querySelector('.' + slotClass);
 					if (!slot) return;
-					if (!window.__bannerInitialFrameHtml[slotClass]) {
-						window.__bannerInitialFrameHtml[slotClass] = slot.innerHTML;
-					}
+					initialFrameHtml[slotClass] = slot.innerHTML;
 				}
 
 				rememberInitialFrame('banner-image-slot-mobile');
@@ -284,6 +281,13 @@ const bannerFormats = getImageFormats();
 						mobile: mobileCount > 1 ? Math.floor(Math.random() * mobileCount) : 0,
 						desktop: desktopCount > 1 ? Math.floor(Math.random() * desktopCount) : 0
 					};
+				} else {
+					window.__bannerRandomIndex.mobile = mobileCount > 0
+						? window.__bannerRandomIndex.mobile % mobileCount
+						: 0;
+					window.__bannerRandomIndex.desktop = desktopCount > 0
+						? window.__bannerRandomIndex.desktop % desktopCount
+						: 0;
 				}
 
 				// 从 template 替换默认图片
@@ -301,13 +305,12 @@ const bannerFormats = getImageFormats();
 				applyRandom('banner-image-slot-mobile', 'banner-tpl-mobile', window.__bannerRandomIndex.mobile);
 				applyRandom('banner-image-slot-desktop', 'banner-tpl-desktop', window.__bannerRandomIndex.desktop);
 
-				// 收集所有帧 HTML 字符串（仅首次）
+				// 按当前配置重新收集所有帧 HTML 字符串
 				if (!window.__bannerCarouselFrames) window.__bannerCarouselFrames = {};
 
 				function collectFrames(slotClass, tplClass) {
-					if (window.__bannerCarouselFrames[slotClass]) return;
 					var frames = [];
-					var initialFrame = window.__bannerInitialFrameHtml && window.__bannerInitialFrameHtml[slotClass];
+					var initialFrame = initialFrameHtml[slotClass];
 					var slot = container.querySelector('.' + slotClass);
 					if (initialFrame) {
 						frames.push(initialFrame);
@@ -329,6 +332,13 @@ const bannerFormats = getImageFormats();
 						mobile: window.__bannerRandomIndex ? window.__bannerRandomIndex.mobile : 0,
 						desktop: window.__bannerRandomIndex ? window.__bannerRandomIndex.desktop : 0
 					};
+				} else {
+					window.__bannerCarouselIndex.mobile = mobileCount > 0
+						? window.__bannerCarouselIndex.mobile % mobileCount
+						: 0;
+					window.__bannerCarouselIndex.desktop = desktopCount > 0
+						? window.__bannerCarouselIndex.desktop % desktopCount
+						: 0;
 				}
 
 				// 断点检测（md = 768px）

@@ -802,6 +802,10 @@ const emptyMessage = i18n(I18nKey.animeEmpty);
 			});
 			filterTags.forEach((tag) => {
 				const clickHandler = function () {
+					const selectedStatus =
+						this.getAttribute("data-status") ||
+						DEFAULT_STATUS_FILTER;
+
 					if (this.classList.contains("anime-active")) {
 						return;
 					}

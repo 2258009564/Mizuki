@@ -21,25 +21,25 @@ const {
 ---
 
 <div class="anime-filter-container flex flex-wrap gap-2">
-	<button class="anime-filter-tag anime-active" data-status="all"
+	<button type="button" class="anime-filter-tag anime-active" data-status="all" aria-pressed="true"
 		>{filterAllLabel}</button
 	>
-	<button class="anime-filter-tag" data-status="watching"
+	<button type="button" class="anime-filter-tag" data-status="watching" aria-pressed="false"
 		>{statusWatchingLabel}</button
 	>
-	<button class="anime-filter-tag" data-status="planned"
+	<button type="button" class="anime-filter-tag" data-status="planned" aria-pressed="false"
 		>{statusPlannedLabel}</button
 	>
-	<button class="anime-filter-tag" data-status="completed"
+	<button type="button" class="anime-filter-tag" data-status="completed" aria-pressed="false"
 		>{statusCompletedLabel}</button
 	>
 	{
 		showExtendedFilters && (
 			<>
-				<button class="anime-filter-tag" data-status="onhold">
+				<button type="button" class="anime-filter-tag" data-status="onhold" aria-pressed="false">
 					{statusOnHoldLabel}
 				</button>
-				<button class="anime-filter-tag" data-status="dropped">
+				<button type="button" class="anime-filter-tag" data-status="dropped" aria-pressed="false">
 					{statusDroppedLabel}
 				</button>
 			</>

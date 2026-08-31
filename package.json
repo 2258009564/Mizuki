@@ -18,6 +18,7 @@
 		"preview": "astro preview",
 		"astro": "astro",
 		"type-check": "tsc --noEmit",
+		"test": "node --test tests/anime-interactions.test.ts tests/feed-image-utils.test.ts tests/crypto.test.mjs",
 		"new-post": "node scripts/new-post.js",
 		"format": "biome format --write ./src",
 		"lint": "biome check --write ./src",

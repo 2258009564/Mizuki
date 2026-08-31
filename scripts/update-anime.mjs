@@ -26,9 +26,11 @@ async function getAnimeModeFromConfig() {
 
 function runScript(scriptPath) {
 	return new Promise((resolve, reject) => {
-		const script = spawn("node", [scriptPath], {
+		const nodeArgs = process.allowedNodeEnvironmentFlags.has("--use-env-proxy")
+			? ["--use-env-proxy", scriptPath]
+			: [scriptPath];
+		const script = spawn("node", nodeArgs, {
 			stdio: "inherit",
-			shell: true,
 		});
 
 		script.on("close", (code) => {
@@ -65,4 +67,3 @@ main().catch((err) => {
 	console.error(err);
 	process.exit(1);
 });
-

@@ -2,6 +2,7 @@
 import Image from "@components/atoms/Image/Image.astro";
 
 interface Props {
+	index: number;
 	anime: {
 		title: string;
 		cover: string;
@@ -24,48 +25,59 @@ interface Props {
 	studioLabel: string;
 }
 
-const { anime, statusInfo, yearLabel, studioLabel } = Astro.props;
+const { index, anime, statusInfo, yearLabel, studioLabel } = Astro.props;
 
 const progressPercent =
 	anime.totalEpisodes > 0 ? (anime.progress / anime.totalEpisodes) * 100 : 0;
 ---
 
 <div
-	class="group relative bg-[var(--card-bg)] border border-[var(--line-divider)] rounded-[var(--radius-large)] overflow-hidden hover:shadow-lg"
+	class="group relative bg-[var(--card-bg)] border border-[var(--line-divider)] rounded-[var(--radius-large)] overflow-hidden hover:shadow-lg focus-within:ring-2 focus-within:ring-[var(--primary)]"
 	data-anime-status={anime.status}
+	data-anime-index={index}
+	data-anime-year={anime.year}
+	data-anime-rating={anime.rating}
+	data-anime-title={anime.title}
 >
-	<div class="relative anime-cover-container aspect-[2/3] overflow-hidden">
-		<a
-			href={anime.link}
-			target="_blank"
-			rel="noopener noreferrer"
-			class="block w-full h-full"
-		>
-			<Image
-				src={anime.cover}
-				alt={anime.title}
-				class="w-full h-full object-cover transition-transform duration-200 group-hover:scale-110"
-				widths={[200, 400, 600]}
-				sizes="(max-width: 640px) 50vw, (max-width: 1024px) 25vw, 20vw"
-			/>
-			<div
-				class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+	{
+		anime.link && (
+			<a
+				href={anime.link}
+				target="_blank"
+				rel="noopener noreferrer"
+				class="absolute inset-0 z-10 rounded-[var(--radius-large)] focus:outline-none"
+				aria-label={`${anime.title}（打开详情）`}
 			>
-				<div class="absolute inset-0 flex items-center justify-center">
-					<div
-						class="w-12 h-12 rounded-full bg-white/90 flex items-center justify-center"
+				<span class="sr-only">{anime.title}</span>
+			</a>
+		)
+	}
+
+	<div class="relative anime-cover-container aspect-[2/3] overflow-hidden">
+		<Image
+			src={anime.cover}
+			alt={anime.title}
+			class="w-full h-full object-cover transition-transform duration-200 group-hover:scale-110"
+			widths={[200, 400, 600]}
+			sizes="(max-width: 640px) 50vw, (max-width: 1024px) 25vw, 20vw"
+		/>
+		<div
+			class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+		>
+			<div class="absolute inset-0 flex items-center justify-center">
+				<div
+					class="w-12 h-12 rounded-full bg-white/90 flex items-center justify-center"
+			>
+					<svg
+						class="w-6 h-6 text-gray-800 ml-1"
+						fill="currentColor"
+						viewBox="0 0 24 24"
 					>
-						<svg
-							class="w-6 h-6 text-gray-800 ml-1"
-							fill="currentColor"
-							viewBox="0 0 24 24"
-						>
-							<path d="M8 5v14l11-7z"></path>
-						</svg>
-					</div>
+						<path d="M8 5v14l11-7z"></path>
+					</svg>
 				</div>
 			</div>
-		</a>
+		</div>
 
 		<div
 			class={`absolute top-2 left-2 px-2 py-1 rounded-md text-xs font-medium ${statusInfo.class}`}

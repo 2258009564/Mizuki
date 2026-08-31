@@ -40,7 +40,7 @@ const hasHiddenItems = hiddenAnimeList.length > 0;
 	class="anime-grid-container grid gap-4 md:gap-6 opacity-0 transition-opacity duration-300"
 >
 	{
-		visibleAnimeList.map((anime) => {
+		visibleAnimeList.map((anime, index) => {
 			const statusInfo = statusMap[anime.status] || {
 				text: anime.status,
 				class: "btn-regular",
@@ -48,6 +48,7 @@ const hasHiddenItems = hiddenAnimeList.length > 0;
 			};
 			return (
 				<AnimeCard
+					index={index}
 					anime={anime}
 					statusInfo={statusInfo}
 					yearLabel={yearLabel}
@@ -60,7 +61,7 @@ const hasHiddenItems = hiddenAnimeList.length > 0;
 
 <template id="anime-lazy-store">
 	{
-		hiddenAnimeList.map((anime) => {
+		hiddenAnimeList.map((anime, index) => {
 			const statusInfo = statusMap[anime.status] || {
 				text: anime.status,
 				class: "btn-regular",
@@ -68,6 +69,7 @@ const hasHiddenItems = hiddenAnimeList.length > 0;
 			};
 			return (
 				<AnimeCard
+					index={visibleAnimeList.length + index}
 					anime={anime}
 					statusInfo={statusInfo}
 					yearLabel={yearLabel}

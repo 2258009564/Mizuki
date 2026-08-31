@@ -11,6 +11,11 @@ const OUTPUT_FILE = path.join(
 	path.dirname(fileURLToPath(import.meta.url)),
 	"../src/data/bangumi-data.json",
 );
+const REQUEST_HEADERS = {
+	"User-Agent": "Mizuki/9.0 (Bangumi data updater)",
+};
+const REQUEST_TIMEOUT_MS = 20_000;
+const MAX_REQUEST_ATTEMPTS = 3;
 
 async function getUserIdFromConfig() {
 	try {
@@ -59,9 +64,42 @@ async function getAnimeModeFromConfig() {
 // 模拟延迟防止 API 限制
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
+async function fetchWithRetry(url, label) {
+	let lastError;
+
+	for (let attempt = 1; attempt <= MAX_REQUEST_ATTEMPTS; attempt++) {
+		try {
+			const response = await fetch(url, {
+				headers: REQUEST_HEADERS,
+				signal: AbortSignal.timeout(REQUEST_TIMEOUT_MS),
+			});
+
+			if (response.status === 429 || response.status >= 500) {
+				throw new Error(`API Error ${response.status}`);
+			}
+
+			return response;
+		} catch (error) {
+			lastError = error;
+			if (attempt === MAX_REQUEST_ATTEMPTS) break;
+
+			const retryDelay = attempt * 1_000;
+			console.warn(
+				`${label} failed (${attempt}/${MAX_REQUEST_ATTEMPTS}), retrying in ${retryDelay}ms...`,
+			);
+			await delay(retryDelay);
+		}
+	}
+
+	throw lastError;
+}
+
 async function fetchSubjectDetail(subjectId) {
 	try {
-		const response = await fetch(`${API_BASE}/v0/subjects/${subjectId}`);
+		const response = await fetchWithRetry(
+			`${API_BASE}/v0/subjects/${subjectId}`,
+			`Subject ${subjectId}`,
+		);
 		if (!response.ok) return null;
 		return await response.json();
 	} catch (error) {
@@ -100,16 +138,13 @@ async function fetchCollection(userId, type) {
 	while (hasMore) {
 		const url = `${API_BASE}/v0/users/${userId}/collections?subject_type=2&type=${type}&limit=${limit}&offset=${offset}`;
 		try {
-			const response = await fetch(url);
+				const response = await fetchWithRetry(
+					url,
+					`Collection type ${type}`,
+				);
 
-			if (!response.ok) {
-				if (response.status === 404) {
-					console.log(
-						`   User ${userId} does not exist or has no data of this type.`,
-					);
-					return [];
-				}
-				throw new Error(`API Error ${response.status}`);
+				if (!response.ok) {
+					throw new Error(`API Error ${response.status}`);
 			}
 
 			const data = await response.json();
@@ -127,9 +162,9 @@ async function fetchCollection(userId, type) {
 				offset += limit;
 				await delay(300);
 			}
-		} catch (e) {
-			console.error(`\nFetch failed (Type ${type}):`, e.message);
-			hasMore = false;
+			} catch (e) {
+				console.error(`\nFetch failed (Type ${type}):`, e.message);
+				throw e;
 		}
 	}
 	console.log("");
@@ -239,7 +274,9 @@ async function main() {
 		await fs.mkdir(dir, { recursive: true });
 	}
 
-	await fs.writeFile(OUTPUT_FILE, JSON.stringify(finalAnimeList, null, 2));
+	const temporaryFile = `${OUTPUT_FILE}.tmp`;
+	await fs.writeFile(temporaryFile, JSON.stringify(finalAnimeList, null, 2));
+	await fs.rename(temporaryFile, OUTPUT_FILE);
 	console.log(`\nUpdate complete! Data saved to: ${OUTPUT_FILE}`);
 	console.log(`Total collected: ${finalAnimeList.length} anime series`);
 }

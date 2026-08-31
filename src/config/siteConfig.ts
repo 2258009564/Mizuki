@@ -49,7 +49,7 @@ export const siteConfig: SiteConfig = {
 
 	bangumi: {
 		userId: "1222336", // 在此处设置你的Bangumi用户ID，可以设置为 "sai" 测试
-		fetchOnDev: false, // 是否在开发环境下获取 Bangumi 数据（默认 false），获取前先执行 pnpm build 构建 json 文件
+		fetchOnDev: true, // 开发环境加载已生成的 Bangumi 数据；首次使用前先执行 pnpm build
 	},
 
 	bilibili: {
@@ -107,35 +107,34 @@ export const siteConfig: SiteConfig = {
 
 	banner: {
 		// 支持单张图片或图片数组，当数组长度 > 1 时自动启用轮播
-		src: {
-			desktop: [
-				"/assets/desktop-banner/wp01.webp",
-				"/assets/desktop-banner/wp02.webp",
-				// "/assets/desktop-banner/wp03.webp",
-				"/assets/desktop-banner/wp06.webp",
-				"/assets/desktop-banner/wp09.webp",
-				// "/assets/desktop-banner/wp10.webp",
-				"/assets/desktop-banner/wp12.webp",
-				"/assets/desktop-banner/wp13.webp",
-				"/assets/desktop-banner/wp14.webp",
-				"/assets/desktop-banner/wp15.webp",
-				"/assets/desktop-banner/wp16.webp",
-				"/assets/desktop-banner/wp18.webp",
-				// "/assets/desktop-banner/pc5.webp",
-				"/assets/desktop-banner/pc2.webp",
-				"/assets/desktop-banner/pc3.webp",
-				"/assets/desktop-banner/pc4.webp",
-				"/assets/desktop-banner/pc7.webp",
-				"/assets/desktop-banner/pc8.webp",
-				// Wallpaper Engine 当前播放列表「12」（实际 16:9 画面）
-				"/assets/wallpaper-engine/we-3589501086-sora.webp",
-				"/assets/wallpaper-engine/we-3398909502-miyako.webp",
-				"/assets/wallpaper-engine/we-2073577741-nine.webp",
-				"/assets/wallpaper-engine/we-2788932765-sorairo.webp",
-				"/assets/wallpaper-engine/we-3323836229-nine.webp",
-				"/assets/wallpaper-engine/we-3324374235-nine.webp",
-				"/assets/wallpaper-engine/we-2451341185-haruka.webp",
-			],
+			src: {
+				desktop: [
+					"/assets/desktop-banner/wp01.webp",
+					"/assets/wallpaper-engine/we-3589501086-sora.webp",
+					"/assets/desktop-banner/wp02.webp",
+					// "/assets/desktop-banner/wp03.webp",
+					"/assets/desktop-banner/pc2.webp",
+					"/assets/wallpaper-engine/we-3398909502-miyako.webp",
+					"/assets/desktop-banner/wp06.webp",
+					"/assets/desktop-banner/wp09.webp",
+					// "/assets/desktop-banner/wp10.webp",
+					"/assets/wallpaper-engine/we-2073577741-nine.webp",
+					"/assets/desktop-banner/pc3.webp",
+					"/assets/desktop-banner/wp12.webp",
+					"/assets/wallpaper-engine/we-2788932765-sorairo.webp",
+					"/assets/desktop-banner/wp13.webp",
+					"/assets/desktop-banner/pc4.webp",
+					"/assets/wallpaper-engine/we-3323836229-nine.webp",
+					"/assets/desktop-banner/wp14.webp",
+					"/assets/desktop-banner/wp15.webp",
+					"/assets/wallpaper-engine/we-3324374235-nine.webp",
+					"/assets/desktop-banner/pc7.webp",
+					"/assets/desktop-banner/wp16.webp",
+					"/assets/wallpaper-engine/we-2451341185-haruka.webp",
+					"/assets/desktop-banner/wp18.webp",
+					// "/assets/desktop-banner/pc5.webp",
+					"/assets/desktop-banner/pc8.webp",
+				],
 			mobile: [
 				"/assets/mobile-banner/an5.webp",
 				"/assets/mobile-banner/an3.webp",
