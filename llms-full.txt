@@ -1,0 +1,5012 @@
+# from alisa - Full Content Archive
+
+> Generated on 2026-10-19. Contains full text of all public articles for LLM ingestion.
+
+---
+
+## 个人常用算法模板
+
+- **URL**: https://alisa22580.com/posts/lanqiao-cpp-b-common/
+- **Published**: 2026-04-10
+- **Category**: Tutorial
+- **Tags**: 算法竞赛, C++, 代码模板
+- **Description**: 算法竞赛常用 C++ 模板与临场速查
+
+> **[NOTE]**
+> 自用的算法竞赛模板合集。最初只为蓝桥杯准备，后来越补越多，已经和蓝桥杯没有太大关系了，于是干脆改成通用板子集合。
+> 
+> 这里以“赛场上能快速找到、复制后容易改”为第一目标，不追求把每个知识点讲成完整教程。部分模板彼此有依赖，使用前先看下面的约定。
+
+## 使用约定
+
+- 默认使用 GNU C++17 或更高版本；少数模板使用结构化绑定、`optional` 和泛型 lambda。
+- 许多模板默认已有 `#include <bits/stdc++.h>`、`using namespace std;`、`all(x)`、`MOD` 等基础定义。
+- 文中的各段代码是独立板子，不应整篇直接拼成一个源文件；复制需要的部分后，再按题意修改下标、数据范围、模数和无穷大。
+- 图和树的模板通常按 `1..n` 编号；字符串模板多使用 `0` 下标，具体以代码前的注释为准。
+- 线段树、带权并查集、矩阵等内容一定要先确认“维护的信息”和“操作是否满足要求”，不要只凭名字硬套。
+> **[WARNING]**
+> 板子只能减少重复劳动，不能替代对边界条件的检查。尤其注意空区间、单点、重边、不连通、负权、模数是否为质数，以及 `int` 是否溢出。
+
+## 基础速查
+
+### 常见类型范围
+
+- `int`：约 $[-2.1\times 10^9, 2.1\times 10^9]$。
+- `long long`：约 $[-9.2\times 10^{18}, 9.2\times 10^{18}]$。
+- 两个 `int` 相乘、距离累加或组合计数时，先转成 `long long` 再计算。
+
+### 排序与比较器
+
+```cpp
+vector<pair<int, int>> a;
+sort(all(a), [](const auto &x, const auto &y)
+{
+    if (x.first != y.first)
+    {
+        return x.first < y.first;
+    }
+    return x.second > y.second;
+});
+```
+
+### 前缀和与差分
+
+```cpp
+// pre[i] 表示 a[1..i] 的和；区间 [l, r] 的和为 pre[r] - pre[l - 1]。
+vector<int> pre(n + 1);
+for (int i = 1; i <= n; i++)
+{
+    pre[i] = pre[i - 1] + a[i];
+}
+
+// 给闭区间 [l, r] 加上 x。
+vector<int> diff(n + 2);
+diff[l] += x;
+diff[r + 1] -= x;
+for (int i = 1; i <= n; i++)
+{
+    diff[i] += diff[i - 1];
+}
+```
+
+### BFS 与 DFS 骨架
+
+```cpp
+// BFS：无权图最短路。dist 为 -1 表示尚未访问。
+vector<int> dist(n + 1, -1);
+queue<int> q;
+dist[s] = 0;
+q.push(s);
+while (!q.empty())
+{
+    int u = q.front();
+    q.pop();
+    for (int v : g[u])
+    {
+        if (dist[v] != -1)
+        {
+            continue;
+        }
+        dist[v] = dist[u] + 1;
+        q.push(v);
+    }
+}
+
+// DFS：树或连通块遍历。
+auto dfs = [&](auto &&self, int u, int parent) -> void
+{
+    for (int v : g[u])
+    {
+        if (v == parent)
+        {
+            continue;
+        }
+        self(self, v, u);
+    }
+};
+dfs(dfs, 1, 0);
+```
+
+## 快速索引
+
+1. [基础速查](#基础速查)：类型范围、排序、前缀和、差分、BFS、DFS
+2. [基础与搜索](#基础与搜索)：基础框架、离散化、二分答案、ST 表
+3. [数据结构](#数据结构)：并查集、树状数组、线段树、左偏树
+4. [树与图](#树与图)：LCA、重心、直径、最短路、最小生成树、拓扑排序
+5. [数论](#数论)：组合数、快速幂、质数筛
+6. [字符串](#字符串)：双哈希、Trie、Z 函数
+7. [动态规划](#动态规划)：矩阵快速幂、背包
+> **[TIP]**
+> 如果只是赛前复习，可以先看每节代码上方的说明；真正要用时，再完整复制对应代码块。原始练习代码仍保留在本地板子目录里，这篇只收通用性比较强的版本。
+
+---
+
+## 基础与搜索
+
+### 基础模板
+
+```cpp
+// #pragma GCC optimize(2)
+#include <bits/stdc++.h>
+using namespace std;
+#define int long long
+#define endl '\n'
+#define all(x) (x).begin(), (x).end()
+
+constexpr int MOD = 1e9 + 7;
+// -9.2e18 ~ 9.2e18
+
+void solve()
+{
+
+}
+
+signed main()
+{
+    cin.tie(0)->ios::sync_with_stdio(0);
+    cout << setiosflags(ios::fixed) << setprecision(2);
+    int TT = 1;
+    // cin >> TT;
+    while (TT--)
+    {
+        solve();
+        // cout << endl;
+    }
+}
+```
+
+### 离散化
+
+```cpp
+vector<int> vals = a;
+sort(all(vals));
+vals.erase(unique(all(vals)), vals.end());
+int C = vals.size();
+vector<int> b(n);
+for (int i = 0; i < n; i++)
+{
+    b[i] = lower_bound(all(vals), a[i]) - vals.begin();
+}
+```
+
+### 二分答案
+
+```cpp
+// 二分答案：找最小的可行值（单调性 false ... false, true ... true）
+long long first_true(long long lo, long long hi, auto check) {
+    while (lo < hi) {
+        long long mid = lo + (hi - lo) / 2;
+        if (check(mid)) hi = mid;
+        else lo = mid + 1;
+    }
+    return lo;
+}
+
+// 找最大的可行值（单调性 true ... true, false ... false）
+long long last_true(long long lo, long long hi, auto check) {
+    while (lo < hi) {
+        long long mid = lo + (hi - lo + 1) / 2;
+        if (check(mid)) lo = mid;
+        else hi = mid - 1;
+    }
+    return lo;
+}
+```
+
+### ST 表
+
+```cpp
+// ============================================================
+// ST 表 / Sparse Table（静态区间查询，数组使用 1 下标）
+// ============================================================
+// 支持：min、max、gcd、按位与、按位或、区间和、区间异或。
+// 数组建立后不能修改；有修改操作时应使用线段树或树状数组。
+//
+// 用法：
+//   vector<int> v(n + 1); // v[1..n]
+//   STTable st(v, ST_MAX);
+//   cout << st.query(l, r);
+//
+// min/max/gcd/and/or 查询是 O(1)：
+//   它们允许用两个可能重叠的区间覆盖 [l,r]，重复计算不影响答案。
+//
+// sum/xor 查询是 O(log n)：
+//   它们不能重复计算，所以要把 [l,r] 拆成互不重叠的 2 的幂区间。
+//   实际做题时，静态 sum 推荐前缀和，静态 xor 推荐前缀异或，会比 ST 表更简单。
+//
+// 建表 O(n log n)，空间 O(n log n)。
+// ============================================================
+
+enum STMode
+{
+    ST_MIN,
+    ST_MAX,
+    ST_GCD,
+    ST_AND,
+    ST_OR,
+    ST_SUM,
+    ST_XOR
+};
+
+class STTable
+{
+private:
+    int n, LOG;
+    STMode mode;
+
+    // st[j][i] 表示区间 [i, i + 2^j - 1] 的答案。
+    vector<vector<int>> st;
+
+    // 合并左右两个区间的答案。
+    int merge(int left, int right) const
+    {
+        if (mode == ST_MIN)
+        {
+            return min(left, right);
+        }
+        if (mode == ST_MAX)
+        {
+            return max(left, right);
+        }
+        if (mode == ST_GCD)
+        {
+            return gcd(left, right);
+        }
+        if (mode == ST_AND)
+        {
+            return left & right;
+        }
+        if (mode == ST_OR)
+        {
+            return left | right;
+        }
+        if (mode == ST_SUM)
+        {
+            return left + right;
+        }
+        return left ^ right;
+    }
+
+    // 这些运算重复计算同一个元素不会改变答案，可以使用 O(1) 重叠查询。
+    bool can_overlap() const
+    {
+        return mode == ST_MIN or mode == ST_MAX or mode == ST_GCD or
+               mode == ST_AND or mode == ST_OR;
+    }
+
+public:
+    // v 使用 1 下标，v[0] 空置。
+    STTable(const vector<int> &v, STMode mode)
+        : n(v.size() - 1), LOG(__lg(max(1ll, n)) + 1), mode(mode),
+          st(LOG, vector<int>(n + 1))
+    {
+        for (int i = 1; i <= n; i++)
+        {
+            st[0][i] = v[i];
+        }
+
+        // 两个长度为 2^(j-1) 的相邻区间，合并成长度为 2^j 的区间。
+        for (int j = 1; j < LOG; j++)
+        {
+            int half = 1ll << (j - 1);
+            int len = 1ll << j;
+            for (int i = 1; i + len - 1 <= n; i++)
+            {
+                st[j][i] = merge(st[j - 1][i], st[j - 1][i + half]);
+            }
+        }
+    }
+
+    // 查询闭区间 [l,r]，要求 1 <= l <= r <= n。
+    int query(int l, int r) const
+    {
+        if (can_overlap())
+        {
+            int k = __lg(r - l + 1);
+            return merge(st[k][l], st[k][r - (1ll << k) + 1]);
+        }
+
+        // sum/xor：从左到右取互不重叠的区间。
+        int ans = 0;
+        int pos = l;
+        for (int j = LOG - 1; j >= 0; j--)
+        {
+            int len = 1ll << j;
+            if (pos + len - 1 <= r)
+            {
+                ans = merge(ans, st[j][pos]);
+                pos += len;
+            }
+        }
+        return ans;
+    }
+};
+```
+
+---
+
+## 数据结构
+
+### 普通并查集 DSU
+
+```cpp
+// 普通并查集：路径压缩 + 按秩合并，点编号默认是 1..n。
+class DSU
+{
+private:
+    vector<int> parent, rank, size;
+    int count;
+
+public:
+    DSU(int n = 0)
+    {
+        init(n);
+    }
+
+    void init(int n)
+    {
+        parent.resize(n + 1);
+        rank.assign(n + 1, 0);
+        size.assign(n + 1, 1);
+        count = n;
+        iota(all(parent), 0ll);
+    }
+
+    int find(int x)
+    {
+        return parent[x] == x ? x : parent[x] = find(parent[x]);
+    }
+
+    // 返回是否真的合并了两个原本不同的集合。
+    bool merge(int x, int y)
+    {
+        int rx = find(x), ry = find(y);
+        if (rx == ry)
+        {
+            return false;
+        }
+
+        if (rank[rx] < rank[ry])
+        {
+            swap(rx, ry);
+        }
+        parent[ry] = rx;
+        size[rx] += size[ry];
+        if (rank[rx] == rank[ry])
+        {
+            rank[rx]++;
+        }
+        count--;
+        return true;
+    }
+
+    bool issame(int x, int y)
+    {
+        return find(x) == find(y);
+    }
+
+    int getsize(int x)
+    {
+        return size[find(x)];
+    }
+
+    int getgroups()
+    {
+        return count;
+    }
+};
+```
+
+### 带权并查集
+
+```cpp
+// ============================================================
+// 带权并查集（维护点权之间的差）
+// ============================================================
+// 默认定义：
+//   weight[x] = value[x] - value[parent[x]]
+//
+// 路径压缩后：
+//   weight[x] = value[x] - value[root]
+//
+// merge(x, y, w) 加入的约束是：
+//   value[y] - value[x] = w
+//
+// diff(x, y) 返回：
+//   value[y] - value[x]
+//
+// 例子：
+//   merge(1, 2, 3) 表示 value[2] - value[1] = 3
+//   merge(2, 3, 5) 表示 value[3] - value[2] = 5
+//   diff(1, 3) 得到 8
+//
+// merge 的返回值：
+//   true  ：成功合并，或者原有关系与新约束一致
+//   false ：x、y 已经连通，但新约束与原关系矛盾
+//
+// 换题时最容易改错的地方：
+//   1. 有的题给的是 value[x] - value[y] = w。
+//      此时调用 merge(x, y, -w)，不要同时修改多处公式。
+//   2. 若维护异或关系，把“+ / -”整体换成 xor；
+//      路径压缩和合并公式也必须一起推导，不能只改 diff()。
+//   3. 食物链这类模 k 关系：所有 weight 和 w 都需要规范到 [0, k)。
+//      相加、相减后也要取模。
+//   4. 带权并查集只能维护同一连通块内的相对关系，不能直接得到绝对值。
+//
+// 合并公式推导（默认把 ry 接到 rx 时）：
+//   wx = value[x] - value[rx]
+//   wy = value[y] - value[ry]
+//   又有 value[y] - value[x] = w
+//   所以 value[ry] - value[rx] = w + wx - wy
+//   即 weight[ry] = w + wx - wy
+// ============================================================
+
+class WeightedDSU
+{
+private:
+    vector<int> parent, rank, size;
+    vector<int> weight;
+    int count;
+
+public:
+    WeightedDSU(int n)
+        : parent(n + 1), rank(n + 1), size(n + 1, 1),
+          weight(n + 1), count(n)
+    {
+        iota(all(parent), 0ll);
+    }
+
+    int find(int x)
+    {
+        if (parent[x] == x)
+        {
+            return x;
+        }
+
+        int old_parent = parent[x];
+        parent[x] = find(parent[x]);
+        weight[x] += weight[old_parent];
+        return parent[x];
+    }
+
+    bool merge(int x, int y, int w)
+    {
+        int rx = find(x), ry = find(y);
+        int wx = weight[x], wy = weight[y];
+
+        if (rx == ry)
+        {
+            return wy - wx == w;
+        }
+
+        if (rank[rx] < rank[ry])
+        {
+            parent[rx] = ry;
+            weight[rx] = wy - wx - w;
+            size[ry] += size[rx];
+        }
+        else
+        {
+            parent[ry] = rx;
+            weight[ry] = w + wx - wy;
+            size[rx] += size[ry];
+            if (rank[rx] == rank[ry])
+            {
+                rank[rx]++;
+            }
+        }
+
+        count--;
+        return true;
+    }
+
+    bool issame(int x, int y)
+    {
+        return find(x) == find(y);
+    }
+
+    // 调用前应保证 issame(x, y) 为 true。
+    int diff(int x, int y)
+    {
+        find(x);
+        find(y);
+        return weight[y] - weight[x];
+    }
+
+    bool check(int x, int y, int w)
+    {
+        return issame(x, y) and diff(x, y) == w;
+    }
+
+    int getweight(int x)
+    {
+        find(x);
+        return weight[x];
+    }
+
+    int getsize(int x)
+    {
+        return size[find(x)];
+    }
+
+    int getgroups()
+    {
+        return count;
+    }
+};
+```
+
+### 树状数组 BIT
+
+```cpp
+// ============================================================
+// 树状数组（全部使用 1 下标）
+// ============================================================
+// BIT 支持：单点加、单点赋值、前缀和、区间和、前缀 lower_bound。
+// RangeBIT 支持：区间加、前缀和、区间和、单点查询。
+//
+// kth(target) 返回最小的 pos，使 sum(pos) >= target。
+// 它要求树状数组维护的是非负频次，否则前缀和不单调，不能二分。
+// 若 target > sum(n)，返回 n + 1。
+// ============================================================
+
+class BIT
+{
+private:
+    int n;
+    vector<int> c;
+
+    int lowbit(int x)
+    {
+        return x & -x;
+    }
+
+public:
+    BIT(int size = 0) : n(size), c(n + 1)
+    {
+    }
+
+    // arr 使用 1 下标，有效元素为 arr[1..n]，arr[0] 空置。
+    BIT(const vector<int> &arr) : n(arr.size() - 1), c(n + 1)
+    {
+        for (int i = 1; i <= n; i++)
+        {
+            add(i, arr[i]);
+        }
+    }
+
+    void init(int size)
+    {
+        n = size;
+        c.assign(n + 1, 0);
+    }
+
+    void add(int i, int val)
+    {
+        while (i <= n)
+        {
+            c[i] += val;
+            i += lowbit(i);
+        }
+    }
+
+    int sum(int i)
+    {
+        int ans = 0;
+        while (i > 0)
+        {
+            ans += c[i];
+            i -= lowbit(i);
+        }
+        return ans;
+    }
+
+    int query(int l, int r)
+    {
+        if (l > r)
+        {
+            return 0;
+        }
+        return sum(r) - sum(l - 1);
+    }
+
+    int get(int i)
+    {
+        return query(i, i);
+    }
+
+    void update(int i, int val)
+    {
+        int delta = val - get(i);
+        add(i, delta);
+    }
+
+    int kth(int target)
+    {
+        if (target <= 0)
+        {
+            return 1;
+        }
+
+        int pos = 0;
+        int pre = 0;
+        int step = 1;
+        while ((step << 1) <= n)
+        {
+            step <<= 1;
+        }
+
+        for (; step; step >>= 1)
+        {
+            int nxt = pos + step;
+            if (nxt <= n and pre + c[nxt] < target)
+            {
+                pos = nxt;
+                pre += c[nxt];
+            }
+        }
+        return pos + 1;
+    }
+
+    void clear()
+    {
+        fill(all(c), 0);
+    }
+
+    int size()
+    {
+        return n;
+    }
+};
+
+class RangeBIT
+{
+private:
+    int n;
+    BIT c1, c2;
+
+    void add(BIT &c, int pos, int val)
+    {
+        if (pos <= n)
+        {
+            c.add(pos, val);
+        }
+    }
+
+public:
+    RangeBIT(int n = 0) : n(n), c1(n), c2(n)
+    {
+    }
+
+    // 在 [l, r] 全部增加 val。
+    void add(int l, int r, int val)
+    {
+        add(c1, l, val);
+        add(c1, r + 1, -val);
+        add(c2, l, val * (l - 1));
+        add(c2, r + 1, -val * r);
+    }
+
+    int sum(int pos)
+    {
+        return c1.sum(pos) * pos - c2.sum(pos);
+    }
+
+    int query(int l, int r)
+    {
+        if (l > r)
+        {
+            return 0;
+        }
+        return sum(r) - sum(l - 1);
+    }
+
+    int get(int pos)
+    {
+        return query(pos, pos);
+    }
+};
+```
+
+### 线段树 SegTree
+
+```cpp
+// ============================================================
+// 通用线段树（数组使用 1 下标）
+// ============================================================
+// 当前支持：
+//   1. 区间加：add(l, r, val)
+//   2. 区间赋值：change(l, r, val)
+//   3. 区间取 min：setmin(l, r, val)，即 a[i] = min(a[i], val)
+//   4. 区间取 max：setmax(l, r, val)，即 a[i] = max(a[i], val)
+//   5. 区间和：getsum(l, r)
+//   6. 区间最小值：getmin(l, r)
+//   7. 区间最大值：getmax(l, r)
+//   8. 单点赋值：modify(pos, val)
+//   9. 单点查询：get(pos)
+//  10. 在区间内寻找第一个/最后一个值 >= val 的位置
+//
+// 默认语义：
+//   change 是“覆盖”，add 是“在当前值上增加”。
+//   若同一节点先 change 再 add，下传时也必须先下传 change，再下传 add。
+//   这是 down() 中两个懒标记顺序不能交换的原因。
+//
+// 换题时常见改动：
+//   1. 只需要 add + getsum：可以删除 mmin、mmax、ch、has_ch 相关代码。
+//   2. 只需要 add + getmax/getmin：可以删除 sum；lazy_add 不再需要 len。
+//   3. 只需要 change：可以删除 ad 和 lazy_add。
+//   4. 求区间乘积、gcd 等：重点修改 up() 和查询时的合并方式；
+//      但区间 add 通常不能直接维护 gcd/乘积，不能只改变量名。
+//   5. 找第一个满足条件的位置：find_first_ge 依赖“区间最大值”。
+//      如果改成寻找 <= val，应改用 mmin 剪枝。
+//
+// 注意：
+//   - 构造函数 SegTree(vector<int> &v) 要求 v 的有效元素是 v[1..n]。
+//   - n 必须至少为 1。
+//   - 若题目中的值和区间和可能超过 long long，需要改成 __int128。
+// ============================================================
+
+class SegTree
+{
+private:
+    int n;
+    // sum[i]、mmin[i]、mmax[i] 分别记录节点 i 所管区间的和、最小值、最大值。
+    vector<int> sum, mmin, mmax;
+    // smn/smx：严格次小值/严格次大值；cmn/cmx：最小值/最大值出现次数。
+    // 这些信息用于 Segment Tree Beats，在不下沉到叶子的情况下完成区间 chmin/chmax。
+    vector<int> smn, smx, cmn, cmx;
+    // ad[i]：节点 i 所管区间整体还要增加多少，尚未下传给儿子。
+    // ch[i]：节点 i 所管区间整体要被赋成什么值。
+    // has_ch[i]：不能用 ch[i] 是否为 0 判断赋值标记，因为“赋值为 0”也是合法操作。
+    vector<int> ad, ch;
+    vector<int> has_ch;
+    // 保存建树时使用的原数组，有效范围是 v[1..n]。
+    vector<int> v;
+
+    // 把“整个节点 i 所管区间增加 val”直接作用到节点信息上。
+    // len 是该节点所管区间长度：区间和增加 val * len，最值只增加 val。
+    // 这里只更新当前节点并累计懒标记，不立刻递归修改它的儿子。
+    void lazy_add(int i, int val, int len)
+    {
+        sum[i] += val * len;
+        mmin[i] += val;
+        mmax[i] += val;
+        if (smn[i] != LLONG_MAX)
+            smn[i] += val;
+        if (smx[i] != LLONG_MIN)
+            smx[i] += val;
+        // 已有赋值标记时直接合并到赋值值，保持 has_ch 与 ad 不同时存在。
+        // 这能让后续 setmin/setmax 与 change/add 的组合保持唯一语义。
+        if (has_ch[i])
+            ch[i] += val;
+        else
+            ad[i] += val;
+    }
+
+    // 把“整个节点 i 所管区间赋值为 val”直接作用到节点信息上。
+    // 赋值会覆盖此前尚未下传的加法，所以必须把 ad[i] 清零。
+    // has_ch[i] 设为 1，表示以后 down() 时需要把赋值继续传给两个儿子。
+    void lazy_change(int i, int val, int len)
+    {
+        sum[i] = val * len;
+        mmin[i] = mmax[i] = val;
+        smn[i] = LLONG_MAX;
+        smx[i] = LLONG_MIN;
+        cmn[i] = cmx[i] = len;
+        ch[i] = val;
+        ad[i] = 0;
+        has_ch[i] = 1;
+    }
+
+    // 前提：smx[i] < val < mmax[i]。只有当前最大值会被压低到 val。
+    void lazy_setmin(int i, int val)
+    {
+        if (mmax[i] <= val)
+            return;
+        sum[i] += (val - mmax[i]) * cmx[i];
+        if (mmin[i] == mmax[i])
+            mmin[i] = val;
+        else if (smn[i] == mmax[i])
+            smn[i] = val;
+        mmax[i] = val;
+        if (has_ch[i])
+            ch[i] = val;
+    }
+
+    // 前提：mmin[i] < val < smn[i]。只有当前最小值会被抬高到 val。
+    void lazy_setmax(int i, int val)
+    {
+        if (mmin[i] >= val)
+            return;
+        sum[i] += (val - mmin[i]) * cmn[i];
+        if (mmax[i] == mmin[i])
+            mmax[i] = val;
+        else if (smx[i] == mmin[i])
+            smx[i] = val;
+        mmin[i] = val;
+        if (has_ch[i])
+            ch[i] = val;
+    }
+
+    // 用两个儿子的信息重新计算父节点 i。
+    // 每次对子区间递归修改完成后，都要调用 up(i)。
+    void up(int i)
+    {
+        sum[i] = sum[i << 1] + sum[i << 1 | 1];
+
+        if (mmax[i << 1] == mmax[i << 1 | 1])
+        {
+            mmax[i] = mmax[i << 1];
+            cmx[i] = cmx[i << 1] + cmx[i << 1 | 1];
+            smx[i] = max(smx[i << 1], smx[i << 1 | 1]);
+        }
+        else if (mmax[i << 1] > mmax[i << 1 | 1])
+        {
+            mmax[i] = mmax[i << 1];
+            cmx[i] = cmx[i << 1];
+            smx[i] = max(smx[i << 1], mmax[i << 1 | 1]);
+        }
+        else
+        {
+            mmax[i] = mmax[i << 1 | 1];
+            cmx[i] = cmx[i << 1 | 1];
+            smx[i] = max(mmax[i << 1], smx[i << 1 | 1]);
+        }
+
+        if (mmin[i << 1] == mmin[i << 1 | 1])
+        {
+            mmin[i] = mmin[i << 1];
+            cmn[i] = cmn[i << 1] + cmn[i << 1 | 1];
+            smn[i] = min(smn[i << 1], smn[i << 1 | 1]);
+        }
+        else if (mmin[i << 1] < mmin[i << 1 | 1])
+        {
+            mmin[i] = mmin[i << 1];
+            cmn[i] = cmn[i << 1];
+            smn[i] = min(smn[i << 1], mmin[i << 1 | 1]);
+        }
+        else
+        {
+            mmin[i] = mmin[i << 1 | 1];
+            cmn[i] = cmn[i << 1 | 1];
+            smn[i] = min(mmin[i << 1], smn[i << 1 | 1]);
+        }
+    }
+
+    // 把节点 i 上尚未下传的懒标记传给左右儿子。
+    // ln、rn 分别是左儿子、右儿子所管区间的长度。
+    // 必须先传 change 再传 add，因为赋值会覆盖旧值，加法是在赋值后的新值上继续增加。
+    void down(int i, int ln, int rn)
+    {
+        if (has_ch[i])
+        {
+            lazy_change(i << 1, ch[i], ln);
+            lazy_change(i << 1 | 1, ch[i], rn);
+            has_ch[i] = 0;
+        }
+
+        if (ad[i])
+        {
+            lazy_add(i << 1, ad[i], ln);
+            lazy_add(i << 1 | 1, ad[i], rn);
+            ad[i] = 0;
+        }
+
+        // 父节点可能做过 chmin/chmax；把父节点的新上下界同步给儿子。
+        if (mmax[i << 1] > mmax[i])
+            lazy_setmin(i << 1, mmax[i]);
+        if (mmax[i << 1 | 1] > mmax[i])
+            lazy_setmin(i << 1 | 1, mmax[i]);
+        if (mmin[i << 1] < mmin[i])
+            lazy_setmax(i << 1, mmin[i]);
+        if (mmin[i << 1 | 1] < mmin[i])
+            lazy_setmax(i << 1 | 1, mmin[i]);
+    }
+
+    // 建立当前节点 i，它负责原数组区间 [l, r]。
+    // 到达叶子时，直接读取 v[l]；否则递归建立两个儿子后调用 up(i)。
+    void build(int l, int r, int i)
+    {
+        ad[i] = ch[i] = has_ch[i] = 0;
+        if (l == r)
+        {
+            sum[i] = mmin[i] = mmax[i] = v[l];
+            smn[i] = LLONG_MAX;
+            smx[i] = LLONG_MIN;
+            cmn[i] = cmx[i] = 1;
+            return;
+        }
+
+        int mid = (l + r) >> 1;
+        build(l, mid, i << 1);
+        build(mid + 1, r, i << 1 | 1);
+        up(i);
+    }
+
+    // 递归执行区间加。
+    // jobl、jobr：本次真正想修改的目标区间。
+    // l、r      ：当前节点 i 所管的区间。
+    // i         ：当前线段树节点编号，左儿子 i<<1，右儿子 i<<1|1。
+    void add(int jobl, int jobr, int val, int l, int r, int i)
+    {
+        if (jobl <= l and r <= jobr)
+        {
+            lazy_add(i, val, r - l + 1);
+            return;
+        }
+
+        int mid = (l + r) >> 1;
+        down(i, mid - l + 1, r - mid);
+        if (jobl <= mid)
+        {
+            add(jobl, jobr, val, l, mid, i << 1);
+        }
+        if (jobr > mid)
+        {
+            add(jobl, jobr, val, mid + 1, r, i << 1 | 1);
+        }
+        up(i);
+    }
+
+    // 递归执行区间赋值，参数含义与上面的 add 相同。
+    // 如果当前区间被目标区间完整覆盖，就打 change 懒标记，不再继续向下递归。
+    void change(int jobl, int jobr, int val, int l, int r, int i)
+    {
+        if (jobl <= l and r <= jobr)
+        {
+            lazy_change(i, val, r - l + 1);
+            return;
+        }
+
+        int mid = (l + r) >> 1;
+        down(i, mid - l + 1, r - mid);
+        if (jobl <= mid)
+        {
+            change(jobl, jobr, val, l, mid, i << 1);
+        }
+        if (jobr > mid)
+        {
+            change(jobl, jobr, val, mid + 1, r, i << 1 | 1);
+        }
+        up(i);
+    }
+
+    void setmin(int jobl, int jobr, int val, int l, int r, int i)
+    {
+        if (mmax[i] <= val)
+            return;
+        if (jobl <= l and r <= jobr and smx[i] < val)
+        {
+            lazy_setmin(i, val);
+            return;
+        }
+        int mid = (l + r) >> 1;
+        down(i, mid - l + 1, r - mid);
+        if (jobl <= mid)
+            setmin(jobl, jobr, val, l, mid, i << 1);
+        if (jobr > mid)
+            setmin(jobl, jobr, val, mid + 1, r, i << 1 | 1);
+        up(i);
+    }
+
+    void setmax(int jobl, int jobr, int val, int l, int r, int i)
+    {
+        if (mmin[i] >= val)
+            return;
+        if (jobl <= l and r <= jobr and smn[i] > val)
+        {
+            lazy_setmax(i, val);
+            return;
+        }
+        int mid = (l + r) >> 1;
+        down(i, mid - l + 1, r - mid);
+        if (jobl <= mid)
+            setmax(jobl, jobr, val, l, mid, i << 1);
+        if (jobr > mid)
+            setmax(jobl, jobr, val, mid + 1, r, i << 1 | 1);
+        up(i);
+    }
+
+    // 递归查询目标区间 [jobl, jobr] 的区间和。
+    // 查询前调用 down()，保证儿子的信息包含父节点此前积累的懒标记。
+    int getsum(int jobl, int jobr, int l, int r, int i)
+    {
+        if (jobl <= l and r <= jobr)
+        {
+            return sum[i];
+        }
+
+        int mid = (l + r) >> 1;
+        down(i, mid - l + 1, r - mid);
+        int ans = 0;
+        if (jobl <= mid)
+        {
+            ans += getsum(jobl, jobr, l, mid, i << 1);
+        }
+        if (jobr > mid)
+        {
+            ans += getsum(jobl, jobr, mid + 1, r, i << 1 | 1);
+        }
+        return ans;
+    }
+
+    // 递归查询目标区间 [jobl, jobr] 的最小值。
+    // ans 初始为正无穷，因为 min(正无穷, 合法答案) 仍是合法答案。
+    int getmin(int jobl, int jobr, int l, int r, int i)
+    {
+        if (jobl <= l and r <= jobr)
+        {
+            return mmin[i];
+        }
+
+        int mid = (l + r) >> 1;
+        down(i, mid - l + 1, r - mid);
+        int ans = LLONG_MAX;
+        if (jobl <= mid)
+        {
+            ans = min(ans, getmin(jobl, jobr, l, mid, i << 1));
+        }
+        if (jobr > mid)
+        {
+            ans = min(ans, getmin(jobl, jobr, mid + 1, r, i << 1 | 1));
+        }
+        return ans;
+    }
+
+    // 递归查询目标区间 [jobl, jobr] 的最大值。
+    // ans 初始为负无穷，因为 max(负无穷, 合法答案) 仍是合法答案。
+    int getmax(int jobl, int jobr, int l, int r, int i)
+    {
+        if (jobl <= l and r <= jobr)
+        {
+            return mmax[i];
+        }
+
+        int mid = (l + r) >> 1;
+        down(i, mid - l + 1, r - mid);
+        int ans = LLONG_MIN;
+        if (jobl <= mid)
+        {
+            ans = max(ans, getmax(jobl, jobr, l, mid, i << 1));
+        }
+        if (jobr > mid)
+        {
+            ans = max(ans, getmax(jobl, jobr, mid + 1, r, i << 1 | 1));
+        }
+        return ans;
+    }
+
+    // 在 [jobl, jobr] 中寻找最靠左且数组值 >= val 的位置，不存在返回 -1。
+    // 如果当前区间与目标区间无交集，或者当前区间最大值都小于 val，可以直接剪枝。
+    // 先递归左儿子，只有左边找不到时才找右边，因此得到的是“第一个位置”。
+    int find_first_ge(int jobl, int jobr, int val, int l, int r, int i)
+    {
+        if (r < jobl or jobr < l or mmax[i] < val)
+        {
+            return -1;
+        }
+        if (l == r)
+        {
+            return l;
+        }
+
+        int mid = (l + r) >> 1;
+        down(i, mid - l + 1, r - mid);
+        int ans = find_first_ge(jobl, jobr, val, l, mid, i << 1);
+        if (ans == -1)
+        {
+            ans = find_first_ge(jobl, jobr, val, mid + 1, r, i << 1 | 1);
+        }
+        return ans;
+    }
+
+    // 在 [jobl, jobr] 中寻找最靠右且数组值 >= val 的位置，不存在返回 -1。
+    // 与 find_first_ge 相同，只是优先递归右儿子，因此得到的是“最后一个位置”。
+    int find_last_ge(int jobl, int jobr, int val, int l, int r, int i)
+    {
+        if (r < jobl or jobr < l or mmax[i] < val)
+        {
+            return -1;
+        }
+        if (l == r)
+        {
+            return l;
+        }
+
+        int mid = (l + r) >> 1;
+        down(i, mid - l + 1, r - mid);
+        int ans = find_last_ge(jobl, jobr, val, mid + 1, r, i << 1 | 1);
+        if (ans == -1)
+        {
+            ans = find_last_ge(jobl, jobr, val, l, mid, i << 1);
+        }
+        return ans;
+    }
+
+public:
+    // 建立一个长度为 n、初始值全部为 0 的线段树。
+    SegTree(int n) : n(n), sum(n << 2), mmin(n << 2), mmax(n << 2),
+                     smn(n << 2), smx(n << 2), cmn(n << 2), cmx(n << 2),
+                     ad(n << 2), ch(n << 2), has_ch(n << 2), v(n + 1)
+    {
+        build(1, n, 1);
+    }
+
+    // 根据 1 下标数组 v 建树：v[0] 空置，有效元素为 v[1..n]。
+    SegTree(vector<int> &v) : n(v.size() - 1), sum(n << 2), mmin(n << 2),
+                              mmax(n << 2), smn(n << 2), smx(n << 2),
+                              cmn(n << 2), cmx(n << 2), ad(n << 2), ch(n << 2),
+                              has_ch(n << 2), v(v)
+    {
+        build(1, n, 1);
+    }
+
+    // 对闭区间 [l, r] 的每个数增加 val。
+    void add(int l, int r, int val)
+    {
+        add(l, r, val, 1, n, 1);
+    }
+
+    // 把闭区间 [l, r] 的每个数全部赋值为 val。
+    void change(int l, int r, int val)
+    {
+        if (l > r)
+            return;
+        change(l, r, val, 1, n, 1);
+    }
+
+    // 对闭区间 [l, r] 执行 a[i] = min(a[i], val)。
+    void setmin(int l, int r, int val)
+    {
+        if (l > r)
+            return;
+        setmin(l, r, val, 1, n, 1);
+    }
+
+    // 对闭区间 [l, r] 执行 a[i] = max(a[i], val)。
+    void setmax(int l, int r, int val)
+    {
+        if (l > r)
+            return;
+        setmax(l, r, val, 1, n, 1);
+    }
+
+    // 单点赋值：把下标 pos 的值改成 val。
+    void modify(int pos, int val)
+    {
+        change(pos, pos, val);
+    }
+
+    // 返回闭区间 [l, r] 的元素和。
+    int getsum(int l, int r)
+    {
+        return getsum(l, r, 1, n, 1);
+    }
+
+    // 返回闭区间 [l, r] 的最小值。
+    int getmin(int l, int r)
+    {
+        return getmin(l, r, 1, n, 1);
+    }
+
+    // 返回闭区间 [l, r] 的最大值。
+    int getmax(int l, int r)
+    {
+        return getmax(l, r, 1, n, 1);
+    }
+
+    // 返回下标 pos 当前的值。
+    int get(int pos)
+    {
+        return getsum(pos, pos);
+    }
+
+    // 返回 [l, r] 内第一个值 >= val 的下标，不存在返回 -1。
+    int find_first_ge(int l, int r, int val)
+    {
+        return find_first_ge(l, r, val, 1, n, 1);
+    }
+
+    // 返回 [l, r] 内最后一个值 >= val 的下标，不存在返回 -1。
+    int find_last_ge(int l, int r, int val)
+    {
+        return find_last_ge(l, r, val, 1, n, 1);
+    }
+
+    // 兼容旧模板：update 表示区间加，query 表示区间和。
+    void update(int l, int r, int val)
+    {
+        add(l, r, val);
+    }
+
+    int query(int l, int r)
+    {
+        return getsum(l, r);
+    }
+
+    // 返回当前维护的数组长度。
+    int size()
+    {
+        return n;
+    }
+};
+```
+
+### 左偏树与可并堆
+
+```cpp
+// ============================================================
+// 左偏树（可并堆 / Mergeable Heap，节点编号从 1 开始）
+// ============================================================
+// 支持：
+//   1. newnode(val)             新建一个只有一个节点的堆，返回节点编号
+//   2. merge(x, y)              合并两个堆，返回新根
+//   3. push(root, val)          插入元素，返回新根
+//   4. top(root)                查询堆顶值
+//   5. top_id(root)             查询堆顶节点编号
+//   6. pop(root)                删除堆顶，返回新根
+//   7. add_all(root, val)       整个堆的所有值增加 val
+//   8. size(root) / empty(root) 查询大小 / 判空
+//
+// 默认是小根堆：
+//   LeftistTree<int> heap;
+// 改成大根堆：
+//   LeftistTree<int, greater<int>> heap;
+//
+// 左偏树性质：
+//   dis[x] 表示 x 到最近空儿子的距离，规定 dis[0] = 0。
+//   始终保持 dis[ls[x]] >= dis[rs[x]]，因此右链长度为 O(log n)。
+//   merge 是所有操作的核心，单次合并 / 插入 / 删除堆顶均为 O(log n)。
+//
+// 重要约束：
+//   - merge(x, y) 要求 x、y 是两个互不相交的堆，否则会形成环。
+//   - pop(root) 后旧根已经删除，不要继续把旧根当成合法堆使用。
+//   - add_all 是“整堆统一加”，不会改变堆内相对大小，因此可以懒标记。
+//   - 若只需要最基础左偏树，可删除 lazy、apply、down、add_all。
+//   - 值相同时按节点编号小的优先，方便题目要求稳定判定。
+// ============================================================
+
+template <class T = int, class Compare = less<T>>
+class LeftistTree
+{
+private:
+    vector<T> val, lazy;
+    vector<int> ls, rs, dis, siz;
+    vector<char> deleted;
+    Compare cmp;
+
+    // a 是否应该排在 b 前面。
+    // 小根堆时值小的优先，大根堆时值大的优先；值相同则编号小的优先。
+    bool better(int a, int b) const
+    {
+        if (cmp(val[a], val[b]))
+        {
+            return true;
+        }
+        if (cmp(val[b], val[a]))
+        {
+            return false;
+        }
+        return a < b;
+    }
+
+    void apply(int x, const T &v)
+    {
+        if (!x)
+        {
+            return;
+        }
+        val[x] += v;
+        lazy[x] += v;
+    }
+
+    void down(int x)
+    {
+        if (!x or lazy[x] == T{})
+        {
+            return;
+        }
+        apply(ls[x], lazy[x]);
+        apply(rs[x], lazy[x]);
+        lazy[x] = T{};
+    }
+
+    void up(int x)
+    {
+        if (dis[ls[x]] < dis[rs[x]])
+        {
+            swap(ls[x], rs[x]);
+        }
+        dis[x] = dis[rs[x]] + 1;
+        siz[x] = siz[ls[x]] + siz[rs[x]] + 1;
+    }
+
+public:
+    LeftistTree(int reserve_n = 0)
+    {
+        val.reserve(reserve_n + 1);
+        lazy.reserve(reserve_n + 1);
+        ls.reserve(reserve_n + 1);
+        rs.reserve(reserve_n + 1);
+        dis.reserve(reserve_n + 1);
+        siz.reserve(reserve_n + 1);
+        deleted.reserve(reserve_n + 1);
+
+        // 0 号节点表示空节点。
+        val.push_back(T{});
+        lazy.push_back(T{});
+        ls.push_back(0);
+        rs.push_back(0);
+        dis.push_back(0);
+        siz.push_back(0);
+        deleted.push_back(1);
+    }
+
+    // 新建单点堆并返回节点编号。
+    int newnode(const T &v)
+    {
+        int id = val.size();
+        val.push_back(v);
+        lazy.push_back(T{});
+        ls.push_back(0);
+        rs.push_back(0);
+        dis.push_back(1);
+        siz.push_back(1);
+        deleted.push_back(0);
+        return id;
+    }
+
+    // 合并两个互不相交的堆，返回新根。
+    int merge(int x, int y)
+    {
+        if (!x or !y)
+        {
+            return x | y;
+        }
+        if (!better(x, y))
+        {
+            swap(x, y);
+        }
+
+        down(x);
+        rs[x] = merge(rs[x], y);
+        up(x);
+        return x;
+    }
+
+    // 向 root 所在堆插入一个值，返回新根。
+    int push(int root, const T &v)
+    {
+        return merge(root, newnode(v));
+    }
+
+    // 查询堆顶值；调用者须保证 root != 0。
+    const T &top(int root) const
+    {
+        return val[root];
+    }
+
+    int top_id(int root) const
+    {
+        return root;
+    }
+
+    // 删除堆顶并返回新根。
+    int pop(int root)
+    {
+        down(root);
+        int x = ls[root], y = rs[root];
+        ls[root] = rs[root] = 0;
+        dis[root] = siz[root] = 0;
+        deleted[root] = 1;
+        return merge(x, y);
+    }
+
+    // 整个堆统一增加 v，O(1)。
+    void add_all(int root, const T &v)
+    {
+        apply(root, v);
+    }
+
+    int size(int root) const
+    {
+        return siz[root];
+    }
+
+    bool empty(int root) const
+    {
+        return root == 0;
+    }
+
+    bool alive(int id) const
+    {
+        return id > 0 and id < (int)deleted.size() and !deleted[id];
+    }
+
+    int nodes() const
+    {
+        return (int)val.size() - 1;
+    }
+};
+
+// ============================================================
+// 常见用法 1：维护若干个“根编号”
+// ============================================================
+/*
+LeftistTree<int> heap(n);
+vector<int> root(k + 1);
+
+root[1] = heap.push(root[1], 10);
+root[1] = heap.push(root[1], 3);
+root[2] = heap.push(root[2], 7);
+
+root[1] = heap.merge(root[1], root[2]);
+root[2] = 0; // 两个堆已经合并，原来的 root[2] 必须作废。
+
+cout << heap.top(root[1]) << endl; // 3
+root[1] = heap.pop(root[1]);
+cout << heap.top(root[1]) << endl; // 7
+*/
+
+// ============================================================
+// 常见用法 2：每个初始节点属于一个可合并堆（P3377 类型）
+// ============================================================
+// 这种题通常有两种操作：
+//   merge_set(x, y)：合并 x、y 当前所属的堆；
+//   pop_set(x)     ：删除 x 当前所属堆的堆顶，并返回 {堆顶编号, 堆顶值}。
+//
+// 注意：
+//   删除堆顶后，并查集代表元需要改成新的堆根。
+//   已删除节点再次参与操作时，本封装直接忽略。
+//   该封装不提供 add_all；如果题目同时需要整堆加，根映射需按题意额外维护。
+// ============================================================
+
+template <class T = int, class Compare = less<T>>
+class MergeableHeap
+{
+private:
+    LeftistTree<T, Compare> heap;
+    vector<int> fa;
+    vector<char> removed;
+
+    int find(int x)
+    {
+        return fa[x] == x ? x : fa[x] = find(fa[x]);
+    }
+
+public:
+    // a 必须是 1 下标数组，有效范围 a[1..n]。
+    MergeableHeap(const vector<T> &a) : heap((int)a.size() - 1)
+    {
+        int n = (int)a.size() - 1;
+        fa.resize(n + 1);
+        removed.assign(n + 1, 0);
+        fa[0] = 0;
+        for (int i = 1; i <= n; i++)
+        {
+            int id = heap.newnode(a[i]);
+            fa[i] = id;
+        }
+    }
+
+    bool alive(int x) const
+    {
+        return x > 0 and x < (int)removed.size() and !removed[x];
+    }
+
+    // 合并 x、y 所属的堆；任一点已删除时忽略。
+    void merge_set(int x, int y)
+    {
+        if (!alive(x) or !alive(y))
+        {
+            return;
+        }
+        int rx = find(x), ry = find(y);
+        if (rx == ry)
+        {
+            return;
+        }
+        int root = heap.merge(rx, ry);
+        fa[rx] = fa[ry] = fa[root] = root;
+    }
+
+    // 返回 x 所属堆的堆顶编号；x 已删除时返回 -1。
+    int top_id(int x)
+    {
+        return alive(x) ? find(x) : -1;
+    }
+
+    // 返回 x 所属堆的堆顶值；调用者须保证 x 未删除。
+    const T &top(int x)
+    {
+        return heap.top(find(x));
+    }
+
+    // 删除 x 所属堆的堆顶，返回 {被删编号, 被删值}。
+    // x 已删除时返回 {-1, T{}}。
+    pair<int, T> pop_set(int x)
+    {
+        if (!alive(x))
+        {
+            return {-1, T{}};
+        }
+
+        int oldroot = find(x);
+        T answer = heap.top(oldroot);
+        int newroot = heap.pop(oldroot);
+        removed[oldroot] = 1;
+        fa[oldroot] = newroot;
+        if (newroot)
+        {
+            fa[newroot] = newroot;
+        }
+        return {oldroot, answer};
+    }
+};
+
+// ============================================================
+// P3377 类型 solve 示例
+// ============================================================
+/*
+void solve()
+{
+    int n, m;
+    cin >> n >> m;
+    vector<int> a(n + 1);
+    for (int i = 1; i <= n; i++)
+    {
+        cin >> a[i];
+    }
+
+    MergeableHeap<int> heap(a);
+    while (m--)
+    {
+        int op, x, y;
+        cin >> op >> x;
+        if (op == 1)
+        {
+            cin >> y;
+            heap.merge_set(x, y);
+        }
+        else
+        {
+            auto [id, value] = heap.pop_set(x);
+            if (id == -1)
+            {
+                cout << -1 << endl;
+            }
+            else
+            {
+                cout << value << endl;
+            }
+        }
+    }
+}
+*/
+```
+
+---
+
+## 树与图
+
+### 倍增 LCA
+
+```cpp
+// ============================================================
+// 倍增 LCA（无权树，点编号 1..n）
+// ============================================================
+// 支持：LCA、k 级祖先、两点距离、祖先判断、路径上的第 k 个点。
+// kth_on_path(x, y, k) 中 k 从 0 开始：k=0 返回 x。
+// get_kth_ancestor(x, k) 若跳到根上方，返回 0。
+//
+// 如果是带权树：
+//   把 adj 改为 vector<vector<pair<int,int>>>，DFS 时维护 dist[u]；
+//   距离改成 dist[x] + dist[y] - 2 * dist[lca]。
+//   up 表本身不需要改变。
+// ============================================================
+
+class LCA
+{
+private:
+    int n, LOG, root, timer;
+    vector<vector<int>> up;
+    vector<int> depth, tin, tout;
+
+    void dfs(int u, int parent, const vector<vector<int>> &adj)
+    {
+        tin[u] = ++timer;
+        up[u][0] = parent;
+        for (int j = 1; j < LOG; j++)
+        {
+            up[u][j] = up[up[u][j - 1]][j - 1];
+        }
+
+        for (int nxt : adj[u])
+        {
+            if (nxt == parent)
+            {
+                continue;
+            }
+            depth[nxt] = depth[u] + 1;
+            dfs(nxt, u, adj);
+        }
+        tout[u] = timer;
+    }
+
+public:
+    LCA(const vector<vector<int>> &adj, int root = 1)
+        : n(adj.size() - 1), LOG(__lg(max(1ll, n)) + 2), root(root), timer(0),
+          up(n + 1, vector<int>(LOG)), depth(n + 1), tin(n + 1), tout(n + 1)
+    {
+        dfs(root, 0, adj);
+    }
+
+    bool is_ancestor(int x, int y) const
+    {
+        return tin[x] <= tin[y] and tout[y] <= tout[x];
+    }
+
+    int get_kth_ancestor(int x, int k) const
+    {
+        for (int j = 0; j < LOG and x; j++)
+        {
+            if (k >> j & 1)
+            {
+                x = up[x][j];
+            }
+        }
+        return x;
+    }
+
+    int getlca(int x, int y) const
+    {
+        if (is_ancestor(x, y))
+        {
+            return x;
+        }
+        if (is_ancestor(y, x))
+        {
+            return y;
+        }
+
+        for (int j = LOG - 1; j >= 0; j--)
+        {
+            if (up[x][j] and !is_ancestor(up[x][j], y))
+            {
+                x = up[x][j];
+            }
+        }
+        return up[x][0];
+    }
+
+    int getfa(int x) const
+    {
+        return up[x][0];
+    }
+
+    int getdepth(int x) const
+    {
+        return depth[x];
+    }
+
+    int distance(int x, int y) const
+    {
+        int z = getlca(x, y);
+        return depth[x] + depth[y] - 2 * depth[z];
+    }
+
+    int kth_on_path(int x, int y, int k) const
+    {
+        int z = getlca(x, y);
+        int up_len = depth[x] - depth[z];
+        int total = up_len + depth[y] - depth[z];
+        if (k < 0 or k > total)
+        {
+            return 0;
+        }
+        if (k <= up_len)
+        {
+            return get_kth_ancestor(x, k);
+        }
+        return get_kth_ancestor(y, total - k);
+    }
+};
+```
+
+### Tarjan 离线 LCA
+
+```cpp
+// ============================================================
+// Tarjan 离线 LCA
+// ============================================================
+// adj 使用 1 下标；queries[i] = {x, y}。
+// 返回 ans[i]，顺序与输入询问完全一致。
+// 复杂度约 O((n + q) alpha(n))，适合全部询问预先给出的情况。
+// 如果还要在线回答新询问，应使用倍增 LCA，而不是 Tarjan 离线算法。
+// ============================================================
+
+vector<int> tarjan_lca(const vector<vector<int>> &adj,
+                       const vector<pair<int, int>> &queries,
+                       int root = 1)
+{
+    int n = adj.size() - 1;
+    vector<vector<pair<int, int>>> q(n + 1);
+    for (int i = 0; i < (int)queries.size(); i++)
+    {
+        auto [x, y] = queries[i];
+        q[x].emplace_back(y, i);
+        q[y].emplace_back(x, i);
+    }
+
+    vector<int> parent(n + 1), rank(n + 1), ancestor(n + 1);
+    vector<int> state(n + 1); // 0 未访问，1 正在 DFS，2 已处理完成
+    vector<int> ans(queries.size());
+    iota(all(parent), 0ll);
+
+    auto find = [&](auto &&self, int x) -> int
+    {
+        return parent[x] == x ? x : parent[x] = self(self, parent[x]);
+    };
+
+    auto merge = [&](int x, int y) -> void
+    {
+        x = find(find, x);
+        y = find(find, y);
+        if (x == y)
+        {
+            return;
+        }
+        if (rank[x] < rank[y])
+        {
+            swap(x, y);
+        }
+        parent[y] = x;
+        if (rank[x] == rank[y])
+        {
+            rank[x]++;
+        }
+    };
+
+    auto dfs = [&](auto &&self, int u, int fa) -> void
+    {
+        state[u] = 1;
+        ancestor[u] = u;
+
+        for (int nxt : adj[u])
+        {
+            if (nxt == fa)
+            {
+                continue;
+            }
+            self(self, nxt, u);
+            merge(u, nxt);
+            ancestor[find(find, u)] = u;
+        }
+
+        state[u] = 2;
+        for (auto [other, id] : q[u])
+        {
+            if (state[other] == 2)
+            {
+                ans[id] = ancestor[find(find, other)];
+            }
+        }
+    };
+
+    dfs(dfs, root, 0);
+    return ans;
+}
+```
+
+### 树的重心
+
+```cpp
+// ============================================================
+// 树的重心
+// ============================================================
+// 删除重心后，剩余每个连通块的大小都不超过 n / 2。
+// 一棵树最多有两个重心；如果有两个，它们一定相邻。
+// adj 使用 1 下标。返回全部重心，顺序由 DFS 顺序决定。
+// ============================================================
+
+vector<int> get_centroids(const vector<vector<int>> &adj, int root = 1)
+{
+    int n = adj.size() - 1;
+    vector<int> size(n + 1);
+    vector<int> ans;
+    int best = LLONG_MAX;
+
+    auto dfs = [&](auto &&self, int u, int parent) -> void
+    {
+        size[u] = 1;
+        int max_part = 0;
+        for (int nxt : adj[u])
+        {
+            if (nxt == parent)
+            {
+                continue;
+            }
+            self(self, nxt, u);
+            size[u] += size[nxt];
+            max_part = max(max_part, size[nxt]);
+        }
+
+        max_part = max(max_part, n - size[u]);
+        if (max_part < best)
+        {
+            best = max_part;
+            ans.clear();
+            ans.emplace_back(u);
+        }
+        else if (max_part == best)
+        {
+            ans.emplace_back(u);
+        }
+    };
+
+    dfs(dfs, root, 0);
+    return ans;
+}
+```
+
+### 两次搜索求树的直径
+
+```cpp
+// ============================================================
+// 两次搜索求树的直径（边权要求非负）
+// ============================================================
+// 返回长度、两个端点以及从 left 到 right 的完整路径。
+// 无权树把每条边长度视为 1；带权树使用 pair<终点, 边权>。
+// 若存在负边，最远点两次搜索的结论不能直接套用，应使用树形 DP。
+// ============================================================
+
+struct DiameterResult
+{
+    int length;
+    int left, right;
+    vector<int> path;
+};
+
+DiameterResult get_diameter(const vector<vector<int>> &adj, int start = 1)
+{
+    int n = adj.size() - 1;
+
+    auto get_farthest = [&](int source)
+    {
+        vector<int> parent(n + 1), dist(n + 1, -1);
+        queue<int> q;
+        q.push(source);
+        dist[source] = 0;
+
+        while (!q.empty())
+        {
+            int u = q.front();
+            q.pop();
+            for (int nxt : adj[u])
+            {
+                if (nxt == parent[u])
+                {
+                    continue;
+                }
+                parent[nxt] = u;
+                dist[nxt] = dist[u] + 1;
+                q.push(nxt);
+            }
+        }
+
+        int farthest = source;
+        for (int i = 1; i <= n; i++)
+        {
+            if (dist[i] > dist[farthest])
+            {
+                farthest = i;
+            }
+        }
+        return tuple<int, vector<int>, vector<int>>(farthest, parent, dist);
+    };
+
+    auto [left, parent1, dist1] = get_farthest(start);
+    auto [right, parent, dist] = get_farthest(left);
+
+    vector<int> path;
+    for (int u = right; u; u = parent[u])
+    {
+        path.emplace_back(u);
+        if (u == left)
+        {
+            break;
+        }
+    }
+    reverse(all(path));
+    return {dist[right], left, right, path};
+}
+
+DiameterResult get_diameter(const vector<vector<pair<int, int>>> &adj, int start = 1)
+{
+    int n = adj.size() - 1;
+
+    auto get_farthest = [&](int source)
+    {
+        vector<int> parent(n + 1), dist(n + 1, LLONG_MIN);
+        stack<int> st;
+        st.push(source);
+        dist[source] = 0;
+
+        while (!st.empty())
+        {
+            int u = st.top();
+            st.pop();
+            for (auto [nxt, w] : adj[u])
+            {
+                if (nxt == parent[u])
+                {
+                    continue;
+                }
+                parent[nxt] = u;
+                dist[nxt] = dist[u] + w;
+                st.push(nxt);
+            }
+        }
+
+        int farthest = source;
+        for (int i = 1; i <= n; i++)
+        {
+            if (dist[i] > dist[farthest])
+            {
+                farthest = i;
+            }
+        }
+        return tuple<int, vector<int>, vector<int>>(farthest, parent, dist);
+    };
+
+    auto [left, parent1, dist1] = get_farthest(start);
+    auto [right, parent, dist] = get_farthest(left);
+
+    vector<int> path;
+    for (int u = right; u; u = parent[u])
+    {
+        path.emplace_back(u);
+        if (u == left)
+        {
+            break;
+        }
+    }
+    reverse(all(path));
+    return {dist[right], left, right, path};
+}
+```
+
+### 树形 DP 求直径
+
+```cpp
+// ============================================================
+// 树形 DP 求直径
+// ============================================================
+// down[u]：从 u 向子树内走的最长链。
+// 对每个 u，取最大的两条子链拼起来更新直径。
+// 这里返回直径长度；如果还需要端点和路径，使用 dfs diameter.txt。
+// 无权树返回边数；带权版本允许非负边权。
+// ============================================================
+
+int tree_diameter_dp(const vector<vector<int>> &adj, int root = 1)
+{
+    int n = adj.size() - 1;
+    vector<int> down(n + 1);
+    int ans = 0;
+
+    auto dfs = [&](auto &&self, int u, int parent) -> void
+    {
+        int first = 0, second = 0;
+        for (int nxt : adj[u])
+        {
+            if (nxt == parent)
+            {
+                continue;
+            }
+            self(self, nxt, u);
+            int cur = down[nxt] + 1;
+            if (cur > first)
+            {
+                second = first;
+                first = cur;
+            }
+            else if (cur > second)
+            {
+                second = cur;
+            }
+        }
+        down[u] = first;
+        ans = max(ans, first + second);
+    };
+
+    dfs(dfs, root, 0);
+    return ans;
+}
+
+int tree_diameter_dp(const vector<vector<pair<int, int>>> &adj, int root = 1)
+{
+    int n = adj.size() - 1;
+    vector<int> down(n + 1);
+    int ans = 0;
+
+    auto dfs = [&](auto &&self, int u, int parent) -> void
+    {
+        int first = 0, second = 0;
+        for (auto [nxt, w] : adj[u])
+        {
+            if (nxt == parent)
+            {
+                continue;
+            }
+            self(self, nxt, u);
+            int cur = down[nxt] + w;
+            if (cur > first)
+            {
+                second = first;
+                first = cur;
+            }
+            else if (cur > second)
+            {
+                second = cur;
+            }
+        }
+        down[u] = first;
+        ans = max(ans, first + second);
+    };
+
+    dfs(dfs, root, 0);
+    return ans;
+}
+```
+
+### Dijkstra 最短路
+
+```cpp
+using ll = long long;
+const ll INF = (1LL << 62);
+
+vector<ll> dijkstra(int n, int s,
+                    const vector<vector<pair<int, int>>>& g) {
+    vector<ll> dist(n + 1, INF);
+    priority_queue<pair<ll, int>,
+                   vector<pair<ll, int>>,
+                   greater<pair<ll, int>>> pq;
+    dist[s] = 0;
+    pq.push({0, s});
+    while (!pq.empty()) {
+        auto [du, u] = pq.top();
+        pq.pop();
+        if (du != dist[u]) continue;
+        for (auto [v, w] : g[u]) {
+            if (dist[v] > du + w) {
+                dist[v] = du + w;
+                pq.push({dist[v], v});
+            }
+        }
+    }
+    return dist;
+}
+```
+
+### Kruskal 最小生成树
+
+```cpp
+struct Edge {
+    int u, v;
+    long long w;
+};
+
+// 依赖 DSU；不连通时返回 nullopt。
+optional<long long> kruskal(int n, vector<Edge> edges) {
+    sort(edges.begin(), edges.end(),
+         [](const Edge& a, const Edge& b) { return a.w < b.w; });
+    DSU dsu(n);
+    long long ans = 0;
+    int used = 0;
+    for (auto [u, v, w] : edges) {
+        if (dsu.merge(u, v)) {
+            ans += w;
+            if (++used == n - 1) break;
+        }
+    }
+    if (used != n - 1) return nullopt;
+    return ans;
+}
+```
+
+### 拓扑排序
+
+```cpp
+// 返回任意一个拓扑序；存在环时返回空数组。
+vector<int> topo_sort(int n, const vector<vector<int>>& g) {
+    vector<int> indeg(n + 1), order;
+    for (int u = 1; u <= n; ++u)
+        for (int v : g[u]) ++indeg[v];
+
+    queue<int> q;
+    for (int i = 1; i <= n; ++i)
+        if (indeg[i] == 0) q.push(i);
+
+    while (!q.empty()) {
+        int u = q.front();
+        q.pop();
+        order.push_back(u);
+        for (int v : g[u])
+            if (--indeg[v] == 0) q.push(v);
+    }
+    if ((int)order.size() != n) return {};
+    return order;
+}
+```
+
+---
+
+## 数论
+
+### 组合数预处理
+
+```cpp
+// COMB begin ----
+const int N = 1e6;
+vector<int> f(N), invf(N);
+bool inited = 0;
+int ksm(int base, int exp)
+{
+    int ans = 1;
+    while (exp)
+    {
+        if (exp & 1)
+        {
+            ans = ans * base % MOD;
+        }
+        base = base * base % MOD;
+        exp >>= 1;
+    }
+    return ans;
+}
+
+int inv(int x)
+{
+    return ksm(x, MOD - 2) % MOD;
+}
+
+void pre()
+{
+    if (inited)
+    {
+        return;
+    }
+    inited = 1;
+    f[0] = 1;
+    for (int i = 1; i < N; i++)
+    {
+        f[i] = f[i - 1] * i % MOD;
+    }
+
+    invf[N - 1] = inv(f[N - 1]);
+    for (int i = N - 2; i >= 0; i--)
+    {
+        invf[i] = invf[i + 1] * (i + 1) % MOD;
+    }
+}
+
+int comb(int n, int k)
+{
+    if (!inited)
+    {
+        pre();
+    }
+    if (k < 0 or k > n)
+    {
+        return 0;
+    }
+
+    return f[n] * invf[k] % MOD * invf[n - k] % MOD;
+}
+// comb end ----
+```
+
+### 快速幂
+
+```cpp
+int ksm(int base, int exp)
+{
+    int ans = 1;
+    while (exp)
+    {
+        if (exp & 1)
+        {
+            ans = ans * base % MOD;
+        }
+        base = base * base % MOD;
+        exp >>= 1;
+    }
+    return ans;
+}
+```
+
+### 质数筛与最小质因子
+
+```cpp
+const int N = 1e7;
+
+vector<int> primes, isprime(N + 1, 1), minfactor(N + 1);
+void init()
+{
+    isprime[0] = isprime[1] = 0;
+    for (int i = 2; i <= N; i++)
+    {
+        if (isprime[i])
+        {
+            minfactor[i] = i;
+            for (int j = i * i; j <= N; j += i)
+            {
+                isprime[j] = 0;
+                if (!minfactor[j])
+                {
+                    minfactor[j] = i;
+                }
+            }
+        }
+    }
+
+    for (int i = 2; i <= N; i++)
+    {
+        if (isprime[i])
+        {
+            primes.emplace_back(i);
+        }
+    }
+}
+
+// 返回 x 的最小质因数。调用前需要先执行 init()。
+// x 必须满足 2 <= x <= N。
+int getminfactor(int x)
+{
+    return minfactor[x];
+}
+```
+
+---
+
+## 字符串
+
+### 双模字符串哈希
+
+```cpp
+// 双哈希。get_s(l, r) 使用 0 下标闭区间，equal/lcp 使用的也是 0 下标。
+// 哈希只能把冲突概率降得很低，不能从数学上保证绝对无冲突。
+// 如果题目区间是 1 下标，推荐调用 get_s(l - 1, r - 1)。
+// 也可以先写 s = ' ' + s，此时原字符位于 1..原长度，直接传题目的 l、r 也能查询；
+// 但 size() 会比原长度多 1，使用 lcp() 时也要记得这个占位字符属于字符串的一部分。
+struct DoubleHash
+{
+    const int P = 13331;
+    const int MOD1 = 998244353;
+    const int MOD2 = 1000000007;
+
+    int n = 0;
+    vector<int> p1, p2, hs1, hs2;
+
+    DoubleHash()
+    {
+    }
+
+    DoubleHash(const string &s)
+    {
+        init(s);
+    }
+
+    void init(const string &s)
+    {
+        n = s.size();
+        p1.assign(n + 1, 0);
+        p2.assign(n + 1, 0);
+        hs1.assign(n + 1, 0);
+        hs2.assign(n + 1, 0);
+
+        p1[0] = p2[0] = 1;
+        for (int i = 1; i <= n; i++)
+        {
+            p1[i] = p1[i - 1] * P % MOD1;
+            p2[i] = p2[i - 1] * P % MOD2;
+            int ch = (unsigned char)s[i - 1] + 1;
+            hs1[i] = (hs1[i - 1] * P + ch) % MOD1;
+            hs2[i] = (hs2[i - 1] * P + ch) % MOD2;
+        }
+    }
+
+    pair<int, int> get_s(int l, int r) const
+    {
+        if (l > r)
+        {
+            return {0, 0};
+        }
+        int x1 = (hs1[r + 1] - hs1[l] * p1[r - l + 1] % MOD1 + MOD1) % MOD1;
+        int x2 = (hs2[r + 1] - hs2[l] * p2[r - l + 1] % MOD2 + MOD2) % MOD2;
+        return {x1, x2};
+    }
+
+    bool equal(int l1, int r1, int l2, int r2) const
+    {
+        if (r1 - l1 != r2 - l2)
+        {
+            return false;
+        }
+        return get_s(l1, r1) == get_s(l2, r2);
+    }
+
+    // 返回两个后缀从 l1、l2 开始的最长公共前缀长度，最多比较 limit 个字符。
+    int lcp(int l1, int l2, int limit) const
+    {
+        limit = min({limit, n - l1, n - l2});
+        int l = 0, r = limit;
+        while (l < r)
+        {
+            int mid = (l + r + 1) >> 1;
+            if (get_s(l1, l1 + mid - 1) == get_s(l2, l2 + mid - 1))
+            {
+                l = mid;
+            }
+            else
+            {
+                r = mid - 1;
+            }
+        }
+        return l;
+    }
+
+    int size() const
+    {
+        return n;
+    }
+};
+```
+
+### 字符 Trie
+
+```cpp
+// ============================================================
+// 小写字母 Trie
+// ============================================================
+// end[p] ：恰好在节点 p 结束的字符串数量。
+// pass[p]：经过节点 p 的字符串数量，因此可用于查询前缀数量。
+// erase 只减少计数，不回收节点；竞赛中通常更稳，也便于重复插入/删除。
+// 如果字符集不是 a-z，修改 SIGMA 和 getid()，并同步修改 array 的大小。
+// ============================================================
+
+class Trie
+{
+private:
+    static constexpr int SIGMA = 26;
+    vector<array<int, SIGMA>> tr;
+    vector<int> pass, ending;
+
+    int getid(char c)
+    {
+        return c - 'a';
+    }
+
+public:
+    Trie()
+    {
+        clear();
+    }
+
+    void clear()
+    {
+        tr.assign(1, array<int, SIGMA>{});
+        pass.assign(1, 0);
+        ending.assign(1, 0);
+    }
+
+    void insert(const string &s)
+    {
+        int p = 0;
+        pass[p]++;
+        for (char c : s)
+        {
+            int u = getid(c);
+            if (!tr[p][u])
+            {
+                tr[p][u] = tr.size();
+                tr.push_back(array<int, SIGMA>{});
+                pass.push_back(0);
+                ending.push_back(0);
+            }
+            p = tr[p][u];
+            pass[p]++;
+        }
+        ending[p]++;
+    }
+
+    int query(const string &s)
+    {
+        int p = 0;
+        for (char c : s)
+        {
+            int u = getid(c);
+            if (!tr[p][u])
+            {
+                return 0;
+            }
+            p = tr[p][u];
+        }
+        return ending[p];
+    }
+
+    int count_prefix(const string &prefix)
+    {
+        int p = 0;
+        for (char c : prefix)
+        {
+            int u = getid(c);
+            if (!tr[p][u])
+            {
+                return 0;
+            }
+            p = tr[p][u];
+        }
+        return pass[p];
+    }
+
+    bool starts_with(const string &prefix)
+    {
+        return count_prefix(prefix) > 0;
+    }
+
+    bool erase(const string &s)
+    {
+        if (!query(s))
+        {
+            return false;
+        }
+
+        int p = 0;
+        pass[p]--;
+        for (char c : s)
+        {
+            p = tr[p][getid(c)];
+            pass[p]--;
+        }
+        ending[p]--;
+        return true;
+    }
+
+    int count_all()
+    {
+        return pass[0];
+    }
+
+    int nodes()
+    {
+        return tr.size();
+    }
+};
+```
+
+### Z 函数
+
+```cpp
+// z[i]：s 与 s[i..] 的最长公共前缀长度。
+vector<int> z_function(const string& s) {
+    int n = (int)s.size();
+    vector<int> z(n);
+    z[0] = n;
+    for (int i = 1, l = 0, r = 0; i < n; ++i) {
+        if (i <= r) z[i] = min(r - i + 1, z[i - l]);
+        while (i + z[i] < n && s[z[i]] == s[i + z[i]]) ++z[i];
+        if (i + z[i] - 1 > r) {
+            l = i;
+            r = i + z[i] - 1;
+        }
+    }
+    return z;
+}
+
+// pattern 在 text 中的全部出现位置（0 下标）。
+vector<int> find_occurrences(string pattern, const string& text) {
+    string s = pattern + "#" + text;
+    auto z = z_function(s);
+    vector<int> pos;
+    for (int i = (int)pattern.size() + 1; i < (int)s.size(); ++i)
+        if (z[i] >= (int)pattern.size())
+            pos.push_back(i - (int)pattern.size() - 1);
+    return pos;
+}
+```
+
+---
+
+## 动态规划
+
+### 普通矩阵快速幂
+
+```cpp
+// ============================================================
+// 普通矩阵 + 矩阵快速幂模板（模 MOD）
+// ============================================================
+// 当前支持：
+//   1. 任意行列矩阵
+//   2. 矩阵加法、减法、乘法
+//   3. 单位矩阵 Matrix::identity(n)
+//   4. 方阵快速幂 qpow(base, exp)
+//   5. 矩阵乘列向量 multiply_vector(v)
+//
+// 默认语义：
+//   普通模意义矩阵乘法：
+//     C[i][j] = sum(A[i][k] * B[k][j]) % MOD
+//   下标从 0 开始。
+//
+// 换题时常见改动：
+//   1. 固定小矩阵且特别卡常：把 vector 改成静态数组 int a[N][N]。
+//   2. 不取模：删除 norm() 和所有 % MOD，但要检查是否会溢出。
+//   3. MOD 不是全局常量：可以给 Matrix 增加成员 mod，并保证参与运算的矩阵 mod 相同。
+//   4. max-plus / min-plus：不能只把 MOD 删除。
+//      max-plus 要把“加法”改为 max，把“乘法”改为 +，
+//      单位矩阵对角线为 0，其余位置为负无穷。
+//      当前目录已有“矩阵快速幂 max-plus.cpp”作为对应示例。
+//   5. 行向量转移通常写 old_dp * trans；列向量转移通常写 trans * old_dp。
+//      建转移矩阵前一定先确定自己采用哪种方向。
+//
+// 注意：
+//   - qpow 只接受方阵。
+//   - 默认依赖外部的 constexpr int MOD。
+//   - 在 #define int long long 的代码风格下，两个模数内元素相乘通常可放入 long long；
+//     如果 MOD 更大，乘法应改用 __int128。
+// ============================================================
+
+class Matrix
+{
+private:
+    int row, col;
+    vector<vector<int>> a;
+
+    int norm(int x) const
+    {
+        x %= MOD;
+        if (x < 0)
+        {
+            x += MOD;
+        }
+        return x;
+    }
+
+public:
+    Matrix(int row = 0, int col = 0, int val = 0)
+        : row(row), col(col), a(row, vector<int>(col, norm(val)))
+    {
+    }
+
+    Matrix(const vector<vector<int>> &v)
+        : row(v.size()), col(v.empty() ? 0 : v[0].size()), a(v)
+    {
+        for (int i = 0; i < row; i++)
+        {
+            for (int j = 0; j < col; j++)
+            {
+                a[i][j] = norm(a[i][j]);
+            }
+        }
+    }
+
+    static Matrix identity(int n)
+    {
+        Matrix ans(n, n);
+        for (int i = 0; i < n; i++)
+        {
+            ans[i][i] = 1;
+        }
+        return ans;
+    }
+
+    vector<int> &operator[](int i)
+    {
+        return a[i];
+    }
+
+    const vector<int> &operator[](int i) const
+    {
+        return a[i];
+    }
+
+    int rows() const
+    {
+        return row;
+    }
+
+    int cols() const
+    {
+        return col;
+    }
+
+    Matrix operator+(const Matrix &other) const
+    {
+        Matrix ans(row, col);
+        for (int i = 0; i < row; i++)
+        {
+            for (int j = 0; j < col; j++)
+            {
+                ans[i][j] = norm(a[i][j] + other[i][j]);
+            }
+        }
+        return ans;
+    }
+
+    Matrix operator-(const Matrix &other) const
+    {
+        Matrix ans(row, col);
+        for (int i = 0; i < row; i++)
+        {
+            for (int j = 0; j < col; j++)
+            {
+                ans[i][j] = norm(a[i][j] - other[i][j]);
+            }
+        }
+        return ans;
+    }
+
+    Matrix operator*(const Matrix &other) const
+    {
+        Matrix ans(row, other.col);
+        for (int i = 0; i < row; i++)
+        {
+            for (int k = 0; k < col; k++)
+            {
+                if (a[i][k] == 0)
+                {
+                    continue;
+                }
+                for (int j = 0; j < other.col; j++)
+                {
+                    ans[i][j] = (ans[i][j] + a[i][k] * other[k][j]) % MOD;
+                }
+            }
+        }
+        return ans;
+    }
+
+    Matrix &operator+=(const Matrix &other)
+    {
+        return *this = *this + other;
+    }
+
+    Matrix &operator-=(const Matrix &other)
+    {
+        return *this = *this - other;
+    }
+
+    Matrix &operator*=(const Matrix &other)
+    {
+        return *this = *this * other;
+    }
+
+    vector<int> multiply_vector(const vector<int> &v) const
+    {
+        vector<int> ans(row);
+        for (int i = 0; i < row; i++)
+        {
+            for (int j = 0; j < col; j++)
+            {
+                ans[i] = (ans[i] + a[i][j] * norm(v[j])) % MOD;
+            }
+        }
+        return ans;
+    }
+};
+
+Matrix qpow(Matrix base, int exp)
+{
+    Matrix ans = Matrix::identity(base.rows());
+    while (exp)
+    {
+        if (exp & 1)
+        {
+            ans *= base;
+        }
+        base *= base;
+        exp >>= 1;
+    }
+    return ans;
+}
+```
+
+### 0/1 与完全背包
+
+```cpp
+// 0/1 背包：每件物品最多一次，容量不超过 W。
+vector<long long> zero_one_knapsack(
+    int W, const vector<pair<int, int>>& items) {
+    vector<long long> dp(W + 1);
+    for (auto [weight, value] : items)
+        for (int j = W; j >= weight; --j)
+            dp[j] = max(dp[j], dp[j - weight] + value);
+    return dp;
+}
+
+// 完全背包：每件物品可用任意次。
+vector<long long> complete_knapsack(
+    int W, const vector<pair<int, int>>& items) {
+    vector<long long> dp(W + 1);
+    for (auto [weight, value] : items)
+        for (int j = weight; j <= W; ++j)
+            dp[j] = max(dp[j], dp[j - weight] + value);
+    return dp;
+}
+```
+
+---
+
+## 维护记录
+
+- 这篇文章只保留可复用模板；具体题目的完整实现、分块练习和特殊线段树题仍放在原代码目录中。
+- 模板改过接口或修过边界后，应同步更新这里，避免赛场上翻到两份互相矛盾的版本。
+
+> 最后更新：2026-08-13。把原来的蓝桥杯速查扩充为个人通用模板合集，并统一了目录与说明。
+
+---
+
+## 本博客的搭建教程
+
+- **URL**: https://alisa22580.com/posts/my-blog-build-tutorial/
+- **Published**: 2026-03-12
+- **Category**: Tutorial
+- **Tags**: Tutorial, Demo
+- **Description**: 和我一起，开启博客生涯。
+
+# 写在之前
+在此之前，我尝试过在 `GitHub pages` 上部署一个基于 `Quartz` 的 [静态知识库](https://2258009564.github.io/)，但由于 `Quartz` 的功能过于简单，无法满足我对博客的需求（臆想）。
+
+再后来，我也尝试过使用 `Hexo` 和 `Hugo` 等静态博客生成器，但由于它们的配置较为复杂，且需要一定的前端知识，加上我的懒癌（大概这才是最主要的），导致最后没有好好操作下去。
+
+最近好像还真是发生了很多事情啊...现在大概需要督促自己做点什么，不然整个人要烂了。
+
+在对比好几个朋友的选择之后，我最终选择了 `Astro-theme-Mizuki` 作为我的博客框架，这是一个基于 `Astro` 的博客主题，具有简洁的设计和丰富的功能，而且上手非常容易，适合个人博客的搭建。
+
+那么，接下来我将分享一下我捣鼓博客的过程，希望能给有需要的朋友提供帮助。
+
+本教程力求在 [官方文档](https://docs.mizuki.mysqil.com/) 的基础上，结合我自己的经验，提供一个更为通俗、详细的指南，帮助大家顺利搭建自己的博客，毕竟先把东西跑起来，才有动力去研究官方文档以完善它。
+
+当然，本教程不可能完全替代（完全不可能替代）[官方文档](https://docs.mizuki.mysqil.com/)。因此，建议搭配食用。
+
+# 1. 环境讲解与配置
+- 什么是 `Astro`？
+
+它是一个现代化的静态网站生成器，支持多种前端框架（如 React、Vue、Svelte 等），并且具有出色的性能和灵活性。要搭建基于 `Astro` 的博客，您需要先安装 `Node.js` 和 `npm` 。
+
+- 什么是 `Node.js`？
+
+它是一个基于 `Chrome V8` 引擎的 `JavaScript` 运行环境，允许您在服务器端运行 `JavaScript` 代码。
+
+- 什么是 `npm` ? 
+
+`npm` 是 `node package manager` 的缩写，是 `Node.js` 的包管理器，用于安装和管理项目所需的依赖包。
+
+也就是说，我们通过 `Node.js` 来支持 `Astro` 生成器的运行，而 `npm` 则帮助我们安装和管理博客所需的各种依赖包。
+
+- 什么是 `pnpm` ?
+
+`pnpm` 是 `performance npm` 的缩写，是一个快速、节省磁盘空间的包管理器。
+
+与 `npm` 不同，`pnpm` 使用符号链接来共享依赖包，从而减少了磁盘空间的占用，并且在安装速度上也有显著提升。
+
+此外，本博客的搭建还需要使用到 `Git` 和 `GitHub`。
+
+- 什么是 `Git` ?
+
+`Git` 是一个分布式版本控制系统，用于跟踪文件的更改历史，协助多人协作开发项目。
+
+- 什么是 `GitHub` ?
+
+`GitHub` 是一个基于 `Git` 的代码托管平台，提供了版本控制和协作功能，允许开发者在云端存储和管理他们的代码库。
+
+也就是说，我们需要使用 `Git` 来管理博客的源代码，并将其托管在 `GitHub` 上，以便于后续的部署和管理。
+
+知道了这些基础知识后，我们可以发现 搭建博客的第一步就是在电脑中安装这些基础工具：
+
+## 1. 安装 `Node.js` 和 `npm`
+
+  - 访问 [Node.js 官网](https://nodejs.org/) 下载并安装最新的 LTS 版本，这将同时安装 `Node.js` 和 `npm`。
+
+  - 安装完成后，可以通过命令行输入以下命令来验证安装是否成功：
+
+```bash
+    node -v
+    npm -v
+    ```
+
+如果显示版本号，说明安装成功。
+
+## 2. 安装 `pnpm`
+
+- 您可以通过 `npm` 来安装 `pnpm`，打开命令行输入以下命令：
+
+    ```bash
+    npm install -g pnpm
+    ```
+
+- 安装完成后，可以通过以下命令来验证 `pnpm` 是否安装成功：
+
+```bash
+    pnpm -v
+    ```
+
+  如果显示版本号，说明安装成功。
+
+## 3. 安装 `Git`
+
+- 访问 [Git 官网](https://git-scm.com/) 下载并安装 `Git`。
+  
+- 安装完成后，可以通过命令行输入以下命令来验证安装是否成功：
+    ```bash
+    git --version
+    ```
+  如果显示版本号，说明安装成功。
+
+# 2. 项目搭建
+## 1. 克隆博客模板
+- 导航到您想要存放博客项目的目录，例如：我直接把整个项目放在桌面上，那么于我而言，就是进入桌面目录：
+```bash
+    cd D:/Desktop
+    ```
+
+- 使用 Git 克隆 `Astro-theme-Mizuki` 的模板仓库：
+```bash
+    git clone https://github.com/matsuzaka-yuki/mizuki.git
+    ```
+- 进入克隆的项目目录，下文的所有指令都需要在该目录中进行：
+```bash
+    cd Mizuki
+    ```
+
+## 2. 安装依赖
+- 使用 `pnpm` 安装项目所需的依赖包：
+    ```bash
+    pnpm install
+    ```
+
+## 3. 配置博客
+
+根据自己的需求配置您的博客，详细的配置教程将在下文介绍。
+
+## 4. 本地预览
+- 使用以下命令启动本地开发服务器：
+```bash
+    pnpm dev
+    ```
+- 打开浏览器，访问 `http://localhost:4321`，您应该能够看到博客的默认界面。
+  ![alt text](image.webp)
+
+## 5. 打包网站
+- 运行以下命令将网站打包成静态文件，生成到 dist 目录中：
+  ```bash
+  pnpm build
+  ```
+
+生成的 dist 目录后续将可以部署到您自己的服务器上。
+
+# 3. 项目部署
+
+在正式开始之前，我们有必要了解一下 一个本地项目是如何在网络上被看见的：
+
+当我们在本地开发一个网站时，它只能在我们的计算机上访问，其他人无法看到它。
+
+为了突破这个限制，我们需要将它部署到服务器上，这样它就可以通过互联网被访问了。
+
+以下是一个简单的部署流程图：
+
+```mermaid
+graph TD
+  A[本地开发] --> B[打包成静态文件]
+  B --> C[上传到服务器]
+  C --> D[服务器配置]
+  D --> E[网站上线]
+```
+- 本地开发：我们在本地计算机上开发和测试我们的网站。
+- 打包成静态文件：我们使用构建工具将我们的项目打包成静态文件，这些文件可以被服务器直接提供给用户。
+- 上传到服务器：我们将打包好的静态文件上传到服务器上，这可以通过 FTP、SSH 或者使用云服务提供的工具来完成。
+- 服务器配置：我们需要在服务器上进行一些配置，例如设置域名、SSL 证书等，以确保我们的网站能够正常访问。
+- 网站上线：完成以上步骤后，我们的网站就可以通过互联网访问了。
+
+显然，上传、配置服务器对我来说太过困难。但我们有两位赛博义父： `Github` 和 `Cloudflare` 。
+
+在本教程中，我们将使用 `GitHub` 来托管我们的博客源代码，并通过 `Cloudflare Pages` 来部署我们的博客，这是一个免费的静态网站托管平台，具有全球 CDN、自动部署和免费 SSL 证书等特性。
+
+每当我们将代码推送到 `GitHub` 仓库时，`Cloudflare Pages` 会自动构建并部署最新版本的网站，这样我们就可以轻松地管理和更新我们的博客了。
+
+```mermaid
+graph TD
+  A[本地开发] --> B[推送代码到 GitHub]
+  B --> C[Cloudflare Pages 自动构建]
+  C --> D[部署到全球 CDN]
+  D --> E[用户访问博客]
+```
+
+- 本地开发：我们在本地计算机上开发和测试我们的博客。
+- 推送代码到 `GitHub` ：我们将我们的代码推送到 `GitHub` 仓库中。
+- `Cloudflare Pages` 自动构建：`Cloudflare Pages` 会自动检测到 `GitHub` 仓库的更新，并开始构建我们的博客。
+- 部署到全球 CDN：构建完成后，`Cloudflare Pages` 会将我们的博客部署到全球的内容分发网络（CDN）上，以确保用户能够快速访问。
+- 用户访问博客：用户通过互联网访问我们的博客，`Cloudflare Pages` 会从最近的 CDN 节点提供博客内容，确保访问速度和稳定性。
+
+可以看出，这两尊大佛为我们减轻很多部署时候的障碍，让我们再次感谢它们。
+
+## 1. 创建 GitHub 仓库
+- 登录到 [GitHub](https://github.com/) 并创建一个新的仓库。
+- 将本地项目与 `GitHub` 仓库关联：
+    ```bash
+    git remote add origin https://github.com/your-username/your-repo.git
+    ```
+
+- 将代码推送到 `GitHub` ：
+```bash
+      git add .
+      git commit -m "提交信息"
+      git push -u origin main
+    ```
+
+> 有关 `GitHub` 的使用，请参阅：（我也不知道参阅哪里 先搁置吧
+
+## 2. 配置 Cloudflare Pages
+### 1. 登录 Cloudflare Pages
+访问 Cloudflare Dashboard，使用您的账号登录，然后选择 "Pages" 服务。
+当然 您可以在左下角找到更改语言的选项，切换到中文界面或许会更方便一些。
+### 2. 创建新项目
+点击 "Create a project" 或 "Connect to Git" 按钮
+选择您的 `Git` 提供商（GitHub、GitLab 等）并授权
+从列表中选择您的 `Mizuki` 项目仓库
+### 3. 配置构建设置
+在项目设置页面中，配置以下构建设置：
+
+基本设置
+
+Project name: 输入您的项目名称（如 `alisa22580-blog`）
+
+Production branch: 设置主分支（通常为 `main` 或 `master`）
+
+构建配置
+
+```bash
+  # 构建设置
+  Build command: pnpm i && pnpm build
+  Build output directory: dist
+  Root directory: /
+  ```
+参考如下：
+![alt text](image-1.webp)
+
+### 4. 部署项目
+配置完成后，点击 "Save and Deploy" 开始首次部署：
+
+1. `Cloudflare Pages` 会克隆您的仓库
+2. 安装依赖（pnpm i）
+3. 构建项目（pnpm build）
+4. 将 dist 目录部署到全球 CDN
+
+  首次部署可能需要几分钟时间。
+
+### 5. 获取部署信息
+部署完成后，您将获得：
+
+站点 URL：如 https://alisa22580.com
+> URL: URL 是 Uniform Resource Locator 的缩写，中文通常翻译为统一资源定位符。它是互联网上资源的地址，用于指定和访问各种类型的资源，如网页、图片、视频等。URL 通常由以下几个部分组成：
+> - 协议（Protocol）：指定访问资源所使用的协议，如 http、https、ftp 等。
+> - 域名（Domain）：指定资源所在的服务器地址，如 www.example.com。
+> - 路径（Path）：指定资源在服务器上的具体位置，如 /blog/post1。
+> - 查询参数（Query Parameters）：用于传递额外的信息，如 ?id=123。
+> 例如 当前这篇文章的 URL 就是 https://alisa22580.com/posts/post1/#本博客的搭建教程
+
+自动生成的 SSL 证书
+> SSL: SSL 是 Secure Sockets Layer 的缩写，是一种安全协议，用于在互联网上加密数据传输，确保数据的机密性和完整性。SSL 证书是由受信任的证书颁发机构（CA）签发的数字证书，用于验证网站的身份并启用 HTTPS 协议。当用户访问启用了 SSL 的网站时，浏览器会显示一个锁形图标，表示连接是安全的。
+
+全球 CDN 分发
+> CDN: CDN 是 Content Delivery Network 的缩写，中文通常翻译为内容分发网络。CDN 是一种分布式的服务器网络，旨在通过将内容缓存到全球各地的服务器上来加速网站的加载速度。当用户访问一个启用了 CDN 的网站时，CDN 会根据用户的地理位置选择最近的服务器来提供内容，从而减少延迟和提高性能。CDN 还可以提供额外的安全功能，如 DDoS 防护和 Web 应用防火墙。
+
+现在，您可以通过站点 URL 访问您的博客了！每当您推送新的代码到 `GitHub`，`Cloudflare Pages` 都会自动重新构建和部署您的博客，确保您的内容始终是最新的。
+
+也就是说，我们以后的操作流程将是：
+```mermaid
+graph TD
+    A[本地开发] --> B[推送代码到 GitHub]
+```
+就结束了， `GitHub` 和 `Cloudflare` 会帮我们完成剩下的工作。
+
+# 4. 博客配置
+
+完成了`GitHub` 和 `Cloudflare` 的部署后，所有需要动脑的工作告一段落，接下来我们就可以专注于博客的内容和配置了。
+
+博客的配置主要涉及到 `src/config.ts` 文件，这个文件包含了博客的全局设置，如站点标题、描述、作者信息、社交链接等。您可以根据自己的需求修改这些配置项来个性化您的博客。
+
+有关博客各项配置已经在 [官方文档](https://docs.mizuki.mysqil.com/Basic-Layout/site-config/) 中有详细的介绍。
+
+因此关于大多数常规设置，我就不在这里赘述了，这里只发表一些我自己的建议...
+
+## 配置文件的查找与修改
+- 如果您使用vscode编辑项目，可以在左侧任务栏找到搜索框，输入关键词进行整个工作区目录下的相关查找。
+
+![alt text](image-2.webp)
+
+- 也可以通过快捷键 `ctrl + f` 进行当前文件下的关键词查找。
+
+![alt text](image-3.webp)
+
+## 更好的时间输入
+博客中很多地方需要输入时间，例如文章的发布时间、日记的日期等。
+
+通过官方文档的介绍，我们可以知道，博客中使用的时间格式是 ISO 8601 格式，例如：`2026-03-12T16:20:00Z`。
+
+这种格式虽然标准，但由于这个博客并没有自动化的时间输入工具（比如说日历选择器），因此我们的手动输入、修改显得繁琐且没必要。
+
+因此，我尝试了 `vscode` 的 `Insert Date String` 扩展。
+
+![alt text](image-4.webp)
+
+但是这个扩展的默认输出格式是 `YYYY-MM-DD HH:mm:ss`，并不符合我们博客的时间格式要求。
+
+于是，我在 `vscode` 的设置中，手动将输出格式修改为 `YYYY-MM-DDTHH:mm:ssZ`。
+
+然而，这个插件自动识别了时区，并在输出的时间字符串中加入了时区偏移，例如 `2026-03-12T16:20:00+08`。
+
+这显然是我们不愿看到的，因为 通过配置 `config.ts` 中的 `timeZone`，我们已经自行选择了时区，因此我们需要将这个时区偏移手动修改为 `Z`，表示 UTC 时间。但是每次输入时间后都要修改一次时区，显然也是不合理的。
+
+于是，我参考了自己先前打 `acm` 时候使用的， `vscode` 原生提供的 `配置代码片段` 功能，在惊喜的发现这个功能支持时间相关的预定义变量后，事情就变得简单了。
+
+1. 使用组合键 `ctrl + shift + p` 打开命令面板，输入 `Snippets: Configure Snippets` (`配置代码片段`) 并选择它。
+
+2. 选择 `New Global Snippets file` (`新建代码片段`) 来创建一个全局的代码片段文件，命名为 `全局.code-snippets`。
+
+3. 在打开的 `全局.code-snippets` 文件中，添加以下代码片段：
+
+```json
+"Insert ISO Z Date": {
+  "scope": "typescript,markdown,mdx", // 只针对 TypeScript 和 Markdown 文件生效
+  "prefix": "isodate",
+  "body": [
+    "${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE}T${CURRENT_HOUR}:${CURRENT_MINUTE}:${CURRENT_SECOND}Z"
+  ],
+  "description": "插入当前 UTC 时间 (Z)"
+}
+```
+
+此时，完整的文件内容大致如下：
+![alt text](image-6.webp)
+
+保存文件后，您就可以在任何地方输入 `isodate`，然后按下 `Tab` 键，就会自动插入当前的 UTC 时间，格式为 `YYYY-MM-DDTHH:mm:ssZ`... 吗？
+
+问题到此并没有结束，我发现在 `markdown` 文件中无法触发补全，而在 `ts` 文件中可以。
+
+经过一番折腾，我发现这是因为 `markdown` 文件默认没有启用代码片段补全功能。
+
+于是，我打开了 `vscode` 的设置，在右上角找到 `Edit in settings.json` (`在 settings.json 中编辑`) 的选项，点击它打开 `settings.json` 文件。
+![alt text](image-7.webp)
+
+在文件中，我添加了关于 `markdown` 文件的代码片段补全配置：
+
+```json
+"[markdown]": {
+  "editor.quickSuggestions": {
+    "other": "on",
+    "comments": "on",
+    "strings": "on"
+  },
+  "editor.snippetSuggestions": "top", // 让代码片段排在最前面
+  "editor.tabCompletion": "on" // 允许按 Tab 键直接补全
+}
+```
+
+问题终于解决了，现在在 `markdown` 文件中输入 `isodate` 并按下 `Tab` 键，正确格式的 UTC 时间就会被插入了...吗？？
+
+仍然没有！在文章的表头中输入 `isodate` 并按下 `Tab` 键，竟然没有任何反应。
+
+经过一番调查，我发现这是因为 `markdown` 文件的表头部分（也就是 `---` 包围的部分）被 `vscode` 识别为 `yaml` 语言，而不是 `markdown`。...真是令人窒息。！
+
+因此，我们回到 `全局.code-snippets` 文件中，将代码片段的 `scope` 属性增加一个 `yaml`，使其变为：
+
+```json
+"scope": "typescript,markdown,mdx,yaml", // 现在也针对 yaml 文件生效
+```
+
+更新后的完整文件内容应如下：
+> 请注意 29 行的更改
+
+![alt text](image-8.webp)
+
+终于，我做到了，我可以随心所欲地在表头插入当前的 UTC 时间，而且格式完全符合博客的要求。我真想**狠狠地**吃掉一包放在旁边的香辣小鱼干来庆祝下！
+![alt text](image-9.webp)
+
+## 评论功能的配置
+
+博客的评论功能是通过 `Twikoo` 实现的，您可以在 `src/config.ts` 文件中找到相关配置项:
+
+```typescript
+export const commentConfig: CommentConfig = {
+  enable: true, // 启用评论功能。当设置为 false 时，评论组件将不会显示在文章区域。
+  twikoo: {
+    envId: "...", // Twikoo 环境 ID，通常是一个 URL 地址。
+    lang: SITE_LANG, // 评论界面语言设置，默认为站点语言。
+  },
+};
+```
+
+- enable: 设置为 true 启用评论功能，设置为 false 则禁用评论功能。
+- envId: 这是 `Twikoo` 的环境 ID，通常是一个 URL 地址，您需要将其替换为您自己的 `Twikoo` 环境 ID。
+- lang: 这是评论界面的语言设置，默认为站点语言，不动就行。
+
+由是观之，我们操作的目的就是得到一个 以 `.app` 结尾的 URL 地址，并将其填入 envId 中。
+
+我们可以直接访问 [Vercel 部署](https://twikoo.js.org/backend.html#vercel-%E9%83%A8%E7%BD%B2) 的教程来获取这个 ID 。
+
+## 更多内容
+持续更新中...
+
+---
+
+## 2026 CCPC 长春站游记
+
+- **URL**: https://alisa22580.com/posts/2026-ccpc-changchun/
+- **Published**: 2026-10-19
+- **Category**: 闲谈
+- **Tags**: 算法竞赛, CCPC, 游记
+- **Description**: 铜牌收工。记录一下热身赛的抽象、正赛的挣扎，以及一点还没完全放下的银牌念想。
+
+第一次参加区域赛，大二因为太区了没拿到名额 
+
+第一场就拿到铜其实对我来说已经达到大学阶段算法竞赛能取得的至高成就了，相比之下蓝桥杯国一和省赛金是真没含金量啊（笑
+
+感觉银牌没啥戏了，reg的铜银（在大部分场次）还是很有区分度的，这场要想ag我得再做两题 
+
+所以，还是很开心的！
+
+![2026 CCPC 长春站场外的赛事展板](a973d1feaa1744cb56b35a4637769ddc.jpg)
+
+## 热身赛：充分发挥 guessing 和乱搞精神
+
+THU 去年出的上海站题被喷得挺惨，今年开幕式上说“我们已经充分吸取了教训”。结果热身赛还是相当抽象：提交之后 in queue 了半个小时，榜单界面的鉴权也出了问题，再加上题面的表达，现场体验实在算不上顺畅。
+
+好在我们充分发挥 guessing 和乱搞精神，最后侥幸 AK。过程虽然有点混乱，但至少热身的结果还不错。
+
+![长春师范大学体育馆内的比赛场地](7e0f04e340f0afc906f035aba09fa1a4.jpg)
+
+长春师范的体育馆是真的大，比赛桌铺开以后看着还挺壮观。
+
+开学以来，我的作息一直抽象得厉害，基本上是日落而作、日出而息。为了赶上早上九点的比赛，这次居然十一点就上床休息了，也算是为 ACM 做出了一点作息上的努力。
+
+## 正赛：从以为要铁，到摸到铜牌
+
+这场用了 CCPC 的新赛制。对我来说，很长一段时间里，榜单都不太能拿来判断局势：看到冠军队已经开了七道题，自己能看到解封的却只有两道，实在有点搞心态。像我们这种队，也更难据此判断该把时间投到哪道题上。
+
+我们花了不少时间研究一道题面很短的 mid-hard，以及另一道始终没找到突破口的题。反倒是一道比较签的题，几乎直到封榜后才开始认真看。现在回头看，选题和时间分配确实有点伤。
+
+封榜的时候，我们排在接近 200 名的位置。我当时已经觉得自己要铁了，结果过了两分钟，交上去的一道乱搞题居然过了，名次一下来到 150 左右。于是开始算铜牌线：按我当时的估计，只要前面那一批队伍别有太多继续过题，自己似乎还有机会 Cu。
+
+![比赛时查看的榜单](f2fec5e9933e578b9ea41a88a33725c5.jpg)
+
+后面又花了大约一个小时，和队友讨论那道通信题。说是讨论，其实争得还挺厉害，队友都有点着急了，我还让他先别吵。最后感觉我们的思路已经很接近正确答案，但到底差在哪里、是不是真的只差一点，现在也说不准，等赛后补题再试试。
+
+没能把它写出来，当然还是有点遗憾。不过最后能拿铜，已经足够开心了。单说正赛题目，我觉得 THU 这次算是一雪前耻，至少赛后我基本没看到之前那样的吐槽，铜银之间的区分度也做得挺到位。
+
+## 赛后：奖牌、合照，还有一点不甘心
+
+赛后当然要合照。下面这张，中间是银牌选手 ✌🏻welken，只不过他的雷霆大银牌被队友拿走了，就没能一起出镜。
+
+![与 welken 的赛后合照：玩偶、手机和奖牌](d0933bcc6ae339b618c89895970d0934.jpg)
+
+再来一张队内合照。主打一个人可以不出镜，但手机和玩偶必须到位。
+
+![队内合照：铜牌前的玩偶和三部手机](e3354ad1730c8604e9c74f3fcfcb8922.jpg)
+
+![举着“永久 love THU 出题组”牌子的奶龙](3b2f7d9a6e0cadb6b3f45f38de10919e.jpg)
+
+路上也拍到了一些奇怪但很应景的东西，比如这个大大的 AC。比赛之外，还是多少留了点闲逛的记录。
+
+![路边店铺醒目的 AC 招牌](79648b06ee69cf8b5ad1c828327d35e3.jpg)
+
+![街边橱窗里的二次元角色立牌](1e75aa1fc0354c6303c9ad7b7617ee5b.jpg)
+
+![路上看到的彩色公鸡广告](40ab8fdcd6cada0f1fae3601ba439ef2.jpg)
+
+差不多就是这样。第一场区域赛拿到铜，感觉都可以提前宣布退役快乐了，毕竟我的追求也没有那么高。或者说，打得越多，就越认识到自己其实还很菜，算法竞赛归根结底还是少数人的游戏啊（悲）。
+
+不过，我后面还有 ICPC 武汉和 ICPC 上海。
+
+说不定就爆种拿 Ag 了呢？说不定呢。😬
+
+---
+
+## 2026ICPC沈阳 赛站游记
+
+- **URL**: https://alisa22580.com/posts/2026-icpcsy/
+- **Published**: 2026-07-29
+- **Category**: 杂谈
+- **Tags**: 算法竞赛
+- **Description**: 流水账一篇
+
+### 前言
+##### 和天妹妹一起从深圳飞来沈阳 历经5h
+![alt text](730eb6afce6e2d2e56f38e20f7d34e93.webp)
+
+##### 大晚上想吃东西 找售货机找到自助售烟机 难绷
+![alt text](78f6341029d4dbb2495d29bbd470248e.webp)
+
+##### 偶遇一只几何造型
+![alt text](65ec2665468674c1a6c7d15329824916.webp)
+
+##### 东北大学的餐券 这一顿有肉有菜有碳水 仅仅15r
+![alt text](28f8c27ffa87e809cc7ff3ebd9cc9d2c.webp)
+
+##### 很好看的赛站服，可惜朋友说有登味
+![alt text](d45edd05185806f837b7b4248311f3c5.webp)
+
+### 赛中
+![alt text](4da21f433041122031d0e5be2bdebed7.webp)
+全场第一个提交，但是是E题wwq猜了个结论 错了之后才倒回去跟榜看签到。
+
+12min 做出来L 三个人开始集体发呆，直到 70min 才以两发罚时做出来第二道签到K
+
+做出来3题之后还在铁牌区，当时感觉这场打的想哭
+
+好在qxh在我之前开始动脑，把E的总体排序计算改为分别计算每个位置的贡献，这样推导了一会儿发现是一个for循环+一个排序不等式，但是他🍬的看不懂数据范围，我说 $n^{2} logn$ 是肯定可以过的 然后光速写了一发 过了。 此时来到银牌中游 大家重燃希望。
+
+查看I题 qxh发力 约莫猜了两三个结论吧 推导的七七八八了，但是实现上，内层枚举因数的时候发现极端情况下因数可能超过300个 这样会导致超时；
+
+此时我充分发扬多校乱搞的经验，跟他们说 可以考虑循环上界设为 `min(200ll, 因数个数)` 试了一发 过了 此时来到金牌区
+
+如果我们再做一道J 几乎是百分百稳金牌的 这样我们也算是后起之秀了 于是三个人开始一起看J 
+
+我提出 与其计算每一个点可以看到哪些柱子 不如计算每一个柱子可以被多少点看到，这样y轴只有1e5数量级个本质不同的点 维护一个离线区间加的方法是多样的 剩下就是推导每个柱子可以如何被看到 一通推导之后发现是一个类似并查集find的东西 需要不断记录前驱节点 后来才知道其实相当于赛时发明凸包了 但是一时间想的东西太多 没有想到斜率的比较其实应该 统一把分母移上去 这样整个代码里都没有 `double` 了
+
+总之 debug了十几发 也没能成功通过 最后遗憾银牌 rk42 姑且也可以算是银首。
+
+总结来说 客观原因是三个人可能线下没休息好，主观原因是三个人在赛前没有充分讨论好各自的分工，导致在赛中出现了很多重复劳动，以及互相不知道对方在说什么 仍需磨合啊！
+
+### 赛后
+##### 其实新海天才是参赛队员
+![alt text](3c45cfab72ee537c2ec1fe648b31c252.webp)
+
+##### acm特有的赛后头像合影
+![alt text](c534b00fa7260faccf8bd377402160af.webp)
+
+##### 沈阳量大管饱 这一顿把三个人吃死了
+![alt text](c0239e098e23f73e5e47c3ce99569a91.webp)
+
+##### 半夜看痴迷 看的手脚冰凉
+![alt text](f83b96b4f0d5e7ca26ab7f12c1622abf.webp)
+
+##### 走啦 奔赴下一站
+![alt text](b5062141a8164588d0829506b3c61721.webp)
+
+---
+
+## 一场幻梦
+
+- **URL**: https://alisa22580.com/posts/a-dream/
+- **Published**: 2026-07-26
+- **Category**: 杂谈
+- **Tags**: 杂谈
+- **Description**: 希望我将来也不要留下遗憾。
+
+学习，打 A，工作。
+
+上了大学，我离自己从小到大的生活圈子愈发变远了。
+
+这次回来深圳，满打满算十一天。跟爸妈弟弟聊天，跟小学初中的好朋友叙旧，又因为前程之类的事情不得不匆匆离开。
+
+睡在原来属于我、现在属于弟弟的小床上，恍惚间分不清楚这到底是我的家，还是一个陌生的房间。整理东西时候发现抽屉柜子里封存的物件，我只能有模糊的记忆。我不是一个念旧的人吗，为什么竟因为遗忘而感到有点害怕？
+
+爸妈，不想这么说，但是确实老了，也自然地把我当个大人对待。我出门不再需要跟他们报备；爸妈捣鼓电子产品的时候会询问我的意见；在家爸妈知道我要学习，给了我极高的宽容。我每天起床睡觉时间都极其阴间，好几天都跟他们几乎错开，就这样我妈还每天中午给我买两份肠粉打包带回家。
+
+弟弟长大了，但是其实没那么长大。成绩还不错，现在小学学的东西比我们以前难了，但是他考得其实比我那时候要好；但是他很调皮捣蛋，比我那时候要更调皮。这次回来我骂了一顿弟弟，把他骂哭了。其实我很爱他，我不想对他发脾气，但是我爸妈可能对他太溺爱了，这个家需要一个坏人，反正我才回来十天（笑）。
+
+朋友们外表的变化不大，但是一个个眼里好像失去光了。有的已经基本告别校园生活参加工作了，有的大概决定留在学校所在地当小老师，有的放假了还去图书馆努力学习制图，想要不被 AI 取代。
+
+在我不打 A、不心理扭曲地吵着要当小男娘穿小裙子的时候，我会跟他们畅聊未来。从很多年前就保留了去乐城公园散步的习惯，只是慢慢地从几周一聚、几月一聚，变成如今半年一聚了。不知道下次见面是多久之后。
+
+回来这几天也算是用双脚走过了自己曾经的活动范围，也对自己没能参加港中深举办的深圳邀请赛感到遗憾，明明这个赛站小时候抱过我；然而我的高中我还是不敢回去，不夸张地说，想到这个我就浑身发抖。
+
+---
+
+临近期末准备放假买票的时候，我说找到工作的话其实假期不回深圳也行，反正回家也是十多天的事。我妈说，回来吧，回来看看。
+
+结果要走的时候还真有点舍不得。
+
+好在我牵挂的其实只有以上这些。回来这几天我很开心，大概算是没给东北人的深圳之旅留下遗憾吧？
+
+希望我将来也不要留下遗憾。
+
+> 2026-08-01 update:
+
+![我在出租屋码字，妹妹在看我 w-100%](c24aeeeff6ca72539d0ae794c2115642.webp "我在出租屋码字，妹妹在看我")
+
+---
+
+## CFBetter 快速配置 AI 翻译（接入 DeepSeek V4 Flash）
+
+- **URL**: https://alisa22580.com/posts/cfbetter-deepseek-ai-translation/
+- **Published**: 2026-06-07
+- **Category**: Tutorial
+- **Tags**: Tutorial, Codeforces, CFBetter
+- **Description**: 在 Codeforces Better 中接入 DeepSeek V4 Flash
+
+# 写在前面
+
+> 曾经在 b 站发过一个 [简易版本的教程](https://www.bilibili.com/opus/1117176875527962633?spm_id_from=333.1387.0.0)，其内容已经过时。
+
+刷 Codeforces 的时候，传统翻译工具翻译出来的东西，经常把题目里的数学公式和关键信息搞得面目全非，还不如自己硬啃英文。
+
+**CFBetter** 是一个非常好用的 Codeforces 增强插件，它支持多种翻译服务，其中最推荐的就是 **AI 翻译（ChatGPT 兼容接口）** —— 因为 AI 能理解上下文，还能自动识别和保护 LaTeX 公式，翻译质量远超传统机翻。
+
+本文将教你如何**快速配置** CFBetter 的 AI 翻译功能，接入 **DeepSeek V4 Flash** 模型。
+
+# 1. 准备工作
+
+## 1.1 安装油猴脚本
+
+CFBetter 是一个 Tampermonkey 油猴脚本，你需要在浏览器中先安装它。
+
+1. 安装 [Tampermonkey](https://microsoftedge.microsoft.com/addons/detail/%E7%AF%A1%E6%94%B9%E7%8C%B4/iikmkjmpaadaobahmlepeloendndfphd) 浏览器扩展。
+![alt text](image.webp)
+
+2. 进入 [扩展管理](edge://extensions/) 确保 Tampermonkey 已启用，开发人员模式已打开。
+![alt text](image-1.webp)
+
+3. 点击 篡改猴 的 详细信息， 像我图片那样设置相关权限。
+![alt text](image-2.webp)
+![alt text](image-3.webp)
+
+## 1.2 安装 CFBetter 脚本
+
+访问 [cf better 油猴脚本页面](https://greasyfork.org/zh-CN/scripts/465777-codeforces-better), 点击安装按钮，按照提示完成安装即可。
+
+## 1.3 获取 DeepSeek API Key
+
+1. 前往 [DeepSeek 开放平台](https://platform.deepseek.com/) 注册账号。
+2. 登录后，点击左侧菜单的 **「API Keys」**
+3. 点击 **「创建 API Key」**，输入一个名称（比如 `CFBetter`）
+4. 创建后，**立刻复制并保存** API Key（格式为 `sk-xxxx...`，只显示一次）
+
+# 2. 配置 CFBetter 的 AI 翻译
+
+进入 codeforces 主页，应当能看到 cf better 已经加载成功：
+![alt text](image-4.webp)
+
+## 2.1 打开设置面板
+
+在 Codeforces 任意页面，点击右上角的 **「CodeforcesBetter 设置」** 按钮，打开设置面板。
+
+## 2.2 选择翻译服务
+
+在设置面板中，找到 **「翻译」** 选项，从下拉菜单中选择 **「AI 翻译」**。
+![alt text](image-5.webp)
+
+## 2.3 添加 DeepSeek 配置
+
+向下滚动，找到 **「ChatGPT」** 区域，点击 **「添加」** 按钮，弹出配置表单。
+
+![alt text](image-6.webp)
+
+| 配置项 | 填写内容 |
+|--------|---------|
+| **名称** | 随意，比如 `DeepSeek V4 Flash` |
+| **模型** | `deepseek-v4-flash` |
+| **KEY** | 你的 DeepSeek API Key（`sk-xxxx...` 格式） |
+| **Proxy API** | `https://api.deepseek.com/chat/completions` |
+
+> 参考如下：
+> ![alt text](image-7.webp)
+
+## 2.4 配置自动翻译
+
+向下滚动，像图中一样配置即可。
+![alt text](image-8.webp)
+
+填写完成后直接关闭，会弹出保存提示，保存即可。
+> **[WARNING]**
+> 完成之后多点几下 确认确实选择了AI翻译；确认确实选择了刚刚自己设置的接口；确认保存了设置！
+
+### 配置参数说明
+
+**关于模型名称：**
+
+| 模型名称 | 说明 | 推荐 |
+|----------|------|------|
+| `deepseek-v4-flash` | DeepSeek V4 Flash 模型，速度快、便宜 | ✅ 推荐 |
+| `deepseek-v4-pro` | DeepSeek V4 Pro 模型，推理能力更强 | 复杂题目可选 |
+| `deepseek-chat` | 旧版模型名，对应 V4 Flash 非思考模式（2026/07/24 弃用） | 不推荐 |
+
+**对于翻译场景，`deepseek-v4-flash` 完全够用，不建议使用 `deepseek-v4-pro`，因为翻译不需要复杂推理能力，用 Pro 纯属浪费钱。**
+
+# 3. 使用与测试
+
+配置完成后，在任意 Codeforces 题目页面，点击翻译按钮即可使用 AI 翻译。
+
+- 翻译会自动保留 LaTeX 数学公式不被破坏
+- 翻译质量远超 DeepL、Google 等传统翻译工具
+- 首次翻译可能需要授权 Tampermonkey 的跨域请求，点击允许即可
+
+## 3.1 推荐的翻译设置
+
+回到 CFBetter 的设置面板，建议进行以下调整：
+
+- **翻译模式**：选择「普通模式」（一次性翻译整个区域，上下文更完整）
+- **自动翻译**：可以开启，建议设置短文本阈值为 200 字符
+- **历史翻译恢复**：建议开启，避免重复翻译消耗 API 额度
+
+## 3.2 快速切换翻译服务
+
+右键页面上的任意**翻译图标按钮**，可以快速切换翻译服务，不需要每次都打开设置面板。
+
+# 4. 费用估算
+
+DeepSeek V4 Flash 的定价如下（截至 2026 年 6 月）：
+
+| 项目 | 价格 |
+|------|------|
+| 输入（缓存命中） | 0.02 元 / 百万 tokens |
+| 输入（缓存未命中） | 1 元 / 百万 tokens |
+| 输出 | 2 元 / 百万 tokens |
+
+实际使用中，翻译一道 Codeforces 题目（包括题目描述、输入输出说明、样例等）大约消耗 500-2000 tokens，折合人民币 **不到 0.01 元**。
+
+也就是说，**充 10 块钱，能翻译上千道题目**，基本等于白嫖。
+
+# 5. 常见问题
+
+## Q: 翻译报错 401 Unauthorized？
+
+检查 API Key 是否正确，确保完整复制了 `sk-` 开头的整个 Key，没有多余空格。
+
+## Q: 翻译报错 402 Payment Required？
+
+你的 DeepSeek 账号余额不足，前往 [DeepSeek 开放平台](https://platform.deepseek.com/) 充值即可。
+
+## Q: 翻译很慢怎么办？
+
+AI 翻译的速度取决于 DeepSeek 服务器的响应时间，通常在 2-5 秒左右。如果经常很慢，可能是网络问题，建议检查网络连接。
+
+## Q: 公式显示异常？
+
+使用 ChatGPT/AI 翻译时，CFBetter 会通过提示词告知 AI 保留 LaTeX 公式，通常不会出现公式被破坏的情况。如果偶尔出现，可以重新翻译一次。
+
+## Q: Tampermonkey 弹出跨域警告？
+
+这是正常现象，因为你在使用自定义 API 地址。点击「允许」或「始终允许」即可。
+
+## Q: 可以用其他 AI 模型吗？
+
+可以！只要模型支持 OpenAI 兼容的 API 格式（`/v1/chat/completions`），都可以使用。例如：
+- **OpenAI**：`https://api.openai.com/v1/chat/completions`，模型 `gpt-4o`
+- **硅基流动 (SiliconFlow)**：填入对应的 API 地址和模型名
+- **其他代理服务**：填入代理商提供的完整 API 地址
+
+只需要修改 **KEY**、**Proxy API** 和 **Model** 三个字段即可。
+
+# 参考
+
+- [OJBetter GitHub 仓库](https://github.com/beijixiaohu/OJBetter)
+- [OJBetter 翻译配置 Wiki](https://github.com/beijixiaohu/OJBetter/wiki/%E7%BF%BB%E8%AF%91)
+- [DeepSeek 开放平台](https://platform.deepseek.com/)
+- [DeepSeek API 定价](https://api-docs.deepseek.com/zh-cn/quick_start/pricing)
+
+---
+
+## 2026东北赛 长春游
+
+- **URL**: https://alisa22580.com/posts/2026-dbcpc/
+- **Published**: 2026-05-24
+- **Category**: 杂谈
+- **Tags**: 算法竞赛
+- **Description**: 流水账一篇
+
+铜首了，倒闭4个小时，感觉心情不是很美妙...
+
+![alt text](image.webp)
+
+姑且先放一个牌子在这里，剩下的再说吧。
+
+> 2026-05-28 update:
+
+已经过去快一周啦，复杂的心情应该说平复了很多，虽然还是觉得挺可惜的，但也不至于太难过了。
+
+---
+
+## vscode 快速配置 g++
+
+- **URL**: https://alisa22580.com/posts/vscode-run-code-tutorial/
+- **Published**: 2026-04-13
+- **Category**: Tutorial
+- **Tags**: vscode, 算法竞赛
+- **Description**: 可以作为 从 Dev-C++ / CodeBlocks 等 古老 IDE 过渡到 vscode 的快速替代方案
+
+# 写在前面
+> **[TIP]**
+> 感觉，写的非常啰嗦啊！
+> 
+> 了解这些内容可能对短期的比赛没有太大帮助，但是对于长期的计算机学习是意义重大的。
+
+众所周知，打 acm 的各种比赛的时候，使用 vscode 作为代码编辑器是非常方便的。
+
+:spoiler[如果不赞同上面这句话，请你立马关闭这篇文章(]
+
+在机房或者考场拿到一台只装了 Dev-C++ / CodeBlocks 等古董 IDE 的电脑时，如何快速拯救自己的双手？
+
+通过本教程，你将在**极短的时间内**，利用已有 IDE 里的编译器，快速配置好 Windows 的环境变量，从而达成 **在 VS Code 终端中丝滑使用 `g++` 编译和运行 C++ 代码** 的目的。
+
+- 对于刚接触算法竞赛的新人，这个教程可以作为一个过渡方案，帮助你快速适应 VS Code 的开发环境，而不需要一开始就去下载和配置新的编译器；
+
+- 对于已经习惯了 VS Code 的老手，这个教程可以帮助你在没有管理员权限的电脑上快速配置环境变量，继续使用熟悉的编译器，帮助你最大限度的优化比赛体验。
+
+# 基本了解
+
+这个教程的实质是针对 Windows 用户的 path 环境变量的配置扫盲。
+
+让我们先了解几个概念：
+
+## cpp代码的编译和运行
+cpp 代码大致的编译和运行流程是这样的：
+1. 你在代码编辑器里写好 cpp 代码，保存为 main.cpp。
+2. 调用编译器（比如 g++）来翻译 main.cpp，生成一个可执行文件（比如 main.exe）。
+3. 运行这个可执行文件，看到程序的输出。
+
+```mermaid
+sequenceDiagram
+    participant U as 👨‍💻 你 (VS Code)
+    participant E as 📝 代码编辑器
+    participant C as ⚙️ 编译器 (g++)
+    participant O as 🖥️ 操作系统
+
+    U->>E: 在 VS Code 中编写 main.cpp
+    E-->>U: 提供语法高亮、自动补全等功能
+    U->>C: 输入命令 `g++ main.cpp -o main` 调用编译器
+    C->>C: 编译 main.cpp，生成 main.exe
+    C-->>U: 编译成功，生成 main.exe
+    U->>O: 输入命令 `./main` 运行程序
+    O->>O: 执行 main.exe，显示输出结果
+    O-->>U: 程序输出结果显示在终端
+
+```
+这里面具体涉及到了如下几个概念：
+
+## 代码编辑器
+代码编辑器是一个专门为编写代码设计的软件。它提供了语法高亮、自动补全、错误提示等功能，帮助程序员更高效地编写代码。常见的代码编辑器有 Visual Studio Code、Sublime Text、Atom 等。
+
+这些编辑器本身并不包含编译器，它们只是提供了一个界面让你编写代码。因此需要与编译器配合使用。
+
+这些软件大多具有很好的插件生态，是被推崇使用的一大重要原因。
+
+## 编译器
+编译器是一个将源代码（如 C++ 代码）翻译成机器语言的程序。它负责将你写的代码转换成计算机能够理解和执行的格式。
+
+GNU Compiler Collection（GCC）是一个非常流行的开源编译器套件，其中 g++ 是专门用于编译 C++ 代码的部分。
+> **[g++]**
+> g++ 是 GNU Compiler Collection 的 C++ 开源编译器，支持多种平台和操作系统。
+> 
+> g++ 可以将 C++ 代码编译成可执行文件，或者将其编译成目标文件以供链接器使用。它支持 C++11、C++14、C++17 等多个 C++ 标准，并且提供了丰富的编译选项和优化功能。
+
+## 集成开发环境 (IDE)
+IDE 是一个集成了代码编辑器、编译器、调试器等工具的软件，提供了一个完整的开发环境。常见的 IDE 有 Dev-C++、CodeBlocks、Visual Studio 等。 这些 IDE 通常会自带一个编译器（比如 g++），但它们的编译器路径没有被添加到系统的环境变量中，因此只能在 IDE 内部使用。
+
+这些软件虽然功能强大，但界面复杂，操作繁琐，存储占用臃肿，（大概）并不适合在比赛中使用。
+
+知道了这些概念，问题的核心就变成了 如何让 VS Code 终端能够识别并使用 g++ 编译器。
+
+针对这个问题，我们需要了解 Windows 的 path 环境变量是什么，以及如何配置它。
+
+## path 环境变量
+
+在 Windows 系统中，path 环境变量是一个包含了系统可执行文件路径的列表。当你在命令行中输入一个命令时，系统会在这些路径中查找对应的可执行文件并运行它。
+
+因此，如果你想在命令行中使用 g++ 编译器，你需要确保 g++ 的可执行文件所在的路径已经被添加到 path 环境变量中。
+
+```mermaid
+sequenceDiagram
+    participant U as 👨‍💻 你 (VS Code终端)
+    participant W as 💻 Windows 系统
+    participant P as 📂 Path 环境变量
+    participant G as ⚙️ g++ 编译器
+
+    U->>W: 输入命令: `g++ main.cpp`
+    W->>W: 思考: 我认识 g++ 吗？
+    alt 没配置 Path
+        W-->>U: 报错: "g++ 不是内部或外部命令" ❌
+    else 配置了 Path
+        W->>P: 翻找通讯录 (Path)
+        P-->>W: 找到了！它在 `D:\Dev-Cpp\MinGW64\bin`
+        W->>G: 喂，g++，干活了！
+        G->>G: 编译 main.cpp
+        G-->>U: 生成 `a.exe`，编译成功！ ✅
+    end
+```
+
+# 理论分析
+
+基于上面的概念 我们来分析一下当前都有什么，应该如何调整：
+
+我们有：
+- 已经安装好的 Dev-C++ 或 CodeBlocks 等 IDE。
+- 这些 IDE 自带了 g++ 编译器，但它们的路径没有被添加到 Windows 的 path 环境变量中，因此只可以在 IDE 内部使用。
+- 一个 vscode 编辑器 但是无法用来编译和运行 C++ 代码。
+- 一个渴望在 vscode 里使用 g++ 的，愿意折腾的你。
+
+我们需要：
+- 找到 g++ 编译器的路径。
+- 将这个路径添加到 Windows 的 path 环境变量中。
+- 重启 vscode 让它加载新的环境变量。
+- 在 vscode 终端中畅快的使用 g++ 。
+
+# 正式配置
+
+## 1. 白嫖现成的 g++ 编译器
+
+既然电脑里有 Dev-C++ 或 CodeBlocks，我们就直接“借用”它们自带的编译器，不需要重新下载！
+
+1. 找到 Dev-C++ 或 CodeBlocks 的安装目录。
+
+![alt text](image-1.webp)
+
+2. 顺藤摸瓜，找到名为 MinGW 或 MinGW64 的文件夹。
+
+![alt text](image-2.webp)
+
+3. 一直点进去，直到看到一个名为 bin 的文件夹。
+
+![alt text](image-3.webp)
+
+4. **打开** bin 文件夹，**确认**里面有 g++.exe。
+
+![alt text](image-4.webp)
+
+5. 复制当前的文件路径（例如：C:\Program Files (x86)\Dev-Cpp\MinGW64\bin）。
+
+![alt text](image-5.webp)
+
+## 2. 将路径写入 Path 环境变量
+
+1. 按下 Win 键，直接**搜索** “编辑系统环境变量”，点击打开。
+
+![alt text](image-6.webp)
+
+2. 在弹出的窗口右下角，点击 “环境变量(N)...”，在下半部分的“系统变量”中，找到叫 Path 的那一行，双击它。
+
+![alt text](image-7.webp)
+
+3. 点击 “新建”，把你刚才复制的 bin 文件夹路径粘贴进去。
+
+![alt text](image-8.webp)
+
+4. 一路点击 “确定” 保存退出。
+
+## 3. 在 VS Code 中验证
+
+配置完成后，我们需要测试一下是否成功。
+
+- 重启 VS Code（必须重启，否则终端无法加载新的环境变量！）。
+
+- 使用快捷键 Ctrl + ` 打开集成终端。
+
+- 输入以下命令并回车：
+
+```bash
+g++ -v // 等效于 g++ --version 作用是查看 g++ 的版本信息
+```
+如果终端吐出了一大串包含 g++ (GCC) ... 的版本信息，恭喜你，配置大功告成！
+![alt text](image.webp)
+
+现在，你可以使用这个终端方便的完成编译和运行了。
+
+# 如何使用
+
+## 1. 最基础的编译
+
+```bash
+g++ main.cpp
+```
+![alt text](image-10.webp)
+- 这是最简单的命令。它会把 main.cpp 编译成一个默认名为 a.exe（Windows）或 a.out（Linux/Mac）的可执行文件。
+
+缺点：每次都生成 a.exe，如果你有多个源代码，会互相覆盖。
+
+## 2. 指定输出文件名 (-o)
+
+```bash
+g++ main.cpp -o main
+```
+![alt text](image-11.webp)
+- -o 代表 Output。这条命令会把编译后的程序命名为 main.exe。
+
+运行方式：输入 ./main 即可运行。
+
+## 3. 开启标准警告 (-Wall)
+
+```bash
+g++ main.cpp -o main -Wall
+```
+
+- W 代表 Warning，all 代表 all。它会提醒你代码中潜在的问题（比如变量定义了但没使用、非 void 函数没写 return 等）。
+> **[TIP]**
+> 赛时建议全程开启，能帮你规避很多低级 Bug。
+
+## 4. 指定 C++ 标准
+
+```bash
+g++ main.cpp -o main -std=c++11
+```
+
+- 强制编译器使用特定的 C++ 版本。
+
+为什么需要：有些现代语法在老版本编译器下会报错。
+
+你知道的，:spoiler[蓝桥杯和哈理工的校赛只支持到 cpp11，我积累半生的语法糖全部！无法使用。]
+
+## 5. 进阶
+
+在命令行里，如果你想编译完立刻运行（如果编译失败则不运行），可以使用 && 符号连接指令：
+
+```bash
+g++ main.cpp -o main -Wall -std=c++11 && ./main
+```
+
+指令分解说明：
+
+- `g++ main.cpp`: 呼叫g++，开始翻译代码。
+- `-o main`: 把翻译好的程序取名为 main.exe。
+- `-Wall`: 开启所有警告，检查代码细节。
+- `-std=c++11`: 使用 C++11 标准编译。
+- `&&`: 这是一个逻辑门。只有当前面的编译操作成功了，才会执行后面的指令。
+- `./main`: 运行刚才生成的可执行程序。
+
+---
+
+## 蓝桥杯 C++ B 组省赛 A-H 题解（2026）
+
+- **URL**: https://alisa22580.com/posts/lanqiao-cpp-b-solutions/
+- **Published**: 2026-04-11
+- **Category**: Tutorial
+- **Tags**: 蓝桥杯, 算法竞赛, 题解
+- **Description**: 完整(?)复盘
+
+> **[TIP]**
+> 补题链接：[蓝桥杯省赛自测 CB](https://www.luogu.com.cn/contest/320659#problems)
+> 
+> 代码模板请移步 [蓝桥杯 C++ B 组常用板子](../lanqiao-cpp-b-common/) 或 [我的 github 存储库](https://github.com/2258009564/MYWORK/tree/main/CODES/CPPPROGRAM/%E6%9D%BF%E5%AD%90)
+
+# A. 青春常数（填空）
+
+## 题意简述
+
+给定
+
+$$
+N = 2026202520242023
+$$
+
+求非负整数对 $(x, y)$ 的个数，满足：
+
+$$
+x + y = N,
+\quad 0 \le x < y
+$$
+> **[NOTE]**
+> 数一遍 `x` 的取值范围，`x` 确定后 `y` 就唯一。
+
+## 一眼观察
+
+由 $y = N - x$ 代入 $x < y$：
+
+$$
+x < N - x \iff 2x < N
+$$
+
+因为 $N$ 是奇数，所以
+
+$$
+x = 0, 1, 2, \dots, \frac{N-1}{2}
+$$
+
+共
+
+$$
+\frac{N+1}{2}
+$$
+
+种。
+
+## 最终答案
+
+$$
+\boxed{1013101260121012}
+$$
+
+---
+
+# B. 双碳战略（填空）
+
+## 题意简述
+
+有 $N=2026$ 盏灯，初始全亮。
+
+- 第奇数次操作：选 $i$，翻转后缀 $[i, N]$。
+- 第偶数次操作：选 $i$，翻转前缀 $[1, i]$。
+
+每个状态都可达。定义某状态的最少操作步数，求所有 $2^N$ 个状态最少步数之和，对 $998244353$ 取模。
+> **[NOTE]**
+> 神秘的结论题。据说可以推出来...据说。
+
+## 小规模自检
+
+赛时太闲了 手推了 $N=1..5$ 发现都满足：
+
+$$
+S(N) = N \cdot 2^{N-1}
+$$
+
+例如 $N=5$ 时总和是 $80$，刚好等于 $5\cdot2^4$。
+
+## 最终答案
+
+$$
+S(2026) = 2026 \cdot 2^{2025} \bmod 998244353 = \boxed{792264670}
+$$
+
+## 代码（计算答案）
+```cpp
+const int MOD = 998244353;
+
+void solve()
+{
+	int n = 2026;
+	cout << n * ksm(2, n - 1) % MOD;
+}
+
+```
+
+---
+
+# C. 循环右移
+
+## 题意简述
+
+长度为 $N$ 的数组 $A$，每个元素满足 $X \le A_i \le Y$。
+
+要求：对任意连续子数组做一次循环右移后，子数组不变。求满足条件的数组个数。
+> **[NOTE]**
+> 尝试从最短的子数组开始分析。
+
+## 一眼观察
+
+只看长度为 $2$ 的子数组 $[A_i, A_{i+1}]$：
+
+- 右移后变成 $[A_{i+1}, A_i]$
+- 若右移前后相同，则必有 $A_i = A_{i+1}$
+
+对所有 $i$ 成立，就得到全数组所有元素都相等。
+
+## 结论
+
+可选的常值就是区间 $[X, Y]$ 内整数个数：
+
+$$
+\max(0ll, Y - X + 1)
+$$
+
+与 $N$ 无关。
+
+## 复杂度
+
+每组 $O(1)$。
+
+## code
+```cpp
+void solve()
+{
+	int N, X, Y;
+	cin >> N >> X >> Y; 
+	cout << max(0ll, Y - X + 1);
+}
+```
+
+---
+
+# D. 蓝桥竞技
+
+## 题意简述
+
+有 $N$ 种位置，第 $i$ 种有 $A_i$ 人。要把所有人分成若干支 5 人队，每队 5 人且位置互不相同。
+
+问是否存在合法分组。
+
+:::note
+这是条件判定题，不是构造题。检查两个条件就够：总人数能否整除 5、最大职业人数会不会爆队伍数。
+
+赛时尝试用大根堆模拟分配，满怀信心的出来发现果然过不了。
+:::
+
+## 一眼观察
+
+设总人数 $S = \sum A_i$，队伍数 $K = S/5$。
+
+必要条件：
+
+1. $S$ 必须被 5 整除。
+2. 任意位置人数不能超过队伍数，即 $\max A_i \le K$。
+
+这两个条件也是充分条件（可由二分图度序列可行性 / Gale-Ryser 结论得到）。
+
+## 复杂度
+
+每组 $O(N)$。
+
+## code
+
+```cpp
+void solve()
+{
+	int N;
+	cin >> N;
+	int sum = 0, mx = 0;
+
+	for (int i = 0; i < N; i++)
+	{
+		int x;
+		cin >> x;
+		sum += x;
+		mx = max(mx, x);
+	}
+
+	if (sum % 5)
+	{
+		cout << "F";
+		return;
+	}
+
+	int K = sum / 5;
+	cout << (mx <= K ? "T" : "F");
+}
+```
+
+# E. LQ 聚合
+
+## 题意简述
+
+长度 $N$ 的字符串，仅含 `L`、`Q`、`?`。把所有 `?` 替换为 `L` 或 `Q`，最大化满足 $i<j$ 且 $s_i='L', s_j='Q'$ 的对数。
+
+:::note
+赛时想了半天怎么 DP， 最后针对 $N < 10$ 的情况写了二进制枚举，依旧部分分。
+:::
+
+## 一眼观察
+
+最优方案一定是：某个分界点左边的 `?` 尽量当 `L`，右边的 `?` 尽量当 `Q`。
+
+因为假设存在一种最好的构造方案，那么把左侧的 'Q' 和右侧的 'L' 交换 后，结果不会变差。
+
+所以可做「从左到右枚举把多少个 `?` 变成 `L`」的线性扫描。
+
+## 复杂度
+
+$O(N)$。
+
+## code
+
+```cpp
+void solve()
+{
+	int n;
+	string s;
+	cin >> n >> s;
+
+	int tot = 0;
+	for (int i = 0; i < n; i++)
+	{
+		if (s[i] == 'Q' or s[i] == '?')
+		{
+			tot++;
+		}
+	}
+
+	int cur = 0, q = tot;
+	for (int i = 0; i < n; i++)
+	{
+		if (s[i] == 'Q' or s[i] == '?')
+		{
+			q--;
+		}
+		else
+		{
+			cur += q;
+		}
+	}
+
+	int ans = cur, l = 0;
+	q = tot;
+	for (int i = 0; i < n; i++)
+	{
+		if (s[i] == '?')
+		{
+			q--;
+			cur = cur - l + q;
+			ans = max(ans, cur);
+			l++;
+		}
+		else if (s[i] == 'L')
+		{
+			l++;
+		}
+		else
+		{
+			q--;
+		}
+	}
+
+	cout << ans;
+}
+```
+---
+
+# F. 应急布线
+
+## 题意简述
+
+有 $N$ 台电脑、$M$ 条现有网线。现有网络可能分裂成多个连通块。
+
+要加「应急跳线」使全图连通，目标分两层：
+
+1. 新增边数最少。
+2. 在满足 1 的前提下，让单台机器接入跳线数的最大值尽量小。
+
+输出这两个值。
+
+:::note
+感觉这居然是最简单的一题，该说昨天 DSU 复习对了吗。
+:::
+
+## 第一步：最少新增边数
+
+若连通块个数为 $C$，最少新增边数必为：
+
+$
+C-1
+$
+
+## 第二步：最小化最大接入数
+
+设最大接入数为 $D$。
+
+- 若 $C=1$，显然答案是 $0$。
+- 若 $C\ge 2$，至少需要 $C-1$ 条新增边，共有 $2(C-1)$ 个端点要挂在机器上。
+- 每台机器最多承受 $D$ 个端点，总承载能力是 $N\cdot D$。
+
+所以必要条件：
+
+$
+N\cdot D \ge 2(C-1)
+$
+
+又因为 $C\le N$，可知最优 $D$ 不会超过 $2$。
+
+因此：
+
+- 若 $C=1$，$D=0$。
+- 若 $C>1$ 且 $N \ge 2C-2$，$D=1$。
+- 否则 $D=2$。
+
+## 赛时
+赛时用了别的想法：
+
+对于 `size > 1` 的联通块，彼此先连起来，每一个联通块应当用掉两个点位（用于连接彼此），剩余的度数为0的点位数（红色标点）是 $\sum (size - 2)$ 
+![alt text](image.webp)
+
+然而只需要保证连通性即可，并不需要成环，所以有一条边可以拆开。这样一来 就又多了两个红色标点。
+![alt text](image-1.webp)
+
+因此剩余的度数为0的点位数实际上是 $\sum (size - 2) + 2$
+
+现在还剩下 `X` 个 `size = 1` 的联通块没有连接。
+
+如果 $X \le \sum (size - 2) + 2$，说明可以把这些孤立点直接插在已有的边上，不会增加最大接入数，此时答案为1;
+![alt text](image-2.webp)
+
+否则需要额外的边来连接这些孤立点，答案为2。
+![alt text](image-3.webp)
+
+## 复杂度
+
+并查集近似 $O((N+M)\alpha(N))$。
+
+## code
+
+```cpp
+void solve()
+{
+	int N, M;
+	cin >> N >> M;
+
+	DSU dsu(N);
+	for (int i = 0; i < M; i++)
+	{
+		int a, b;
+		cin >> a >> b;
+		dsu.merge(a, b);
+	}
+
+	int C = dsu.getgroups();
+	int minEdges = C - 1;
+	int minMaxDeg;
+
+	if (C == 1)
+	{
+		minMaxDeg = 0;
+	}
+	else if (1ll * N >= 2ll * C - 2)
+	{
+		minMaxDeg = 1;
+	}
+	else
+	{
+		minMaxDeg = 2;
+	}
+
+	cout << minEdges << ' ' << minMaxDeg;
+}
+
+```
+> **[WARNING]**
+> - 记得特判 $C=1$ 时第二问是 0，不是 1。
+> 
+> - 不止一个人看错 第二问到底要求什么 求得其实是新增的边 如果加上老边这题就有点不可做了
+---
+G 和 H 已经不属于我的能力范围了 ... qwq 
+
+虽然说出来很不甘心就是了，但是姑且把 ai 的题解放在这里，有空了补。
+
+---
+
+# G. 理想温度
+
+## 题意简述
+
+给数组 $A,B$，可选一个连续区间 $[l,r]$，给区间每个元素都加同一个整数 $k$。
+
+问操作后最多有多少位置满足 $A_i=B_i$。
+> **[NOTE]**
+> 把 `B-A` 当作差值数组 `D`。你选一个区间加 `k`，本质是在区间里“让 `D=k` 的变好，让 `D=0` 的变坏”。
+
+## 转化
+
+定义差值：
+
+$$
+D_i = B_i - A_i
+$$
+
+原本满足条件的位置是 $D_i=0$，记数量为 `base`。
+
+若选择区间并加 $k$，则区间内：
+
+- 原来 $D_i=k$ 的位置会变成匹配（收益 +1）
+- 原来 $D_i=0$ 的位置会被破坏（收益 -1）
+
+所以固定某个 $k\ne0$ 后，问题变成：
+
+在数组上找一段区间，使
+
+$$
+\#(D_i=k)-\#(D_i=0)
+$$
+
+最大。
+
+## 做法
+
+对每个出现过的非零值 $k$：
+
+1. 收集所有 `D_i = k` 的位置。
+2. 用前缀统计零的个数，在线性扫描这些位置时做 Kadane 变体。
+
+总复杂度 $O(n\log n)$（用 map），或哈希近似 $O(n)$。
+
+## code
+
+```cpp
+void solve()
+{
+	int n;
+	cin >> n;
+
+	vector<int> a(n), b(n), d(n);
+	for (int i = 0; i < n; i++) cin >> a[i];
+	for (int i = 0; i < n; i++) cin >> b[i];
+
+	int base = 0, best = 0;
+	vector<int> pre0(n + 1, 0);
+	map<int, vector<int> > pos;
+
+	for (int i = 0; i < n; i++)
+	{
+		d[i] = b[i] - a[i];
+		pre0[i + 1] = pre0[i] + (d[i] == 0 ? 1 : 0);
+		if (d[i] == 0)
+		{
+			base++;
+		}
+		else
+		{
+			pos[d[i]].push_back(i);
+		}
+	}
+
+	for (auto it = pos.begin(); it != pos.end(); it++)
+	{
+		const vector<int>& v = it->second;
+		int cur = 0;
+		for (int j = 0; j < (int)v.size(); j++)
+		{
+			if (j == 0)
+			{
+				cur = max(0, cur) + 1;
+			}
+			else
+			{
+				int l = v[j - 1] + 1;
+				int r = v[j] - 1;
+				int z = pre0[r + 1] - pre0[l];
+				cur -= z;
+				cur = max(0, cur) + 1;
+			}
+			best = max(best, cur);
+		}
+	}
+
+	cout << base + best;
+}
+```
+---
+
+# H. 足球训练
+
+## 题意简述
+
+有 $n$ 名队员，第 $i$ 名初始实力 $a_i$、天赋 $b_i$。
+
+给总训练天数 $m$，分配 $k_i$（非负整数，和为 $m$）后，最大化：
+
+$$
+\prod_{i=1}^{n} (a_i + k_i b_i)
+$$
+
+输出最大值对 $998244353$ 取模。
+> **[NOTE]**
+> 这题本质是边际收益递减，直接一天一天贪心会超时，所以要做“二分水位 + 堆补尾巴”。
+
+## 核心思想
+
+把目标取对数，变成：
+
+$$
+\max \sum_i \ln(a_i + k_i b_i)
+$$
+
+这是离散凹优化。每给某人再加 1 天的边际收益为：
+
+$$
+\Delta_i(k)=\ln(a_i+(k+1)b_i)-\ln(a_i+kb_i)
+$$
+
+随 $k$ 递减。
+
+所以可用「参数二分 + 少量堆补差」：
+
+1. 二分一个阈值，先算每人应分配的大致天数。
+2. 为避免浮点误差导致超发，先保守减一点。
+3. 剩余少量天数用优先队列按当前最大边际收益补齐。
+
+## 复杂度
+
+- 二分约 80 轮，每轮 $O(n)$。
+- 补差阶段设剩余为 `rem`，复杂度 $O((n+rem)\log n)$。
+
+实践上可过本题范围。
+
+## code
+
+```cpp
+
+const int MOD = 998244353;
+
+struct Node
+{
+	double gain;
+	int id;
+	bool operator<(const Node& other) const
+	{
+		return gain < other.gain; // 大根堆
+	}
+};
+
+void solve()
+{
+	int n;
+	int m;
+	cin >> n >> m;
+
+	vector<int> a(n), b(n);
+	for (int i = 0; i < n; i++) cin >> a[i] >> b[i];
+
+	double L = 0.0, R = 2e14;
+	for (int it = 0; it < 80; it++)
+	{
+		double mid = (L + R) * 0.5;
+		int cnt = 0;
+
+		for (int i = 0; i < n; i++)
+		{
+			if (mid * (double)b[i] >= (double)a[i])
+			{
+				int k = (int)(mid - (double)a[i] / (double)b[i]) + 1;
+				cnt += k;
+				if (cnt > m + 1000000LL) break; // 防溢出保护
+			}
+		}
+
+		if (cnt >= m) R = mid;
+		else L = mid;
+	}
+
+	vector<int> k(n, 0);
+	int used = 0;
+
+	for (int i = 0; i < n; i++)
+	{
+		if (L * (double)b[i] >= (double)a[i])
+		{
+			int x = (int)(L - (double)a[i] / (double)b[i]) + 1;
+			x = max(0LL, x - 5);
+			k[i] = x;
+			used += x;
+		}
+	}
+
+	priority_queue<Node> pq;
+	for (int i = 0; i < n; i++)
+	{
+		double g = (double)b[i] / (double)(a[i] + k[i] * b[i]);
+		pq.push((Node){g, i});
+	}
+
+	while (used < m)
+	{
+		Node cur = pq.top();
+		pq.pop();
+
+		int id = cur.id;
+		++k[id];
+		++used;
+
+		double g = (double)b[id] / (double)(a[id] + k[id] * b[id]);
+		pq.push((Node){g, id});
+	}
+
+	int ans = 1;
+	for (int i = 0; i < n; i++)
+	{
+		int val = (a[i] % MOD + (k[i] % MOD) * (b[i] % MOD)) % MOD;
+		ans = (ans * val) % MOD;
+	}
+
+	cout << ans;
+}
+```
+
+## 易错点
+
+- 直接贪心一天一天分配会超时（$m$ 可到 $10^9$）。
+- 结果取模在最后乘法阶段做；$a_i + k_i b_i$ 先转成模意义即可。
+- 该题实现对浮点精度较敏感，建议自测多组随机数据做稳定性检查。
+
+---
+
+# 总结
+我的分数大概是这么多（也可能再低一点吧。其实打的，相当一般啊，感觉就是零基础 / 半吊子 + DSU 板子熟练使用者
+![alt text](e0d7db8bf7ba8da65682724582540989.webp)
+
+我曾经对 cf 有巨大的偏见，觉得它 "除了 guessing 什么都练不到" 但是这次的 B 题 居然被我手搓出规律了，在此我必须承认 cf 大人的强大，我将一直拥护 cf 。
+
+当然黑龙江的 b 组 其实没啥含金量 约等于校内竞争了。但是我再怎么说也是训了那么久，打成这样终归不是很满意，心有不甘 
+
+> 2026-04-29 update:
+>
+> 全省第二！这下不再心有不甘了。哈哈哈
+>
+> ![alt text](image-4.webp)
+
+---
+
+## GKD：李跳跳的平替推荐
+
+- **URL**: https://alisa22580.com/posts/gkd-shizuku-usage-tutorial/
+- **Published**: 2026-04-09
+- **Category**: Tutorial
+- **Tags**: Tutorial, Android, GKD, Shizuku, ADB
+- **Description**: GKD 使用教程，以及一些 Root、Shizuku、ADB 相关的原理学习
+
+# 写在前面
+
+> 免责声明：本文仅用于学习和效率优化，不鼓励用于任何违规用途。自动点击有风险，尤其是付款、授权、删除、转账类页面，请务必谨慎。
+
+# 1. GKD 介绍
+
+::github{repo="gkd-kit/gkd"}
+
+GKD 是一个**基于高级选择器和订阅规则的 Android 自动点击工具**。常见用途是减少重复点击流程，比如跳过某些开屏弹窗、关闭已知干扰提醒、做固定场景的一键确认。
+
+通俗来说，GKD 可以让我们跳过各种广告、弹窗、提示，直接点击“同意”、“跳过”、“关闭”等按钮，提升使用体验和效率。包括但不限于 B站 拼多多 :spoiler[甚至还有**运动世界**，非常之好用。] 
+
+GKD 本身核心依赖是无障碍服务，但是为了避免 Android 系统对无障碍权限的限制和误杀，GKD 的一些增强功能（比如更精准的界面元素识别、跨应用操作等）会借助 Shizuku 来调用系统级 API，从而实现更稳定和高效的自动化体验。
+ 
+# 2. 上文提到的一些概念
+
+## 2.1 Root
+Root 可以理解为 Android 的最高权限。拿到它之后，你对系统的控制能力会显著增强。
+
+优点是权限足够高，很多操作一把过；代价是安全风险和维护成本一起上来，系统完整性、保修、金融类应用兼容都可能受影响。
+
+作为最强的权限方案，小米厂商对用户的 Root 权限管理也相当严格，若通过正常渠道申请，需要在小米社区提交申请，审核通过后才能获得 Root 权限，可谓十分麻烦。
+
+因此，ADB 和 Shizuku 这两种 "非 Root" 方案就显得非常有吸引力。
+
+## 2.2 ADB
+ADB 全称 Android Debug Bridge，本质不是权限工具，而是开发调试桥。
+
+它允许电脑（或无线调试通道）向手机发命令，完成调试、安装、授权、拉日志等操作。你可以把它理解成“官方调试后门”，前提是你主动开启了开发者选项和 USB 调试/无线调试。
+
+ADB 的权限级别介于普通应用和 Root 之间，能执行一些系统级操作，但需要每次重启后重新授权启动服务。它的使用需要通过命令行，而且还要插线，具有一定门槛。
+ 
+## 2.3 Shizuku
+Shizuku 是一个中间件，核心功能是把“需要高权限的系统 API 调用”集中到一个后台服务里，再把能力安全地转交给支持它的应用。 它的出现让很多原本需要 Root 权限的功能，在不 Root 的情况下也能实现，能让用户方便地能在一定范围内让应用“借到”系统级能力。
+
+Shizuku 有三种常见启动方式：
+
+1. 通过 Root 启动：最省心，权限高，通常体验最好。
+2. 通过连接电脑启动（ADB）：最通用，稳定，但每次重启后也常要重新来一次。
+3. 通过无线调试启动（Android 11+）：不用电脑线，但重启后通常需要再次启动。这是我们推荐的方案，兼顾了便利和安全。
+  
+## 2.4 关系总结
+
+- Root：直接给系统最高权限。
+- ADB：提供命令桥接通道。
+- Shizuku：通过 Root 或 ADB 把系统调用能力转交给应用。
+- GKD：利用无障碍能力 + 规则匹配，在特定条件下执行点击等动作。
+
+# 3. 配置过程
+
+## 3.1 安装 GKD
+
+建议优先从官方渠道安装：
+1. https://gkd.li/guide/
+2. https://github.com/gkd-kit/gkd/releases
+
+## 3.2 启用无障碍服务
+
+打开软件，勾选第一个选项，点击右上角进入配置。
+
+![alt text](image.webp)
+
+## 3.3 安装并启动 Shizuku
+
+::github{repo="RikkaApps/Shizuku"}
+[Shizuku 官方文档](https://shizuku.rikka.app/zh-hans/guide/setup/)
+
+### A. Root 启动
+
+如果你的设备已 Root，直接在 Shizuku 内点击启动即可。
+
+### B. 无线调试启动（Android 11+）
+
+1. 打开 Shizuku，点击配对。
+
+   ![alt text](image-1.webp)
+
+2. 点击“开发者选项”，找到无线调试。
+
+   ![alt text](image-2.webp)
+   ![alt text](image-3.webp)
+
+3. 勾选“无线调试”，点击“配对设备”，输入 Shizuku 给出的配对码。
+
+   ![alt text](image-4.webp)
+   ![alt text](image-5.webp)
+   ![alt text](image-6.webp)
+
+4. 配对成功后，回到 Shizuku 点击启动。
+
+   ![alt text](image-7.webp)
+
+5. 在上方授权 GKD。
+
+   ![alt text](image-8.webp)
+   ![alt text](image-9.webp)
+
+### C. 连接电脑 ADB 启动
+
+1. 电脑安装 platform-tools（ADB）。
+2. 手机开启 USB 调试并连接电脑。
+3. 执行 adb devices，确认设备状态为 device。
+4. 按 Shizuku 页面给出的命令启动服务。
+> **[NOTE]**
+> 无线调试/ADB 启动在手机重启后通常需要重新启动，这是系统机制导致的正常现象。
+
+## 3.4 导入订阅规则
+
+```txt
+https://raw.githubusercontent.com/AIsouler/GKD_subscription/main/dist/AIsouler_gkd.json5
+```
+
+在 GKD 内导入路径一般是：
+
+- 打开 GKD，进入订阅页面，选择添加订阅，粘贴上述 URL。
+
+  ![alt text](image-10.webp)
+  ![alt text](image-11.webp)
+
+- 保存并拉取更新。
+
+如果看到订阅名称、版本、应用规则列表正常出现，说明导入成功。
+
+## 3.5 配置规则
+
+进入应用界面，逐一调整即可。
+
+![alt text](image-12.webp)
+
+# 4. 注意事项
+> **[WARNING]**
+> 自动点击虽然方便，但也有风险，尤其是涉及到资金、权限、账号安全等敏感操作的页面。为了避免误操作导致的损失，建议在以下场景一律禁用自动点击：
+> 以下场景建议默认禁用：
+> 
+> 1. 付款与转账。
+> 2. 删除、卸载、格式化。
+> 3. 系统授权和隐私协议。
+> 4. 账号安全验证。
+> 
+> 这些页面宁愿手点，也不要赌自动化“刚好没错”。
+
+大功告成，祝使用愉快。
+
+---
+
+## 简短的 VPN 使用教程
+
+- **URL**: https://alisa22580.com/posts/vpn-usage-tutorial/
+- **Published**: 2026-04-03
+- **Category**: Tutorial
+- **Tags**: Tutorial, VPN
+- **Description**: 内含丛雨云推荐（更适合二次元宝宝体质）
+
+# 写在前面
+捣鼓博客的初衷就是想多发一些“经验分享帖”，但是又总会怀疑自己自作多情的搞这么一出 是不是其实无人在意。
+
+但是还是有很多朋友问我这怎么搞那怎么搞，同样的东西解释很多次大概也会心烦。倒不如趁此机会一鼓作气把东西写出来，这样以后别人问起来就可以帅气（吗）地把博客链接甩出去，还能给博客加点浏览量。
+
+![alt text](image.webp)
+
+看到有人确实需要这些内容，我就觉得写出来也不是白写，活着也不是白活了。
+
+换而言之，如果这篇帖子对你有帮助的话，欢迎多多分享！
+
+# 1. 环境讲解
+在进入具体操作之前，我们先来理清几个经常被混淆的概念。虽然它们最终的目的都是让你“科学上网”，但原理和使用体验却大不相同。
+## 1. “梯子”（The Ladder）
+“梯子”并不是一个技术术语，而是中文互联网环境下的一个比喻。
+- 含义： 泛指一切能够绕过网络限制、访问海外网站的工具。
+- 逻辑： 墙（GFW）挡住了去路，所以我们需要一把“梯子”翻过去。无论你用的是 VPN、SSR 还是 Clash，在口语中都可以统称为“找个梯子”。
+## 2. VPN（虚拟专用网络）
+VPN 的全称是 `Virtual Private Network` 。
+- 初衷：它的设计初衷不是为了“翻墙”，而是为了数据加密。比如出差的员工通过 VPN 安全地连接回公司内网。
+
+> 你哈埋土就需要 VPN 来访问教务在线，不可不谓是、、科学上网的先驱！此处或许应有掌声。
+> ![alt text](966167b05a75e7ee2e35a4ab64f522b5.webp)
+- 特点：全局加密： 开启后，你电脑上所有的网络流量都会经过加密通道。
+- 现状：虽然安全，但由于 VPN 的流量特征非常明显，容易被识别封锁，且开启后访问国内网站（如淘宝、百度）速度会变慢。
+## 3. 代理（Proxy）与协议
+为了避开检测，技术圈开发了更灵活的代理协议（如 Shadowsocks, V2Ray, Trojan 等）。
+- 原理： 就像是在你的网络请求外包了一层“普通快递”的纸箱，让防火墙以为你只是在访问普通的海外网页。
+- 服务商： 提供这些代理协议访问权限的网站，通常被称为 **“机场”**。
+## 4. Clash：全能的“指挥中心”
+clash 是 基于规则的软件内代理核心 ...
+这个听起来很高端很专业，其实就是一个让订阅服务运行起来的平台。这样的平台当然不止一个，我在此推荐 clash 是因为它全平台通用，界面设计现代，足够方便。
+- 核心优势——分流 (Rule-based)： 这是它区别于传统 VPN 的最大优点。Clash 会根据预设规则自动判断：
+	- 当你访问 YouTube 时，它自动走加速通道；
+	- 当你访问 微信 时，它自动走国内直连，不消耗加速流量。
+
+我们可以用一个形象的比喻来总结：
+- “科学上网” 是你的目的；
+- “梯子” 是你对这类工具的亲切称呼；
+- “机场（订阅服务）” 是为你提供服务的加油站/供应商；
+- “Clash” 是一台台配置豪华、带自动导航的赛车。
+你把“订阅链接”输入到“Clash”里，就像是给赛车加满了油并设定好了最优路线，然后你就可以畅通无阻地出发了。
+
+# 2. 正式的使用教程
+通过上文我们知道，我们需要从 机场 中获得订阅服务，并通过 clash 来使用。
+
+## 1. Clash 的安装
+
+### Windows
+推荐使用 [clash verge rev](https://github.com/clash-verge-rev/clash-verge-rev/releases/tag/v2.4.7)，界面友好，功能齐全，适合大多数用户。
+
+::github{repo="clash-verge-rev/clash-verge-rev"}
+### Android
+推荐使用 [Clash Meta](https://github.com/MetaCubeX/ClashMetaForAndroid) ，它是目前安卓平台上功能最全、更新最活跃的 Clash 版本。
+::github{repo="MetaCubeX/ClashMetaForAndroid"}
+### iOS
+
+没有用过 iOS 呢……等个有缘人提 PR。
+
+## 2. 获取订阅服务
+这个帖子仅负责必要的说明，因此 建议大家自行搜索评价稳定的机场，本站没有立场作推荐。
+
+![alt text](preview.webp)
+:spoiler[可爱的 [丛雨宝宝](https://congyu.moe/auth/register?invite=fc84dcfb89) 出现在这里，单纯是因为她是卡密sama，想去哪就去哪，跟作者本人并无联系。]
+## 3. 导入 / 使用
+> 下面以 Windows 版本的 Clash 为例，其他平台的操作大同小异。
+
+完成购买步骤后，我们等待约五分钟，可以看到主页的订阅链接出现。
+![alt text](image-1.webp)
+
+我们点击复制，把链接粘贴到 Clash 的 URL 粘贴栏里，保存。
+![alt text](image-2.webp)
+
+现在，我们开启代理，看到状态栏的小猫从紫色变成橙色，一切就大功告成了！
+![alt text](image-4.webp)
+
+可以尝试打开[谷歌](https://www.google.com/)进行测试。
+
+## 4. 使用建议与避坑
+我们应当选择 Rule (规则模式) 实现“国内直连，国外加速”。  
+
+​我们应当选择 日本 / 新加坡 节点： 物理距离近，延迟低，适合刷网页、看视频；适合访问ChatGPT 或某些有严格地区限制的资源。  
+> **[TIP]**
+> 我现在钟意 `Singapore 立華奏`
+
+> **[WARNING]**
+> 安全提醒： 订阅链接包含你的个人账户信息，千万不要发给别人，否则流量会被蹭光，账号也可能被封。
+
+祝大家在广阔的互联网海洋中愉悦自在。
+
+---
+
+## SelectEcho 入门教程：从安装到第一次划词翻译
+
+- **URL**: https://alisa22580.com/posts/selectecho-getting-started/
+- **Published**: 2026-03-15
+- **Category**: Tutorial
+- **Tags**: Tutorial, SelectEcho
+- **Description**: 一篇给零基础用户的完整上手指南：安装、配置、实操、排错和进阶建议。
+
+# 写在前面
+
+这篇教程是给第一次接触浏览器扩展、或者第一次折腾划词翻译的朋友准备的，可以作为「SelectEcho」的快速上手指南。
+
+::github{repo="2258009564/SelectEcho"}
+
+如果对你有帮助的话，欢迎在 GitHub 上给项目点个 star，或者把教程分享给需要的朋友！如果你在使用过程中遇到任何问题，也欢迎在 GitHub 上提交 issue，我会尽快回复。
+
+# 1. SelectEcho 是什么
+
+`SelectEcho` 是一个基于 `Chrome`/`Edge` 的浏览器扩展，核心体验是：
+
+1. 网页里选中文本。
+2. 松开左键。
+3. 在选区附近弹出翻译面板。
+
+也就是划词翻译啦！
+
+## 效果展示
+![alt text](image-9.webp)
+![alt text](image-10.webp)
+![alt text](image-11.webp)
+
+# 2. 使用前准备
+
+## 2.1 浏览器要求
+
+本项目当前定位是 Manifest V3 扩展，推荐环境：
+
+1. Chrome 最新稳定版。
+2. Edge 最新稳定版。
+
+> Firefox 和 Safari 暂不在主支持范围内。
+
+## 2.2 网络与权限认知
+
+扩展会用到：
+
+1. `storage`：保存你的配置。
+2. Google 翻译接口域名权限。
+3. 百度翻译接口域名权限。
+
+> 这不是在读你的浏览历史，而是扩展正常工作需要的最小权限集合。
+
+## 2.3 获取项目文件
+
+你可以任选一种方式。
+
+### 方式 A：下载 Release 压缩包（最省事）
+
+1. 打开 SelectEcho Release 页面。
+2. 下载最新 `SelectEcho.zip`。
+3. 解压到一个你方便记住的目录。
+
+最新版本下载：[最新稳定包直链](https://github.com/2258009564/SelectEcho/releases/latest/download/SelectEcho.zip)
+
+### 方式 B：Git 克隆（适合后续更新）
+
+```bash
+git clone https://github.com/2258009564/SelectEcho.git
+cd SelectEcho
+```
+
+# 3. 安装到 Chrome / Edge
+
+下面流程对 Chrome 和 Edge 都通用，只是扩展管理页地址不一样：
+
+1. Chrome：`chrome://extensions`
+2. Edge：`edge://extensions`
+
+我将以 Edge 为例说明安装步骤：
+
+1. 复制上面的对应地址，打开扩展管理页。
+
+2. 打开右上角「开发者模式」。
+
+3. 点击「加载已解压的扩展程序」。
+![alt text](image.webp)
+
+4. 选择你刚才解压/克隆的 `SelectEcho` 文件夹。
+![alt text](image-1.webp)
+
+5. 确认扩展出现在列表中，状态为启用。
+![alt text](image-2.webp)
+
+如果您 *有* [科学上网工具](https://congyu.moe/auth/register?invite=fc84dcfb89)，那么安装完成后，Google 翻译引擎应该能直接使用；如果没有，请跟着我继续往下看设置页配置百度翻译凭证的部分。
+
+> 上面，似乎！有些奇怪的东西可以点击...
+
+# 4. 配置百度翻译凭证（可选）
+
+1. 打开 [百度翻译开放平台](https://fanyi-api.baidu.com/)，点击 管理控制台。
+![alt text](image-3.webp)
+
+2. 在 总览处 注册成为 个人开发者。
+![alt text](91311f3962e4e340036b295baaa5506a.webp)
+
+3. 启用 通用文本翻译 服务。
+![alt text](c4bd8f6966e20d664c1354ea4b4b5130.webp)
+![alt text](06ea73c2d9ee800b66cad00c94bc560a.webp)
+
+选择高级版即可，应用名称填写 「SelectEcho」，其他选项按需填写。
+![alt text](9ca47df8418e5138c1e1117c91472e94.webp)
+
+4. 创建完成后，在 开发者信息 处，找到 APP ID 和 密钥，复制到 SelectEcho 设置页对应输入框里。
+![alt text](image-4.webp)
+
+5. 打开设置页， 填写相关配置。
+
+![alt text](image-5.webp)
+
+![alt text](image-6.webp)
+
+# 5. 配置
+
+我们先追求「成功一次」，不要一上来就深挖所有参数。
+
+## 5.1 选择测试页面
+
+建议先用这些页面测试：
+
+1. GitHub [en-README](https://github.com/2258009564/SelectEcho/blob/main/README_EN.md)。
+2. [Wikipedia](https://wikimediafoundation.org/) 英文页面。
+3. 纯文本技术文档页。
+
+不建议第一站就去复杂 Web App（例如富交互编辑器页面），避免把问题混在一起。
+
+## 5.2 触发动作
+
+1. 在页面中用左键选中一段英文文本（至少 2 个字符）。
+2. 松开左键。
+3. 等待面板弹出。
+
+你应该看到：
+
+1. 译文内容。
+2. 引擎状态（Google 或 Baidu）。
+3. 可关闭按钮和复制按钮。
+
+![alt text](image-8.webp)
+ 
+# 6. 设置页
+
+打开设置页的方式：扩展图标 -> 选项（Options）。
+
+![alt text](image-7.webp)
+
+下面是最常见配置项：
+
+| 配置项 | 默认值 | 你要知道什么 |
+| --- | --- | --- |
+| `sourceLang` | `auto` | 源语言自动识别，绝大多数情况别改。 |
+| `targetLang` | `zh-CN` | 目标语言，入门阶段建议保持简体中文。 |
+| `engineMode` | `auto` | 核心开关：自动 / 仅百度 / 仅 Google。 |
+| `maxChars` | `2000` | 单次翻译字符上限，太大可能更慢。 |
+| `showSourceText` | `true` | 是否显示原文预览，嫌面板高可以关。 |
+| `panelTheme` | `classic` | 翻译框样式主题，不影响翻译质量。 |
+| `baiduAppId` | 空 | 百度凭证 App ID。 |
+| `baiduAppKey` | 空 | 百度凭证密钥，和 App ID 成对使用。 |
+
+# 7. 常见问题排查
+
+## 7.1 安装成功但划词没反应
+
+排查顺序：
+
+1. 是否真的启用了扩展。
+2. 是否在普通网页（不是受限页面）测试。
+3. 是否用左键选中后松开。
+4. 选区是否至少 2 个字符。
+
+## 7.2 一直提示超时
+
+先看你当前模式：
+
+1. `google` 或 `auto`（无百度凭证）时，网络条件不稳定更容易超时。
+2. 你可以切到 `baidu` 并填好凭证测试。
+
+## 7.3 百度报错（例如凭证相关错误）
+
+1. 检查 AppID 和 AppKey 是否都填写。
+2. 检查是否有前后空格。
+3. 保存后刷新测试页再试。
+
+## 7.4 在输入框里为什么不触发
+这是设计行为。`input`、`textarea`、可编辑区域默认不触发，避免干扰正常输入。
+
+# 8. 进阶使用建议
+
+## 8.1 配置 AI 翻译
+等待更新中...
+
+# 结语
+
+到这里，你已经成功安装并使用了 SelectEcho 进行划词翻译。希望这个工具能成为你日常浏览和学习的好帮手！如果你有任何问题或者建议，欢迎在 GitHub 上提交 issue 或者参与讨论。祝你翻译愉快！
+
+---
+
+## test
+
+- **URL**: https://alisa22580.com/posts/test/
+- **Published**: 2026-03-11
+- **Category**: Examples
+- **Tags**: Markdown, Demo
+- **Description**: 这是一个测试文章，用于验证博客系统的功能是否正常。
+
+# 测试
+这是一个测试文章，用于验证博客系统的功能是否正常。文章内容可以是任何文本，这里我简单地贴一段我早已经忘却的组合数板子来测试。
+
+```cpp
+const int MAXN = 1e7;
+const int MOD = 1e9 + 7;
+
+vector<int> fact(MAXN), invfact(MAXN);
+bool inited = 0;
+int ksm(int base, int exp)
+{
+	int ans = 1;
+	while (exp)
+	{
+		if (exp & 1)
+		{
+			ans = ans * base % MOD;
+		}
+		base = base * base % MOD;
+		exp >>= 1;
+	}
+	return ans;
+}
+
+int inv(int x)
+{
+	return ksm(x, MOD - 2);
+}
+
+void pre()
+{
+	if (inited) return;
+	inited = 1;
+	fact[0] = 1;
+	for (int i = 1; i < MAXN; i++)
+	{
+		fact[i] = fact[i - 1] * i % MOD;
+	}
+
+	invfact[MAXN - 1] = inv(fact[MAXN - 1]);
+	for (int i = MAXN - 2; i >= 0; i--)
+	{
+		invfact[i] = invfact[i + 1] * (i + 1) % MOD;
+	}
+}
+
+int comb(int n, int k)
+{
+	if (!inited) 
+    {
+        pre();
+	}
+
+	if (k < 0 or k > n) 
+    {
+        return 0;
+    }
+    
+	return fact[n] * invfact[k] % MOD * invfact[n - k] % MOD;
+}
+```
+以下是更多功能的测试：
+
+# heading 1
+## heading 2
+### heading 3
+#### heading 4
+##### heading 5
+###### heading 6
+
+**bold**
+*italic*
+
+- bullet item 1
+- bullet item 2
+	- nested item
+- bullet item 1
+
+1. no.1
+2. no.2
+
+[[学习笔记]]
+[link text](https://www.google.com) 
+
+==Highlight Text==
+～～ dont know why i cant use strikethrough ～～
+
+- [ ] checkbox
+- [x] put 'x' 
+
+> [!node]
+> 1
+
+---
+%这是一个注释% 
+
+> 以下是 `latex` 
+
+$$
++
+-
+\times
+\div
+=
+\neq 
+$$
+$$
+(a + b)
+\{a + b\}
+[a + b]
+\frac{a}{b}
+
+a^2
+x_1
+\sqrt{a}
+$$
+$$
+\alpha \times \beta = \gamma
+\sum_{i = 1}^{n} i
+\Sigma_{i = 1}^{n} i
+\Pi_{i = 1}^{n} i
+$$
+
+从中发现，高光、删除线、注释 等功能无法正常使用，但是无伤大雅，毕竟这些功能并不是博客系统的核心功能。总的来说，这篇测试文章成功地验证了博客系统的基本功能，并且展示了各种文本格式和数学公式的支持情况。可喜可贺，可喜可贺。

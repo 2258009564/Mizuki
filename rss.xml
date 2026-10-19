@@ -1,343 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>from alisa</title><description>主页</description><link>https://alisa22580.com/</link><language>zh_CN</language><item><title>本博客的搭建教程</title><link>https://alisa22580.com/posts/my-blog-build-tutorial/</link><guid isPermaLink="true">https://alisa22580.com/posts/my-blog-build-tutorial/</guid><description>和我一起，开启博客生涯。</description><pubDate>Thu, 12 Mar 2026 11:33:24 GMT</pubDate><content:encoded>&lt;p&gt;&amp;lt;!-- ---
-title: &quot;我的第一篇 Astro 博客&quot;      # 文章标题
-published: 2026-03-12            # 发布日期 (格式: YYYY-MM-DD)
-description: &quot;这是我使用 Mizuki 主题开启博客生涯的第一天。&quot; # 简短摘要，显示在列表页
-image: &quot;./cover.webp&quot;            # 文章封面图路径
-tags: [&quot;教程&quot;, &quot;Astro&quot;]          # 标签（用英文方括号包围，逗号分隔）
-category: &quot;技术&quot;                  # 分类
-pinned: true                     # 是否置顶 (true 或 false)
-priority: 0                      # 置顶优先级，数字越小越靠前
-draft: false                     # 是否为草稿（设为 true 则不会在正式网站显示）
-updated: 2026-03-12T16:54:24.123Z # 最后更新时间 (格式: YYYY-MM-DDTHH:mm:ss.sssZ)
---- --&amp;gt;&lt;/p&gt;
-&lt;h1&gt;写在之前&lt;/h1&gt;
-&lt;p&gt;在此之前，我尝试过在 &lt;code&gt;GitHub pages&lt;/code&gt; 上部署一个基于 &lt;code&gt;Quartz&lt;/code&gt; 的 &lt;a href=&quot;https://2258009564.github.io/&quot;&gt;静态知识库&lt;/a&gt;，但由于 &lt;code&gt;Quartz&lt;/code&gt; 的功能过于简单，无法满足我对博客的需求（臆想）。&lt;/p&gt;
-&lt;p&gt;再后来，我也尝试过使用 &lt;code&gt;Hexo&lt;/code&gt; 和 &lt;code&gt;Hugo&lt;/code&gt; 等静态博客生成器，但由于它们的配置较为复杂，且需要一定的前端知识，加上我的懒癌（大概这才是最主要的），导致最后没有好好操作下去。&lt;/p&gt;
-&lt;p&gt;最近好像还真是发生了很多事情啊...现在大概需要督促自己做点什么，不然整个人要烂了。&lt;/p&gt;
-&lt;p&gt;在对比好几个朋友的选择之后，我最终选择了 &lt;code&gt;Astro-theme-Mizuki&lt;/code&gt; 作为我的博客框架，这是一个基于 &lt;code&gt;Astro&lt;/code&gt; 的博客主题，具有简洁的设计和丰富的功能，而且上手非常容易，适合个人博客的搭建。&lt;/p&gt;
-&lt;p&gt;那么，接下来我将分享一下我捣鼓博客的过程，希望能给有需要的朋友提供帮助。&lt;/p&gt;
-&lt;p&gt;本教程力求在 &lt;a href=&quot;https://docs.mizuki.mysqil.com/&quot;&gt;官方文档&lt;/a&gt; 的基础上，结合我自己的经验，提供一个更为通俗、详细的指南，帮助大家顺利搭建自己的博客，毕竟先把东西跑起来，才有动力去研究官方文档以完善它。&lt;/p&gt;
-&lt;p&gt;当然，本教程不可能完全替代（完全不可能替代）&lt;a href=&quot;https://docs.mizuki.mysqil.com/&quot;&gt;官方文档&lt;/a&gt;。因此，建议搭配食用。&lt;/p&gt;
-&lt;h1&gt;1. 环境讲解与配置&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;什么是 &lt;code&gt;Astro&lt;/code&gt;？&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;它是一个现代化的静态网站生成器，支持多种前端框架（如 React、Vue、Svelte 等），并且具有出色的性能和灵活性。要搭建基于 &lt;code&gt;Astro&lt;/code&gt; 的博客，您需要先安装 &lt;code&gt;Node.js&lt;/code&gt; 和 &lt;code&gt;npm&lt;/code&gt; 。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;什么是 &lt;code&gt;Node.js&lt;/code&gt;？&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;它是一个基于 &lt;code&gt;Chrome V8&lt;/code&gt; 引擎的 &lt;code&gt;JavaScript&lt;/code&gt; 运行环境，允许您在服务器端运行 &lt;code&gt;JavaScript&lt;/code&gt; 代码。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;什么是 &lt;code&gt;npm&lt;/code&gt; ?&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;code&gt;npm&lt;/code&gt; 是 &lt;code&gt;node package manager&lt;/code&gt; 的缩写，是 &lt;code&gt;Node.js&lt;/code&gt; 的包管理器，用于安装和管理项目所需的依赖包。&lt;/p&gt;
-&lt;p&gt;也就是说，我们通过 &lt;code&gt;Node.js&lt;/code&gt; 来支持 &lt;code&gt;Astro&lt;/code&gt; 生成器的运行，而 &lt;code&gt;npm&lt;/code&gt; 则帮助我们安装和管理博客所需的各种依赖包。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;什么是 &lt;code&gt;pnpm&lt;/code&gt; ?&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;code&gt;pnpm&lt;/code&gt; 是 &lt;code&gt;performance npm&lt;/code&gt; 的缩写，是一个快速、节省磁盘空间的包管理器。&lt;/p&gt;
-&lt;p&gt;与 &lt;code&gt;npm&lt;/code&gt; 不同，&lt;code&gt;pnpm&lt;/code&gt; 使用符号链接来共享依赖包，从而减少了磁盘空间的占用，并且在安装速度上也有显著提升。&lt;/p&gt;
-&lt;p&gt;此外，本博客的搭建还需要使用到 &lt;code&gt;Git&lt;/code&gt; 和 &lt;code&gt;GitHub&lt;/code&gt;。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;什么是 &lt;code&gt;Git&lt;/code&gt; ?&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;code&gt;Git&lt;/code&gt; 是一个分布式版本控制系统，用于跟踪文件的更改历史，协助多人协作开发项目。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;什么是 &lt;code&gt;GitHub&lt;/code&gt; ?&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;code&gt;GitHub&lt;/code&gt; 是一个基于 &lt;code&gt;Git&lt;/code&gt; 的代码托管平台，提供了版本控制和协作功能，允许开发者在云端存储和管理他们的代码库。&lt;/p&gt;
-&lt;p&gt;也就是说，我们需要使用 &lt;code&gt;Git&lt;/code&gt; 来管理博客的源代码，并将其托管在 &lt;code&gt;GitHub&lt;/code&gt; 上，以便于后续的部署和管理。&lt;/p&gt;
-&lt;p&gt;知道了这些基础知识后，我们可以发现 搭建博客的第一步就是在电脑中安装这些基础工具：&lt;/p&gt;
-&lt;h2&gt;1. 安装 &lt;code&gt;Node.js&lt;/code&gt; 和 &lt;code&gt;npm&lt;/code&gt;&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;访问 &lt;a href=&quot;https://nodejs.org/&quot;&gt;Node.js 官网&lt;/a&gt; 下载并安装最新的 LTS 版本，这将同时安装 &lt;code&gt;Node.js&lt;/code&gt; 和 &lt;code&gt;npm&lt;/code&gt;。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;安装完成后，可以通过命令行输入以下命令来验证安装是否成功：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;node -v
-npm -v
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;如果显示版本号，说明安装成功。&lt;/p&gt;
-&lt;h2&gt;2. 安装 &lt;code&gt;pnpm&lt;/code&gt;&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;您可以通过 &lt;code&gt;npm&lt;/code&gt; 来安装 &lt;code&gt;pnpm&lt;/code&gt;，打开命令行输入以下命令：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;npm install -g pnpm
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;安装完成后，可以通过以下命令来验证 &lt;code&gt;pnpm&lt;/code&gt; 是否安装成功：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;pnpm -v
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;如果显示版本号，说明安装成功。&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2&gt;3. 安装 &lt;code&gt;Git&lt;/code&gt;&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;访问 &lt;a href=&quot;https://git-scm.com/&quot;&gt;Git 官网&lt;/a&gt; 下载并安装 &lt;code&gt;Git&lt;/code&gt;。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;安装完成后，可以通过命令行输入以下命令来验证安装是否成功：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;git --version
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;如果显示版本号，说明安装成功。&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1&gt;2. 项目搭建&lt;/h1&gt;
-&lt;h2&gt;1. 克隆博客模板&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;导航到您想要存放博客项目的目录，例如：我直接把整个项目放在桌面上，那么于我而言，就是进入桌面目录：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;cd D:/Desktop
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;使用 Git 克隆 &lt;code&gt;Astro-theme-Mizuki&lt;/code&gt; 的模板仓库：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;git clone https://github.com/matsuzaka-yuki/mizuki.git
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;进入克隆的项目目录，下文的所有指令都需要在该目录中进行：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;cd Mizuki
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2&gt;2. 安装依赖&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;使用 &lt;code&gt;pnpm&lt;/code&gt; 安装项目所需的依赖包：&lt;pre&gt;&lt;code&gt;pnpm install
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2&gt;3. 配置博客&lt;/h2&gt;
-&lt;p&gt;根据自己的需求配置您的博客，详细的配置教程将在下文介绍。&lt;/p&gt;
-&lt;h2&gt;4. 本地预览&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;使用以下命令启动本地开发服务器：&lt;pre&gt;&lt;code&gt;pnpm dev
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;li&gt;打开浏览器，访问 &lt;code&gt;http://localhost:4321&lt;/code&gt;，您应该能够看到博客的默认界面。
-&lt;img src=&quot;https://alisa22580.com/_astro/image.BXnTYzFq_Z1qmU5e.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2&gt;5. 打包网站&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;运行以下命令将网站打包成静态文件，生成到 dist 目录中：&lt;pre&gt;&lt;code&gt;pnpm build
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;生成的 dist 目录后续将可以部署到您自己的服务器上。&lt;/p&gt;
-&lt;h1&gt;3. 项目部署&lt;/h1&gt;
-&lt;p&gt;在正式开始之前，我们有必要了解一下 一个本地项目是如何在网络上被看见的：&lt;/p&gt;
-&lt;p&gt;当我们在本地开发一个网站时，它只能在我们的计算机上访问，其他人无法看到它。&lt;/p&gt;
-&lt;p&gt;为了突破这个限制，我们需要将它部署到服务器上，这样它就可以通过互联网被访问了。&lt;/p&gt;
-&lt;p&gt;以下是一个简单的部署流程图：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;graph TD
-  A[本地开发] --&amp;gt; B[打包成静态文件]
-  B --&amp;gt; C[上传到服务器]
-  C --&amp;gt; D[服务器配置]
-  D --&amp;gt; E[网站上线]
-&lt;/code&gt;&lt;/pre&gt;
-&lt;ul&gt;
-&lt;li&gt;本地开发：我们在本地计算机上开发和测试我们的网站。&lt;/li&gt;
-&lt;li&gt;打包成静态文件：我们使用构建工具将我们的项目打包成静态文件，这些文件可以被服务器直接提供给用户。&lt;/li&gt;
-&lt;li&gt;上传到服务器：我们将打包好的静态文件上传到服务器上，这可以通过 FTP、SSH 或者使用云服务提供的工具来完成。&lt;/li&gt;
-&lt;li&gt;服务器配置：我们需要在服务器上进行一些配置，例如设置域名、SSL 证书等，以确保我们的网站能够正常访问。&lt;/li&gt;
-&lt;li&gt;网站上线：完成以上步骤后，我们的网站就可以通过互联网访问了。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;显然，上传、配置服务器对我来说太过困难。但我们有两位赛博义父： &lt;code&gt;Github&lt;/code&gt; 和 &lt;code&gt;Cloudflare&lt;/code&gt; 。&lt;/p&gt;
-&lt;p&gt;在本教程中，我们将使用 &lt;code&gt;GitHub&lt;/code&gt; 来托管我们的博客源代码，并通过 &lt;code&gt;Cloudflare Pages&lt;/code&gt; 来部署我们的博客，这是一个免费的静态网站托管平台，具有全球 CDN、自动部署和免费 SSL 证书等特性。&lt;/p&gt;
-&lt;p&gt;每当我们将代码推送到 &lt;code&gt;GitHub&lt;/code&gt; 仓库时，&lt;code&gt;Cloudflare Pages&lt;/code&gt; 会自动构建并部署最新版本的网站，这样我们就可以轻松地管理和更新我们的博客了。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;graph TD
-  A[本地开发] --&amp;gt; B[推送代码到 GitHub]
-  B --&amp;gt; C[Cloudflare Pages 自动构建]
-  C --&amp;gt; D[部署到全球 CDN]
-  D --&amp;gt; E[用户访问博客]
-&lt;/code&gt;&lt;/pre&gt;
-&lt;ul&gt;
-&lt;li&gt;本地开发：我们在本地计算机上开发和测试我们的博客。&lt;/li&gt;
-&lt;li&gt;推送代码到 &lt;code&gt;GitHub&lt;/code&gt; ：我们将我们的代码推送到 &lt;code&gt;GitHub&lt;/code&gt; 仓库中。&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;Cloudflare Pages&lt;/code&gt; 自动构建：&lt;code&gt;Cloudflare Pages&lt;/code&gt; 会自动检测到 &lt;code&gt;GitHub&lt;/code&gt; 仓库的更新，并开始构建我们的博客。&lt;/li&gt;
-&lt;li&gt;部署到全球 CDN：构建完成后，&lt;code&gt;Cloudflare Pages&lt;/code&gt; 会将我们的博客部署到全球的内容分发网络（CDN）上，以确保用户能够快速访问。&lt;/li&gt;
-&lt;li&gt;用户访问博客：用户通过互联网访问我们的博客，&lt;code&gt;Cloudflare Pages&lt;/code&gt; 会从最近的 CDN 节点提供博客内容，确保访问速度和稳定性。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;可以看出，这两尊大佛为我们减轻很多部署时候的障碍，让我们再次感谢它们。&lt;/p&gt;
-&lt;h2&gt;1. 创建 GitHub 仓库&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;登录到 &lt;a href=&quot;https://github.com/&quot;&gt;GitHub&lt;/a&gt; 并创建一个新的仓库。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;将本地项目与 &lt;code&gt;GitHub&lt;/code&gt; 仓库关联：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;git remote add origin https://github.com/your-username/your-repo.git
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;将代码推送到 &lt;code&gt;GitHub&lt;/code&gt; ：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;  git add .
-  git commit -m &quot;提交信息&quot;
-  git push -u origin main
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;blockquote&gt;
-&lt;p&gt;有关 &lt;code&gt;GitHub&lt;/code&gt; 的使用，请参阅：（我也不知道参阅哪里 先搁置吧&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2&gt;2. 配置 Cloudflare Pages&lt;/h2&gt;
-&lt;h3&gt;1. 登录 Cloudflare Pages&lt;/h3&gt;
-&lt;p&gt;访问 Cloudflare Dashboard，使用您的账号登录，然后选择 &quot;Pages&quot; 服务。
-当然 您可以在左下角找到更改语言的选项，切换到中文界面或许会更方便一些。&lt;/p&gt;
-&lt;h3&gt;2. 创建新项目&lt;/h3&gt;
-&lt;p&gt;点击 &quot;Create a project&quot; 或 &quot;Connect to Git&quot; 按钮
-选择您的 &lt;code&gt;Git&lt;/code&gt; 提供商（GitHub、GitLab 等）并授权
-从列表中选择您的 &lt;code&gt;Mizuki&lt;/code&gt; 项目仓库&lt;/p&gt;
-&lt;h3&gt;3. 配置构建设置&lt;/h3&gt;
-&lt;p&gt;在项目设置页面中，配置以下构建设置：&lt;/p&gt;
-&lt;p&gt;基本设置&lt;/p&gt;
-&lt;p&gt;Project name: 输入您的项目名称（如 &lt;code&gt;alisa22580-blog&lt;/code&gt;）&lt;/p&gt;
-&lt;p&gt;Production branch: 设置主分支（通常为 &lt;code&gt;main&lt;/code&gt; 或 &lt;code&gt;master&lt;/code&gt;）&lt;/p&gt;
-&lt;p&gt;构建配置&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;# 构建设置
-Build command: pnpm i &amp;amp;&amp;amp; pnpm build
-Build output directory: dist
-Root directory: /
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;参考如下：
-&lt;img src=&quot;https://alisa22580.com/_astro/image-1.D2RAUxmV_1UNnkK.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
-&lt;h3&gt;4. 部署项目&lt;/h3&gt;
-&lt;p&gt;配置完成后，点击 &quot;Save and Deploy&quot; 开始首次部署：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;code&gt;Cloudflare Pages&lt;/code&gt; 会克隆您的仓库&lt;/li&gt;
-&lt;li&gt;安装依赖（pnpm i）&lt;/li&gt;
-&lt;li&gt;构建项目（pnpm build）&lt;/li&gt;
-&lt;li&gt;将 dist 目录部署到全球 CDN&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;首次部署可能需要几分钟时间。&lt;/p&gt;
-&lt;h3&gt;5. 获取部署信息&lt;/h3&gt;
-&lt;p&gt;部署完成后，您将获得：&lt;/p&gt;
-&lt;p&gt;站点 URL：如 https://alisa22580.com&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;URL: URL 是 Uniform Resource Locator 的缩写，中文通常翻译为统一资源定位符。它是互联网上资源的地址，用于指定和访问各种类型的资源，如网页、图片、视频等。URL 通常由以下几个部分组成：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;协议（Protocol）：指定访问资源所使用的协议，如 http、https、ftp 等。&lt;/li&gt;
-&lt;li&gt;域名（Domain）：指定资源所在的服务器地址，如 www.example.com。&lt;/li&gt;
-&lt;li&gt;路径（Path）：指定资源在服务器上的具体位置，如 /blog/post1。&lt;/li&gt;
-&lt;li&gt;查询参数（Query Parameters）：用于传递额外的信息，如 ?id=123。
-例如 当前这篇文章的 URL 就是 https://alisa22580.com/posts/post1/#本博客的搭建教程&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;自动生成的 SSL 证书&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;SSL: SSL 是 Secure Sockets Layer 的缩写，是一种安全协议，用于在互联网上加密数据传输，确保数据的机密性和完整性。SSL 证书是由受信任的证书颁发机构（CA）签发的数字证书，用于验证网站的身份并启用 HTTPS 协议。当用户访问启用了 SSL 的网站时，浏览器会显示一个锁形图标，表示连接是安全的。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;全球 CDN 分发&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;CDN: CDN 是 Content Delivery Network 的缩写，中文通常翻译为内容分发网络。CDN 是一种分布式的服务器网络，旨在通过将内容缓存到全球各地的服务器上来加速网站的加载速度。当用户访问一个启用了 CDN 的网站时，CDN 会根据用户的地理位置选择最近的服务器来提供内容，从而减少延迟和提高性能。CDN 还可以提供额外的安全功能，如 DDoS 防护和 Web 应用防火墙。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;现在，您可以通过站点 URL 访问您的博客了！每当您推送新的代码到 &lt;code&gt;GitHub&lt;/code&gt;，&lt;code&gt;Cloudflare Pages&lt;/code&gt; 都会自动重新构建和部署您的博客，确保您的内容始终是最新的。&lt;/p&gt;
-&lt;p&gt;也就是说，我们以后的操作流程将是：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;graph TD
-    A[本地开发] --&amp;gt; B[推送代码到 GitHub]
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;就结束了， &lt;code&gt;GitHub&lt;/code&gt; 和 &lt;code&gt;Cloudflare&lt;/code&gt; 会帮我们完成剩下的工作。&lt;/p&gt;
-&lt;h1&gt;4. 博客配置&lt;/h1&gt;
-&lt;p&gt;完成了&lt;code&gt;GitHub&lt;/code&gt; 和 &lt;code&gt;Cloudflare&lt;/code&gt; 的部署后，所有需要动脑的工作告一段落，接下来我们就可以专注于博客的内容和配置了。&lt;/p&gt;
-&lt;p&gt;博客的配置主要涉及到 &lt;code&gt;src/config.ts&lt;/code&gt; 文件，这个文件包含了博客的全局设置，如站点标题、描述、作者信息、社交链接等。您可以根据自己的需求修改这些配置项来个性化您的博客。&lt;/p&gt;
-&lt;p&gt;有关博客各项配置已经在 &lt;a href=&quot;https://docs.mizuki.mysqil.com/Basic-Layout/site-config/&quot;&gt;官方文档&lt;/a&gt; 中有详细的介绍。&lt;/p&gt;
-&lt;p&gt;因此关于大多数常规设置，我就不在这里赘述了，这里只发表一些我自己的建议...&lt;/p&gt;
-&lt;h2&gt;配置文件的查找与修改&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;如果您使用vscode编辑项目，可以在左侧任务栏找到搜索框，输入关键词进行整个工作区目录下的相关查找。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/image-2.DfzZh74o_Z1jRKAy.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;也可以通过快捷键 &lt;code&gt;ctrl + f&lt;/code&gt; 进行当前文件下的关键词查找。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/image-3.L_DXuC37_Z1iL2X4.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
-&lt;h2&gt;更好的时间输入&lt;/h2&gt;
-&lt;p&gt;博客中很多地方需要输入时间，例如文章的发布时间、日记的日期等。&lt;/p&gt;
-&lt;p&gt;通过官方文档的介绍，我们可以知道，博客中使用的时间格式是 ISO 8601 格式，例如：&lt;code&gt;2026-03-12T16:20:00Z&lt;/code&gt;。&lt;/p&gt;
-&lt;p&gt;这种格式虽然标准，但由于这个博客并没有自动化的时间输入工具（比如说日历选择器），因此我们的手动输入、修改显得繁琐且没必要。&lt;/p&gt;
-&lt;p&gt;因此，我尝试了 &lt;code&gt;vscode&lt;/code&gt; 的 &lt;code&gt;Insert Date String&lt;/code&gt; 扩展。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/image-4.D1pMMr00_ZEsERz.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
-&lt;p&gt;但是这个扩展的默认输出格式是 &lt;code&gt;YYYY-MM-DD HH:mm:ss&lt;/code&gt;，并不符合我们博客的时间格式要求。&lt;/p&gt;
-&lt;p&gt;于是，我在 &lt;code&gt;vscode&lt;/code&gt; 的设置中，手动将输出格式修改为 &lt;code&gt;YYYY-MM-DDTHH:mm:ssZ&lt;/code&gt;。&lt;/p&gt;
-&lt;p&gt;然而，这个插件自动识别了时区，并在输出的时间字符串中加入了时区偏移，例如 &lt;code&gt;2026-03-12T16:20:00+08&lt;/code&gt;。&lt;/p&gt;
-&lt;p&gt;这显然是我们不愿看到的，因为 通过配置 &lt;code&gt;config.ts&lt;/code&gt; 中的 &lt;code&gt;timeZone&lt;/code&gt;，我们已经自行选择了时区，因此我们需要将这个时区偏移手动修改为 &lt;code&gt;Z&lt;/code&gt;，表示 UTC 时间。但是每次输入时间后都要修改一次时区，显然也是不合理的。&lt;/p&gt;
-&lt;p&gt;于是，我参考了自己先前打 &lt;code&gt;acm&lt;/code&gt; 时候使用的， &lt;code&gt;vscode&lt;/code&gt; 原生提供的 &lt;code&gt;配置代码片段&lt;/code&gt; 功能，在惊喜的发现这个功能支持时间相关的预定义变量后，事情就变得简单了。&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;使用组合键 &lt;code&gt;ctrl + shift + p&lt;/code&gt; 打开命令面板，输入 &lt;code&gt;Snippets: Configure Snippets&lt;/code&gt; (&lt;code&gt;配置代码片段&lt;/code&gt;) 并选择它。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;选择 &lt;code&gt;New Global Snippets file&lt;/code&gt; (&lt;code&gt;新建代码片段&lt;/code&gt;) 来创建一个全局的代码片段文件，命名为 &lt;code&gt;全局.code-snippets&lt;/code&gt;。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;在打开的 &lt;code&gt;全局.code-snippets&lt;/code&gt; 文件中，添加以下代码片段：&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;pre&gt;&lt;code&gt;&quot;Insert ISO Z Date&quot;: {
-  &quot;scope&quot;: &quot;typescript,markdown,mdx&quot;, // 只针对 TypeScript 和 Markdown 文件生效
-  &quot;prefix&quot;: &quot;isodate&quot;,
-  &quot;body&quot;: [
-    &quot;${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE}T${CURRENT_HOUR}:${CURRENT_MINUTE}:${CURRENT_SECOND}Z&quot;
-  ],
-  &quot;description&quot;: &quot;插入当前 UTC 时间 (Z)&quot;
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;此时，完整的文件内容大致如下：
-&lt;img src=&quot;https://alisa22580.com/_astro/image-6.D8UVTFnX_1YKKf6.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
-&lt;p&gt;保存文件后，您就可以在任何地方输入 &lt;code&gt;isodate&lt;/code&gt;，然后按下 &lt;code&gt;Tab&lt;/code&gt; 键，就会自动插入当前的 UTC 时间，格式为 &lt;code&gt;YYYY-MM-DDTHH:mm:ssZ&lt;/code&gt;... 吗？&lt;/p&gt;
-&lt;p&gt;问题到此并没有结束，我发现在 &lt;code&gt;markdown&lt;/code&gt; 文件中无法触发补全，而在 &lt;code&gt;ts&lt;/code&gt; 文件中可以。&lt;/p&gt;
-&lt;p&gt;经过一番折腾，我发现这是因为 &lt;code&gt;markdown&lt;/code&gt; 文件默认没有启用代码片段补全功能。&lt;/p&gt;
-&lt;p&gt;于是，我打开了 &lt;code&gt;vscode&lt;/code&gt; 的设置，在右上角找到 &lt;code&gt;Edit in settings.json&lt;/code&gt; (&lt;code&gt;在 settings.json 中编辑&lt;/code&gt;) 的选项，点击它打开 &lt;code&gt;settings.json&lt;/code&gt; 文件。
-&lt;img src=&quot;https://alisa22580.com/_astro/image-7.BmoBW-ev_Z1fym8R.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
-&lt;p&gt;在文件中，我添加了关于 &lt;code&gt;markdown&lt;/code&gt; 文件的代码片段补全配置：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;&quot;[markdown]&quot;: {
-  &quot;editor.quickSuggestions&quot;: {
-    &quot;other&quot;: &quot;on&quot;,
-    &quot;comments&quot;: &quot;on&quot;,
-    &quot;strings&quot;: &quot;on&quot;
-  },
-  &quot;editor.snippetSuggestions&quot;: &quot;top&quot;, // 让代码片段排在最前面
-  &quot;editor.tabCompletion&quot;: &quot;on&quot; // 允许按 Tab 键直接补全
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;问题终于解决了，现在在 &lt;code&gt;markdown&lt;/code&gt; 文件中输入 &lt;code&gt;isodate&lt;/code&gt; 并按下 &lt;code&gt;Tab&lt;/code&gt; 键，正确格式的 UTC 时间就会被插入了...吗？？&lt;/p&gt;
-&lt;p&gt;仍然没有！在文章的表头中输入 &lt;code&gt;isodate&lt;/code&gt; 并按下 &lt;code&gt;Tab&lt;/code&gt; 键，竟然没有任何反应。&lt;/p&gt;
-&lt;p&gt;经过一番调查，我发现这是因为 &lt;code&gt;markdown&lt;/code&gt; 文件的表头部分（也就是 &lt;code&gt;---&lt;/code&gt; 包围的部分）被 &lt;code&gt;vscode&lt;/code&gt; 识别为 &lt;code&gt;yaml&lt;/code&gt; 语言，而不是 &lt;code&gt;markdown&lt;/code&gt;。...真是令人窒息。！&lt;/p&gt;
-&lt;p&gt;因此，我们回到 &lt;code&gt;全局.code-snippets&lt;/code&gt; 文件中，将代码片段的 &lt;code&gt;scope&lt;/code&gt; 属性增加一个 &lt;code&gt;yaml&lt;/code&gt;，使其变为：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;&quot;scope&quot;: &quot;typescript,markdown,mdx,yaml&quot;, // 现在也针对 yaml 文件生效
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;更新后的完整文件内容应如下：&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;请注意 29 行的更改&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/image-8.DfQmQY3C_Z2oaCLG.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
-&lt;p&gt;终于，我做到了，我可以随心所欲地在表头插入当前的 UTC 时间，而且格式完全符合博客的要求。我真想&lt;strong&gt;狠狠地&lt;/strong&gt;吃掉一包放在旁边的香辣小鱼干来庆祝下！
-&lt;img src=&quot;https://alisa22580.com/_astro/image-9.lx6ki_28_Z2reb7a.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
-&lt;h2&gt;评论功能的配置&lt;/h2&gt;
-&lt;p&gt;博客的评论功能是通过 &lt;code&gt;Twikoo&lt;/code&gt; 实现的，您可以在 &lt;code&gt;src/config.ts&lt;/code&gt; 文件中找到相关配置项:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;export const commentConfig: CommentConfig = {
-  enable: true, // 启用评论功能。当设置为 false 时，评论组件将不会显示在文章区域。
-  twikoo: {
-    envId: &quot;...&quot;, // Twikoo 环境 ID，通常是一个 URL 地址。
-    lang: SITE_LANG, // 评论界面语言设置，默认为站点语言。
-  },
-};
-&lt;/code&gt;&lt;/pre&gt;
-&lt;ul&gt;
-&lt;li&gt;enable: 设置为 true 启用评论功能，设置为 false 则禁用评论功能。&lt;/li&gt;
-&lt;li&gt;envId: 这是 &lt;code&gt;Twikoo&lt;/code&gt; 的环境 ID，通常是一个 URL 地址，您需要将其替换为您自己的 &lt;code&gt;Twikoo&lt;/code&gt; 环境 ID。&lt;/li&gt;
-&lt;li&gt;lang: 这是评论界面的语言设置，默认为站点语言，不动就行。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;由是观之，我们操作的目的就是得到一个 以 &lt;code&gt;.app&lt;/code&gt; 结尾的 URL 地址，并将其填入 envId 中。&lt;/p&gt;
-&lt;p&gt;我们可以直接访问 &lt;a href=&quot;https://twikoo.js.org/backend.html#vercel-%E9%83%A8%E7%BD%B2&quot;&gt;Vercel 部署&lt;/a&gt; 的教程来获取这个 ID 。&lt;/p&gt;
-&lt;h2&gt;更多内容&lt;/h2&gt;
-&lt;p&gt;持续更新中...&lt;/p&gt;
-</content:encoded></item><item><title>个人常用算法模板</title><link>https://alisa22580.com/posts/lanqiao-cpp-b-common/</link><guid isPermaLink="true">https://alisa22580.com/posts/lanqiao-cpp-b-common/</guid><description>算法竞赛常用 C++ 模板与临场速查</description><pubDate>Fri, 10 Apr 2026 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;:::note
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>from alisa</title><description>主页</description><link>https://alisa22580.com/</link><language>zh_CN</language><item><title>个人常用算法模板</title><link>https://alisa22580.com/posts/lanqiao-cpp-b-common/</link><guid isPermaLink="true">https://alisa22580.com/posts/lanqiao-cpp-b-common/</guid><description>算法竞赛常用 C++ 模板与临场速查</description><pubDate>Fri, 10 Apr 2026 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;:::note
 自用的算法竞赛模板合集。最初只为蓝桥杯准备，后来越补越多，已经和蓝桥杯没有太大关系了，于是干脆改成通用板子集合。&lt;/p&gt;
 &lt;p&gt;这里以“赛场上能快速找到、复制后容易改”为第一目标，不追求把每个知识点讲成完整教程。部分模板彼此有依赖，使用前先看下面的约定。
 :::&lt;/p&gt;
@@ -2973,50 +2634,389 @@ vector&amp;lt;long long&amp;gt; complete_knapsack(
 &lt;blockquote&gt;
 &lt;p&gt;最后更新：2026-08-13。把原来的蓝桥杯速查扩充为个人通用模板合集，并统一了目录与说明。&lt;/p&gt;
 &lt;/blockquote&gt;
+</content:encoded></item><item><title>本博客的搭建教程</title><link>https://alisa22580.com/posts/my-blog-build-tutorial/</link><guid isPermaLink="true">https://alisa22580.com/posts/my-blog-build-tutorial/</guid><description>和我一起，开启博客生涯。</description><pubDate>Thu, 12 Mar 2026 11:33:24 GMT</pubDate><content:encoded>&lt;p&gt;&amp;lt;!-- ---
+title: &quot;我的第一篇 Astro 博客&quot;      # 文章标题
+published: 2026-03-12            # 发布日期 (格式: YYYY-MM-DD)
+description: &quot;这是我使用 Mizuki 主题开启博客生涯的第一天。&quot; # 简短摘要，显示在列表页
+image: &quot;./cover.webp&quot;            # 文章封面图路径
+tags: [&quot;教程&quot;, &quot;Astro&quot;]          # 标签（用英文方括号包围，逗号分隔）
+category: &quot;技术&quot;                  # 分类
+pinned: true                     # 是否置顶 (true 或 false)
+priority: 0                      # 置顶优先级，数字越小越靠前
+draft: false                     # 是否为草稿（设为 true 则不会在正式网站显示）
+updated: 2026-03-12T16:54:24.123Z # 最后更新时间 (格式: YYYY-MM-DDTHH:mm:ss.sssZ)
+--- --&amp;gt;&lt;/p&gt;
+&lt;h1&gt;写在之前&lt;/h1&gt;
+&lt;p&gt;在此之前，我尝试过在 &lt;code&gt;GitHub pages&lt;/code&gt; 上部署一个基于 &lt;code&gt;Quartz&lt;/code&gt; 的 &lt;a href=&quot;https://2258009564.github.io/&quot;&gt;静态知识库&lt;/a&gt;，但由于 &lt;code&gt;Quartz&lt;/code&gt; 的功能过于简单，无法满足我对博客的需求（臆想）。&lt;/p&gt;
+&lt;p&gt;再后来，我也尝试过使用 &lt;code&gt;Hexo&lt;/code&gt; 和 &lt;code&gt;Hugo&lt;/code&gt; 等静态博客生成器，但由于它们的配置较为复杂，且需要一定的前端知识，加上我的懒癌（大概这才是最主要的），导致最后没有好好操作下去。&lt;/p&gt;
+&lt;p&gt;最近好像还真是发生了很多事情啊...现在大概需要督促自己做点什么，不然整个人要烂了。&lt;/p&gt;
+&lt;p&gt;在对比好几个朋友的选择之后，我最终选择了 &lt;code&gt;Astro-theme-Mizuki&lt;/code&gt; 作为我的博客框架，这是一个基于 &lt;code&gt;Astro&lt;/code&gt; 的博客主题，具有简洁的设计和丰富的功能，而且上手非常容易，适合个人博客的搭建。&lt;/p&gt;
+&lt;p&gt;那么，接下来我将分享一下我捣鼓博客的过程，希望能给有需要的朋友提供帮助。&lt;/p&gt;
+&lt;p&gt;本教程力求在 &lt;a href=&quot;https://docs.mizuki.mysqil.com/&quot;&gt;官方文档&lt;/a&gt; 的基础上，结合我自己的经验，提供一个更为通俗、详细的指南，帮助大家顺利搭建自己的博客，毕竟先把东西跑起来，才有动力去研究官方文档以完善它。&lt;/p&gt;
+&lt;p&gt;当然，本教程不可能完全替代（完全不可能替代）&lt;a href=&quot;https://docs.mizuki.mysqil.com/&quot;&gt;官方文档&lt;/a&gt;。因此，建议搭配食用。&lt;/p&gt;
+&lt;h1&gt;1. 环境讲解与配置&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;什么是 &lt;code&gt;Astro&lt;/code&gt;？&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;它是一个现代化的静态网站生成器，支持多种前端框架（如 React、Vue、Svelte 等），并且具有出色的性能和灵活性。要搭建基于 &lt;code&gt;Astro&lt;/code&gt; 的博客，您需要先安装 &lt;code&gt;Node.js&lt;/code&gt; 和 &lt;code&gt;npm&lt;/code&gt; 。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;什么是 &lt;code&gt;Node.js&lt;/code&gt;？&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;它是一个基于 &lt;code&gt;Chrome V8&lt;/code&gt; 引擎的 &lt;code&gt;JavaScript&lt;/code&gt; 运行环境，允许您在服务器端运行 &lt;code&gt;JavaScript&lt;/code&gt; 代码。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;什么是 &lt;code&gt;npm&lt;/code&gt; ?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;npm&lt;/code&gt; 是 &lt;code&gt;node package manager&lt;/code&gt; 的缩写，是 &lt;code&gt;Node.js&lt;/code&gt; 的包管理器，用于安装和管理项目所需的依赖包。&lt;/p&gt;
+&lt;p&gt;也就是说，我们通过 &lt;code&gt;Node.js&lt;/code&gt; 来支持 &lt;code&gt;Astro&lt;/code&gt; 生成器的运行，而 &lt;code&gt;npm&lt;/code&gt; 则帮助我们安装和管理博客所需的各种依赖包。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;什么是 &lt;code&gt;pnpm&lt;/code&gt; ?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;pnpm&lt;/code&gt; 是 &lt;code&gt;performance npm&lt;/code&gt; 的缩写，是一个快速、节省磁盘空间的包管理器。&lt;/p&gt;
+&lt;p&gt;与 &lt;code&gt;npm&lt;/code&gt; 不同，&lt;code&gt;pnpm&lt;/code&gt; 使用符号链接来共享依赖包，从而减少了磁盘空间的占用，并且在安装速度上也有显著提升。&lt;/p&gt;
+&lt;p&gt;此外，本博客的搭建还需要使用到 &lt;code&gt;Git&lt;/code&gt; 和 &lt;code&gt;GitHub&lt;/code&gt;。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;什么是 &lt;code&gt;Git&lt;/code&gt; ?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;Git&lt;/code&gt; 是一个分布式版本控制系统，用于跟踪文件的更改历史，协助多人协作开发项目。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;什么是 &lt;code&gt;GitHub&lt;/code&gt; ?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;GitHub&lt;/code&gt; 是一个基于 &lt;code&gt;Git&lt;/code&gt; 的代码托管平台，提供了版本控制和协作功能，允许开发者在云端存储和管理他们的代码库。&lt;/p&gt;
+&lt;p&gt;也就是说，我们需要使用 &lt;code&gt;Git&lt;/code&gt; 来管理博客的源代码，并将其托管在 &lt;code&gt;GitHub&lt;/code&gt; 上，以便于后续的部署和管理。&lt;/p&gt;
+&lt;p&gt;知道了这些基础知识后，我们可以发现 搭建博客的第一步就是在电脑中安装这些基础工具：&lt;/p&gt;
+&lt;h2&gt;1. 安装 &lt;code&gt;Node.js&lt;/code&gt; 和 &lt;code&gt;npm&lt;/code&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;访问 &lt;a href=&quot;https://nodejs.org/&quot;&gt;Node.js 官网&lt;/a&gt; 下载并安装最新的 LTS 版本，这将同时安装 &lt;code&gt;Node.js&lt;/code&gt; 和 &lt;code&gt;npm&lt;/code&gt;。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;安装完成后，可以通过命令行输入以下命令来验证安装是否成功：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;node -v
+npm -v
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;如果显示版本号，说明安装成功。&lt;/p&gt;
+&lt;h2&gt;2. 安装 &lt;code&gt;pnpm&lt;/code&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;您可以通过 &lt;code&gt;npm&lt;/code&gt; 来安装 &lt;code&gt;pnpm&lt;/code&gt;，打开命令行输入以下命令：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;npm install -g pnpm
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;安装完成后，可以通过以下命令来验证 &lt;code&gt;pnpm&lt;/code&gt; 是否安装成功：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;pnpm -v
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;如果显示版本号，说明安装成功。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;3. 安装 &lt;code&gt;Git&lt;/code&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;访问 &lt;a href=&quot;https://git-scm.com/&quot;&gt;Git 官网&lt;/a&gt; 下载并安装 &lt;code&gt;Git&lt;/code&gt;。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;安装完成后，可以通过命令行输入以下命令来验证安装是否成功：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;git --version
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;如果显示版本号，说明安装成功。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;2. 项目搭建&lt;/h1&gt;
+&lt;h2&gt;1. 克隆博客模板&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;导航到您想要存放博客项目的目录，例如：我直接把整个项目放在桌面上，那么于我而言，就是进入桌面目录：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;cd D:/Desktop
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;使用 Git 克隆 &lt;code&gt;Astro-theme-Mizuki&lt;/code&gt; 的模板仓库：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;git clone https://github.com/matsuzaka-yuki/mizuki.git
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;进入克隆的项目目录，下文的所有指令都需要在该目录中进行：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;cd Mizuki
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;2. 安装依赖&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;使用 &lt;code&gt;pnpm&lt;/code&gt; 安装项目所需的依赖包：&lt;pre&gt;&lt;code&gt;pnpm install
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;3. 配置博客&lt;/h2&gt;
+&lt;p&gt;根据自己的需求配置您的博客，详细的配置教程将在下文介绍。&lt;/p&gt;
+&lt;h2&gt;4. 本地预览&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;使用以下命令启动本地开发服务器：&lt;pre&gt;&lt;code&gt;pnpm dev
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;打开浏览器，访问 &lt;code&gt;http://localhost:4321&lt;/code&gt;，您应该能够看到博客的默认界面。
+&lt;img src=&quot;image.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;5. 打包网站&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;运行以下命令将网站打包成静态文件，生成到 dist 目录中：&lt;pre&gt;&lt;code&gt;pnpm build
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;生成的 dist 目录后续将可以部署到您自己的服务器上。&lt;/p&gt;
+&lt;h1&gt;3. 项目部署&lt;/h1&gt;
+&lt;p&gt;在正式开始之前，我们有必要了解一下 一个本地项目是如何在网络上被看见的：&lt;/p&gt;
+&lt;p&gt;当我们在本地开发一个网站时，它只能在我们的计算机上访问，其他人无法看到它。&lt;/p&gt;
+&lt;p&gt;为了突破这个限制，我们需要将它部署到服务器上，这样它就可以通过互联网被访问了。&lt;/p&gt;
+&lt;p&gt;以下是一个简单的部署流程图：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;graph TD
+  A[本地开发] --&amp;gt; B[打包成静态文件]
+  B --&amp;gt; C[上传到服务器]
+  C --&amp;gt; D[服务器配置]
+  D --&amp;gt; E[网站上线]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;本地开发：我们在本地计算机上开发和测试我们的网站。&lt;/li&gt;
+&lt;li&gt;打包成静态文件：我们使用构建工具将我们的项目打包成静态文件，这些文件可以被服务器直接提供给用户。&lt;/li&gt;
+&lt;li&gt;上传到服务器：我们将打包好的静态文件上传到服务器上，这可以通过 FTP、SSH 或者使用云服务提供的工具来完成。&lt;/li&gt;
+&lt;li&gt;服务器配置：我们需要在服务器上进行一些配置，例如设置域名、SSL 证书等，以确保我们的网站能够正常访问。&lt;/li&gt;
+&lt;li&gt;网站上线：完成以上步骤后，我们的网站就可以通过互联网访问了。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;显然，上传、配置服务器对我来说太过困难。但我们有两位赛博义父： &lt;code&gt;Github&lt;/code&gt; 和 &lt;code&gt;Cloudflare&lt;/code&gt; 。&lt;/p&gt;
+&lt;p&gt;在本教程中，我们将使用 &lt;code&gt;GitHub&lt;/code&gt; 来托管我们的博客源代码，并通过 &lt;code&gt;Cloudflare Pages&lt;/code&gt; 来部署我们的博客，这是一个免费的静态网站托管平台，具有全球 CDN、自动部署和免费 SSL 证书等特性。&lt;/p&gt;
+&lt;p&gt;每当我们将代码推送到 &lt;code&gt;GitHub&lt;/code&gt; 仓库时，&lt;code&gt;Cloudflare Pages&lt;/code&gt; 会自动构建并部署最新版本的网站，这样我们就可以轻松地管理和更新我们的博客了。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;graph TD
+  A[本地开发] --&amp;gt; B[推送代码到 GitHub]
+  B --&amp;gt; C[Cloudflare Pages 自动构建]
+  C --&amp;gt; D[部署到全球 CDN]
+  D --&amp;gt; E[用户访问博客]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;本地开发：我们在本地计算机上开发和测试我们的博客。&lt;/li&gt;
+&lt;li&gt;推送代码到 &lt;code&gt;GitHub&lt;/code&gt; ：我们将我们的代码推送到 &lt;code&gt;GitHub&lt;/code&gt; 仓库中。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Cloudflare Pages&lt;/code&gt; 自动构建：&lt;code&gt;Cloudflare Pages&lt;/code&gt; 会自动检测到 &lt;code&gt;GitHub&lt;/code&gt; 仓库的更新，并开始构建我们的博客。&lt;/li&gt;
+&lt;li&gt;部署到全球 CDN：构建完成后，&lt;code&gt;Cloudflare Pages&lt;/code&gt; 会将我们的博客部署到全球的内容分发网络（CDN）上，以确保用户能够快速访问。&lt;/li&gt;
+&lt;li&gt;用户访问博客：用户通过互联网访问我们的博客，&lt;code&gt;Cloudflare Pages&lt;/code&gt; 会从最近的 CDN 节点提供博客内容，确保访问速度和稳定性。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;可以看出，这两尊大佛为我们减轻很多部署时候的障碍，让我们再次感谢它们。&lt;/p&gt;
+&lt;h2&gt;1. 创建 GitHub 仓库&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;登录到 &lt;a href=&quot;https://github.com/&quot;&gt;GitHub&lt;/a&gt; 并创建一个新的仓库。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;将本地项目与 &lt;code&gt;GitHub&lt;/code&gt; 仓库关联：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;git remote add origin https://github.com/your-username/your-repo.git
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;将代码推送到 &lt;code&gt;GitHub&lt;/code&gt; ：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;  git add .
+  git commit -m &quot;提交信息&quot;
+  git push -u origin main
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;有关 &lt;code&gt;GitHub&lt;/code&gt; 的使用，请参阅：（我也不知道参阅哪里 先搁置吧&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;2. 配置 Cloudflare Pages&lt;/h2&gt;
+&lt;h3&gt;1. 登录 Cloudflare Pages&lt;/h3&gt;
+&lt;p&gt;访问 Cloudflare Dashboard，使用您的账号登录，然后选择 &quot;Pages&quot; 服务。
+当然 您可以在左下角找到更改语言的选项，切换到中文界面或许会更方便一些。&lt;/p&gt;
+&lt;h3&gt;2. 创建新项目&lt;/h3&gt;
+&lt;p&gt;点击 &quot;Create a project&quot; 或 &quot;Connect to Git&quot; 按钮
+选择您的 &lt;code&gt;Git&lt;/code&gt; 提供商（GitHub、GitLab 等）并授权
+从列表中选择您的 &lt;code&gt;Mizuki&lt;/code&gt; 项目仓库&lt;/p&gt;
+&lt;h3&gt;3. 配置构建设置&lt;/h3&gt;
+&lt;p&gt;在项目设置页面中，配置以下构建设置：&lt;/p&gt;
+&lt;p&gt;基本设置&lt;/p&gt;
+&lt;p&gt;Project name: 输入您的项目名称（如 &lt;code&gt;alisa22580-blog&lt;/code&gt;）&lt;/p&gt;
+&lt;p&gt;Production branch: 设置主分支（通常为 &lt;code&gt;main&lt;/code&gt; 或 &lt;code&gt;master&lt;/code&gt;）&lt;/p&gt;
+&lt;p&gt;构建配置&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# 构建设置
+Build command: pnpm i &amp;amp;&amp;amp; pnpm build
+Build output directory: dist
+Root directory: /
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;参考如下：
+&lt;img src=&quot;image-1.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;h3&gt;4. 部署项目&lt;/h3&gt;
+&lt;p&gt;配置完成后，点击 &quot;Save and Deploy&quot; 开始首次部署：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;Cloudflare Pages&lt;/code&gt; 会克隆您的仓库&lt;/li&gt;
+&lt;li&gt;安装依赖（pnpm i）&lt;/li&gt;
+&lt;li&gt;构建项目（pnpm build）&lt;/li&gt;
+&lt;li&gt;将 dist 目录部署到全球 CDN&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;首次部署可能需要几分钟时间。&lt;/p&gt;
+&lt;h3&gt;5. 获取部署信息&lt;/h3&gt;
+&lt;p&gt;部署完成后，您将获得：&lt;/p&gt;
+&lt;p&gt;站点 URL：如 https://alisa22580.com&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;URL: URL 是 Uniform Resource Locator 的缩写，中文通常翻译为统一资源定位符。它是互联网上资源的地址，用于指定和访问各种类型的资源，如网页、图片、视频等。URL 通常由以下几个部分组成：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;协议（Protocol）：指定访问资源所使用的协议，如 http、https、ftp 等。&lt;/li&gt;
+&lt;li&gt;域名（Domain）：指定资源所在的服务器地址，如 www.example.com。&lt;/li&gt;
+&lt;li&gt;路径（Path）：指定资源在服务器上的具体位置，如 /blog/post1。&lt;/li&gt;
+&lt;li&gt;查询参数（Query Parameters）：用于传递额外的信息，如 ?id=123。
+例如 当前这篇文章的 URL 就是 https://alisa22580.com/posts/post1/#本博客的搭建教程&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;自动生成的 SSL 证书&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;SSL: SSL 是 Secure Sockets Layer 的缩写，是一种安全协议，用于在互联网上加密数据传输，确保数据的机密性和完整性。SSL 证书是由受信任的证书颁发机构（CA）签发的数字证书，用于验证网站的身份并启用 HTTPS 协议。当用户访问启用了 SSL 的网站时，浏览器会显示一个锁形图标，表示连接是安全的。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;全球 CDN 分发&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;CDN: CDN 是 Content Delivery Network 的缩写，中文通常翻译为内容分发网络。CDN 是一种分布式的服务器网络，旨在通过将内容缓存到全球各地的服务器上来加速网站的加载速度。当用户访问一个启用了 CDN 的网站时，CDN 会根据用户的地理位置选择最近的服务器来提供内容，从而减少延迟和提高性能。CDN 还可以提供额外的安全功能，如 DDoS 防护和 Web 应用防火墙。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;现在，您可以通过站点 URL 访问您的博客了！每当您推送新的代码到 &lt;code&gt;GitHub&lt;/code&gt;，&lt;code&gt;Cloudflare Pages&lt;/code&gt; 都会自动重新构建和部署您的博客，确保您的内容始终是最新的。&lt;/p&gt;
+&lt;p&gt;也就是说，我们以后的操作流程将是：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;graph TD
+    A[本地开发] --&amp;gt; B[推送代码到 GitHub]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;就结束了， &lt;code&gt;GitHub&lt;/code&gt; 和 &lt;code&gt;Cloudflare&lt;/code&gt; 会帮我们完成剩下的工作。&lt;/p&gt;
+&lt;h1&gt;4. 博客配置&lt;/h1&gt;
+&lt;p&gt;完成了&lt;code&gt;GitHub&lt;/code&gt; 和 &lt;code&gt;Cloudflare&lt;/code&gt; 的部署后，所有需要动脑的工作告一段落，接下来我们就可以专注于博客的内容和配置了。&lt;/p&gt;
+&lt;p&gt;博客的配置主要涉及到 &lt;code&gt;src/config.ts&lt;/code&gt; 文件，这个文件包含了博客的全局设置，如站点标题、描述、作者信息、社交链接等。您可以根据自己的需求修改这些配置项来个性化您的博客。&lt;/p&gt;
+&lt;p&gt;有关博客各项配置已经在 &lt;a href=&quot;https://docs.mizuki.mysqil.com/Basic-Layout/site-config/&quot;&gt;官方文档&lt;/a&gt; 中有详细的介绍。&lt;/p&gt;
+&lt;p&gt;因此关于大多数常规设置，我就不在这里赘述了，这里只发表一些我自己的建议...&lt;/p&gt;
+&lt;h2&gt;配置文件的查找与修改&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;如果您使用vscode编辑项目，可以在左侧任务栏找到搜索框，输入关键词进行整个工作区目录下的相关查找。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&quot;image-2.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;也可以通过快捷键 &lt;code&gt;ctrl + f&lt;/code&gt; 进行当前文件下的关键词查找。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&quot;image-3.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;h2&gt;更好的时间输入&lt;/h2&gt;
+&lt;p&gt;博客中很多地方需要输入时间，例如文章的发布时间、日记的日期等。&lt;/p&gt;
+&lt;p&gt;通过官方文档的介绍，我们可以知道，博客中使用的时间格式是 ISO 8601 格式，例如：&lt;code&gt;2026-03-12T16:20:00Z&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;这种格式虽然标准，但由于这个博客并没有自动化的时间输入工具（比如说日历选择器），因此我们的手动输入、修改显得繁琐且没必要。&lt;/p&gt;
+&lt;p&gt;因此，我尝试了 &lt;code&gt;vscode&lt;/code&gt; 的 &lt;code&gt;Insert Date String&lt;/code&gt; 扩展。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;image-4.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;但是这个扩展的默认输出格式是 &lt;code&gt;YYYY-MM-DD HH:mm:ss&lt;/code&gt;，并不符合我们博客的时间格式要求。&lt;/p&gt;
+&lt;p&gt;于是，我在 &lt;code&gt;vscode&lt;/code&gt; 的设置中，手动将输出格式修改为 &lt;code&gt;YYYY-MM-DDTHH:mm:ssZ&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;然而，这个插件自动识别了时区，并在输出的时间字符串中加入了时区偏移，例如 &lt;code&gt;2026-03-12T16:20:00+08&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;这显然是我们不愿看到的，因为 通过配置 &lt;code&gt;config.ts&lt;/code&gt; 中的 &lt;code&gt;timeZone&lt;/code&gt;，我们已经自行选择了时区，因此我们需要将这个时区偏移手动修改为 &lt;code&gt;Z&lt;/code&gt;，表示 UTC 时间。但是每次输入时间后都要修改一次时区，显然也是不合理的。&lt;/p&gt;
+&lt;p&gt;于是，我参考了自己先前打 &lt;code&gt;acm&lt;/code&gt; 时候使用的， &lt;code&gt;vscode&lt;/code&gt; 原生提供的 &lt;code&gt;配置代码片段&lt;/code&gt; 功能，在惊喜的发现这个功能支持时间相关的预定义变量后，事情就变得简单了。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;使用组合键 &lt;code&gt;ctrl + shift + p&lt;/code&gt; 打开命令面板，输入 &lt;code&gt;Snippets: Configure Snippets&lt;/code&gt; (&lt;code&gt;配置代码片段&lt;/code&gt;) 并选择它。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;选择 &lt;code&gt;New Global Snippets file&lt;/code&gt; (&lt;code&gt;新建代码片段&lt;/code&gt;) 来创建一个全局的代码片段文件，命名为 &lt;code&gt;全局.code-snippets&lt;/code&gt;。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;在打开的 &lt;code&gt;全局.code-snippets&lt;/code&gt; 文件中，添加以下代码片段：&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code&gt;&quot;Insert ISO Z Date&quot;: {
+  &quot;scope&quot;: &quot;typescript,markdown,mdx&quot;, // 只针对 TypeScript 和 Markdown 文件生效
+  &quot;prefix&quot;: &quot;isodate&quot;,
+  &quot;body&quot;: [
+    &quot;${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE}T${CURRENT_HOUR}:${CURRENT_MINUTE}:${CURRENT_SECOND}Z&quot;
+  ],
+  &quot;description&quot;: &quot;插入当前 UTC 时间 (Z)&quot;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;此时，完整的文件内容大致如下：
+&lt;img src=&quot;image-6.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;保存文件后，您就可以在任何地方输入 &lt;code&gt;isodate&lt;/code&gt;，然后按下 &lt;code&gt;Tab&lt;/code&gt; 键，就会自动插入当前的 UTC 时间，格式为 &lt;code&gt;YYYY-MM-DDTHH:mm:ssZ&lt;/code&gt;... 吗？&lt;/p&gt;
+&lt;p&gt;问题到此并没有结束，我发现在 &lt;code&gt;markdown&lt;/code&gt; 文件中无法触发补全，而在 &lt;code&gt;ts&lt;/code&gt; 文件中可以。&lt;/p&gt;
+&lt;p&gt;经过一番折腾，我发现这是因为 &lt;code&gt;markdown&lt;/code&gt; 文件默认没有启用代码片段补全功能。&lt;/p&gt;
+&lt;p&gt;于是，我打开了 &lt;code&gt;vscode&lt;/code&gt; 的设置，在右上角找到 &lt;code&gt;Edit in settings.json&lt;/code&gt; (&lt;code&gt;在 settings.json 中编辑&lt;/code&gt;) 的选项，点击它打开 &lt;code&gt;settings.json&lt;/code&gt; 文件。
+&lt;img src=&quot;image-7.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;在文件中，我添加了关于 &lt;code&gt;markdown&lt;/code&gt; 文件的代码片段补全配置：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&quot;[markdown]&quot;: {
+  &quot;editor.quickSuggestions&quot;: {
+    &quot;other&quot;: &quot;on&quot;,
+    &quot;comments&quot;: &quot;on&quot;,
+    &quot;strings&quot;: &quot;on&quot;
+  },
+  &quot;editor.snippetSuggestions&quot;: &quot;top&quot;, // 让代码片段排在最前面
+  &quot;editor.tabCompletion&quot;: &quot;on&quot; // 允许按 Tab 键直接补全
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;问题终于解决了，现在在 &lt;code&gt;markdown&lt;/code&gt; 文件中输入 &lt;code&gt;isodate&lt;/code&gt; 并按下 &lt;code&gt;Tab&lt;/code&gt; 键，正确格式的 UTC 时间就会被插入了...吗？？&lt;/p&gt;
+&lt;p&gt;仍然没有！在文章的表头中输入 &lt;code&gt;isodate&lt;/code&gt; 并按下 &lt;code&gt;Tab&lt;/code&gt; 键，竟然没有任何反应。&lt;/p&gt;
+&lt;p&gt;经过一番调查，我发现这是因为 &lt;code&gt;markdown&lt;/code&gt; 文件的表头部分（也就是 &lt;code&gt;---&lt;/code&gt; 包围的部分）被 &lt;code&gt;vscode&lt;/code&gt; 识别为 &lt;code&gt;yaml&lt;/code&gt; 语言，而不是 &lt;code&gt;markdown&lt;/code&gt;。...真是令人窒息。！&lt;/p&gt;
+&lt;p&gt;因此，我们回到 &lt;code&gt;全局.code-snippets&lt;/code&gt; 文件中，将代码片段的 &lt;code&gt;scope&lt;/code&gt; 属性增加一个 &lt;code&gt;yaml&lt;/code&gt;，使其变为：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&quot;scope&quot;: &quot;typescript,markdown,mdx,yaml&quot;, // 现在也针对 yaml 文件生效
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;更新后的完整文件内容应如下：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;请注意 29 行的更改&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src=&quot;image-8.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;终于，我做到了，我可以随心所欲地在表头插入当前的 UTC 时间，而且格式完全符合博客的要求。我真想&lt;strong&gt;狠狠地&lt;/strong&gt;吃掉一包放在旁边的香辣小鱼干来庆祝下！
+&lt;img src=&quot;image-9.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;h2&gt;评论功能的配置&lt;/h2&gt;
+&lt;p&gt;博客的评论功能是通过 &lt;code&gt;Twikoo&lt;/code&gt; 实现的，您可以在 &lt;code&gt;src/config.ts&lt;/code&gt; 文件中找到相关配置项:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;export const commentConfig: CommentConfig = {
+  enable: true, // 启用评论功能。当设置为 false 时，评论组件将不会显示在文章区域。
+  twikoo: {
+    envId: &quot;...&quot;, // Twikoo 环境 ID，通常是一个 URL 地址。
+    lang: SITE_LANG, // 评论界面语言设置，默认为站点语言。
+  },
+};
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;enable: 设置为 true 启用评论功能，设置为 false 则禁用评论功能。&lt;/li&gt;
+&lt;li&gt;envId: 这是 &lt;code&gt;Twikoo&lt;/code&gt; 的环境 ID，通常是一个 URL 地址，您需要将其替换为您自己的 &lt;code&gt;Twikoo&lt;/code&gt; 环境 ID。&lt;/li&gt;
+&lt;li&gt;lang: 这是评论界面的语言设置，默认为站点语言，不动就行。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;由是观之，我们操作的目的就是得到一个 以 &lt;code&gt;.app&lt;/code&gt; 结尾的 URL 地址，并将其填入 envId 中。&lt;/p&gt;
+&lt;p&gt;我们可以直接访问 &lt;a href=&quot;https://twikoo.js.org/backend.html#vercel-%E9%83%A8%E7%BD%B2&quot;&gt;Vercel 部署&lt;/a&gt; 的教程来获取这个 ID 。&lt;/p&gt;
+&lt;h2&gt;更多内容&lt;/h2&gt;
+&lt;p&gt;持续更新中...&lt;/p&gt;
 </content:encoded></item><item><title>2026 CCPC 长春站游记</title><link>https://alisa22580.com/posts/2026-ccpc-changchun/</link><guid isPermaLink="true">https://alisa22580.com/posts/2026-ccpc-changchun/</guid><description>铜牌收工。记录一下热身赛的抽象、正赛的挣扎，以及一点还没完全放下的银牌念想。</description><pubDate>Mon, 19 Oct 2026 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;第一次参加区域赛，大二因为太区了没拿到名额&lt;/p&gt;
 &lt;p&gt;第一场就拿到铜其实对我来说已经达到大学阶段算法竞赛能取得的至高成就了，相比之下蓝桥杯国一和省赛金是真没含金量啊（笑&lt;/p&gt;
 &lt;p&gt;感觉银牌没啥戏了，reg的铜银（在大部分场次）还是很有区分度的，这场要想ag我得再做两题&lt;/p&gt;
 &lt;p&gt;所以，还是很开心的！&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/a973d1feaa1744cb56b35a4637769ddc.BH-g5OmL_1BVCh.webp&quot; alt=&quot;2026 CCPC 长春站场外的赛事展板&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;a973d1feaa1744cb56b35a4637769ddc.jpg&quot; alt=&quot;2026 CCPC 长春站场外的赛事展板&quot; /&gt;&lt;/p&gt;
 &lt;h2&gt;热身赛：充分发挥 guessing 和乱搞精神&lt;/h2&gt;
 &lt;p&gt;THU 去年出的上海站题被喷得挺惨，今年开幕式上说“我们已经充分吸取了教训”。结果热身赛还是相当抽象：提交之后 in queue 了半个小时，榜单界面的鉴权也出了问题，再加上题面的表达，现场体验实在算不上顺畅。&lt;/p&gt;
 &lt;p&gt;好在我们充分发挥 guessing 和乱搞精神，最后侥幸 AK。过程虽然有点混乱，但至少热身的结果还不错。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/7e0f04e340f0afc906f035aba09fa1a4.C5hGextF_HWxge.webp&quot; alt=&quot;长春师范大学体育馆内的比赛场地&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;7e0f04e340f0afc906f035aba09fa1a4.jpg&quot; alt=&quot;长春师范大学体育馆内的比赛场地&quot; /&gt;&lt;/p&gt;
 &lt;p&gt;长春师范的体育馆是真的大，比赛桌铺开以后看着还挺壮观。&lt;/p&gt;
 &lt;p&gt;开学以来，我的作息一直抽象得厉害，基本上是日落而作、日出而息。为了赶上早上九点的比赛，这次居然十一点就上床休息了，也算是为 ACM 做出了一点作息上的努力。&lt;/p&gt;
 &lt;h2&gt;正赛：从以为要铁，到摸到铜牌&lt;/h2&gt;
 &lt;p&gt;这场用了 CCPC 的新赛制。对我来说，很长一段时间里，榜单都不太能拿来判断局势：看到冠军队已经开了七道题，自己能看到解封的却只有两道，实在有点搞心态。像我们这种队，也更难据此判断该把时间投到哪道题上。&lt;/p&gt;
 &lt;p&gt;我们花了不少时间研究一道题面很短的 mid-hard，以及另一道始终没找到突破口的题。反倒是一道比较签的题，几乎直到封榜后才开始认真看。现在回头看，选题和时间分配确实有点伤。&lt;/p&gt;
 &lt;p&gt;封榜的时候，我们排在接近 200 名的位置。我当时已经觉得自己要铁了，结果过了两分钟，交上去的一道乱搞题居然过了，名次一下来到 150 左右。于是开始算铜牌线：按我当时的估计，只要前面那一批队伍别有太多继续过题，自己似乎还有机会 Cu。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/f2fec5e9933e578b9ea41a88a33725c5.KyH94sk8_1zmQVO.webp&quot; alt=&quot;比赛时查看的榜单&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;f2fec5e9933e578b9ea41a88a33725c5.jpg&quot; alt=&quot;比赛时查看的榜单&quot; /&gt;&lt;/p&gt;
 &lt;p&gt;后面又花了大约一个小时，和队友讨论那道通信题。说是讨论，其实争得还挺厉害，队友都有点着急了，我还让他先别吵。最后感觉我们的思路已经很接近正确答案，但到底差在哪里、是不是真的只差一点，现在也说不准，等赛后补题再试试。&lt;/p&gt;
 &lt;p&gt;没能把它写出来，当然还是有点遗憾。不过最后能拿铜，已经足够开心了。单说正赛题目，我觉得 THU 这次算是一雪前耻，至少赛后我基本没看到之前那样的吐槽，铜银之间的区分度也做得挺到位。&lt;/p&gt;
 &lt;h2&gt;赛后：奖牌、合照，还有一点不甘心&lt;/h2&gt;
 &lt;p&gt;赛后当然要合照。下面这张，中间是银牌选手 ✌🏻welken，只不过他的雷霆大银牌被队友拿走了，就没能一起出镜。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/d0933bcc6ae339b618c89895970d0934.DiwtNxeb_ZkgV57.webp&quot; alt=&quot;与 welken 的赛后合照：玩偶、手机和奖牌&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;d0933bcc6ae339b618c89895970d0934.jpg&quot; alt=&quot;与 welken 的赛后合照：玩偶、手机和奖牌&quot; /&gt;&lt;/p&gt;
 &lt;p&gt;再来一张队内合照。主打一个人可以不出镜，但手机和玩偶必须到位。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/e3354ad1730c8604e9c74f3fcfcb8922.DTdzee_2_Z5qa97.webp&quot; alt=&quot;队内合照：铜牌前的玩偶和三部手机&quot; /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/3b2f7d9a6e0cadb6b3f45f38de10919e.BfJZ23qw_ZyA45R.webp&quot; alt=&quot;举着“永久 love THU 出题组”牌子的奶龙&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;e3354ad1730c8604e9c74f3fcfcb8922.jpg&quot; alt=&quot;队内合照：铜牌前的玩偶和三部手机&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;3b2f7d9a6e0cadb6b3f45f38de10919e.jpg&quot; alt=&quot;举着“永久 love THU 出题组”牌子的奶龙&quot; /&gt;&lt;/p&gt;
 &lt;p&gt;路上也拍到了一些奇怪但很应景的东西，比如这个大大的 AC。比赛之外，还是多少留了点闲逛的记录。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/79648b06ee69cf8b5ad1c828327d35e3.68M_cKFS_ZRdxtg.webp&quot; alt=&quot;路边店铺醒目的 AC 招牌&quot; /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/1e75aa1fc0354c6303c9ad7b7617ee5b.qA0Oz1XR_27HkbN.webp&quot; alt=&quot;街边橱窗里的二次元角色立牌&quot; /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/40ab8fdcd6cada0f1fae3601ba439ef2.BSn-72Vy_2oTmSq.webp&quot; alt=&quot;路上看到的彩色公鸡广告&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;79648b06ee69cf8b5ad1c828327d35e3.jpg&quot; alt=&quot;路边店铺醒目的 AC 招牌&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;1e75aa1fc0354c6303c9ad7b7617ee5b.jpg&quot; alt=&quot;街边橱窗里的二次元角色立牌&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;40ab8fdcd6cada0f1fae3601ba439ef2.jpg&quot; alt=&quot;路上看到的彩色公鸡广告&quot; /&gt;&lt;/p&gt;
 &lt;p&gt;差不多就是这样。第一场区域赛拿到铜，感觉都可以提前宣布退役快乐了，毕竟我的追求也没有那么高。或者说，打得越多，就越认识到自己其实还很菜，算法竞赛归根结底还是少数人的游戏啊（悲）。&lt;/p&gt;
 &lt;p&gt;不过，我后面还有 ICPC 武汉和 ICPC 上海。&lt;/p&gt;
 &lt;p&gt;说不定就爆种拿 Ag 了呢？说不定呢。😬&lt;/p&gt;
 </content:encoded></item><item><title>2026ICPC沈阳 赛站游记</title><link>https://alisa22580.com/posts/2026-icpcsy/</link><guid isPermaLink="true">https://alisa22580.com/posts/2026-icpcsy/</guid><description>流水账一篇</description><pubDate>Wed, 29 Jul 2026 00:00:00 GMT</pubDate><content:encoded>&lt;h3&gt;前言&lt;/h3&gt;
 &lt;h5&gt;和天妹妹一起从深圳飞来沈阳 历经5h&lt;/h5&gt;
-&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/730eb6afce6e2d2e56f38e20f7d34e93.DBdON_aA_eOv5B.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;730eb6afce6e2d2e56f38e20f7d34e93.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;h5&gt;大晚上想吃东西 找售货机找到自助售烟机 难绷&lt;/h5&gt;
-&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/78f6341029d4dbb2495d29bbd470248e.xQpukRbK_ZAx6rK.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;78f6341029d4dbb2495d29bbd470248e.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;h5&gt;偶遇一只几何造型&lt;/h5&gt;
-&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/65ec2665468674c1a6c7d15329824916.DaJ_SU_U_ZdMPKj.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;65ec2665468674c1a6c7d15329824916.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;h5&gt;东北大学的餐券 这一顿有肉有菜有碳水 仅仅15r&lt;/h5&gt;
-&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/28f8c27ffa87e809cc7ff3ebd9cc9d2c.CkrmNn7g_19nauB.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;28f8c27ffa87e809cc7ff3ebd9cc9d2c.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;h5&gt;很好看的赛站服，可惜朋友说有登味&lt;/h5&gt;
-&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/d45edd05185806f837b7b4248311f3c5.C94oFEdx_2rhtCi.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;d45edd05185806f837b7b4248311f3c5.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;h3&gt;赛中&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/4da21f433041122031d0e5be2bdebed7.bkK4z_Fn_11rhnR.webp&quot; alt=&quot;alt text&quot; /&gt;
+&lt;p&gt;&lt;img src=&quot;4da21f433041122031d0e5be2bdebed7.webp&quot; alt=&quot;alt text&quot; /&gt;
 全场第一个提交，但是是E题wwq猜了个结论 错了之后才倒回去跟榜看签到。&lt;/p&gt;
 &lt;p&gt;12min 做出来L 三个人开始集体发呆，直到 70min 才以两发罚时做出来第二道签到K&lt;/p&gt;
 &lt;p&gt;做出来3题之后还在铁牌区，当时感觉这场打的想哭&lt;/p&gt;
@@ -3029,15 +3029,15 @@ vector&amp;lt;long long&amp;gt; complete_knapsack(
 &lt;p&gt;总结来说 客观原因是三个人可能线下没休息好，主观原因是三个人在赛前没有充分讨论好各自的分工，导致在赛中出现了很多重复劳动，以及互相不知道对方在说什么 仍需磨合啊！&lt;/p&gt;
 &lt;h3&gt;赛后&lt;/h3&gt;
 &lt;h5&gt;其实新海天才是参赛队员&lt;/h5&gt;
-&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/3c45cfab72ee537c2ec1fe648b31c252.D6PFz5Ux_Z1LSyFk.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;3c45cfab72ee537c2ec1fe648b31c252.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;h5&gt;acm特有的赛后头像合影&lt;/h5&gt;
-&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/c534b00fa7260faccf8bd377402160af.DK2m3ydX_ZGVhg0.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;c534b00fa7260faccf8bd377402160af.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;h5&gt;沈阳量大管饱 这一顿把三个人吃死了&lt;/h5&gt;
-&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/c0239e098e23f73e5e47c3ce99569a91.CUOUiKfV_Z1G8CNd.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;c0239e098e23f73e5e47c3ce99569a91.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;h5&gt;半夜看痴迷 看的手脚冰凉&lt;/h5&gt;
-&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/f83b96b4f0d5e7ca26ab7f12c1622abf.BtBvKvEz_Z2uDanS.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;f83b96b4f0d5e7ca26ab7f12c1622abf.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;h5&gt;走啦 奔赴下一站&lt;/h5&gt;
-&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/b5062141a8164588d0829506b3c61721.C18TH65P_1pblcL.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;b5062141a8164588d0829506b3c61721.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 </content:encoded></item><item><title>一场幻梦</title><link>https://alisa22580.com/posts/a-dream/</link><guid isPermaLink="true">https://alisa22580.com/posts/a-dream/</guid><description>希望我将来也不要留下遗憾。</description><pubDate>Sun, 26 Jul 2026 21:57:00 GMT</pubDate><content:encoded>&lt;p&gt;学习，打 A，工作。&lt;/p&gt;
 &lt;p&gt;上了大学，我离自己从小到大的生活圈子愈发变远了。&lt;/p&gt;
 &lt;p&gt;这次回来深圳，满打满算十一天。跟爸妈弟弟聊天，跟小学初中的好朋友叙旧，又因为前程之类的事情不得不匆匆离开。&lt;/p&gt;
@@ -3055,7 +3055,7 @@ vector&amp;lt;long long&amp;gt; complete_knapsack(
 &lt;blockquote&gt;
 &lt;p&gt;2026-08-01 update:&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/c24aeeeff6ca72539d0ae794c2115642.D5pEXvbB_2lT3Tc.webp&quot; alt=&quot;我在出租屋码字，妹妹在看我 w-100%&quot; title=&quot;我在出租屋码字，妹妹在看我&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;c24aeeeff6ca72539d0ae794c2115642.webp&quot; alt=&quot;我在出租屋码字，妹妹在看我 w-100%&quot; title=&quot;我在出租屋码字，妹妹在看我&quot; /&gt;&lt;/p&gt;
 </content:encoded></item><item><title>CFBetter 快速配置 AI 翻译（接入 DeepSeek V4 Flash）</title><link>https://alisa22580.com/posts/cfbetter-deepseek-ai-translation/</link><guid isPermaLink="true">https://alisa22580.com/posts/cfbetter-deepseek-ai-translation/</guid><description>在 Codeforces Better 中接入 DeepSeek V4 Flash</description><pubDate>Sun, 07 Jun 2026 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;写在前面&lt;/h1&gt;
 &lt;blockquote&gt;
 &lt;p&gt;曾经在 b 站发过一个 &lt;a href=&quot;https://www.bilibili.com/opus/1117176875527962633?spm_id_from=333.1387.0.0&quot;&gt;简易版本的教程&lt;/a&gt;，其内容已经过时。&lt;/p&gt;
@@ -3069,16 +3069,16 @@ vector&amp;lt;long long&amp;gt; complete_knapsack(
 &lt;ol&gt;
 &lt;li&gt;
 &lt;p&gt;安装 &lt;a href=&quot;https://microsoftedge.microsoft.com/addons/detail/%E7%AF%A1%E6%94%B9%E7%8C%B4/iikmkjmpaadaobahmlepeloendndfphd&quot;&gt;Tampermonkey&lt;/a&gt; 浏览器扩展。
-&lt;img src=&quot;https://alisa22580.com/_astro/image.CzgFKjEd_ZkNSHi.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;image.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;进入 &lt;a&gt;扩展管理&lt;/a&gt; 确保 Tampermonkey 已启用，开发人员模式已打开。
-&lt;img src=&quot;https://alisa22580.com/_astro/image-1.B1ZoAvh4_26HjjA.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;image-1.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;点击 篡改猴 的 详细信息， 像我图片那样设置相关权限。
-&lt;img src=&quot;https://alisa22580.com/_astro/image-2.ize0Hezs_ZLm22i.webp&quot; alt=&quot;alt text&quot; /&gt;
-&lt;img src=&quot;https://alisa22580.com/_astro/image-3.D8k2ft6t_27XXMY.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;image-2.webp&quot; alt=&quot;alt text&quot; /&gt;
+&lt;img src=&quot;image-3.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;h2&gt;1.2 安装 CFBetter 脚本&lt;/h2&gt;
@@ -3092,15 +3092,15 @@ vector&amp;lt;long long&amp;gt; complete_knapsack(
 &lt;/ol&gt;
 &lt;h1&gt;2. 配置 CFBetter 的 AI 翻译&lt;/h1&gt;
 &lt;p&gt;进入 codeforces 主页，应当能看到 cf better 已经加载成功：
-&lt;img src=&quot;https://alisa22580.com/_astro/image-4.pLn4nwfO_2vvTIG.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;image-4.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;h2&gt;2.1 打开设置面板&lt;/h2&gt;
 &lt;p&gt;在 Codeforces 任意页面，点击右上角的 &lt;strong&gt;「CodeforcesBetter 设置」&lt;/strong&gt; 按钮，打开设置面板。&lt;/p&gt;
 &lt;h2&gt;2.2 选择翻译服务&lt;/h2&gt;
 &lt;p&gt;在设置面板中，找到 &lt;strong&gt;「翻译」&lt;/strong&gt; 选项，从下拉菜单中选择 &lt;strong&gt;「AI 翻译」&lt;/strong&gt;。
-&lt;img src=&quot;https://alisa22580.com/_astro/image-5.e_rJWbX4_tLVPt.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;image-5.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;h2&gt;2.3 添加 DeepSeek 配置&lt;/h2&gt;
 &lt;p&gt;向下滚动，找到 &lt;strong&gt;「ChatGPT」&lt;/strong&gt; 区域，点击 &lt;strong&gt;「添加」&lt;/strong&gt; 按钮，弹出配置表单。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/image-6.BsNHZdsb_2mms2B.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;image-6.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;table&gt;
 &lt;thead&gt;
 &lt;tr&gt;
@@ -3129,11 +3129,11 @@ vector&amp;lt;long long&amp;gt; complete_knapsack(
 &lt;/table&gt;
 &lt;blockquote&gt;
 &lt;p&gt;参考如下：
-&lt;img src=&quot;https://alisa22580.com/_astro/image-7.kHKwiVNP_ZKjtxl.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;image-7.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h2&gt;2.4 配置自动翻译&lt;/h2&gt;
 &lt;p&gt;向下滚动，像图中一样配置即可。
-&lt;img src=&quot;https://alisa22580.com/_astro/image-8.CZsac13r_1Kfyly.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;image-8.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;p&gt;填写完成后直接关闭，会弹出保存提示，保存即可。&lt;/p&gt;
 &lt;p&gt;:::warning
 完成之后多点几下 确认确实选择了AI翻译；确认确实选择了刚刚自己设置的接口；确认保存了设置！
@@ -3236,7 +3236,7 @@ vector&amp;lt;long long&amp;gt; complete_knapsack(
 &lt;li&gt;&lt;a href=&quot;https://api-docs.deepseek.com/zh-cn/quick_start/pricing&quot;&gt;DeepSeek API 定价&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </content:encoded></item><item><title>2026东北赛 长春游</title><link>https://alisa22580.com/posts/2026-dbcpc/</link><guid isPermaLink="true">https://alisa22580.com/posts/2026-dbcpc/</guid><description>流水账一篇</description><pubDate>Sun, 24 May 2026 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;铜首了，倒闭4个小时，感觉心情不是很美妙...&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/image.B5kasAJa_Z4wIKe.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;image.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;p&gt;姑且先放一个牌子在这里，剩下的再说吧。&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;2026-05-28 update:&lt;/p&gt;
@@ -3345,36 +3345,36 @@ g++ 是 GNU Compiler Collection 的 C++ 开源编译器，支持多种平台和�
 &lt;ol&gt;
 &lt;li&gt;找到 Dev-C++ 或 CodeBlocks 的安装目录。&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/image-1.Dp8NJko0_Virgi.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;image-1.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;顺藤摸瓜，找到名为 MinGW 或 MinGW64 的文件夹。&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/image-2.8mnew1-l_ZIVsAV.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;image-2.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;一直点进去，直到看到一个名为 bin 的文件夹。&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/image-3.ZtBPbXmX_Z1sNIts.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;image-3.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;&lt;strong&gt;打开&lt;/strong&gt; bin 文件夹，&lt;strong&gt;确认&lt;/strong&gt;里面有 g++.exe。&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/image-4.CVSzT9rv_KcA0Y.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;image-4.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;复制当前的文件路径（例如：C:\Program Files (x86)\Dev-Cpp\MinGW64\bin）。&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/image-5.B0n8ci3Z_1hR4vh.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;image-5.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;h2&gt;2. 将路径写入 Path 环境变量&lt;/h2&gt;
 &lt;ol&gt;
 &lt;li&gt;按下 Win 键，直接&lt;strong&gt;搜索&lt;/strong&gt; “编辑系统环境变量”，点击打开。&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/image-6.BUPiW8Xz_1W6P11.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;image-6.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;在弹出的窗口右下角，点击 “环境变量(N)...”，在下半部分的“系统变量”中，找到叫 Path 的那一行，双击它。&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/image-7.NfvWo8Y8_Z5GYSY.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;image-7.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;点击 “新建”，把你刚才复制的 bin 文件夹路径粘贴进去。&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/image-8.B6qrIFBH_1pn6v5.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;image-8.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;一路点击 “确定” 保存退出。&lt;/li&gt;
 &lt;/ol&gt;
@@ -3394,13 +3394,13 @@ g++ 是 GNU Compiler Collection 的 C++ 开源编译器，支持多种平台和�
 &lt;pre&gt;&lt;code&gt;g++ -v // 等效于 g++ --version 作用是查看 g++ 的版本信息
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;如果终端吐出了一大串包含 g++ (GCC) ... 的版本信息，恭喜你，配置大功告成！
-&lt;img src=&quot;https://alisa22580.com/_astro/image.B8B6KxN6_I3tkb.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;image.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;p&gt;现在，你可以使用这个终端方便的完成编译和运行了。&lt;/p&gt;
 &lt;h1&gt;如何使用&lt;/h1&gt;
 &lt;h2&gt;1. 最基础的编译&lt;/h2&gt;
 &lt;pre&gt;&lt;code&gt;g++ main.cpp
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/image-10.jcTw2Vhm_Z1LY1bv.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;image-10.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;这是最简单的命令。它会把 main.cpp 编译成一个默认名为 a.exe（Windows）或 a.out（Linux/Mac）的可执行文件。&lt;/li&gt;
 &lt;/ul&gt;
@@ -3408,7 +3408,7 @@ g++ 是 GNU Compiler Collection 的 C++ 开源编译器，支持多种平台和�
 &lt;h2&gt;2. 指定输出文件名 (-o)&lt;/h2&gt;
 &lt;pre&gt;&lt;code&gt;g++ main.cpp -o main
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/image-11.D-P_xlYf_1FpJTB.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;image-11.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;-o 代表 Output。这条命令会把编译后的程序命名为 main.exe。&lt;/li&gt;
 &lt;/ul&gt;
@@ -3690,15 +3690,15 @@ $$&lt;/p&gt;
 &lt;h2&gt;赛时&lt;/h2&gt;
 &lt;p&gt;赛时用了别的想法：&lt;/p&gt;
 &lt;p&gt;对于 &lt;code&gt;size &amp;gt; 1&lt;/code&gt; 的联通块，彼此先连起来，每一个联通块应当用掉两个点位（用于连接彼此），剩余的度数为0的点位数（红色标点）是 $\sum (size - 2)$
-&lt;img src=&quot;https://alisa22580.com/_astro/image.CWICuXFA_1vA91W.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;image.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;p&gt;然而只需要保证连通性即可，并不需要成环，所以有一条边可以拆开。这样一来 就又多了两个红色标点。
-&lt;img src=&quot;https://alisa22580.com/_astro/image-1.CDaK4x9h_Z11POVU.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;image-1.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;p&gt;因此剩余的度数为0的点位数实际上是 $\sum (size - 2) + 2$&lt;/p&gt;
 &lt;p&gt;现在还剩下 &lt;code&gt;X&lt;/code&gt; 个 &lt;code&gt;size = 1&lt;/code&gt; 的联通块没有连接。&lt;/p&gt;
 &lt;p&gt;如果 $X \le \sum (size - 2) + 2$，说明可以把这些孤立点直接插在已有的边上，不会增加最大接入数，此时答案为1;
-&lt;img src=&quot;https://alisa22580.com/_astro/image-2.HGujhMBE_2oeHUU.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;image-2.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;p&gt;否则需要额外的边来连接这些孤立点，答案为2。
-&lt;img src=&quot;https://alisa22580.com/_astro/image-3.E2tHWrXm_NRoN8.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;image-3.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;h2&gt;复杂度&lt;/h2&gt;
 &lt;p&gt;并查集近似 $O((N+M)\alpha(N))$。&lt;/p&gt;
 &lt;h2&gt;code&lt;/h2&gt;
@@ -3964,13 +3964,13 @@ void solve()
 &lt;hr /&gt;
 &lt;h1&gt;总结&lt;/h1&gt;
 &lt;p&gt;我的分数大概是这么多（也可能再低一点吧。其实打的，相当一般啊，感觉就是零基础 / 半吊子 + DSU 板子熟练使用者
-&lt;img src=&quot;https://alisa22580.com/_astro/e0d7db8bf7ba8da65682724582540989.CET0UMRv_Z1VgBrg.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;e0d7db8bf7ba8da65682724582540989.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;p&gt;我曾经对 cf 有巨大的偏见，觉得它 &quot;除了 guessing 什么都练不到&quot; 但是这次的 B 题 居然被我手搓出规律了，在此我必须承认 cf 大人的强大，我将一直拥护 cf 。&lt;/p&gt;
 &lt;p&gt;当然黑龙江的 b 组 其实没啥含金量 约等于校内竞争了。但是我再怎么说也是训了那么久，打成这样终归不是很满意，心有不甘&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;2026-04-29 update:&lt;/p&gt;
 &lt;p&gt;全省第二！这下不再心有不甘了。哈哈哈&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/image-4.Rq_zJD_l_Zc9ALa.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;image-4.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 </content:encoded></item><item><title>GKD：李跳跳的平替推荐</title><link>https://alisa22580.com/posts/gkd-shizuku-usage-tutorial/</link><guid isPermaLink="true">https://alisa22580.com/posts/gkd-shizuku-usage-tutorial/</guid><description>GKD 使用教程，以及一些 Root、Shizuku、ADB 相关的原理学习</description><pubDate>Thu, 09 Apr 2026 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;写在前面&lt;/h1&gt;
 &lt;blockquote&gt;
@@ -4015,7 +4015,7 @@ void solve()
 &lt;/ol&gt;
 &lt;h2&gt;3.2 启用无障碍服务&lt;/h2&gt;
 &lt;p&gt;打开软件，勾选第一个选项，点击右上角进入配置。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/image.DA1BUL6W_9Wrzh.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;image.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;h2&gt;3.3 安装并启动 Shizuku&lt;/h2&gt;
 &lt;p&gt;::github{repo=&quot;RikkaApps/Shizuku&quot;}
 &lt;a href=&quot;https://shizuku.rikka.app/zh-hans/guide/setup/&quot;&gt;Shizuku 官方文档&lt;/a&gt;&lt;/p&gt;
@@ -4025,27 +4025,27 @@ void solve()
 &lt;ol&gt;
 &lt;li&gt;
 &lt;p&gt;打开 Shizuku，点击配对。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/image-1.aVeqcuDZ_Z1MwYes.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;image-1.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;点击“开发者选项”，找到无线调试。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/image-2.BMlp1LnK_1iW5hT.webp&quot; alt=&quot;alt text&quot; /&gt;
-&lt;img src=&quot;https://alisa22580.com/_astro/image-3.BF_Jkd-9_Z5PC8M.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;image-2.webp&quot; alt=&quot;alt text&quot; /&gt;
+&lt;img src=&quot;image-3.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;勾选“无线调试”，点击“配对设备”，输入 Shizuku 给出的配对码。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/image-4.BqrLiZt5_1pzPfx.webp&quot; alt=&quot;alt text&quot; /&gt;
-&lt;img src=&quot;https://alisa22580.com/_astro/image-5.B87-Vrwx_g0FVL.webp&quot; alt=&quot;alt text&quot; /&gt;
-&lt;img src=&quot;https://alisa22580.com/_astro/image-6.CvWSX9sF_Zo1nC8.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;image-4.webp&quot; alt=&quot;alt text&quot; /&gt;
+&lt;img src=&quot;image-5.webp&quot; alt=&quot;alt text&quot; /&gt;
+&lt;img src=&quot;image-6.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;配对成功后，回到 Shizuku 点击启动。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/image-7.U9SI9baQ_IvnPs.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;image-7.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;在上方授权 GKD。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/image-8.7_OUgfmA_xspL9.webp&quot; alt=&quot;alt text&quot; /&gt;
-&lt;img src=&quot;https://alisa22580.com/_astro/image-9.C5Q3BN_r_2ejvQl.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;image-8.webp&quot; alt=&quot;alt text&quot; /&gt;
+&lt;img src=&quot;image-9.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;h3&gt;C. 连接电脑 ADB 启动&lt;/h3&gt;
@@ -4065,8 +4065,8 @@ void solve()
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;打开 GKD，进入订阅页面，选择添加订阅，粘贴上述 URL。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/image-10.BgF5mCoc_1Yd8p3.webp&quot; alt=&quot;alt text&quot; /&gt;
-&lt;img src=&quot;https://alisa22580.com/_astro/image-11.9l39bOG6_YBGKD.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;image-10.webp&quot; alt=&quot;alt text&quot; /&gt;
+&lt;img src=&quot;image-11.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;保存并拉取更新。&lt;/p&gt;
@@ -4075,7 +4075,7 @@ void solve()
 &lt;p&gt;如果看到订阅名称、版本、应用规则列表正常出现，说明导入成功。&lt;/p&gt;
 &lt;h2&gt;3.5 配置规则&lt;/h2&gt;
 &lt;p&gt;进入应用界面，逐一调整即可。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/image-12.Bn175w_l_Z1zolQg.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;image-12.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;h1&gt;4. 注意事项&lt;/h1&gt;
 &lt;p&gt;:::warning
 自动点击虽然方便，但也有风险，尤其是涉及到资金、权限、账号安全等敏感操作的页面。为了避免误操作导致的损失，建议在以下场景一律禁用自动点击：
@@ -4092,7 +4092,7 @@ void solve()
 </content:encoded></item><item><title>简短的 VPN 使用教程</title><link>https://alisa22580.com/posts/vpn-usage-tutorial/</link><guid isPermaLink="true">https://alisa22580.com/posts/vpn-usage-tutorial/</guid><description>内含丛雨云推荐（更适合二次元宝宝体质）</description><pubDate>Fri, 03 Apr 2026 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;写在前面&lt;/h1&gt;
 &lt;p&gt;捣鼓博客的初衷就是想多发一些“经验分享帖”，但是又总会怀疑自己自作多情的搞这么一出 是不是其实无人在意。&lt;/p&gt;
 &lt;p&gt;但是还是有很多朋友问我这怎么搞那怎么搞，同样的东西解释很多次大概也会心烦。倒不如趁此机会一鼓作气把东西写出来，这样以后别人问起来就可以帅气（吗）地把博客链接甩出去，还能给博客加点浏览量。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/image.B6jwaNiH_Z1btEu0.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;image.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;p&gt;看到有人确实需要这些内容，我就觉得写出来也不是白写，活着也不是白活了。&lt;/p&gt;
 &lt;p&gt;换而言之，如果这篇帖子对你有帮助的话，欢迎多多分享！&lt;/p&gt;
 &lt;h1&gt;1. 环境讲解&lt;/h1&gt;
@@ -4110,7 +4110,7 @@ void solve()
 &lt;/ul&gt;
 &lt;blockquote&gt;
 &lt;p&gt;你哈埋土就需要 VPN 来访问教务在线，不可不谓是、、科学上网的先驱！此处或许应有掌声。
-&lt;img src=&quot;https://alisa22580.com/_astro/966167b05a75e7ee2e35a4ab64f522b5.rd5rBO6G_Z1SJDr.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;966167b05a75e7ee2e35a4ab64f522b5.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;ul&gt;
 &lt;li&gt;特点：全局加密： 开启后，你电脑上所有的网络流量都会经过加密通道。&lt;/li&gt;
@@ -4154,18 +4154,18 @@ void solve()
 &lt;p&gt;没有用过 iOS 呢……等个有缘人提 PR。&lt;/p&gt;
 &lt;h2&gt;2. 获取订阅服务&lt;/h2&gt;
 &lt;p&gt;这个帖子仅负责必要的说明，因此 建议大家自行搜索评价稳定的机场，本站没有立场作推荐。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/preview.C0mo6TJe_ZO9Yw8.webp&quot; alt=&quot;alt text&quot; /&gt;
+&lt;p&gt;&lt;img src=&quot;preview.webp&quot; alt=&quot;alt text&quot; /&gt;
 :spoiler[可爱的 &lt;a href=&quot;https://congyu.moe/auth/register?invite=fc84dcfb89&quot;&gt;丛雨宝宝&lt;/a&gt; 出现在这里，单纯是因为她是卡密sama，想去哪就去哪，跟作者本人并无联系。]&lt;/p&gt;
 &lt;h2&gt;3. 导入 / 使用&lt;/h2&gt;
 &lt;blockquote&gt;
 &lt;p&gt;下面以 Windows 版本的 Clash 为例，其他平台的操作大同小异。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;完成购买步骤后，我们等待约五分钟，可以看到主页的订阅链接出现。
-&lt;img src=&quot;https://alisa22580.com/_astro/image-1.C83Eoe5s_Z170asd.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;image-1.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;p&gt;我们点击复制，把链接粘贴到 Clash 的 URL 粘贴栏里，保存。
-&lt;img src=&quot;https://alisa22580.com/_astro/image-2.yIC5_N8O_ZnB6UV.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;image-2.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;p&gt;现在，我们开启代理，看到状态栏的小猫从紫色变成橙色，一切就大功告成了！
-&lt;img src=&quot;https://alisa22580.com/_astro/image-4.ovswxCXP_ZFtIVm.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;image-4.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;p&gt;可以尝试打开&lt;a href=&quot;https://www.google.com/&quot;&gt;谷歌&lt;/a&gt;进行测试。&lt;/p&gt;
 &lt;h2&gt;4. 使用建议与避坑&lt;/h2&gt;
 &lt;p&gt;我们应当选择 Rule (规则模式) 实现“国内直连，国外加速”。&lt;/p&gt;
@@ -4190,9 +4190,9 @@ void solve()
 &lt;/ol&gt;
 &lt;p&gt;也就是划词翻译啦！&lt;/p&gt;
 &lt;h2&gt;效果展示&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/image-8.Dqir3X3a_c4A3L.webp&quot; alt=&quot;alt text&quot; /&gt;
-&lt;img src=&quot;https://alisa22580.com/_astro/image-10.O3IRDhe8_Z1TzwOt.webp&quot; alt=&quot;alt text&quot; /&gt;
-&lt;img src=&quot;https://alisa22580.com/_astro/image-11.BR_gxWGI_ZWbE0d.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;image-9.webp&quot; alt=&quot;alt text&quot; /&gt;
+&lt;img src=&quot;image-10.webp&quot; alt=&quot;alt text&quot; /&gt;
+&lt;img src=&quot;image-11.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;h1&gt;2. 使用前准备&lt;/h1&gt;
 &lt;h2&gt;2.1 浏览器要求&lt;/h2&gt;
 &lt;p&gt;本项目当前定位是 Manifest V3 扩展，推荐环境：&lt;/p&gt;
@@ -4242,15 +4242,15 @@ cd SelectEcho
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;点击「加载已解压的扩展程序」。
-&lt;img src=&quot;https://alisa22580.com/_astro/image.BuWo8-1E_ERQR.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;image.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;选择你刚才解压/克隆的 &lt;code&gt;SelectEcho&lt;/code&gt; 文件夹。
-&lt;img src=&quot;https://alisa22580.com/_astro/image-1.BLdoV_G6_P957V.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;image-1.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;确认扩展出现在列表中，状态为启用。
-&lt;img src=&quot;https://alisa22580.com/_astro/image-2.CkUZGw08_ZoylQh.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;image-2.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;如果您 &lt;em&gt;有&lt;/em&gt; &lt;a href=&quot;https://congyu.moe/auth/register?invite=fc84dcfb89&quot;&gt;科学上网工具&lt;/a&gt;，那么安装完成后，Google 翻译引擎应该能直接使用；如果没有，请跟着我继续往下看设置页配置百度翻译凭证的部分。&lt;/p&gt;
@@ -4261,31 +4261,31 @@ cd SelectEcho
 &lt;ol&gt;
 &lt;li&gt;
 &lt;p&gt;打开 &lt;a href=&quot;https://fanyi-api.baidu.com/&quot;&gt;百度翻译开放平台&lt;/a&gt;，点击 管理控制台。
-&lt;img src=&quot;https://alisa22580.com/_astro/image-3.C7BXPUrp_qgnV5.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;image-3.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;在 总览处 注册成为 个人开发者。
-&lt;img src=&quot;https://alisa22580.com/_astro/91311f3962e4e340036b295baaa5506a.BteBL28I_1euTJj.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;91311f3962e4e340036b295baaa5506a.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;启用 通用文本翻译 服务。
-&lt;img src=&quot;https://alisa22580.com/_astro/c4bd8f6966e20d664c1354ea4b4b5130.C87fAlk1_Z1ughFj.webp&quot; alt=&quot;alt text&quot; /&gt;
-&lt;img src=&quot;https://alisa22580.com/_astro/06ea73c2d9ee800b66cad00c94bc560a.SG0iv4-n_Z16MTGe.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;c4bd8f6966e20d664c1354ea4b4b5130.webp&quot; alt=&quot;alt text&quot; /&gt;
+&lt;img src=&quot;06ea73c2d9ee800b66cad00c94bc560a.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;选择高级版即可，应用名称填写 「SelectEcho」，其他选项按需填写。
-&lt;img src=&quot;https://alisa22580.com/_astro/9ca47df8418e5138c1e1117c91472e94.Qd5pzO81_dcqme.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;9ca47df8418e5138c1e1117c91472e94.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;
 &lt;p&gt;创建完成后，在 开发者信息 处，找到 APP ID 和 密钥，复制到 SelectEcho 设置页对应输入框里。
-&lt;img src=&quot;https://alisa22580.com/_astro/image-4.8YCrwvD__Z2vl0z2.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;image-4.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;打开设置页， 填写相关配置。&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/image-5.Do9KK5up_Lv3gx.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/image-6.bMM6R7zM_1IlLqQ.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;image-5.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;image-6.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;h1&gt;5. 配置&lt;/h1&gt;
 &lt;p&gt;我们先追求「成功一次」，不要一上来就深挖所有参数。&lt;/p&gt;
 &lt;h2&gt;5.1 选择测试页面&lt;/h2&gt;
@@ -4308,10 +4308,10 @@ cd SelectEcho
 &lt;li&gt;引擎状态（Google 或 Baidu）。&lt;/li&gt;
 &lt;li&gt;可关闭按钮和复制按钮。&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/image-8.Dqir3X3a_c4A3L.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;image-8.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;h1&gt;6. 设置页&lt;/h1&gt;
 &lt;p&gt;打开设置页的方式：扩展图标 -&amp;gt; 选项（Options）。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://alisa22580.com/_astro/image-5.Do9KK5up_Lv3gx.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;image-7.webp&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 &lt;p&gt;下面是最常见配置项：&lt;/p&gt;
 &lt;table&gt;
 &lt;thead&gt;
