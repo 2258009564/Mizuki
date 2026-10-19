@@ -1,8 +1,16 @@
-import type { PioConfig } from "../types/config";
-
-// Pio 看板娘配置
-export const pioConfig: PioConfig = {
+// Site-specific Live2D configuration preserved from Mizuki.
+import type { PioConfig } from "@/types/pioConfig";
+import { withUserConfig } from "../utils/config-overlay.ts";
+export const pioConfig: PioConfig = withUserConfig("pio", {
 	enable: true,
+	actionLabels: {
+		home: "返回首页",
+		skin: "切换模型",
+		info: "关于博主",
+		close: "隐藏看板娘",
+		show: "显示看板娘",
+		model: "Live2D 看板娘",
+	},
 	models: ["/pio/UG/ugofficial.model3.json"],
 	position: "left",
 	width: 280,
@@ -27,4 +35,4 @@ export const pioConfig: PioConfig = {
 		close: "QWQ See u nxt time~",
 		link: "https://github.com/2258009564",
 	},
-};
+});

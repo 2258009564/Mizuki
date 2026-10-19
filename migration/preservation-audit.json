@@ -1,0 +1,1650 @@
+{
+  "verifiedAt": "2026-10-19T12:27:17.416Z",
+  "preservedFileCount": 324,
+  "preservedContentFiles": 127,
+  "originalPostCount": 23,
+  "publishedPostCount": 13,
+  "draftCount": 10,
+  "baselinePublishedRoutes": [
+    "2026-dbcpc",
+    "2026-icpcsy",
+    "a-dream",
+    "cfbetter-deepseek-ai-translation",
+    "gkd-shizuku-usage-tutorial",
+    "lanqiao-cpp-b-common",
+    "lanqiao-cpp-b-solutions",
+    "my-blog-build-tutorial",
+    "selectecho-getting-started",
+    "test",
+    "vpn-usage-tutorial",
+    "vscode-run-code-tutorial"
+  ],
+  "newPublishedRoute": "/posts/2026-ccpc-changchun/",
+  "checks": [
+    {
+      "original": "src/content/posts/2026-ccpc-changchun/1e75aa1fc0354c6303c9ad7b7617ee5b.jpg",
+      "migrated": "src/content/posts/2026-ccpc-changchun/1e75aa1fc0354c6303c9ad7b7617ee5b.jpg",
+      "sha256": "7402d4501262ad648e77a9076d58ece5b5a0377bad4dd1f770b5e9470aa595c0"
+    },
+    {
+      "original": "src/content/posts/2026-ccpc-changchun/3b2f7d9a6e0cadb6b3f45f38de10919e.jpg",
+      "migrated": "src/content/posts/2026-ccpc-changchun/3b2f7d9a6e0cadb6b3f45f38de10919e.jpg",
+      "sha256": "8b329766b4ea3945584b0f41c06c6be97659a4a8e95f139dfd3f1bfbd2b1cb9e"
+    },
+    {
+      "original": "src/content/posts/2026-ccpc-changchun/40ab8fdcd6cada0f1fae3601ba439ef2.jpg",
+      "migrated": "src/content/posts/2026-ccpc-changchun/40ab8fdcd6cada0f1fae3601ba439ef2.jpg",
+      "sha256": "01c5623986a0b0d5d446b96125423361984eccb11d2046976ff7b1cd5692649c"
+    },
+    {
+      "original": "src/content/posts/2026-ccpc-changchun/79648b06ee69cf8b5ad1c828327d35e3.jpg",
+      "migrated": "src/content/posts/2026-ccpc-changchun/79648b06ee69cf8b5ad1c828327d35e3.jpg",
+      "sha256": "758d4c1c96158a08fc34002849ab1788cc930db23fc47df31a3db6810650060d"
+    },
+    {
+      "original": "src/content/posts/2026-ccpc-changchun/7e0f04e340f0afc906f035aba09fa1a4.jpg",
+      "migrated": "src/content/posts/2026-ccpc-changchun/7e0f04e340f0afc906f035aba09fa1a4.jpg",
+      "sha256": "92387f926fa2ca93631cfda0bfdae034f5c5aac4af32eedfd4b6f4106aacce73"
+    },
+    {
+      "original": "src/content/posts/2026-ccpc-changchun/a973d1feaa1744cb56b35a4637769ddc.jpg",
+      "migrated": "src/content/posts/2026-ccpc-changchun/a973d1feaa1744cb56b35a4637769ddc.jpg",
+      "sha256": "4832bdfc2e52839c47c2e3c8860a6b00239735d6109f910d1dabf376fcab4a53"
+    },
+    {
+      "original": "src/content/posts/2026-ccpc-changchun/d0933bcc6ae339b618c89895970d0934.jpg",
+      "migrated": "src/content/posts/2026-ccpc-changchun/d0933bcc6ae339b618c89895970d0934.jpg",
+      "sha256": "4bbe3840901cc028f3376c36dec183d43dd0d347737a6451a4f319559e6d6062"
+    },
+    {
+      "original": "src/content/posts/2026-ccpc-changchun/e3354ad1730c8604e9c74f3fcfcb8922.jpg",
+      "migrated": "src/content/posts/2026-ccpc-changchun/e3354ad1730c8604e9c74f3fcfcb8922.jpg",
+      "sha256": "8f274ed92c940f79495d5d08bb9d5c5e990e1525cfd8010d1d1b2d0e8960c6e8"
+    },
+    {
+      "original": "src/content/posts/2026-ccpc-changchun/f2fec5e9933e578b9ea41a88a33725c5.jpg",
+      "migrated": "src/content/posts/2026-ccpc-changchun/f2fec5e9933e578b9ea41a88a33725c5.jpg",
+      "sha256": "b244bc9ddfb025a6a3221f48869414b7e36cc83897a40c1a4a3171b1050fe90b"
+    },
+    {
+      "original": "src/content/posts/2026-ccpc-changchun/index.md",
+      "migrated": "src/content/posts/2026-ccpc-changchun/index.md",
+      "sha256": "2cc2333d10dec653a2bc0e14d373c42957eeef8abf2fb1d1787c2bfdfbfa1c99"
+    },
+    {
+      "original": "src/content/posts/2026-dbcpc/19c599a62dc0cfabcfff980a78102d61.webp",
+      "migrated": "src/content/posts/2026-dbcpc/19c599a62dc0cfabcfff980a78102d61.webp",
+      "sha256": "a51fb9f59f8a8c16127d13cbb5d9c0c1a71ae69e7ec2748210261371b7fe201c"
+    },
+    {
+      "original": "src/content/posts/2026-dbcpc/2c233ca7bfc4311acaf5a87112bacb82.webp",
+      "migrated": "src/content/posts/2026-dbcpc/2c233ca7bfc4311acaf5a87112bacb82.webp",
+      "sha256": "d4c19e1c9bafd16c015bdd067822e6207cc8e8de6cea6ad3cdd351b471d3c985"
+    },
+    {
+      "original": "src/content/posts/2026-dbcpc/5caf7ce0aa4eeffb4a10b33fd38cdc4a.webp",
+      "migrated": "src/content/posts/2026-dbcpc/5caf7ce0aa4eeffb4a10b33fd38cdc4a.webp",
+      "sha256": "eb85b370ae7efdd562b96e847af3c0367c8ab413fee7c3971ca7c91c7c65ad47"
+    },
+    {
+      "original": "src/content/posts/2026-dbcpc/d31603442efc00b936ffe88bf9201cbc.webp",
+      "migrated": "src/content/posts/2026-dbcpc/d31603442efc00b936ffe88bf9201cbc.webp",
+      "sha256": "d484b6b8b0e98e5977cd365d9c2d2fc23cca753bd6e132efe2a209d5841fc424"
+    },
+    {
+      "original": "src/content/posts/2026-dbcpc/image.webp",
+      "migrated": "src/content/posts/2026-dbcpc/image.webp",
+      "sha256": "4ba03ab50aa2bd0568bfc086a29cfb9c600f1f01f56ced0223a1df7914a447eb"
+    },
+    {
+      "original": "src/content/posts/2026-dbcpc/index.md",
+      "migrated": "src/content/posts/2026-dbcpc/index.md",
+      "sha256": "187cbe97a0607615e48a49aa7f4a78394e6db702ca68986eedde2cffc0b65082"
+    },
+    {
+      "original": "src/content/posts/2026-gxcpc/cf91f633372885ad7bae226ce9dcac9a.webp",
+      "migrated": "src/content/posts/2026-gxcpc/cf91f633372885ad7bae226ce9dcac9a.webp",
+      "sha256": "7ffbb2f4b39226f94aa85cf155f4225a7a7a0b18a0b491eb0d2686d3e31dd419"
+    },
+    {
+      "original": "src/content/posts/2026-gxcpc/index.md",
+      "migrated": "src/content/posts/2026-gxcpc/index.md",
+      "sha256": "e3ce27fcd50e091bc927336eda3894e8cf12eea926e76c3456344feeb1a36b7a"
+    },
+    {
+      "original": "src/content/posts/2026-icpcsy/28f8c27ffa87e809cc7ff3ebd9cc9d2c.webp",
+      "migrated": "src/content/posts/2026-icpcsy/28f8c27ffa87e809cc7ff3ebd9cc9d2c.webp",
+      "sha256": "dda9b10ac77773d73bd59e25a4a5428ff223cc84af76a51e2c7ecf3284f6b404"
+    },
+    {
+      "original": "src/content/posts/2026-icpcsy/3c45cfab72ee537c2ec1fe648b31c252.webp",
+      "migrated": "src/content/posts/2026-icpcsy/3c45cfab72ee537c2ec1fe648b31c252.webp",
+      "sha256": "19783c28fe7b46583f7b06b92365551ba2c3e3f12fe5acefadcced5b3660df14"
+    },
+    {
+      "original": "src/content/posts/2026-icpcsy/4da21f433041122031d0e5be2bdebed7.webp",
+      "migrated": "src/content/posts/2026-icpcsy/4da21f433041122031d0e5be2bdebed7.webp",
+      "sha256": "ff4e39c98d9f0f66546b80467b5953b31d8ede478863101cca98072862d18b78"
+    },
+    {
+      "original": "src/content/posts/2026-icpcsy/65ec2665468674c1a6c7d15329824916.webp",
+      "migrated": "src/content/posts/2026-icpcsy/65ec2665468674c1a6c7d15329824916.webp",
+      "sha256": "e83e43cb71ee7db2cb3c5a861abf2170747b8db99f64d4cba9a950d1cbc57f26"
+    },
+    {
+      "original": "src/content/posts/2026-icpcsy/730eb6afce6e2d2e56f38e20f7d34e93.webp",
+      "migrated": "src/content/posts/2026-icpcsy/730eb6afce6e2d2e56f38e20f7d34e93.webp",
+      "sha256": "21c86f5124fec375d83c7d05a190c7a032aaeb6f9f89f8466934e955481cb00c"
+    },
+    {
+      "original": "src/content/posts/2026-icpcsy/78f6341029d4dbb2495d29bbd470248e.webp",
+      "migrated": "src/content/posts/2026-icpcsy/78f6341029d4dbb2495d29bbd470248e.webp",
+      "sha256": "9f3902336843169ec6c3c42ba9c906fd7d4fbb273c31eeaa4996f02838b6f7d0"
+    },
+    {
+      "original": "src/content/posts/2026-icpcsy/b5062141a8164588d0829506b3c61721.webp",
+      "migrated": "src/content/posts/2026-icpcsy/b5062141a8164588d0829506b3c61721.webp",
+      "sha256": "de12d84b2b182f2bf65b0ec01d24d392ec75514175c84b444f98019e3f7c3623"
+    },
+    {
+      "original": "src/content/posts/2026-icpcsy/c0239e098e23f73e5e47c3ce99569a91.webp",
+      "migrated": "src/content/posts/2026-icpcsy/c0239e098e23f73e5e47c3ce99569a91.webp",
+      "sha256": "b08e1f42712d32fb6139534ff2f08edb6ee25d16251c1e4566d885384dd33fdc"
+    },
+    {
+      "original": "src/content/posts/2026-icpcsy/c534b00fa7260faccf8bd377402160af.webp",
+      "migrated": "src/content/posts/2026-icpcsy/c534b00fa7260faccf8bd377402160af.webp",
+      "sha256": "a0df2382fe3f90f7e8da8464a82b083faabe03c029b15ef0879c331d8a63319f"
+    },
+    {
+      "original": "src/content/posts/2026-icpcsy/d45edd05185806f837b7b4248311f3c5.webp",
+      "migrated": "src/content/posts/2026-icpcsy/d45edd05185806f837b7b4248311f3c5.webp",
+      "sha256": "d1c7279bbc2653a469ff77638bcd8292868e8e33cccc0da4a9f76ee9f8d2ef7a"
+    },
+    {
+      "original": "src/content/posts/2026-icpcsy/f83b96b4f0d5e7ca26ab7f12c1622abf.webp",
+      "migrated": "src/content/posts/2026-icpcsy/f83b96b4f0d5e7ca26ab7f12c1622abf.webp",
+      "sha256": "c18944f2b4b3e7a588cc96ab66448eb1dae861593bcde73429f0e2be3bcb63fd"
+    },
+    {
+      "original": "src/content/posts/2026-icpcsy/index.md",
+      "migrated": "src/content/posts/2026-icpcsy/index.md",
+      "sha256": "f5d933b359aa237289b30211217a82cc090107b2cea8de9ef84f4998e768d8f4"
+    },
+    {
+      "original": "src/content/posts/a-dream/c24aeeeff6ca72539d0ae794c2115642.webp",
+      "migrated": "src/content/posts/a-dream/c24aeeeff6ca72539d0ae794c2115642.webp",
+      "sha256": "6bb49eee484ea2c2668946c1d3f3a6cadd9fb7e424d56bc2a51b8a07e3bfdbab"
+    },
+    {
+      "original": "src/content/posts/a-dream/index.md",
+      "migrated": "src/content/posts/a-dream/index.md",
+      "sha256": "71538f05ff4b4b5f8459263d3eef76027afaf24ea91c65ef6bd51bb172336109"
+    },
+    {
+      "original": "src/content/posts/cfbetter-deepseek-ai-translation/image-1.webp",
+      "migrated": "src/content/posts/cfbetter-deepseek-ai-translation/image-1.webp",
+      "sha256": "54b2e69efb5e7ea4b01148dc02bcc61d31e0d9ad138669987ab380ec37fb1176"
+    },
+    {
+      "original": "src/content/posts/cfbetter-deepseek-ai-translation/image-2.webp",
+      "migrated": "src/content/posts/cfbetter-deepseek-ai-translation/image-2.webp",
+      "sha256": "9c3f777b398eaeb18724fe69bff40c80d51df26e135764882f819df1f883e3da"
+    },
+    {
+      "original": "src/content/posts/cfbetter-deepseek-ai-translation/image-3.webp",
+      "migrated": "src/content/posts/cfbetter-deepseek-ai-translation/image-3.webp",
+      "sha256": "133f72957a2601c8c34fe2093e7dd34ac8b607e7508d8982112d3f6c90da15e3"
+    },
+    {
+      "original": "src/content/posts/cfbetter-deepseek-ai-translation/image-4.webp",
+      "migrated": "src/content/posts/cfbetter-deepseek-ai-translation/image-4.webp",
+      "sha256": "9690ad7738528ee42441a247aa0e9c793b5e36cffcdd5dea9004de3065cbb1d1"
+    },
+    {
+      "original": "src/content/posts/cfbetter-deepseek-ai-translation/image-5.webp",
+      "migrated": "src/content/posts/cfbetter-deepseek-ai-translation/image-5.webp",
+      "sha256": "ae7c93f624bdbd248d47f779e3572da97aafff5bc533907ba2c400d7a44b359d"
+    },
+    {
+      "original": "src/content/posts/cfbetter-deepseek-ai-translation/image-6.webp",
+      "migrated": "src/content/posts/cfbetter-deepseek-ai-translation/image-6.webp",
+      "sha256": "4e7ffa4eaebcc68db17e2cfd711bb289419d7cc5e3c3e23e5cc88f132bd7aa71"
+    },
+    {
+      "original": "src/content/posts/cfbetter-deepseek-ai-translation/image-7.webp",
+      "migrated": "src/content/posts/cfbetter-deepseek-ai-translation/image-7.webp",
+      "sha256": "b1cfcc87f6379a5d847345a6ef9530f45920afa01c848e2af8696dd53adda4a2"
+    },
+    {
+      "original": "src/content/posts/cfbetter-deepseek-ai-translation/image-8.webp",
+      "migrated": "src/content/posts/cfbetter-deepseek-ai-translation/image-8.webp",
+      "sha256": "5da267e989ca0d12e0655cd84608077e4d2e776ccbddf5f100e5534d7330e34a"
+    },
+    {
+      "original": "src/content/posts/cfbetter-deepseek-ai-translation/image.webp",
+      "migrated": "src/content/posts/cfbetter-deepseek-ai-translation/image.webp",
+      "sha256": "b94f5059cfdf7eb43cf80fcca190ff03ac7ce933e1e905229c002b0738ea52d1"
+    },
+    {
+      "original": "src/content/posts/cfbetter-deepseek-ai-translation/index.md",
+      "migrated": "src/content/posts/cfbetter-deepseek-ai-translation/index.md",
+      "sha256": "481b4efef7c1252da45ff393aea4281c5cbf0ff9d6c6c2ede551ea5be62f472f"
+    },
+    {
+      "original": "src/content/posts/draft.md",
+      "migrated": "src/content/posts/draft.md",
+      "sha256": "9bebb33f15dd512f5bab81a6f44a35b672fc13fd303c5ea5c7ba307a0e269258"
+    },
+    {
+      "original": "src/content/posts/encrypted-post.md",
+      "migrated": "src/content/posts/encrypted-post.md",
+      "sha256": "6b30d7e6432ea35b372eaa2a90f9b2ad5b8f7f55919ed3a7449c3f569120edd4"
+    },
+    {
+      "original": "src/content/posts/GKD-Shizuku-Usage-Tutorial/image-1.webp",
+      "migrated": "src/content/posts/GKD-Shizuku-Usage-Tutorial/image-1.webp",
+      "sha256": "63b2d793ad458fbd13ca9c27f9f089d36c2d422d3ddd7265e551ac5ba3e3c6b2"
+    },
+    {
+      "original": "src/content/posts/GKD-Shizuku-Usage-Tutorial/image-10.webp",
+      "migrated": "src/content/posts/GKD-Shizuku-Usage-Tutorial/image-10.webp",
+      "sha256": "6d5b95541ecec18386596079c13a9ba6d04d7f8027ced449fee37afa39ac9659"
+    },
+    {
+      "original": "src/content/posts/GKD-Shizuku-Usage-Tutorial/image-11.webp",
+      "migrated": "src/content/posts/GKD-Shizuku-Usage-Tutorial/image-11.webp",
+      "sha256": "2eca8973d8928aa092610cbdeee43277a2924068446586f892f821f78be76ba7"
+    },
+    {
+      "original": "src/content/posts/GKD-Shizuku-Usage-Tutorial/image-12.webp",
+      "migrated": "src/content/posts/GKD-Shizuku-Usage-Tutorial/image-12.webp",
+      "sha256": "d30fa1f7289b053a64a8dbb70e45e596eedf37e902e401bc302ddaa32584890e"
+    },
+    {
+      "original": "src/content/posts/GKD-Shizuku-Usage-Tutorial/image-2.webp",
+      "migrated": "src/content/posts/GKD-Shizuku-Usage-Tutorial/image-2.webp",
+      "sha256": "4f72aa532fab676cce6deccc26c4ba2d7eeaae8428e0e829b0f18de9463c10d7"
+    },
+    {
+      "original": "src/content/posts/GKD-Shizuku-Usage-Tutorial/image-3.webp",
+      "migrated": "src/content/posts/GKD-Shizuku-Usage-Tutorial/image-3.webp",
+      "sha256": "28bd32aadf22b6560bad71d04f1911b5df4a597ec5ebb8ba511610b642492e21"
+    },
+    {
+      "original": "src/content/posts/GKD-Shizuku-Usage-Tutorial/image-4.webp",
+      "migrated": "src/content/posts/GKD-Shizuku-Usage-Tutorial/image-4.webp",
+      "sha256": "6244eed7869043a82edb5669a13096e6de3049661ca689248c0dbfcb287aaf08"
+    },
+    {
+      "original": "src/content/posts/GKD-Shizuku-Usage-Tutorial/image-5.webp",
+      "migrated": "src/content/posts/GKD-Shizuku-Usage-Tutorial/image-5.webp",
+      "sha256": "da94a04686648b351ee45f3011b39c5e9d5fbcd755b8e2de3925806204e5657b"
+    },
+    {
+      "original": "src/content/posts/GKD-Shizuku-Usage-Tutorial/image-6.webp",
+      "migrated": "src/content/posts/GKD-Shizuku-Usage-Tutorial/image-6.webp",
+      "sha256": "95c661723287037eb21eb798c2586ab92b312ea6fa66a370c09274f675e3e44c"
+    },
+    {
+      "original": "src/content/posts/GKD-Shizuku-Usage-Tutorial/image-7.webp",
+      "migrated": "src/content/posts/GKD-Shizuku-Usage-Tutorial/image-7.webp",
+      "sha256": "9381d0dafb328f1e04f4d89f5bebe8b6b247cbdda6fc88678b5369d3583bd3e0"
+    },
+    {
+      "original": "src/content/posts/GKD-Shizuku-Usage-Tutorial/image-8.webp",
+      "migrated": "src/content/posts/GKD-Shizuku-Usage-Tutorial/image-8.webp",
+      "sha256": "11e70640c18891c802335fc3ceed4e11a42149892d2eaff2815ff00bbfec3a26"
+    },
+    {
+      "original": "src/content/posts/GKD-Shizuku-Usage-Tutorial/image-9.webp",
+      "migrated": "src/content/posts/GKD-Shizuku-Usage-Tutorial/image-9.webp",
+      "sha256": "83e67d610f83e4c7219864ab7490e5421474a60bccce4de924a2700da6e60866"
+    },
+    {
+      "original": "src/content/posts/GKD-Shizuku-Usage-Tutorial/image.webp",
+      "migrated": "src/content/posts/GKD-Shizuku-Usage-Tutorial/image.webp",
+      "sha256": "fde8e87888311450efb1c24fa011a16a65ae73f91c354c7fcd3efb3cd4f66e96"
+    },
+    {
+      "original": "src/content/posts/GKD-Shizuku-Usage-Tutorial/index.md",
+      "migrated": "src/content/posts/GKD-Shizuku-Usage-Tutorial/index.md",
+      "sha256": "65beb42be8cee7b248c3cc66c4423b5c32750a6b01abd9cccbcf9c9ec62f2a90"
+    },
+    {
+      "original": "src/content/posts/guide/cover.webp",
+      "migrated": "src/content/posts/guide/cover.webp",
+      "sha256": "587415d0cbc3dc50f033c1370786876f07d5f6fa104f5f2d30fd69d657d54dff"
+    },
+    {
+      "original": "src/content/posts/guide/index.md",
+      "migrated": "src/content/posts/guide/index.md",
+      "sha256": "a485799e8ed3448edfa9ec7f7f361ab883783a196266121e9a5419d6ad2e4915"
+    },
+    {
+      "original": "src/content/posts/lanqiao-cpp-b-common/index.md",
+      "migrated": "src/content/posts/lanqiao-cpp-b-common/index.md",
+      "sha256": "8a57ae7ef4a26462c60f7f7c4489a34b9d0d310e74d99fd6aa057cc60af7f31a"
+    },
+    {
+      "original": "src/content/posts/lanqiao-cpp-b-solutions/e0d7db8bf7ba8da65682724582540989.webp",
+      "migrated": "src/content/posts/lanqiao-cpp-b-solutions/e0d7db8bf7ba8da65682724582540989.webp",
+      "sha256": "27c16135a61a6e760cfe6b05fa0772da448ee71f30002bb5faf584f94e09a5e6"
+    },
+    {
+      "original": "src/content/posts/lanqiao-cpp-b-solutions/image-1.webp",
+      "migrated": "src/content/posts/lanqiao-cpp-b-solutions/image-1.webp",
+      "sha256": "e968b1c4dc0e802cd36d234ad823b3d8d63992cf5e48682c503429f2913b0f95"
+    },
+    {
+      "original": "src/content/posts/lanqiao-cpp-b-solutions/image-2.webp",
+      "migrated": "src/content/posts/lanqiao-cpp-b-solutions/image-2.webp",
+      "sha256": "5f02ab2a53037b8c464603ec3968ad184c740b997a61fd108ad89fc8726895e8"
+    },
+    {
+      "original": "src/content/posts/lanqiao-cpp-b-solutions/image-3.webp",
+      "migrated": "src/content/posts/lanqiao-cpp-b-solutions/image-3.webp",
+      "sha256": "b1fdb65740f67958f30096c216d693cdf2abb8cc5604531f710a580501adad3b"
+    },
+    {
+      "original": "src/content/posts/lanqiao-cpp-b-solutions/image-4.webp",
+      "migrated": "src/content/posts/lanqiao-cpp-b-solutions/image-4.webp",
+      "sha256": "9bd8e8e711a9f1209761a2e898b04a0ec2ddf693d114097b5056e0912fb6f8e1"
+    },
+    {
+      "original": "src/content/posts/lanqiao-cpp-b-solutions/image.webp",
+      "migrated": "src/content/posts/lanqiao-cpp-b-solutions/image.webp",
+      "sha256": "a287530fb7fa64ab7c7e01fe342e12b410c76a6c63b98ba55b17476d4c837ac5"
+    },
+    {
+      "original": "src/content/posts/lanqiao-cpp-b-solutions/index.md",
+      "migrated": "src/content/posts/lanqiao-cpp-b-solutions/index.md",
+      "sha256": "2c044879494db68f34aa5e7cc0c995fb73d544888682b1b08dc8715ec4fcf55d"
+    },
+    {
+      "original": "src/content/posts/markdown-extended.md",
+      "migrated": "src/content/posts/markdown-extended.md",
+      "sha256": "890abbff707d9fcfd6fc03966c8f156d5b30c71e9002b3aa5c228f9e3526c833"
+    },
+    {
+      "original": "src/content/posts/markdown-mermaid.md",
+      "migrated": "src/content/posts/markdown-mermaid.md",
+      "sha256": "21286b71099126530a5496a4d5ea376d2960da1caf0bda742765e2343cc1025a"
+    },
+    {
+      "original": "src/content/posts/markdown-tutorial.md",
+      "migrated": "src/content/posts/markdown-tutorial.md",
+      "sha256": "2d3db62eebded9ebd44e42133c2b73436163c65de386aeedcf3db0f14ba954c7"
+    },
+    {
+      "original": "src/content/posts/My-Blog-Build-Tutorial/image-1.webp",
+      "migrated": "src/content/posts/My-Blog-Build-Tutorial/image-1.webp",
+      "sha256": "7b002e1e725156215692a8abedd4fd0cf3a40d7e12d69faa47af830dbc4af0ed"
+    },
+    {
+      "original": "src/content/posts/My-Blog-Build-Tutorial/image-2.webp",
+      "migrated": "src/content/posts/My-Blog-Build-Tutorial/image-2.webp",
+      "sha256": "d02758ffad8b1b06075b1bd5c64dd862ebd99fa714222571d797acab94f58b80"
+    },
+    {
+      "original": "src/content/posts/My-Blog-Build-Tutorial/image-3.webp",
+      "migrated": "src/content/posts/My-Blog-Build-Tutorial/image-3.webp",
+      "sha256": "78dd8b2d73b593761a5c89c0f0cf4949f5ccbd54b34d44e304ba9be4f2ca4d6d"
+    },
+    {
+      "original": "src/content/posts/My-Blog-Build-Tutorial/image-4.webp",
+      "migrated": "src/content/posts/My-Blog-Build-Tutorial/image-4.webp",
+      "sha256": "bf0cc9dfeaafc44b7cd3b7baf178ac22a62a7d583cbfdc3ddd354f7f0228e148"
+    },
+    {
+      "original": "src/content/posts/My-Blog-Build-Tutorial/image-5.webp",
+      "migrated": "src/content/posts/My-Blog-Build-Tutorial/image-5.webp",
+      "sha256": "39c09b01842c8ec84f98533729fc8ec6a9d9f3dc87eb8c9a106c52cf2cdebde3"
+    },
+    {
+      "original": "src/content/posts/My-Blog-Build-Tutorial/image-6.webp",
+      "migrated": "src/content/posts/My-Blog-Build-Tutorial/image-6.webp",
+      "sha256": "a53cfbdca58be2862d647d950194861a100118ad374000951316df4e40e0bdbc"
+    },
+    {
+      "original": "src/content/posts/My-Blog-Build-Tutorial/image-7.webp",
+      "migrated": "src/content/posts/My-Blog-Build-Tutorial/image-7.webp",
+      "sha256": "156b5729d47b80039862b93f955e9504760638c3435240173221c0f148ffc681"
+    },
+    {
+      "original": "src/content/posts/My-Blog-Build-Tutorial/image-8.webp",
+      "migrated": "src/content/posts/My-Blog-Build-Tutorial/image-8.webp",
+      "sha256": "12a010b5a07552b31b2388331df2e5da65d48f2c50973da3ad01b7d7308d6e20"
+    },
+    {
+      "original": "src/content/posts/My-Blog-Build-Tutorial/image-9.webp",
+      "migrated": "src/content/posts/My-Blog-Build-Tutorial/image-9.webp",
+      "sha256": "98b19026c98eeb8d4612d4f724d2b5f547d3c39b037a55f912325c180df30bcb"
+    },
+    {
+      "original": "src/content/posts/My-Blog-Build-Tutorial/image.webp",
+      "migrated": "src/content/posts/My-Blog-Build-Tutorial/image.webp",
+      "sha256": "fe74a23cbe47a82c168c2cc24bc69333540c3d165a9b23a0b3e5580106cec477"
+    },
+    {
+      "original": "src/content/posts/My-Blog-Build-Tutorial/index.md",
+      "migrated": "src/content/posts/My-Blog-Build-Tutorial/index.md",
+      "sha256": "6dfaf1ffa1a5904a0f799dc36402b0daf84df1cdd33a1de482acca7d4f74186c"
+    },
+    {
+      "original": "src/content/posts/raft/index.md",
+      "migrated": "src/content/posts/raft/index.md",
+      "sha256": "c67ccf63c843d95b49a4cba415390215e8db9a8a5ed38190f590fbf276986760"
+    },
+    {
+      "original": "src/content/posts/selectecho-getting-started/06ea73c2d9ee800b66cad00c94bc560a.webp",
+      "migrated": "src/content/posts/selectecho-getting-started/06ea73c2d9ee800b66cad00c94bc560a.webp",
+      "sha256": "736655abf2f9a53a5c56d9b48961b0b494d7ea3320bfbd18914722b0ab0f0ea7"
+    },
+    {
+      "original": "src/content/posts/selectecho-getting-started/1934fb5ff3822400a90aa2dac69f7c97.webp",
+      "migrated": "src/content/posts/selectecho-getting-started/1934fb5ff3822400a90aa2dac69f7c97.webp",
+      "sha256": "5b27d524382684ed482f47fbc50683bd6e7d0c3761a02b1a707ea293a169367f"
+    },
+    {
+      "original": "src/content/posts/selectecho-getting-started/91311f3962e4e340036b295baaa5506a.webp",
+      "migrated": "src/content/posts/selectecho-getting-started/91311f3962e4e340036b295baaa5506a.webp",
+      "sha256": "5cd237fa7f25a7a6382d731742d3aaf423364e6a406fad70f13e97625290e678"
+    },
+    {
+      "original": "src/content/posts/selectecho-getting-started/9ca47df8418e5138c1e1117c91472e94.webp",
+      "migrated": "src/content/posts/selectecho-getting-started/9ca47df8418e5138c1e1117c91472e94.webp",
+      "sha256": "fa8bbb7e684d755d5f6421aaff1dfe500bfe787b5b98b155f2574ad433da034a"
+    },
+    {
+      "original": "src/content/posts/selectecho-getting-started/c4bd8f6966e20d664c1354ea4b4b5130.webp",
+      "migrated": "src/content/posts/selectecho-getting-started/c4bd8f6966e20d664c1354ea4b4b5130.webp",
+      "sha256": "1289cc1430e05aa0fb3c49f387139a21d5235b3d2999e1b0b19570a8da3e58a3"
+    },
+    {
+      "original": "src/content/posts/selectecho-getting-started/image-1.webp",
+      "migrated": "src/content/posts/selectecho-getting-started/image-1.webp",
+      "sha256": "6fbfb5614a962c676d21fb36dd76f2b15354dbe44d7a0172a68a8c9b8fa5228e"
+    },
+    {
+      "original": "src/content/posts/selectecho-getting-started/image-10.webp",
+      "migrated": "src/content/posts/selectecho-getting-started/image-10.webp",
+      "sha256": "9487f77126e476e968a9337a842dd0f8abd06bf59f26df7ea5fe3721b563ea24"
+    },
+    {
+      "original": "src/content/posts/selectecho-getting-started/image-11.webp",
+      "migrated": "src/content/posts/selectecho-getting-started/image-11.webp",
+      "sha256": "97246b6fad305f473e1ec92096598fe7149b00dfe655297a43e96da9323c0416"
+    },
+    {
+      "original": "src/content/posts/selectecho-getting-started/image-2.webp",
+      "migrated": "src/content/posts/selectecho-getting-started/image-2.webp",
+      "sha256": "54bedda77be47c485b5af28495e4b6e97477af384e9b45eb77d59c2068b731cf"
+    },
+    {
+      "original": "src/content/posts/selectecho-getting-started/image-3.webp",
+      "migrated": "src/content/posts/selectecho-getting-started/image-3.webp",
+      "sha256": "d0dff3c4d0b108cd493d42c3ccf67ae936fa98b9ea3cb5100404eec23b866ed7"
+    },
+    {
+      "original": "src/content/posts/selectecho-getting-started/image-4.webp",
+      "migrated": "src/content/posts/selectecho-getting-started/image-4.webp",
+      "sha256": "9702824a65ee3e7260538f73382b6db9320b2d4695c8b68dc5610c7f7b736824"
+    },
+    {
+      "original": "src/content/posts/selectecho-getting-started/image-5.webp",
+      "migrated": "src/content/posts/selectecho-getting-started/image-5.webp",
+      "sha256": "ad86a83bb9b735263dcedcc45fadd3fa7cd9d8019c4ccee4ddaaf23904c695fe"
+    },
+    {
+      "original": "src/content/posts/selectecho-getting-started/image-6.webp",
+      "migrated": "src/content/posts/selectecho-getting-started/image-6.webp",
+      "sha256": "3d358a8f50562556a5ae74d1b96d4cee32861b890070429689f31ba0a2dfdf43"
+    },
+    {
+      "original": "src/content/posts/selectecho-getting-started/image-7.webp",
+      "migrated": "src/content/posts/selectecho-getting-started/image-7.webp",
+      "sha256": "ad86a83bb9b735263dcedcc45fadd3fa7cd9d8019c4ccee4ddaaf23904c695fe"
+    },
+    {
+      "original": "src/content/posts/selectecho-getting-started/image-8.webp",
+      "migrated": "src/content/posts/selectecho-getting-started/image-8.webp",
+      "sha256": "46e0215fc65dc45cf0a598778fd9923278eee8fead0426d57b13d9079040f844"
+    },
+    {
+      "original": "src/content/posts/selectecho-getting-started/image-9.webp",
+      "migrated": "src/content/posts/selectecho-getting-started/image-9.webp",
+      "sha256": "46e0215fc65dc45cf0a598778fd9923278eee8fead0426d57b13d9079040f844"
+    },
+    {
+      "original": "src/content/posts/selectecho-getting-started/image.webp",
+      "migrated": "src/content/posts/selectecho-getting-started/image.webp",
+      "sha256": "4021bdd2da0e415174b1ea8c221c7c231c439a5b59b8bdef91f55d04d9bee491"
+    },
+    {
+      "original": "src/content/posts/selectecho-getting-started/index.md",
+      "migrated": "src/content/posts/selectecho-getting-started/index.md",
+      "sha256": "6125d01ad3e3930e626698c152a2506cc32de194c4ceca2ff9543565f1743dc4"
+    },
+    {
+      "original": "src/content/posts/termux-ubuntu-nvim-tutorial/index.md",
+      "migrated": "src/content/posts/termux-ubuntu-nvim-tutorial/index.md",
+      "sha256": "4a51ad8ec16bd7fb49cd5fa607757c16cb489a240d5bc53c147dcfe89415955c"
+    },
+    {
+      "original": "src/content/posts/test.md",
+      "migrated": "src/content/posts/test.md",
+      "sha256": "b220eb8df560020ec5fa8ab75988ca4afa3efd1b76a4f65ecfdd73841ed39f24"
+    },
+    {
+      "original": "src/content/posts/video.md",
+      "migrated": "src/content/posts/video.md",
+      "sha256": "7cf37efe54f062f206cf9efd428ae1534e344dc219b1da584f1a9c8d9d4975b4"
+    },
+    {
+      "original": "src/content/posts/VPN-Usage-Tutorial/966167b05a75e7ee2e35a4ab64f522b5.webp",
+      "migrated": "src/content/posts/VPN-Usage-Tutorial/966167b05a75e7ee2e35a4ab64f522b5.webp",
+      "sha256": "e8f2c0ff2d1e11ec372b335fac90ea72beb97e863268ea84fe26333fd9ea7ae6"
+    },
+    {
+      "original": "src/content/posts/VPN-Usage-Tutorial/image-1.webp",
+      "migrated": "src/content/posts/VPN-Usage-Tutorial/image-1.webp",
+      "sha256": "b34b98730dc80d1c23206fd28e14a24338d880f9eac9510236dbdff95772f9f7"
+    },
+    {
+      "original": "src/content/posts/VPN-Usage-Tutorial/image-2.webp",
+      "migrated": "src/content/posts/VPN-Usage-Tutorial/image-2.webp",
+      "sha256": "c68abd5ff1f4dc68938a9af57d68291955784fefc50f79cebe96478d364f2d4a"
+    },
+    {
+      "original": "src/content/posts/VPN-Usage-Tutorial/image-3.webp",
+      "migrated": "src/content/posts/VPN-Usage-Tutorial/image-3.webp",
+      "sha256": "1392f66351b236dd89874fbf94a3e7ed48f5444a4328fc895d849c2c73dae92a"
+    },
+    {
+      "original": "src/content/posts/VPN-Usage-Tutorial/image-4.webp",
+      "migrated": "src/content/posts/VPN-Usage-Tutorial/image-4.webp",
+      "sha256": "1cfb5a97549380065341bc15a238654dd2e3c61e37c7b6459cbf210ae85cec74"
+    },
+    {
+      "original": "src/content/posts/VPN-Usage-Tutorial/image.webp",
+      "migrated": "src/content/posts/VPN-Usage-Tutorial/image.webp",
+      "sha256": "49fb6c05438805b76d94df5ca38c1754f1b9418a7b7c2d8eb8918425a4487e63"
+    },
+    {
+      "original": "src/content/posts/VPN-Usage-Tutorial/index.md",
+      "migrated": "src/content/posts/VPN-Usage-Tutorial/index.md",
+      "sha256": "bc83f96a8ced88d7f7ab153699a255baf0960e74b76df444f6cba0bc5410944c"
+    },
+    {
+      "original": "src/content/posts/VPN-Usage-Tutorial/preview.webp",
+      "migrated": "src/content/posts/VPN-Usage-Tutorial/preview.webp",
+      "sha256": "92387d01b3cd64a982af04e9fa09ab8c748745ca873dc616ebf66ef1bbaf3a30"
+    },
+    {
+      "original": "src/content/posts/vscode-run-code-tutorial/image-1.webp",
+      "migrated": "src/content/posts/vscode-run-code-tutorial/image-1.webp",
+      "sha256": "ed7f9f203361930592e7fe54a01d93c124af8f7e0c8c42cd006f94e951ac7761"
+    },
+    {
+      "original": "src/content/posts/vscode-run-code-tutorial/image-10.webp",
+      "migrated": "src/content/posts/vscode-run-code-tutorial/image-10.webp",
+      "sha256": "5c03e69f7b358355e70ce1ae5ada6dfa53b58107ccd04cf35267f44d058a4c6e"
+    },
+    {
+      "original": "src/content/posts/vscode-run-code-tutorial/image-11.webp",
+      "migrated": "src/content/posts/vscode-run-code-tutorial/image-11.webp",
+      "sha256": "0d8459b0711e050e710c849181bace3e4b774c2016570d968608aa20c32da026"
+    },
+    {
+      "original": "src/content/posts/vscode-run-code-tutorial/image-2.webp",
+      "migrated": "src/content/posts/vscode-run-code-tutorial/image-2.webp",
+      "sha256": "d375239b513c12331a90f2fe1e3873e29dc11c95d812e4ced0405fad52826410"
+    },
+    {
+      "original": "src/content/posts/vscode-run-code-tutorial/image-3.webp",
+      "migrated": "src/content/posts/vscode-run-code-tutorial/image-3.webp",
+      "sha256": "76e4f0a5b353ed9af5643e2b5cfda84b931d16bc1bfe37ab5faa72f2f1f1335a"
+    },
+    {
+      "original": "src/content/posts/vscode-run-code-tutorial/image-4.webp",
+      "migrated": "src/content/posts/vscode-run-code-tutorial/image-4.webp",
+      "sha256": "74273d4c4709dec7ec3c198ee278ef1059db24d6c776d945bc51236af9d22da1"
+    },
+    {
+      "original": "src/content/posts/vscode-run-code-tutorial/image-5.webp",
+      "migrated": "src/content/posts/vscode-run-code-tutorial/image-5.webp",
+      "sha256": "f21390b4b941fc5092e04a5eb1c17b51de98491c5fa0146a96ef5222034422dc"
+    },
+    {
+      "original": "src/content/posts/vscode-run-code-tutorial/image-6.webp",
+      "migrated": "src/content/posts/vscode-run-code-tutorial/image-6.webp",
+      "sha256": "a63c467f27b818e04430eef77d34475109ef9e11a2c09f6d0295d766d175003a"
+    },
+    {
+      "original": "src/content/posts/vscode-run-code-tutorial/image-7.webp",
+      "migrated": "src/content/posts/vscode-run-code-tutorial/image-7.webp",
+      "sha256": "a8aaad1bfab6bf71c78afa7b1138fc180f774f8ee8b6eaa2b361c8a2ea964bb7"
+    },
+    {
+      "original": "src/content/posts/vscode-run-code-tutorial/image-8.webp",
+      "migrated": "src/content/posts/vscode-run-code-tutorial/image-8.webp",
+      "sha256": "57afea3a19f650751f8c508a1b85deee17c9507653a019b5d124c6201c3134cc"
+    },
+    {
+      "original": "src/content/posts/vscode-run-code-tutorial/image-9.webp",
+      "migrated": "src/content/posts/vscode-run-code-tutorial/image-9.webp",
+      "sha256": "086ab22e6a545888745e8b9252e2cd0c525dd58f27409322b51193d4d5020ec8"
+    },
+    {
+      "original": "src/content/posts/vscode-run-code-tutorial/image.webp",
+      "migrated": "src/content/posts/vscode-run-code-tutorial/image.webp",
+      "sha256": "172f3e869866b0ca1dcba53f2412ce7864d9dcfeea1c0c9e1edef8dedcf3ab63"
+    },
+    {
+      "original": "src/content/posts/vscode-run-code-tutorial/index.md",
+      "migrated": "src/content/posts/vscode-run-code-tutorial/index.md",
+      "sha256": "7d35aa0034900354430ac58d7cd521d2d0678f7b665c830626a0aaf4daf974ba"
+    },
+    {
+      "original": "src/content/spec/about.md",
+      "migrated": "src/content/spec/about.md",
+      "sha256": "33d6dec2b559360b7613bf7d38f1f8f3ec26098e750719ce55215cfc225e5080"
+    },
+    {
+      "original": "src/content/spec/friends.md",
+      "migrated": "src/content/spec/friends.md",
+      "sha256": "a3bf0e222e18fe9fac76b466b7d48e46d55e477e0b398b2ba6cee80d87499808"
+    },
+    {
+      "original": "src/assets/images/alisa22580-avatar.webp",
+      "migrated": "src/assets/images/alisa22580-avatar.webp",
+      "sha256": "889cb15593dd8d9041420bb6ec9aaa365dcd47c7a419ea00949accc7124bdc81"
+    },
+    {
+      "original": "src/assets/images/alisa22580.webp",
+      "migrated": "src/assets/images/alisa22580.webp",
+      "sha256": "09be4224a1c0b0d6afa962eb147626528473b289320dbeafa062aa9294371108"
+    },
+    {
+      "original": "src/assets/images/avatar.webp",
+      "migrated": "src/assets/images/avatar.webp",
+      "sha256": "d56696550c0f1dd3363e3d30fc2b144961a167768ee1ea97fe8f7a824f4f856f"
+    },
+    {
+      "original": "public/assets/anime/cmmn.webp",
+      "migrated": "public/assets/anime/cmmn.webp",
+      "sha256": "0e789acdf3c1e3a138b5dcdf46f1196fae36626d60978505d323d00fb2797d44"
+    },
+    {
+      "original": "public/assets/anime/laxxx.webp",
+      "migrated": "public/assets/anime/laxxx.webp",
+      "sha256": "7bababfce3db0b43396854b9fa01a01927134cc680df2492359e94ef21d96e7a"
+    },
+    {
+      "original": "public/assets/anime/lkls.webp",
+      "migrated": "public/assets/anime/lkls.webp",
+      "sha256": "03a94c0f117dfea03c75ec248a5812d6f8c61bed794bd278c3098789cb798105"
+    },
+    {
+      "original": "public/assets/anime/rynh.webp",
+      "migrated": "public/assets/anime/rynh.webp",
+      "sha256": "54a5331e1580b2f3b7e67d4427619783f9d131622951e1cf139768422237e0d2"
+    },
+    {
+      "original": "public/assets/anime/tz1.webp",
+      "migrated": "public/assets/anime/tz1.webp",
+      "sha256": "206ab279cfdf14cf94b14fd118485fd9e1b443fd848da8c08578bb6083fdbffa"
+    },
+    {
+      "original": "public/assets/css/highlight-github-dark.min.css",
+      "migrated": "public/assets/css/highlight-github-dark.min.css",
+      "sha256": "89afc8f33803c9e7e081abe6bff14cb1eaec10cf7f84ba9ef957b6f508c5d327"
+    },
+    {
+      "original": "public/assets/desktop-banner/1.webp",
+      "migrated": "public/assets/desktop-banner/1.webp",
+      "sha256": "022eb7710fe5f45177e24a244d1a4b45318c624d4dea3e9c413d5160a0d4ee3f"
+    },
+    {
+      "original": "public/assets/desktop-banner/2.webp",
+      "migrated": "public/assets/desktop-banner/2.webp",
+      "sha256": "4055c939a0ef809504bc5b7c0f68a204812d0ca2a779359d3c2cb019e44bec10"
+    },
+    {
+      "original": "public/assets/desktop-banner/3.webp",
+      "migrated": "public/assets/desktop-banner/3.webp",
+      "sha256": "587415d0cbc3dc50f033c1370786876f07d5f6fa104f5f2d30fd69d657d54dff"
+    },
+    {
+      "original": "public/assets/desktop-banner/4.webp",
+      "migrated": "public/assets/desktop-banner/4.webp",
+      "sha256": "de34350f55db6907f272b4160535fab976c183a50879b5223e42a4605dce9e9f"
+    },
+    {
+      "original": "public/assets/desktop-banner/5.webp",
+      "migrated": "public/assets/desktop-banner/5.webp",
+      "sha256": "ecc622edab3904fd3f6812642fb360fb8518f64810d45775ffff6c46d4f13193"
+    },
+    {
+      "original": "public/assets/desktop-banner/6.webp",
+      "migrated": "public/assets/desktop-banner/6.webp",
+      "sha256": "a1f2c5c6f0b12da95a6d7add0f437b5ce050c6b777dc99730dfce720c3cf8d59"
+    },
+    {
+      "original": "public/assets/desktop-banner/pc1.webp",
+      "migrated": "public/assets/desktop-banner/pc1.webp",
+      "sha256": "a14e66bcc1129700b283d41683b9ceaf4aa09dd8a13522d168c9a91aa99e1cc1"
+    },
+    {
+      "original": "public/assets/desktop-banner/pc2.webp",
+      "migrated": "public/assets/desktop-banner/pc2.webp",
+      "sha256": "3cebbff868cc6281e8a1da1798df4ed2d8973c2c3748f4fd34b0abd074a465e1"
+    },
+    {
+      "original": "public/assets/desktop-banner/pc3.webp",
+      "migrated": "public/assets/desktop-banner/pc3.webp",
+      "sha256": "0ef9caaaac1ecb7788eae4ec1f78594885e3069e7d57ca280873436d9c447d14"
+    },
+    {
+      "original": "public/assets/desktop-banner/pc4.webp",
+      "migrated": "public/assets/desktop-banner/pc4.webp",
+      "sha256": "f81457479795e78b6f4fc91422189d9811822d3df4093a00a4e52bfe761b6af5"
+    },
+    {
+      "original": "public/assets/desktop-banner/pc5.webp",
+      "migrated": "public/assets/desktop-banner/pc5.webp",
+      "sha256": "66b788120b681653d28915625f5f80686283a0459306b9155420f2f6c4bd5ca1"
+    },
+    {
+      "original": "public/assets/desktop-banner/pc6.webp",
+      "migrated": "public/assets/desktop-banner/pc6.webp",
+      "sha256": "e2d4ff801e193a7a126b8dc8bb5244a208119b3a914b95781242fe4f0147c9b9"
+    },
+    {
+      "original": "public/assets/desktop-banner/pc7.webp",
+      "migrated": "public/assets/desktop-banner/pc7.webp",
+      "sha256": "92c7889663b61e73998b962f0ee4c112adc10e8832c4226d6f691be528466e8e"
+    },
+    {
+      "original": "public/assets/desktop-banner/pc8.webp",
+      "migrated": "public/assets/desktop-banner/pc8.webp",
+      "sha256": "fc0ca876c0f211b8e1ffd0a860591be4dc1b43e7e05f7ade74236d1731b9a978"
+    },
+    {
+      "original": "public/assets/desktop-banner/wp01.webp",
+      "migrated": "public/assets/desktop-banner/wp01.webp",
+      "sha256": "8fec4f57ba5df67627d507ea606f23f3ddec405bd1b2c4c590e434900528b3f1"
+    },
+    {
+      "original": "public/assets/desktop-banner/wp02.webp",
+      "migrated": "public/assets/desktop-banner/wp02.webp",
+      "sha256": "2095edd46deab2c0fe56c4fd4fcba3811b02a50352b736c58466dddca587b2a6"
+    },
+    {
+      "original": "public/assets/desktop-banner/wp03.webp",
+      "migrated": "public/assets/desktop-banner/wp03.webp",
+      "sha256": "92fbb69c842b2019ae4f6943c5387f63462c7d74ca645345b01821d935023a10"
+    },
+    {
+      "original": "public/assets/desktop-banner/wp04.webp",
+      "migrated": "public/assets/desktop-banner/wp04.webp",
+      "sha256": "ef06386950737c2c4512db5d4e58eaf11d3522376e2cf94b8bf718cd662e0125"
+    },
+    {
+      "original": "public/assets/desktop-banner/wp05.webp",
+      "migrated": "public/assets/desktop-banner/wp05.webp",
+      "sha256": "1e95a16d76d900029bc9f5ffc4037b6e8bbbd210db0d18fe18c57a6a744b6c2b"
+    },
+    {
+      "original": "public/assets/desktop-banner/wp06.webp",
+      "migrated": "public/assets/desktop-banner/wp06.webp",
+      "sha256": "ff715b812c3f9a1175789bfb3494e2618d99c11a49edbecc8833c13f34ca8ec5"
+    },
+    {
+      "original": "public/assets/desktop-banner/wp07.webp",
+      "migrated": "public/assets/desktop-banner/wp07.webp",
+      "sha256": "4522e488d0bfbc4938b9dabe4ac447ea9a244f035fc6aeead2112db95d11afbc"
+    },
+    {
+      "original": "public/assets/desktop-banner/wp09.webp",
+      "migrated": "public/assets/desktop-banner/wp09.webp",
+      "sha256": "caa27bd725e0bcff26d04609c3aa6b8138e7ffd3967430b7245768de757ff40d"
+    },
+    {
+      "original": "public/assets/desktop-banner/wp10.webp",
+      "migrated": "public/assets/desktop-banner/wp10.webp",
+      "sha256": "14c968115ec4fbb002adcdee8573078015cccb28f97ead1dce933c47ef007b4f"
+    },
+    {
+      "original": "public/assets/desktop-banner/wp11.webp",
+      "migrated": "public/assets/desktop-banner/wp11.webp",
+      "sha256": "0f3e433803078cd2a37956d5bae786bb55ed5397143d2ca8a00a375c2f01b7de"
+    },
+    {
+      "original": "public/assets/desktop-banner/wp12.webp",
+      "migrated": "public/assets/desktop-banner/wp12.webp",
+      "sha256": "837ade501f7a8a235929e7ab88fa420c97d33eb12f1273f9d9953b9d352ceba8"
+    },
+    {
+      "original": "public/assets/desktop-banner/wp13.webp",
+      "migrated": "public/assets/desktop-banner/wp13.webp",
+      "sha256": "221b3fa7de23e158fecfa4d4434e3583bd41f8c0ae3f88a6e46946a4b669843a"
+    },
+    {
+      "original": "public/assets/desktop-banner/wp14.webp",
+      "migrated": "public/assets/desktop-banner/wp14.webp",
+      "sha256": "ade9fef9e05b363b19e88d42f62d3826295149b32b40026ea3fa93403e6ccb0a"
+    },
+    {
+      "original": "public/assets/desktop-banner/wp15.webp",
+      "migrated": "public/assets/desktop-banner/wp15.webp",
+      "sha256": "ae3b941e0bd316246dfd51d559650fc4a0546d7f485e79bc488fbe2a9d014cb0"
+    },
+    {
+      "original": "public/assets/desktop-banner/wp16.webp",
+      "migrated": "public/assets/desktop-banner/wp16.webp",
+      "sha256": "45ced29bcacd781d77e273bde7ef09fef3d644fff6cb3d76c62dc7866ef585fc"
+    },
+    {
+      "original": "public/assets/desktop-banner/wp17.webp",
+      "migrated": "public/assets/desktop-banner/wp17.webp",
+      "sha256": "471a4c3d8d16f2354519ef66ce3759180e864fb5b05ee33421504672f7952f10"
+    },
+    {
+      "original": "public/assets/desktop-banner/wp18.webp",
+      "migrated": "public/assets/desktop-banner/wp18.webp",
+      "sha256": "125cfacc7e4bc06017e3678d08558f1daf796a1c5854f8e19db1b88c89621177"
+    },
+    {
+      "original": "public/assets/font/loli.ttf",
+      "migrated": "migration/legacy/fonts/loli.ttf",
+      "sha256": "c226ee2a6a5893798de3d356ff3bbc219b61cae2dfde2f702fe80f9049480cf7"
+    },
+    {
+      "original": "public/assets/font/MapleMono-NF-CN-Medium.ttf",
+      "migrated": "migration/legacy/fonts/MapleMono-NF-CN-Medium.ttf",
+      "sha256": "997fc75ae823e9d42c65f18cccf24498b9c25a3beba9d7f82feb69eea1d9b0ab"
+    },
+    {
+      "original": "public/assets/font/MapleMono-NF-CN-Regular.ttf",
+      "migrated": "migration/legacy/fonts/MapleMono-NF-CN-Regular.ttf",
+      "sha256": "3d8f0ab650c9b34131d18a0277962359c1de2b7002ff9040bd92a349c502b55e"
+    },
+    {
+      "original": "public/assets/font/ZenMaruGothic-Medium.ttf",
+      "migrated": "migration/legacy/fonts/ZenMaruGothic-Medium.ttf",
+      "sha256": "3cfdb98a13571ede17fcc769f5093a97c38b80a7b9b2ab754a26b4d822092b3b"
+    },
+    {
+      "original": "public/assets/home/alisa22580-avatar.webp",
+      "migrated": "public/assets/home/alisa22580-avatar.webp",
+      "sha256": "4c624fcdcc4df70562a8b5520048fb5dd39f87ed5556e060622db042015cbe50"
+    },
+    {
+      "original": "public/assets/home/default-logo.webp",
+      "migrated": "public/assets/home/default-logo.webp",
+      "sha256": "a84eb6b9570b7d709d483c76f9ecd04405c874286f06ea1964cd8921811c51f0"
+    },
+    {
+      "original": "public/assets/home/home.webp",
+      "migrated": "public/assets/home/home.webp",
+      "sha256": "8e3e832c8a6776c3a2e7dc4cbb814544f86e07b885aa5a142aa134008c48efdb"
+    },
+    {
+      "original": "public/assets/js/twikoo.all.min.js",
+      "migrated": "public/assets/js/twikoo.all.min.js",
+      "sha256": "2d7684fb34774d64312131725b2c8de808ddb67b31f8974d7850b1452c2a8e2c"
+    },
+    {
+      "original": "public/assets/mobile-banner/1.webp",
+      "migrated": "public/assets/mobile-banner/1.webp",
+      "sha256": "57a59f5c4377efcb2f8c2c8bdd0ffe4d54007a4e147daf76ff2e6bf136a8a293"
+    },
+    {
+      "original": "public/assets/mobile-banner/2.webp",
+      "migrated": "public/assets/mobile-banner/2.webp",
+      "sha256": "4a205a4bb329f8ed10c9b7afdd32248a8e75f2a719417e9584e6d578c27676bc"
+    },
+    {
+      "original": "public/assets/mobile-banner/3.webp",
+      "migrated": "public/assets/mobile-banner/3.webp",
+      "sha256": "4e62c71978843b5467b9c25a80ee626eb04623b8a5033ef1cff3d685a4cb8b16"
+    },
+    {
+      "original": "public/assets/mobile-banner/4.webp",
+      "migrated": "public/assets/mobile-banner/4.webp",
+      "sha256": "18da247938f64933373130ec2778b682a5ff33d53e0a622dc7e8533f2796daf9"
+    },
+    {
+      "original": "public/assets/mobile-banner/5.webp",
+      "migrated": "public/assets/mobile-banner/5.webp",
+      "sha256": "92aef102c0e1b26640e5b141b4ddcdf155d50ba0663b71be94cd9cfbce8134b0"
+    },
+    {
+      "original": "public/assets/mobile-banner/6.webp",
+      "migrated": "public/assets/mobile-banner/6.webp",
+      "sha256": "38d347d7efc9085786894bad2cb3ad91770af6514d29c09e46a6a7ff9e56d543"
+    },
+    {
+      "original": "public/assets/mobile-banner/an1.webp",
+      "migrated": "public/assets/mobile-banner/an1.webp",
+      "sha256": "0856fafbc1b1f8472c535b8bc25417c55b046d2001b8dc85232291ce548841c0"
+    },
+    {
+      "original": "public/assets/mobile-banner/an2.webp",
+      "migrated": "public/assets/mobile-banner/an2.webp",
+      "sha256": "1af89c59f6e8ae9e3ad529698d4da797cf247b49bf8d57f3ac3e6f1db98fcabf"
+    },
+    {
+      "original": "public/assets/mobile-banner/an3.webp",
+      "migrated": "public/assets/mobile-banner/an3.webp",
+      "sha256": "6b3a572ef077a823fe2442b2028117337ddf5855b268cfd73f7a04f23ca2159b"
+    },
+    {
+      "original": "public/assets/mobile-banner/an4.webp",
+      "migrated": "public/assets/mobile-banner/an4.webp",
+      "sha256": "322994bf8bf95ef7fa43e9878425f583ccc271352c630a7ff01aa9f8d9b9c3f5"
+    },
+    {
+      "original": "public/assets/mobile-banner/an5.webp",
+      "migrated": "public/assets/mobile-banner/an5.webp",
+      "sha256": "c40178416e8e75157de4599a32b316c7d317250ed0aa673751aa0d55f0f76a43"
+    },
+    {
+      "original": "public/assets/music/cover/cl.webp",
+      "migrated": "public/assets/music/cover/cl.webp",
+      "sha256": "47fb7a76ef4e0b4d7ae339dd2854e1cb46d9bb51f2a96bca72ae3556052b8538"
+    },
+    {
+      "original": "public/assets/music/cover/dazbee.webp",
+      "migrated": "public/assets/music/cover/dazbee.webp",
+      "sha256": "04a4387ca97a72a1199fd21603a4ab03db2e185fd196cf771e10b19c15d15415"
+    },
+    {
+      "original": "public/assets/music/cover/hitori.webp",
+      "migrated": "public/assets/music/cover/hitori.webp",
+      "sha256": "50b8cf049a8ea292e61c3b74207b3f010c4c12d67f768bd8550c87a4fea18655"
+    },
+    {
+      "original": "public/assets/music/cover/xryx.webp",
+      "migrated": "public/assets/music/cover/xryx.webp",
+      "sha256": "96ca569a3061def09859276ce19adb5736ed558ff15a6659c3ed9cd8b274715d"
+    },
+    {
+      "original": "public/assets/music/url/cl.mp3",
+      "migrated": "public/assets/music/url/cl.mp3",
+      "sha256": "5a48d4cc4b82a29e35caee3228e57cebe987a9e44bd373de57bdc9e20255c7e0"
+    },
+    {
+      "original": "public/assets/music/url/dazbee.mp3",
+      "migrated": "public/assets/music/url/dazbee.mp3",
+      "sha256": "d3bb03e318d56c78ecb0953b396a3a9044d26dac59b29cafe13bc65a870727b4"
+    },
+    {
+      "original": "public/assets/music/url/hitori.mp3",
+      "migrated": "public/assets/music/url/hitori.mp3",
+      "sha256": "44b5a974f198bc8f41e0f615741ae272ae3bb3090e59db50750728ae79c655d3"
+    },
+    {
+      "original": "public/assets/music/url/xryx.mp3",
+      "migrated": "public/assets/music/url/xryx.mp3",
+      "sha256": "073bcf79007688a474fdd08d753e9aa8970f2be5a5f43e666afbdf112a283be9"
+    },
+    {
+      "original": "public/assets/projects/folkpatch.webp",
+      "migrated": "public/assets/projects/folkpatch.webp",
+      "sha256": "d1cf93db9278e8909539899117684745de9e0ddd623be03a477002a3ba4387f4"
+    },
+    {
+      "original": "public/assets/projects/mizuki.webp",
+      "migrated": "public/assets/projects/mizuki.webp",
+      "sha256": "635663104fc00f05d5b6d47b86343e444e1058cc8a2c8562301048929f64fa98"
+    },
+    {
+      "original": "public/assets/wallpaper-engine/we-2073577741-nine.webp",
+      "migrated": "public/assets/wallpaper-engine/we-2073577741-nine.webp",
+      "sha256": "abeda46786f9040261a823a3a30c5a798683add58f3bf57ddd5a9db011a61b43"
+    },
+    {
+      "original": "public/assets/wallpaper-engine/we-2451341185-haruka.webp",
+      "migrated": "public/assets/wallpaper-engine/we-2451341185-haruka.webp",
+      "sha256": "2fe25af89cf171c23f06739d19997d0fa41efe99ed07671b666335415c8150f1"
+    },
+    {
+      "original": "public/assets/wallpaper-engine/we-2788932765-sorairo.webp",
+      "migrated": "public/assets/wallpaper-engine/we-2788932765-sorairo.webp",
+      "sha256": "e48993b0d94f6b8509475350a2ff4d3b4b6704358e4f3e92210ce3069225e6a0"
+    },
+    {
+      "original": "public/assets/wallpaper-engine/we-3323836229-nine.webp",
+      "migrated": "public/assets/wallpaper-engine/we-3323836229-nine.webp",
+      "sha256": "1a4c126be8d523d3a90ae9eb425085acdf263d905f622b58b96ed4f5f402068a"
+    },
+    {
+      "original": "public/assets/wallpaper-engine/we-3324374235-nine.webp",
+      "migrated": "public/assets/wallpaper-engine/we-3324374235-nine.webp",
+      "sha256": "6685592fbd991b4e3954a46f5661075184bf71efb93aa3c143f187ae027a01db"
+    },
+    {
+      "original": "public/assets/wallpaper-engine/we-3398909502-miyako.webp",
+      "migrated": "public/assets/wallpaper-engine/we-3398909502-miyako.webp",
+      "sha256": "7821209dec0aade2f0d6021f7a031a3066d06a18e36e14974de6cb42036ca30d"
+    },
+    {
+      "original": "public/assets/wallpaper-engine/we-3589501086-sora.webp",
+      "migrated": "public/assets/wallpaper-engine/we-3589501086-sora.webp",
+      "sha256": "4c334ed9f64c11dfcf4c8d1099d3fc157fd82d2f44e42b8c3909f6db0d00822b"
+    },
+    {
+      "original": "public/favicon/favicon.ico",
+      "migrated": "public/favicon/favicon.ico",
+      "sha256": "2714c1c5daee650d3ef07f9d080285df96035f4c15d6b599937ce6caca1ddc20"
+    },
+    {
+      "original": "public/favicon/lucide--terminal.svg",
+      "migrated": "public/favicon/lucide--terminal.svg",
+      "sha256": "0e0e0f5eb3ba06d80e067b7b0ca0b2b7a89716ff8c3cef2053242e81339ce977"
+    },
+    {
+      "original": "public/images/albums/AcgExample/1.webp",
+      "migrated": "public/images/albums/AcgExample/1.webp",
+      "sha256": "2a5ba8065c4b98cfae5998f62a4961ebebb9c4dac86e48dfd0823c02e9178dc5"
+    },
+    {
+      "original": "public/images/albums/AcgExample/1a7a9ff30d0b7cf03b9fdbd1dd4cf0ad90a344eb.webp",
+      "migrated": "public/images/albums/AcgExample/1a7a9ff30d0b7cf03b9fdbd1dd4cf0ad90a344eb.webp",
+      "sha256": "2eb60c25a8456d9de4d223a77c7ec893bc99cd3ecb858b3f87302dc4bbea8de1"
+    },
+    {
+      "original": "public/images/albums/AcgExample/2.webp",
+      "migrated": "public/images/albums/AcgExample/2.webp",
+      "sha256": "5e8ddf84b213f9e102606332fe834e7942e8710eea01155edb14fe0607e06efb"
+    },
+    {
+      "original": "public/images/albums/AcgExample/3.webp",
+      "migrated": "public/images/albums/AcgExample/3.webp",
+      "sha256": "9e60db2bf5942758fa48a1ed9eaba23ff8f66aee759d99801bbc94a53c0587e9"
+    },
+    {
+      "original": "public/images/albums/AcgExample/4.webp",
+      "migrated": "public/images/albums/AcgExample/4.webp",
+      "sha256": "610a733fb32b8990f9b6a7fbe2a6fbe98d2157674fd166bfcead7382e2531cab"
+    },
+    {
+      "original": "public/images/albums/AcgExample/464b547c424f36e7c6c38e0c2c151759a3bc68ec.webp",
+      "migrated": "public/images/albums/AcgExample/464b547c424f36e7c6c38e0c2c151759a3bc68ec.webp",
+      "sha256": "1eb8a98191264c3755b58f04cf0ecfd81c437fd09479fc64ff23bdda0b5f5dc1"
+    },
+    {
+      "original": "public/images/albums/AcgExample/4986499bffa3b14c572c22c1ce441fc2cd94d63f.webp",
+      "migrated": "public/images/albums/AcgExample/4986499bffa3b14c572c22c1ce441fc2cd94d63f.webp",
+      "sha256": "6ef185d40fb95a12f555e38be3c336289000526742e02ade0a907b28e8b68f86"
+    },
+    {
+      "original": "public/images/albums/AcgExample/5d662a33907ffe4edd7261ea4b374ff0a01e2dde.webp",
+      "migrated": "public/images/albums/AcgExample/5d662a33907ffe4edd7261ea4b374ff0a01e2dde.webp",
+      "sha256": "c45cd00f0447931de5edc067b203ebab770d13dff8cddd6bdcff59d602ecd01b"
+    },
+    {
+      "original": "public/images/albums/AcgExample/6765bb292ea65ebcff37845ee718cc0e290750052.webp",
+      "migrated": "public/images/albums/AcgExample/6765bb292ea65ebcff37845ee718cc0e290750052.webp",
+      "sha256": "9f61787aacbfb3e51eed098bfe9b36d3c472588155e55d82af545e72f678bdab"
+    },
+    {
+      "original": "public/images/albums/AcgExample/711ce964e0a5c708aa174d8f6d7ee4e4bb60d356.webp",
+      "migrated": "public/images/albums/AcgExample/711ce964e0a5c708aa174d8f6d7ee4e4bb60d356.webp",
+      "sha256": "c3fb4e2df6eb38ef625624abe81c2ed0a69c40eed7db0dcc38d2dfb880030c3d"
+    },
+    {
+      "original": "public/images/albums/AcgExample/91ae6186d2cf1af536b57c78ad7134ca1c8cbfe0.webp",
+      "migrated": "public/images/albums/AcgExample/91ae6186d2cf1af536b57c78ad7134ca1c8cbfe0.webp",
+      "sha256": "870348bd6c7e9f37789e3a40c5b96fc2eadcdefc4d278540184b24c6099067a4"
+    },
+    {
+      "original": "public/images/albums/AcgExample/ca3c3f88c47fac7bdda5b8b29ca638dcee769704.webp",
+      "migrated": "public/images/albums/AcgExample/ca3c3f88c47fac7bdda5b8b29ca638dcee769704.webp",
+      "sha256": "40ad3948c04f31ffc725ec15b9be54d1d3b12d8ca697fc3c242a3a232eab29f8"
+    },
+    {
+      "original": "public/images/albums/AcgExample/cover.webp",
+      "migrated": "public/images/albums/AcgExample/cover.webp",
+      "sha256": "c600ff0c90c9a87d26317d13207713fc4afcb44884836bf8520e874b6345a16f"
+    },
+    {
+      "original": "public/images/albums/AcgExample/d1.webp",
+      "migrated": "public/images/albums/AcgExample/d1.webp",
+      "sha256": "8929c56d72d2a9da773852f78a0a93b1a5401c43733e2d64ff1d341cb2ab091b"
+    },
+    {
+      "original": "public/images/albums/AcgExample/d2.webp",
+      "migrated": "public/images/albums/AcgExample/d2.webp",
+      "sha256": "610a733fb32b8990f9b6a7fbe2a6fbe98d2157674fd166bfcead7382e2531cab"
+    },
+    {
+      "original": "public/images/albums/AcgExample/d3.webp",
+      "migrated": "public/images/albums/AcgExample/d3.webp",
+      "sha256": "7ff61b4f85bfcad409819d9750d6da3efc496d6ea2dd2963d6e5496631d995ff"
+    },
+    {
+      "original": "public/images/albums/AcgExample/d4.webp",
+      "migrated": "public/images/albums/AcgExample/d4.webp",
+      "sha256": "800914da23988b8518d594f1baf57e684a7971161b09ddbf2214b39d9a9bb474"
+    },
+    {
+      "original": "public/images/albums/AcgExample/d5.webp",
+      "migrated": "public/images/albums/AcgExample/d5.webp",
+      "sha256": "e47162972b5e2131b031ec13974ecbc44541eb77ef7d00f9d678534970f1b26f"
+    },
+    {
+      "original": "public/images/albums/AcgExample/d6.webp",
+      "migrated": "public/images/albums/AcgExample/d6.webp",
+      "sha256": "316a0cfb2f77f5466a523041ad8372296484efbe6854d6f1f526cb020b544df0"
+    },
+    {
+      "original": "public/images/albums/AcgExample/d7.webp",
+      "migrated": "public/images/albums/AcgExample/d7.webp",
+      "sha256": "dcef4079a40334a5a372d0c0698dc8fbab34b4113b4dd0b5c7358ad6ff10cc82"
+    },
+    {
+      "original": "public/images/albums/AcgExample/d8.webp",
+      "migrated": "public/images/albums/AcgExample/d8.webp",
+      "sha256": "28b14d8d70c5bd4a3bf8bfda96cc4e92dac024f135632c45a9c518752320b8b6"
+    },
+    {
+      "original": "public/images/albums/AcgExample/db67d185b865ebeb42be0ee1948952586147971e.webp",
+      "migrated": "public/images/albums/AcgExample/db67d185b865ebeb42be0ee1948952586147971e.webp",
+      "sha256": "91d98cd247380803dfe34a5f281ee68a89c672602490fd3edec0a32118f753c2"
+    },
+    {
+      "original": "public/images/albums/AcgExample/fd450b78411a7548183aa291bb4cbb99d0bc2bed.webp",
+      "migrated": "public/images/albums/AcgExample/fd450b78411a7548183aa291bb4cbb99d0bc2bed.webp",
+      "sha256": "0f4b751ad205f599c5e46461a235953508b05177ac74c49947324cc8fa40d552"
+    },
+    {
+      "original": "public/images/albums/AcgExample/info.json",
+      "migrated": "public/images/albums/AcgExample/info.json",
+      "sha256": "9df2a083556304fab28065b0b49e6917c026135b06e2e0d7faa7aa633c6d22d7"
+    },
+    {
+      "original": "public/images/albums/EncryptedExample/info.json",
+      "migrated": "public/images/albums/EncryptedExample/info.json",
+      "sha256": "3ac49d53c1663408a8e3e924e21ec1b5bdf01870bdb1cc42baeef9225bc6ca4a"
+    },
+    {
+      "original": "public/images/albums/ExternalExample/info.json",
+      "migrated": "public/images/albums/ExternalExample/info.json",
+      "sha256": "47a1839e0ade4f7d0e158350bff83da111c13f106a42432bee5155bd9a0cf320"
+    },
+    {
+      "original": "public/images/albums/HiddenExample/info.json",
+      "migrated": "public/images/albums/HiddenExample/info.json",
+      "sha256": "c5576e326d8f1002fa97c3bf89e7d37bd9c52fe2036990c8f75d03ac0cb6a15e"
+    },
+    {
+      "original": "public/images/albums/README.md",
+      "migrated": "public/images/albums/README.md",
+      "sha256": "751792d0de0c0f83cb7bb8926c0698634ec19348c1091c74eb25439b9df6d952"
+    },
+    {
+      "original": "public/images/device/mt3000.webp",
+      "migrated": "public/images/device/mt3000.webp",
+      "sha256": "d66dedde9371fbd34ac5c7cadf0711ab60357057833b073fb6cc2fe35b96f8e2"
+    },
+    {
+      "original": "public/images/device/oneplus13t.webp",
+      "migrated": "public/images/device/oneplus13t.webp",
+      "sha256": "8683dcca7f0409dbdddf4cd2dc91b49afd14205c6084c037988241b3c8f01da8"
+    },
+    {
+      "original": "public/images/diary/1.webp",
+      "migrated": "public/images/diary/1.webp",
+      "sha256": "32529a6a5d5a30ff7ba3d97ad4d96aa9926b9d52abe5ff1d8c023ec02183b08c"
+    },
+    {
+      "original": "public/images/diary/51eeafee168445c8616f6eb489f6c00e.webp",
+      "migrated": "public/images/diary/51eeafee168445c8616f6eb489f6c00e.webp",
+      "sha256": "0d434f6c4480fb2df2f41a83c769fe82dafa9f25b16b67d1b02853ea1e9805b8"
+    },
+    {
+      "original": "public/images/diary/f164495ed0ecaf5a8cf0f7f815f94f13.webp",
+      "migrated": "public/images/diary/f164495ed0ecaf5a8cf0f7f815f94f13.webp",
+      "sha256": "70011ada8d3a849fde8fb4f39712999775215fd4192970fc3cf4450dc245b462"
+    },
+    {
+      "original": "public/images/diary/image.webp",
+      "migrated": "public/images/diary/image.webp",
+      "sha256": "a6fe247f635b36d665cb3b7d107b7dcb62bfacd9afbb33c44a49215c0f38b41d"
+    },
+    {
+      "original": "public/images/diary/pc6.webp",
+      "migrated": "public/images/diary/pc6.webp",
+      "sha256": "0d4c98ae7d1d323b8e1a212efc18a0ae5bdd2c7a124ac40b25780168a3edbd1a"
+    },
+    {
+      "original": "public/images/diary/sakura.webp",
+      "migrated": "public/images/diary/sakura.webp",
+      "sha256": "18533942b702f9864e77d20c4784d6638736fb0e385e4063558b92d7afc98962"
+    },
+    {
+      "original": "public/js/devices-page-handler.js",
+      "migrated": "public/js/devices-page-handler.js",
+      "sha256": "fae71b8b2d3cc56d056f574b90a23946d23bab7c62091fcfda3a4d667d4d889d"
+    },
+    {
+      "original": "public/js/filter-tabs-handler.js",
+      "migrated": "public/js/filter-tabs-handler.js",
+      "sha256": "e78ff449a6d870ef6920f1529940563fe4d641ffd091941e1bb40f6b232d8361"
+    },
+    {
+      "original": "public/js/friends-page-handler.js",
+      "migrated": "public/js/friends-page-handler.js",
+      "sha256": "f3e404f7a25cc95cbbe74329b7ee188358ff7be7418b1e14dd282b5ad4359a3b"
+    },
+    {
+      "original": "public/pio/l2d-widget.min.js",
+      "migrated": "public/pio/l2d-widget.min.js",
+      "sha256": "81cc119e309f9b84a35f244322e4381af68c1aab1894d4b2234f02df11fa323f"
+    },
+    {
+      "original": "public/pio/live2d-host.html",
+      "migrated": "public/pio/live2d-host.html",
+      "sha256": "1f8cb6af2c30861d133fec766fd52b0c9850a805f986928119e10498d18c0671"
+    },
+    {
+      "original": "public/pio/models/NOIR/eyeclose.exp3.json",
+      "migrated": "public/pio/models/NOIR/eyeclose.exp3.json",
+      "sha256": "929e383daf4a741ab1cfab4a78ec9af05158f1220a8bff7388d25d73112fe2bd"
+    },
+    {
+      "original": "public/pio/models/NOIR/items_pinned_to_model.json",
+      "migrated": "public/pio/models/NOIR/items_pinned_to_model.json",
+      "sha256": "e4f6019c77e413b2bbbf7490137de12f0b847b23789006698acbd5c518d3e763"
+    },
+    {
+      "original": "public/pio/models/NOIR/noir/eyeclose.exp3.json",
+      "migrated": "public/pio/models/NOIR/noir/eyeclose.exp3.json",
+      "sha256": "929e383daf4a741ab1cfab4a78ec9af05158f1220a8bff7388d25d73112fe2bd"
+    },
+    {
+      "original": "public/pio/models/NOIR/noir/noir.2048/texture_00.webp",
+      "migrated": "public/pio/models/NOIR/noir/noir.2048/texture_00.webp",
+      "sha256": "489732e31ebc930fcae643e5afb7068c45c9775c15a89237f2d224a44f738368"
+    },
+    {
+      "original": "public/pio/models/NOIR/noir/noir.cdi3.json",
+      "migrated": "public/pio/models/NOIR/noir/noir.cdi3.json",
+      "sha256": "730cf3d445cb9dda8cb00b3cad38a7d45bc5b7ba8841e56595a39dca2e494849"
+    },
+    {
+      "original": "public/pio/models/NOIR/noir/noir.moc3",
+      "migrated": "public/pio/models/NOIR/noir/noir.moc3",
+      "sha256": "24202fe9610fc464529abe885fc4704f24dae6792e70a401ac5946c450adf862"
+    },
+    {
+      "original": "public/pio/models/NOIR/noir/noir.model3.json",
+      "migrated": "public/pio/models/NOIR/noir/noir.model3.json",
+      "sha256": "58c6731f8befa559e61d2a278edd46807a028fec463160c50cccbd43213a224a"
+    },
+    {
+      "original": "public/pio/models/NOIR/noir/noir.physics3.json",
+      "migrated": "public/pio/models/NOIR/noir/noir.physics3.json",
+      "sha256": "45697c980ae75cf4565c9c0b1600c636208b81ae91ea7416dcaaa5c90f0e7415"
+    },
+    {
+      "original": "public/pio/models/NOIR/noir/quanquan.exp3.json",
+      "migrated": "public/pio/models/NOIR/noir/quanquan.exp3.json",
+      "sha256": "e30e1bc23702e1d97fa9455697dc644d7b86fcd87260da4d6ca0dfe8b477dbb9"
+    },
+    {
+      "original": "public/pio/models/NOIR/noir/tears.exp3.json",
+      "migrated": "public/pio/models/NOIR/noir/tears.exp3.json",
+      "sha256": "3f34de7a79be7cb085867d9ef6a9c9e9ef7243810dd2b5b67ab1079b50de59b0"
+    },
+    {
+      "original": "public/pio/models/NOIR/noir/white.exp3.json",
+      "migrated": "public/pio/models/NOIR/noir/white.exp3.json",
+      "sha256": "91f360f4507229b8363190bd96d2d88d47b40faacafce096e64e733be2fc248a"
+    },
+    {
+      "original": "public/pio/models/NOIR/noir.2048/texture_00.webp",
+      "migrated": "public/pio/models/NOIR/noir.2048/texture_00.webp",
+      "sha256": "489732e31ebc930fcae643e5afb7068c45c9775c15a89237f2d224a44f738368"
+    },
+    {
+      "original": "public/pio/models/NOIR/noir.cdi3.json",
+      "migrated": "public/pio/models/NOIR/noir.cdi3.json",
+      "sha256": "730cf3d445cb9dda8cb00b3cad38a7d45bc5b7ba8841e56595a39dca2e494849"
+    },
+    {
+      "original": "public/pio/models/NOIR/noir.moc3",
+      "migrated": "public/pio/models/NOIR/noir.moc3",
+      "sha256": "24202fe9610fc464529abe885fc4704f24dae6792e70a401ac5946c450adf862"
+    },
+    {
+      "original": "public/pio/models/NOIR/noir.model3.json",
+      "migrated": "public/pio/models/NOIR/noir.model3.json",
+      "sha256": "58c6731f8befa559e61d2a278edd46807a028fec463160c50cccbd43213a224a"
+    },
+    {
+      "original": "public/pio/models/NOIR/noir.physics3.json",
+      "migrated": "public/pio/models/NOIR/noir.physics3.json",
+      "sha256": "45697c980ae75cf4565c9c0b1600c636208b81ae91ea7416dcaaa5c90f0e7415"
+    },
+    {
+      "original": "public/pio/models/NOIR/quanquan.exp3.json",
+      "migrated": "public/pio/models/NOIR/quanquan.exp3.json",
+      "sha256": "e30e1bc23702e1d97fa9455697dc644d7b86fcd87260da4d6ca0dfe8b477dbb9"
+    },
+    {
+      "original": "public/pio/models/NOIR/tears.exp3.json",
+      "migrated": "public/pio/models/NOIR/tears.exp3.json",
+      "sha256": "3f34de7a79be7cb085867d9ef6a9c9e9ef7243810dd2b5b67ab1079b50de59b0"
+    },
+    {
+      "original": "public/pio/models/NOIR/white.exp3.json",
+      "migrated": "public/pio/models/NOIR/white.exp3.json",
+      "sha256": "91f360f4507229b8363190bd96d2d88d47b40faacafce096e64e733be2fc248a"
+    },
+    {
+      "original": "public/pio/models/pio/model.json",
+      "migrated": "public/pio/models/pio/model.json",
+      "sha256": "ec6bda97d58af05e4c7a39b04122d40402c3d31317638f3474a689892ae7c0bf"
+    },
+    {
+      "original": "public/pio/models/pio/model.moc",
+      "migrated": "public/pio/models/pio/model.moc",
+      "sha256": "1545fdb296bb2d1c9c6f1c295b3a336705618aa467c45e9be8dbc9cb1ffb704d"
+    },
+    {
+      "original": "public/pio/models/pio/motions/Breath Dere1.mtn",
+      "migrated": "public/pio/models/pio/motions/Breath Dere1.mtn",
+      "sha256": "810cd2ad3ff48667d50d62e8ce05c88291c84b1f940459eb6c4ba1fa015f5306"
+    },
+    {
+      "original": "public/pio/models/pio/motions/Breath Dere2.mtn",
+      "migrated": "public/pio/models/pio/motions/Breath Dere2.mtn",
+      "sha256": "6702feb96ac5ca53d1582c578ca17f7d73c260d8fe1486aa16c91aad231c42cc"
+    },
+    {
+      "original": "public/pio/models/pio/motions/Breath Dere3.mtn",
+      "migrated": "public/pio/models/pio/motions/Breath Dere3.mtn",
+      "sha256": "b7b416211537207179ebaf455b533c73ce5267fffb7e288d01554c4e778b3062"
+    },
+    {
+      "original": "public/pio/models/pio/motions/Breath1.mtn",
+      "migrated": "public/pio/models/pio/motions/Breath1.mtn",
+      "sha256": "88a3aa1c03dfbdc323fce26d2be5ffc959e672059fd1d9ffd5826ab583ad3921"
+    },
+    {
+      "original": "public/pio/models/pio/motions/Breath2.mtn",
+      "migrated": "public/pio/models/pio/motions/Breath2.mtn",
+      "sha256": "e85c1aa1743c161b0bf1e765b9ede74067a696411ae5ff6294eaf4ea66b69e2e"
+    },
+    {
+      "original": "public/pio/models/pio/motions/Breath3.mtn",
+      "migrated": "public/pio/models/pio/motions/Breath3.mtn",
+      "sha256": "1eb42542e7f5b645f4b83ceac7bae8194d1b86fa2602385da22286fe8a330a98"
+    },
+    {
+      "original": "public/pio/models/pio/motions/Breath4.mtn",
+      "migrated": "public/pio/models/pio/motions/Breath4.mtn",
+      "sha256": "0ec09676f63626e33727fb406e86bd9c69b4ac0c0b438269aa393a5bcf497a12"
+    },
+    {
+      "original": "public/pio/models/pio/motions/Breath5.mtn",
+      "migrated": "public/pio/models/pio/motions/Breath5.mtn",
+      "sha256": "c5f8f19c7cbec6a8107e742297fb4e79fd781121ad468ec30e37b058f5494556"
+    },
+    {
+      "original": "public/pio/models/pio/motions/Breath6.mtn",
+      "migrated": "public/pio/models/pio/motions/Breath6.mtn",
+      "sha256": "2fd76615cae9d8582b41585d0489a1969db0401783919a97905046a36607ed00"
+    },
+    {
+      "original": "public/pio/models/pio/motions/Breath7.mtn",
+      "migrated": "public/pio/models/pio/motions/Breath7.mtn",
+      "sha256": "d1e085251638dd94c1d9b102ba650200f664b90b7a7d65b06e66fd0bc8b249a9"
+    },
+    {
+      "original": "public/pio/models/pio/motions/Breath8.mtn",
+      "migrated": "public/pio/models/pio/motions/Breath8.mtn",
+      "sha256": "926d5bec75c45ffd6e5f07ab683b7d75a7b6430f8ab9bf14d7e105ca2ebbb5f1"
+    },
+    {
+      "original": "public/pio/models/pio/motions/Fail.mtn",
+      "migrated": "public/pio/models/pio/motions/Fail.mtn",
+      "sha256": "6077fa45a82e63d3a8bfbd6613e13a0029995d69dcad46577bb25addb269370b"
+    },
+    {
+      "original": "public/pio/models/pio/motions/Sleeping.mtn",
+      "migrated": "public/pio/models/pio/motions/Sleeping.mtn",
+      "sha256": "580e727c6a871b7574fc6de19d3cf5f2b20a0fa5ea7f246e4cdb34443f30254c"
+    },
+    {
+      "original": "public/pio/models/pio/motions/Success.mtn",
+      "migrated": "public/pio/models/pio/motions/Success.mtn",
+      "sha256": "c4d0e5bbb66fc1388f8656bf85c4a0b1e7dfe041dc780212b00fdf8a941947df"
+    },
+    {
+      "original": "public/pio/models/pio/motions/Sukebei1.mtn",
+      "migrated": "public/pio/models/pio/motions/Sukebei1.mtn",
+      "sha256": "6be04895abdfb41dcf01fb8d96ce3b442209d474fa2dc705bb431b3505a70eca"
+    },
+    {
+      "original": "public/pio/models/pio/motions/Sukebei2.mtn",
+      "migrated": "public/pio/models/pio/motions/Sukebei2.mtn",
+      "sha256": "8d5384c849de5770bb6e884d8141e5d5c00f88ad2eed8531d3e51379e5420066"
+    },
+    {
+      "original": "public/pio/models/pio/motions/Sukebei3.mtn",
+      "migrated": "public/pio/models/pio/motions/Sukebei3.mtn",
+      "sha256": "839689dd3e9f337fcdec1f2666a36e69bd70d4fd4c64b9886750089e8d82e483"
+    },
+    {
+      "original": "public/pio/models/pio/motions/Touch Dere1.mtn",
+      "migrated": "public/pio/models/pio/motions/Touch Dere1.mtn",
+      "sha256": "a6bb2c878c9f0c01aafee17436ff5002267013653c695a4cd5433e9ed0214f88"
+    },
+    {
+      "original": "public/pio/models/pio/motions/Touch Dere2.mtn",
+      "migrated": "public/pio/models/pio/motions/Touch Dere2.mtn",
+      "sha256": "63f306f6697daf79902fa627439af3924f90f5f7ef24e7c4d77f34f795aabf2e"
+    },
+    {
+      "original": "public/pio/models/pio/motions/Touch Dere3.mtn",
+      "migrated": "public/pio/models/pio/motions/Touch Dere3.mtn",
+      "sha256": "34306d283645e584c68450049867b5ee986c226b01c1c799f83eb8f0cb177991"
+    },
+    {
+      "original": "public/pio/models/pio/motions/Touch Dere4.mtn",
+      "migrated": "public/pio/models/pio/motions/Touch Dere4.mtn",
+      "sha256": "edec7f95c4dfe265a445bb6b92d21d2372e034992a4c637b16ec0a3135c6bbce"
+    },
+    {
+      "original": "public/pio/models/pio/motions/Touch Dere5.mtn",
+      "migrated": "public/pio/models/pio/motions/Touch Dere5.mtn",
+      "sha256": "a019f4582eeeb9364d2e74d7412fdbd73710c755f7fab85a9f6f0ce79d483ea7"
+    },
+    {
+      "original": "public/pio/models/pio/motions/Touch Dere6.mtn",
+      "migrated": "public/pio/models/pio/motions/Touch Dere6.mtn",
+      "sha256": "3c76f49e4055660728ef9d5e110440ff3849c0052ecc4c91b2018c0134d2751d"
+    },
+    {
+      "original": "public/pio/models/pio/motions/Touch1.mtn",
+      "migrated": "public/pio/models/pio/motions/Touch1.mtn",
+      "sha256": "5e469705ba9c279e2d1c63aa4a5ec301e2ba676d724f31e18a8bf4cf4a431343"
+    },
+    {
+      "original": "public/pio/models/pio/motions/Touch2.mtn",
+      "migrated": "public/pio/models/pio/motions/Touch2.mtn",
+      "sha256": "01f788de2c2aa8b2e28f023b4803532528a71702bb87f8c9602f06c85fa6392f"
+    },
+    {
+      "original": "public/pio/models/pio/motions/Touch3.mtn",
+      "migrated": "public/pio/models/pio/motions/Touch3.mtn",
+      "sha256": "4b372eef105f9c71fe324c6d39c6777dea3354b4714991008a46c5e42aaf2ecb"
+    },
+    {
+      "original": "public/pio/models/pio/motions/Touch4.mtn",
+      "migrated": "public/pio/models/pio/motions/Touch4.mtn",
+      "sha256": "92cb4b35852a2b244ac772db4f7531100785cf6d90438844e2f6ae21e4ccfc50"
+    },
+    {
+      "original": "public/pio/models/pio/motions/Touch5.mtn",
+      "migrated": "public/pio/models/pio/motions/Touch5.mtn",
+      "sha256": "da2fc3b6475046ee15f874fbe8d9165804f11fb73762ba2247d8858e2a45534d"
+    },
+    {
+      "original": "public/pio/models/pio/motions/Touch6.mtn",
+      "migrated": "public/pio/models/pio/motions/Touch6.mtn",
+      "sha256": "16235b16d072d34b7eab97333ab56213434fcac3eb0478463ce57a0061c8d5a1"
+    },
+    {
+      "original": "public/pio/models/pio/motions/WakeUp.mtn",
+      "migrated": "public/pio/models/pio/motions/WakeUp.mtn",
+      "sha256": "022bfa8e9d237117067b4ee822661f1afb3c2664fd3905fd0ce967c9f936ed74"
+    },
+    {
+      "original": "public/pio/models/pio/textures/default-costume.webp",
+      "migrated": "public/pio/models/pio/textures/default-costume.webp",
+      "sha256": "2c1efd4b03c5ff46aaa42d5fec26186df41461c753621739158809e3107ae522"
+    },
+    {
+      "original": "public/pio/models/pio/textures/pajamas-costume.webp",
+      "migrated": "public/pio/models/pio/textures/pajamas-costume.webp",
+      "sha256": "83ea5d945fd14ad896fdc7a718c7ee0170ae82a577b20e1aff00bc50082f92be"
+    },
+    {
+      "original": "public/pio/models/pio/textures/school-costume.webp",
+      "migrated": "public/pio/models/pio/textures/school-costume.webp",
+      "sha256": "00c55252bd9706af339c6557eb41f099e64339e4d95bf78fa58a322004d282ff"
+    },
+    {
+      "original": "public/pio/static/avatar.webp",
+      "migrated": "public/pio/static/avatar.webp",
+      "sha256": "ecfee35a8863da676e461b43421560538fa6b869962af62ce53002d64f9050b4"
+    },
+    {
+      "original": "public/pio/static/pio.css",
+      "migrated": "public/pio/static/pio.css",
+      "sha256": "8402a44eecb4079c1fabd3c422ff0b339c00b89ffab77ddcf82d6066cb789015"
+    },
+    {
+      "original": "public/pio/static/pio.js",
+      "migrated": "public/pio/static/pio.js",
+      "sha256": "e4bce597f002eb5b74843aca1f014579b48c81e98293939f3ef7211afd35f9a8"
+    },
+    {
+      "original": "public/pio/UG/1desk.exp3.json",
+      "migrated": "public/pio/UG/1desk.exp3.json",
+      "sha256": "b7d12afbba1870fe037b1dc93cf5881211049a0c0f2871ffb20f832264fc5ff2"
+    },
+    {
+      "original": "public/pio/UG/2mic.exp3.json",
+      "migrated": "public/pio/UG/2mic.exp3.json",
+      "sha256": "11873393bdc2dde98d267fed070287254ce8511d145c1b0dea0226fcc30c5f10"
+    },
+    {
+      "original": "public/pio/UG/3clever.exp3.json",
+      "migrated": "public/pio/UG/3clever.exp3.json",
+      "sha256": "5b45665a97ccda748c25004712e4312b4c5c8e0a6dd979f7a4900a4ca7d46151"
+    },
+    {
+      "original": "public/pio/UG/4OAO.exp3.json",
+      "migrated": "public/pio/UG/4OAO.exp3.json",
+      "sha256": "82397a8d03c233adffc3a552fe768d419908b520e6432fba70a4d858e4b5fb86"
+    },
+    {
+      "original": "public/pio/UG/5QAQ.exp3.json",
+      "migrated": "public/pio/UG/5QAQ.exp3.json",
+      "sha256": "6c1f28aea1b374529e003a1b403c109d99c91c37f89d7553d3951b8494bb4bfa"
+    },
+    {
+      "original": "public/pio/UG/6i gi a ri.exp3.json",
+      "migrated": "public/pio/UG/6i gi a ri.exp3.json",
+      "sha256": "d4c2f719c9b064b812de2a5e23f6c3fa3fd4b4f94e37b8303e89a4ef2261fa2c"
+    },
+    {
+      "original": "public/pio/UG/7keyboard.exp3.json",
+      "migrated": "public/pio/UG/7keyboard.exp3.json",
+      "sha256": "a96d4c30f7f7c86d134ad4f364bfbf626b6efb9e58001ad946d6377b166f3457"
+    },
+    {
+      "original": "public/pio/UG/8punch.exp3.json",
+      "migrated": "public/pio/UG/8punch.exp3.json",
+      "sha256": "8036dac2ef428be8deb0707463ecff6fb70e4e7865323c88b3ec5d5e5acf057d"
+    },
+    {
+      "original": "public/pio/UG/9.exp3.json",
+      "migrated": "public/pio/UG/9.exp3.json",
+      "sha256": "5312400bd3ab0587da04ffbe71577a26fb5f6d2877ba91800b62a86691b971fe"
+    },
+    {
+      "original": "public/pio/UG/icon.webp",
+      "migrated": "public/pio/UG/icon.webp",
+      "sha256": "e5e0e8b731e349bbe6d28f6992db6074f2ba85eaeda7ffd992f887a312b5c8e3"
+    },
+    {
+      "original": "public/pio/UG/items_pinned_to_model.json",
+      "migrated": "public/pio/UG/items_pinned_to_model.json",
+      "sha256": "e1d89d347dc9ef243d11740304607f79e6c26bb00cb16f82b48fdadcd3730637"
+    },
+    {
+      "original": "public/pio/UG/loop.motion3.json",
+      "migrated": "public/pio/UG/loop.motion3.json",
+      "sha256": "c3fa3b7b3fd320da955da5878641a3be5198875af4f20a34d46e898d13e82161"
+    },
+    {
+      "original": "public/pio/UG/UGOfficial.2048/texture_00.webp",
+      "migrated": "public/pio/UG/UGOfficial.2048/texture_00.webp",
+      "sha256": "9a7a3bfeec41cb547a69922be1bfa495dfd30b6327b88dae57f942c537357556"
+    },
+    {
+      "original": "public/pio/UG/UGOfficial.2048/texture_01.webp",
+      "migrated": "public/pio/UG/UGOfficial.2048/texture_01.webp",
+      "sha256": "76679304a651f6f08c1738af12c007021946dab240f962910966eeb59b79fa47"
+    },
+    {
+      "original": "public/pio/UG/UGOfficial.cdi3.json",
+      "migrated": "public/pio/UG/UGOfficial.cdi3.json",
+      "sha256": "566834097bce19a19c1488826e187c4a11c15eacde5bb081205942162e39ae9c"
+    },
+    {
+      "original": "public/pio/UG/UGOfficial.moc3",
+      "migrated": "public/pio/UG/UGOfficial.moc3",
+      "sha256": "fbbf096c1203f0762a2b4917f759114ee2fcb89367c2cef93f8ac7b5b1a8e329"
+    },
+    {
+      "original": "public/pio/UG/ugofficial.model3.json",
+      "migrated": "public/pio/UG/ugofficial.model3.json",
+      "sha256": "0c3b44e5741ebf0b806aa08ed664d679643c0729df7701a24eb1920164fcbefd"
+    },
+    {
+      "original": "public/pio/UG/UGOfficial.physics3.json",
+      "migrated": "public/pio/UG/UGOfficial.physics3.json",
+      "sha256": "b2aea5cf320b36eb726d4ceadc4ea936208dbde7725a4214af35239c47d9271d"
+    },
+    {
+      "original": "public/pio/UG/ugofficial.vtube.json",
+      "migrated": "public/pio/UG/ugofficial.vtube.json",
+      "sha256": "fae62adfca10a83a8b4ca34229f3b1409ed8e9e28dc2edaa2565d01cc4f355dc"
+    },
+    {
+      "original": "public/sakura.webp",
+      "migrated": "public/sakura.webp",
+      "sha256": "c288b04e0718808deb29ed2b2f56b1ba4deeb0e10839c46aec4c84b24b3363f9"
+    },
+    {
+      "original": "public/_headers",
+      "migrated": "public/_headers",
+      "sha256": "b0644d154160c48ca4eb1abc8c1aa4ffceeea11809f20c5e2fa51a4d7cb004d9"
+    }
+  ],
+  "feedsExcludeAllDraftTitles": true,
+  "personalIdentityAndPioConfigPreserved": true,
+  "fullFontMatchesProduction": true,
+  "shironeMusicDefaultsPreserved": true,
+  "privateEnvironmentPreserved": true
+}

@@ -1,0 +1,95 @@
+{
+  "verifiedAt": "2026-10-19T12:27:17.521Z",
+  "project": "D:/Desktop/mizuki",
+  "status": "Local migration verified; no remote push or production deployment",
+  "install": {
+    "command": "pnpm.cmd install --frozen-lockfile",
+    "status": "passed"
+  },
+  "astroCheck": {
+    "errors": 0,
+    "warnings": 0,
+    "hints": 0,
+    "status": "passed"
+  },
+  "typeCheck": {
+    "status": "passed with the four explicitly documented upstream Astro collection declaration exceptions",
+    "unexpectedErrors": 0
+  },
+  "manifestCheck": "passed",
+  "packageManifestCheck": "passed",
+  "productionBuild": "passed",
+  "changedTypeScriptLint": {
+    "files": 26,
+    "status": "passed"
+  },
+  "completeSourceLint": {
+    "status": "existing upstream failures retained",
+    "errors": 439,
+    "warnings": 2,
+    "cleanUpstreamErrors": 459
+  },
+  "configurationTests": {
+    "passed": 34,
+    "failed": 0
+  },
+  "browserTests": {
+    "passed": 26,
+    "failed": 0,
+    "migrationCases": 6,
+    "lightAndDarkAccessibilityCases": 20,
+    "workers": 1,
+    "trace": "off",
+    "headless": true,
+    "evidence": "20 accessibility cases passed after the bubble style repair; the subsequent isolated drag/click repair was checked by rerunning all 6 migration cases"
+  },
+  "preservation": {
+    "verifiedAt": "2026-10-19T12:27:17.416Z",
+    "preservedFileCount": 324,
+    "preservedContentFiles": 127,
+    "originalPostCount": 23,
+    "publishedPostCount": 13,
+    "draftCount": 10,
+    "baselinePublishedRoutes": [
+      "2026-dbcpc",
+      "2026-icpcsy",
+      "a-dream",
+      "cfbetter-deepseek-ai-translation",
+      "gkd-shizuku-usage-tutorial",
+      "lanqiao-cpp-b-common",
+      "lanqiao-cpp-b-solutions",
+      "my-blog-build-tutorial",
+      "selectecho-getting-started",
+      "test",
+      "vpn-usage-tutorial",
+      "vscode-run-code-tutorial"
+    ],
+    "newPublishedRoute": "/posts/2026-ccpc-changchun/",
+    "feedsExcludeAllDraftTitles": true,
+    "personalIdentityAndPioConfigPreserved": true,
+    "fullFontMatchesProduction": true,
+    "shironeMusicDefaultsPreserved": true,
+    "privateEnvironmentPreserved": true
+  },
+  "font": {
+    "conversion": "Full font conversion to WOFF2, no glyph subsetting",
+    "originalBytes": 17779716,
+    "woff2Bytes": 6339976,
+    "glyphCount": 33042,
+    "unchangedTables": {
+      "cmap": true,
+      "maxp": true,
+      "name": true,
+      "hhea": true,
+      "hmtx": true,
+      "OS/2": true
+    },
+    "sha256": "ae4658d26cb64ad4416772bf7bda592bd8be7d2d8319b48984603abe87242781"
+  },
+  "limits": [
+    "No remote push or production deployment",
+    "Twikoo configuration preserved; no real comment was submitted",
+    "Meting cloud availability is external; the built-in local audio source and play/pause state were tested",
+    "Projects are migrated as a snapshot and are maintained in src/data/projects.ts"
+  ]
+}

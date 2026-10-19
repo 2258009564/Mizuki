@@ -1,0 +1,292 @@
+[
+  {
+    "id": "mywork",
+    "title": "MYWORK",
+    "description": "打a自用文件夹",
+    "image": "",
+    "category": "desktop",
+    "techStack": [
+      "C++"
+    ],
+    "status": "completed",
+    "sourceCode": "https://github.com/2258009564/MYWORK",
+    "startDate": "2024-12-23",
+    "endDate": "2026-10-15",
+    "tags": [
+      "Original",
+      "1 Stars"
+    ],
+    "featured": true
+  },
+  {
+    "id": "betterhrbust",
+    "title": "BetterHRBUST",
+    "description": "自制的哈尔滨理工大学教务在线网页客户端",
+    "image": "",
+    "category": "other",
+    "techStack": [
+      "GitHub"
+    ],
+    "status": "completed",
+    "sourceCode": "https://github.com/2258009564/BetterHRBUST",
+    "startDate": "2026-10-08",
+    "endDate": "2026-10-14",
+    "tags": [
+      "Fork",
+      "0 Stars"
+    ]
+  },
+  {
+    "id": "resume-latex-workflow",
+    "title": "resume-latex-workflow",
+    "description": "中文简历 Skill：分轮访谈、Markdown 大纲、LaTeX/PDF、岗位研究润色与批注迭代",
+    "image": "",
+    "category": "other",
+    "techStack": [
+      "TeX"
+    ],
+    "status": "completed",
+    "sourceCode": "https://github.com/2258009564/resume-latex-workflow",
+    "startDate": "2026-10-05",
+    "endDate": "2026-10-05",
+    "tags": [
+      "Original",
+      "0 Stars"
+    ]
+  },
+  {
+    "id": "raft-study",
+    "title": "raft-study",
+    "description": "Raft learning project: Chinese architecture notes, milestones and verified tests",
+    "image": "",
+    "category": "other",
+    "techStack": [
+      "GitHub"
+    ],
+    "status": "completed",
+    "sourceCode": "https://github.com/2258009564/raft-study",
+    "startDate": "2026-10-03",
+    "endDate": "2026-10-05",
+    "tags": [
+      "Original",
+      "0 Stars"
+    ]
+  },
+  {
+    "id": "gemini-voyager",
+    "title": "gemini-voyager",
+    "description": "An all-in-one enhancement suite for Google Gemini & AI Studio - timeline navigation, folder management, prompt library, and chat export in one powerful extension. / Google Gemini & AI Studio 全能增强插件：集成时间轴导航、文件夹管理、提示词库及聊天导出等众多功能。",
+    "image": "",
+    "category": "other",
+    "techStack": [
+      "GitHub"
+    ],
+    "status": "completed",
+    "liveDemo": "https://voyager.nagi.fun/en",
+    "sourceCode": "https://github.com/2258009564/gemini-voyager",
+    "startDate": "2026-03-12",
+    "endDate": "2026-03-12",
+    "tags": [
+      "Fork",
+      "0 Stars"
+    ],
+    "visitUrl": "https://voyager.nagi.fun/en"
+  },
+  {
+    "id": "folia-major",
+    "title": "folia-major",
+    "description": "专注于绚丽的歌词动画效果的本地音乐/navidrome/第三方多平台在线音乐播放器",
+    "image": "",
+    "category": "other",
+    "techStack": [
+      "GitHub"
+    ],
+    "status": "completed",
+    "liveDemo": "https://folia-site.cielaniska.top/",
+    "sourceCode": "https://github.com/2258009564/folia-major",
+    "startDate": "2026-09-09",
+    "endDate": "2026-09-09",
+    "tags": [
+      "Fork",
+      "0 Stars"
+    ],
+    "visitUrl": "https://folia-site.cielaniska.top/"
+  },
+  {
+    "id": "2258009564-github-io",
+    "title": "2258009564.github.io",
+    "description": "部署在 github.io 上的数字花园",
+    "image": "",
+    "category": "web",
+    "techStack": [
+      "JavaScript"
+    ],
+    "status": "in-progress",
+    "liveDemo": "https://2258009564.github.io/",
+    "sourceCode": "https://github.com/2258009564/2258009564.github.io",
+    "startDate": "2025-07-18",
+    "endDate": "2026-08-08",
+    "tags": [
+      "Original",
+      "0 Stars"
+    ],
+    "visitUrl": "https://2258009564.github.io/",
+    "featured": true
+  },
+  {
+    "id": "mizuki",
+    "title": "Mizuki",
+    "description": "GitHub repository for Mizuki.",
+    "image": "",
+    "category": "web",
+    "techStack": [
+      "Astro"
+    ],
+    "status": "in-progress",
+    "liveDemo": "https://mizuki.mysqil.com/",
+    "sourceCode": "https://github.com/2258009564/Mizuki",
+    "startDate": "2026-03-11",
+    "endDate": "2026-10-19",
+    "tags": [
+      "Fork",
+      "0 Stars"
+    ],
+    "visitUrl": "https://mizuki.mysqil.com/"
+  },
+  {
+    "id": "science-student-s-fantasy-journey",
+    "title": "Science-Student-s-Fantasy-Journey",
+    "description": "大创项目的前端展示页面",
+    "image": "",
+    "category": "web",
+    "techStack": [
+      "CSS"
+    ],
+    "status": "completed",
+    "liveDemo": "https://2258009564.github.io/Science-Student-s-Fantasy-Journey/",
+    "sourceCode": "https://github.com/2258009564/Science-Student-s-Fantasy-Journey",
+    "startDate": "2025-04-06",
+    "endDate": "2026-05-21",
+    "tags": [
+      "Original",
+      "0 Stars"
+    ],
+    "visitUrl": "https://2258009564.github.io/Science-Student-s-Fantasy-Journey/"
+  },
+  {
+    "id": "maze-explorer",
+    "title": "maze-explorer",
+    "description": "大一下程序设计 基于cpp / 控制台 的小游戏",
+    "image": "",
+    "category": "desktop",
+    "techStack": [
+      "C++"
+    ],
+    "status": "completed",
+    "sourceCode": "https://github.com/2258009564/maze-explorer",
+    "startDate": "2025-03-06",
+    "endDate": "2025-03-09",
+    "tags": [
+      "Original",
+      "0 Stars"
+    ],
+    "featured": true
+  },
+  {
+    "id": "cph-for-nvim",
+    "title": "cph_for_nvim",
+    "description": "cph plugin for neovim",
+    "image": "",
+    "category": "other",
+    "techStack": [
+      "Lua"
+    ],
+    "status": "completed",
+    "sourceCode": "https://github.com/2258009564/cph_for_nvim",
+    "startDate": "2026-04-18",
+    "endDate": "2026-04-18",
+    "tags": [
+      "Original",
+      "0 Stars"
+    ]
+  },
+  {
+    "id": "algowiki",
+    "title": "AlgoWiki",
+    "description": "GitHub repository for AlgoWiki.",
+    "image": "",
+    "category": "other",
+    "techStack": [
+      "GitHub"
+    ],
+    "status": "completed",
+    "liveDemo": "https://algowiki.cn/",
+    "sourceCode": "https://github.com/2258009564/AlgoWiki",
+    "startDate": "2026-04-13",
+    "endDate": "2026-04-14",
+    "tags": [
+      "Fork",
+      "0 Stars"
+    ],
+    "visitUrl": "https://algowiki.cn/"
+  },
+  {
+    "id": "selectecho",
+    "title": "SelectEcho",
+    "description": "左键划词即译，稳定引擎策略，结构保真翻译展示。",
+    "image": "",
+    "category": "web",
+    "techStack": [
+      "JavaScript"
+    ],
+    "status": "in-progress",
+    "liveDemo": "https://alisa22580.pages.dev/posts/selectecho-getting-started/",
+    "sourceCode": "https://github.com/2258009564/SelectEcho",
+    "startDate": "2026-03-15",
+    "endDate": "2026-03-18",
+    "tags": [
+      "Original",
+      "4 Stars"
+    ],
+    "visitUrl": "https://alisa22580.pages.dev/posts/selectecho-getting-started/",
+    "featured": true
+  },
+  {
+    "id": "docs-mizuki",
+    "title": "Docs-Mizuki",
+    "description": "Mizuki主题的文档",
+    "image": "",
+    "category": "other",
+    "techStack": [
+      "GitHub"
+    ],
+    "status": "in-progress",
+    "liveDemo": "https://docs.mizuki.mysqil.com/",
+    "sourceCode": "https://github.com/2258009564/Docs-Mizuki",
+    "startDate": "2026-03-12",
+    "endDate": "2026-03-12",
+    "tags": [
+      "Fork",
+      "0 Stars"
+    ],
+    "visitUrl": "https://docs.mizuki.mysqil.com/"
+  },
+  {
+    "id": "db-java",
+    "title": "-------db-java",
+    "description": "GitHub repository for -------db-java.",
+    "image": "",
+    "category": "web",
+    "techStack": [
+      "Vue"
+    ],
+    "status": "completed",
+    "sourceCode": "https://github.com/2258009564/-------db-java",
+    "startDate": "2025-12-24",
+    "endDate": "2025-12-27",
+    "tags": [
+      "Original",
+      "0 Stars"
+    ]
+  }
+]

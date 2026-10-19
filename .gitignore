@@ -1,10 +1,22 @@
 # build output
 dist/
 
+# integration cache (esbuild config bundles, plugin-mode font subsets)
+.shirones/
+
+# Scratch directories the packaging pipeline creates when it transpiles the
+# theme's TypeScript generators. They should never survive a run; the pattern
+# is here so that an aborted one cannot reach a commit.
+.shirones-ts-*/
+
+# content repository working copy, provenance, and safe cleanup backups
+.content-src/
+.content-backup/
+content.lock.json
+Shirone-Content/
+
 # generated types
 .astro/
-demo
-plans
 
 # dependencies
 node_modules/
@@ -19,13 +31,6 @@ pnpm-debug.log*
 .env
 .env.production
 
-# content repository (independent mode)
-/content/
-*.backup
-
-# Large zip files
-*.zip
-
 # macOS-specific files
 .DS_Store
 
@@ -37,25 +42,41 @@ yarn.lock
 
 # ide
 .idea
+
+# generated font subsets
+src/assets/fonts/.subset/
+
+# generated local icon collection
+src/generated/local-icon-collections.ts
 *.iml
-.claude
 
-cache/
-fuwari/
-src/data/myself.ts
-src/pages/myself.astro
+# anime snapshot data & downloaded covers
+src/data/anime-snapshots/*.json
+public/assets/anime/covers/*
+!public/assets/anime/covers/.gitkeep
 
-# Bangumi generated data
-src/data/bangumi-data.json
+# generated responsive moment thumbnails
+public/assets/moments/thumbnails/*
+!public/assets/moments/thumbnails/.gitkeep
 
-# Bilibili generated data
-src/data/bilibili-data.json
+# local tooling artifacts
+.zcode/
+.codex-*.log
+research/
 
-# Lighthouse CI
+# playwright
+.playwright-cli/
+test-results/
+playwright-report/
+tests/site/visual.spec.ts-snapshots/
+
+# Lighthouse local reports
+artifacts/lighthouse/*
+!artifacts/lighthouse/.gitkeep
 .lighthouseci/
 
-# Live2D editor source files
-*.psd
-*.psd~
-*.cmo3
-*.vtube.json
+# generated AI skills plugin packages
+artifacts/shirone-ai-*
+
+# Preserve the public Bangumi snapshot migrated from this site.
+!src/data/anime-snapshots/bangumi.json

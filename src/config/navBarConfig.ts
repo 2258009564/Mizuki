@@ -1,142 +1,159 @@
-import type { NavBarConfig } from "../types/config";
-import { LinkPreset } from "../types/config";
+import I18nKey from "@i18n/i18nKey";
+import { i18n } from "@i18n/translation";
+import { aboutConfig } from "@/config/aboutConfig";
+import { albumsConfig } from "@/config/albumsConfig";
+import { animeConfig } from "@/config/animeConfig";
+import { compassConfig } from "@/config/compassConfig";
+import { devicesConfig } from "@/config/devicesConfig";
+import { friendsConfig } from "@/config/friendsConfig";
+import { gamesConfig } from "@/config/gamesConfig";
+import { momentsConfig } from "@/config/momentsConfig";
+import { projectsConfig } from "@/config/projectsConfig";
+import { seriesConfig } from "@/config/seriesConfig";
+import { skillsConfig } from "@/config/skillsConfig";
+import { timelineConfig } from "@/config/timelineConfig";
+import type {
+	NavBarConfig,
+	NavBarConfigOverride,
+	NavBarLink,
+	NavBarLinkOverride,
+} from "@/types/navBarConfig";
+import { getUserConfig } from "../utils/config-overlay.ts";
+import { pruneUnavailableNavLinks } from "../utils/nav-utils.ts";
 
 /**
- * 导航栏菜单配置
+ * 导航栏配置（统一单一来源）。
+ * - LinkPresets：命名链接预设表 —— 名称 / 地址 / 图标单点维护，可整体复用；
+ * - navBarConfig：导航结构 —— 顺序 + 分组（children 子菜单），
+ *   同时驱动顶栏下拉菜单与全端导航抽屉。
+ * 新增入口：先在 LinkPresets 登记预设，再在 navBarConfig.links 按序引用。
  *
- * ══════════════════════════════════════════════════════════════
- * 配置教程
- * ══════════════════════════════════════════════════════════════
- *
- * links 数组中的每一项可以是以下两种类型之一：
- *
- * 【类型一】预设链接（LinkPreset）
- *   直接使用 LinkPreset 枚举，自动生成对应的名称、URL 和图标。
- *   可用的预设值：
- *     LinkPreset.Home       → 首页
- *     LinkPreset.Archive    → 归档
- *     LinkPreset.About      → 关于
- *     LinkPreset.Friends    → 友链
- *     LinkPreset.Anime      → 番剧
- *     LinkPreset.Diary      → 日记
- *     LinkPreset.Albums     → 相册
- *     LinkPreset.Projects   → 项目
- *     LinkPreset.Skills     → 技能
- *     LinkPreset.Timeline   → 时间线
- *
- *   示例：
- *     links: [LinkPreset.Home, LinkPreset.Archive]
- *
- * 【类型二】自定义链接对象
- *   {
- *     name: "显示名称",           // 必填，菜单项显示的文字
- *     url: "/your-page/",        // 必填，链接地址
- *     icon: "icon-set:icon",     // 可选，Iconify 图标，格式为 "集合名:图标名"
- *     external: true,            // 可选，是否为外部链接（默认 false）
- *     children: [...]            // 可选，子菜单数组（支持多级嵌套）
- *   }
- *
- * ══════════════════════════════════════════════════════════════
- * 多级菜单配置
- * ══════════════════════════════════════════════════════════════
- *
- * 通过 children 字段实现下拉子菜单。children 中的每一项同样支持
- * LinkPreset 枚举或自定义链接对象，可以自由混合使用。
- *
- * 【单级菜单】（无 children，直接作为导航项显示）
- *   {
- *     name: "About",
- *     url: "/about/",
- *     icon: "material-symbols:info",
- *   }
- *
- * 【一级下拉菜单】（一个父级 + 多个子项）
- *   {
- *     name: "Links",
- *     url: "/links/",
- *     icon: "material-symbols:link",
- *     children: [
- *       { name: "GitHub",   url: "https://github.com", external: true, icon: "fa7-brands:github" },
- *       { name: "Bilibili", url: "https://bilibili.com", external: true, icon: "fa7-brands:bilibili" },
- *     ]
- *   }
- *
- * 【混合使用预设和自定义链接】
- *   children 中可以同时包含 LinkPreset 枚举和自定义对象：
- *   {
- *     name: "More",
- *     url: "#",
- *     icon: "material-symbols:more-horiz",
- *     children: [
- *       LinkPreset.Projects,                                    // 使用预设
- *       { name: "Skills", url: "/skills/", icon: "material-symbols:psychology" }, // 自定义
- *     ]
- *   }
- *
- * 【嵌套子菜单】（children 的 children，理论上支持无限层级）
- *   注意：当前 UI 仅渲染一级下拉。若需要更深层级，需配合前端组件改造。
- *   {
- *     name: "Resources",
- *     url: "#",
- *     icon: "material-symbols:folder",
- *     children: [
- *       {
- *         name: "文档",
- *         url: "#",
- *         icon: "material-symbols:description",
- *         children: [
- *           { name: "快速入门", url: "/docs/quick-start/", icon: "material-symbols:rocket" },
- *           { name: "API 参考", url: "/docs/api/", icon: "material-symbols:code" },
- *         ]
- *       },
- *       { name: "示例", url: "/examples/", icon: "material-symbols:sample" },
- *     ]
- *   }
- *
- * ══════════════════════════════════════════════════════════════
- * 图标说明
- * ══════════════════════════════════════════════════════════════
- *
- * icon 字段使用 Iconify 图标格式："集合名:图标名"
- * 常用图标集合：
- *   - material-symbols   → Google Material Symbols（推荐，图标丰富）
- *   - mdi                → Material Design Icons
- *   - fa7-brands         → Font Awesome 7 品牌图标（GitHub, Discord 等）
- *   - fa7-solid          → Font Awesome 7 实心图标
- *   - fa7-regular        → Font Awesome 7 线性图标
- *   - simple-icons       → Simple Icons（各种品牌 Logo）
- *
- * 浏览更多图标：https://icon-sets.iconify.design/
- *
- * ══════════════════════════════════════════════════════════════
- * external 字段说明
- * ══════════════════════════════════════════════════════════════
- *
- * - external: true  → 外部链接，点击后在新标签页打开，并显示外链图标标识
- * - external: false → 内部链接，在当前页面内导航（使用 Swup 无刷新跳转）
- * - 不设置        → 默认视为内部链接
- *
- * ══════════════════════════════════════════════════════════════
- * 注意事项
- * ══════════════════════════════════════════════════════════════
- *
- * 1. 关闭特色页面后（siteConfig.featurePages），导航栏会自动隐藏对应链接，无需手动移除。
- * 2. 内部链接 URL 格式为 "/page-name/"（以斜杠开头和结尾）。
- * 3. 外部链接 URL 必须包含完整协议前缀（如 "https://"）。
- * 4. 导航栏在移动端会自动收拢为汉堡菜单，子菜单以折叠面板形式展示。
- * 5. links 数组的顺序即为导航栏从左到右的显示顺序。
+ * 内容仓可用 `config/nav-bar.yaml` 整体替换 `links`，写法见 `NavBarLinkOverride`。
+ * 无论哪种来源，指向已关闭功能页面的入口都会在 `navBarConfig` 处被裁掉。
  */
-export const navBarConfig: NavBarConfig = {
-	links: [
-		// 预设链接：首页
-		LinkPreset.Home,
-		// 预设链接：归档
-		LinkPreset.Archive,
+export const LinkPresets: Record<string, NavBarLink> = {
+	Home: {
+		name: i18n(I18nKey.home),
+		url: "/",
+		icon: "material-symbols:home-outline-rounded",
+		pageKey: "home",
+	},
+	Archive: {
+		name: i18n(I18nKey.archive),
+		url: "/archive/",
+		icon: "material-symbols:archive-outline-rounded",
+		pageKey: "archive",
+	},
+	Friends: {
+		name: i18n(I18nKey.friends),
+		url: "/friends/",
+		icon: "material-symbols:handshake-outline-rounded",
+		pageKey: "friends",
+	},
+	Moments: {
+		name: i18n(I18nKey.moments),
+		url: "/moments/",
+		icon: "material-symbols:auto-awesome-outline-rounded",
+		pageKey: "moments",
+	},
+	Anime: {
+		name: i18n(I18nKey.anime),
+		url: "/anime/",
+		icon: "material-symbols:live-tv-outline-rounded",
+		pageKey: "anime",
+	},
+	Compass: {
+		name: i18n(I18nKey.compass),
+		url: "/compass/",
+		icon: "material-symbols:explore-rounded",
+		pageKey: "compass",
+	},
+	Skills: {
+		name: i18n(I18nKey.skills),
+		url: "/skills/",
+		icon: "material-symbols:workspaces-outline-rounded",
+		pageKey: "skills",
+	},
+	Projects: {
+		name: i18n(I18nKey.projects),
+		url: "/projects/",
+		icon: "material-symbols:deployed-code-outline-rounded",
+		pageKey: "projects",
+	},
+	Devices: {
+		name: i18n(I18nKey.devices),
+		url: "/devices/",
+		icon: "material-symbols:devices-rounded",
+		pageKey: "devices",
+	},
+	Games: {
+		name: i18n(I18nKey.games),
+		url: "/games/",
+		icon: "material-symbols:sports-esports-outline-rounded",
+		pageKey: "games",
+	},
+	Timeline: {
+		name: i18n(I18nKey.timeline),
+		url: "/timeline/",
+		icon: "material-symbols:timeline-rounded",
+		pageKey: "timeline",
+	},
+	Albums: {
+		name: i18n(I18nKey.albums),
+		url: "/albums/",
+		icon: "material-symbols:photo-library-outline-rounded",
+		pageKey: "albums",
+	},
+	Categories: {
+		name: i18n(I18nKey.categories),
+		url: "/categories/",
+		icon: "material-symbols:folder-outline-rounded",
+		pageKey: "categories",
+	},
+	Tags: {
+		name: i18n(I18nKey.tags),
+		url: "/tags/",
+		icon: "material-symbols:tag-rounded",
+		pageKey: "tags",
+	},
+	Series: {
+		name: i18n(I18nKey.series),
+		url: "/series/",
+		icon: "material-symbols:auto-stories-outline-rounded",
+		pageKey: "series",
+	},
+	About: {
+		name: i18n(I18nKey.about),
+		url: "/about/",
+		icon: "material-symbols:info-outline-rounded",
+		pageKey: "about",
+	},
+	GitHub: {
+		name: "GitHub",
+		url: "https://github.com/LyraVoid/Shirone",
+		icon: "fa7-brands:github",
+		external: true,
+		pageKey: "github",
+	},
+};
 
-		// 自定义一级下拉菜单示例：外部链接集合
+const defaultNavBarConfig: NavBarConfig = {
+	links: [
+		{
+			name: "首页",
+			url: "/",
+			icon: "material-symbols:home-rounded",
+			pageKey: "home",
+		},
+		{
+			name: "归档",
+			url: "/archive/",
+			icon: "material-symbols:archive-rounded",
+			pageKey: "archive",
+		},
 		{
 			name: "Links",
-			url: "/links/",
+			url: "#",
 			icon: "material-symbols:link",
 			children: [
 				{
@@ -165,11 +182,9 @@ export const navBarConfig: NavBarConfig = {
 				},
 			],
 		},
-
-		// 自定义一级下拉菜单示例：个人内容页面
 		{
 			name: "My",
-			url: "/content/",
+			url: "#",
 			icon: "material-symbols:person",
 			children: [
 				{
@@ -179,7 +194,7 @@ export const navBarConfig: NavBarConfig = {
 				},
 				{
 					name: "Diary",
-					url: "/diary/",
+					url: "/moments/",
 					icon: "material-symbols:book",
 				},
 				{
@@ -189,11 +204,9 @@ export const navBarConfig: NavBarConfig = {
 				},
 			],
 		},
-
-		// 自定义一级下拉菜单示例：关于相关
 		{
 			name: "About",
-			url: "/content/",
+			url: "#",
 			icon: "material-symbols:info",
 			children: [
 				{
@@ -208,11 +221,9 @@ export const navBarConfig: NavBarConfig = {
 				},
 			],
 		},
-
-		// 自定义一级下拉菜单示例：其他页面
 		{
 			name: "Others",
-			url: "#", // "#" 作为占位 URL，点击不会跳转
+			url: "#",
 			icon: "material-symbols:more-horiz",
 			children: [
 				{
@@ -233,4 +244,95 @@ export const navBarConfig: NavBarConfig = {
 			],
 		},
 	],
+};
+
+import { resolveI18nText } from "../utils/i18n-utils.ts";
+
+function fail(message: string): never {
+	throw new Error(`[config] nav-bar：${message}`);
+}
+
+function resolveName(name: string): string {
+	return resolveI18nText(name);
+}
+
+/**
+ * 已关闭功能对应的站内路由（去尾斜杠），供 `pruneUnavailableNavLinks()` 裁剪导航入口。
+ *
+ * 功能关闭时对应页面会 `Astro.redirect("/404/")`，因此这些路由不得再出现在导航里。
+ * 关闭判定只看配置，与导航结构无关，因此默认结构与内容仓声明式条目共用同一张表。
+ */
+const unavailableFeatureRoutes: ReadonlySet<string> = new Set([
+	...(friendsConfig.enable ? [] : ["/friends"]),
+	...(momentsConfig.enable ? [] : ["/moments"]),
+	...(animeConfig.enable ? [] : ["/anime"]),
+	...(compassConfig.enable ? [] : ["/compass"]),
+	...(albumsConfig.enable ? [] : ["/albums"]),
+	...(skillsConfig.enable ? [] : ["/skills"]),
+	...(projectsConfig.enable ? [] : ["/projects"]),
+	...(devicesConfig.enable ? [] : ["/devices"]),
+	...(gamesConfig.enable ? [] : ["/games"]),
+	...(timelineConfig.enable ? [] : ["/timeline"]),
+	...(aboutConfig.enable ? [] : ["/about"]),
+	...(seriesConfig.enable ? [] : ["/series"]),
+]);
+
+/**
+ * 把内容仓的声明式导航条目还原成 `NavBarLink`。
+ *
+ * 预设名与 i18n 词条只有在这里才能校验（`LinkPresets` 与 `I18nKey` 都住在代码仓，
+ * 生成期的 Node 脚本受路径别名所限读不到），因此错误在构建加载配置时抛出。
+ */
+export function resolveNavBarLinks(
+	entries: readonly NavBarLinkOverride[],
+	presets: Record<string, NavBarLink> = LinkPresets,
+): NavBarLink[] {
+	return entries.map((entry) => {
+		let base: NavBarLink | null = null;
+		if (entry.preset !== undefined) {
+			base = presets[entry.preset] ?? null;
+			if (!base) {
+				fail(
+					`未知的预设 "${entry.preset}"。可用预设：${Object.keys(presets).join("、")}。`,
+				);
+			}
+		}
+
+		const name =
+			entry.name !== undefined ? resolveName(entry.name) : base?.name;
+		if (name === undefined) {
+			fail("每个条目都需要 name，或用 preset 引用一个内置预设。");
+		}
+
+		// 未声明 children 时沿用预设自带的子菜单（已由 ...base 带入）。
+		return {
+			...base,
+			name,
+			...(entry.url !== undefined ? { url: entry.url } : {}),
+			...(entry.icon !== undefined ? { icon: entry.icon } : {}),
+			...(entry.pageKey !== undefined ? { pageKey: entry.pageKey } : {}),
+			...(entry.external !== undefined ? { external: entry.external } : {}),
+			...(entry.children
+				? { children: resolveNavBarLinks(entry.children, presets) }
+				: {}),
+		};
+	});
+}
+
+const userNavBar = getUserConfig("navBar") as NavBarConfigOverride | undefined;
+
+/**
+ * 导航栏最终结构。
+ *
+ * 默认结构与内容仓 `config/nav-bar.yaml`（声明式列表，整体替换默认导航，不走任何
+ * enable 分支）在这里汇合后统一裁剪：功能关掉时入口一并消失，两种模式下行为一致，
+ * 不会留下点进去 404 的死链。
+ */
+export const navBarConfig: NavBarConfig = {
+	links: pruneUnavailableNavLinks(
+		resolveNavBarLinks(
+			userNavBar ? userNavBar.links : defaultNavBarConfig.links,
+		),
+		unavailableFeatureRoutes,
+	),
 };

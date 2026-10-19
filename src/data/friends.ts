@@ -23,7 +23,8 @@ export const friendsData: FriendItem[] = [
 	{
 		id: 2,
 		title: "我的个人图书馆(?",
-		imgurl: "https://thirdqq.qlogo.cn/ek_qqapp/AQJeM5LFEiaYWuE6KvTZvBb7MIhmWAIxIkhU3Ck3oo3WtnpDfGIBKu6CJzNfFzjqSyECvPiaKeUHZ3YbFTGsVk9mBLiaBJGoVyQzUOkmWNW33IUy6FTGs0/0",
+		imgurl:
+			"https://thirdqq.qlogo.cn/ek_qqapp/AQJeM5LFEiaYWuE6KvTZvBb7MIhmWAIxIkhU3Ck3oo3WtnpDfGIBKu6CJzNfFzjqSyECvPiaKeUHZ3YbFTGsVk9mBLiaBJGoVyQzUOkmWNW33IUy6FTGs0/0",
 		desc: "存了一堆没有分类没有维护的md",
 		siteurl: "https://2258009564.github.io/",
 		tags: ["Docs", "Reference"],

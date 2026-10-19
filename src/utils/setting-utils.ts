@@ -1,19 +1,122 @@
-import { DARK_MODE, DEFAULT_THEME, LIGHT_MODE } from "@constants/constants";
+import {
+	AUTO_MODE,
+	DARK_MODE,
+	DEFAULT_THEME,
+	LIGHT_MODE,
+	TEXTURE_CHANGE_EVENT,
+	TEXTURE_OPACITY_KEY,
+	TEXTURE_PRESET_KEY,
+	TEXTURE_PRESETS,
+	THEME_CHANGE_EVENT,
+	WALLPAPER_MODE_CHANGE_EVENT,
+	WALLPAPER_MODE_KEY,
+} from "@constants/constants.ts";
+import { applyCurrentScheme } from "@utils/theme-utils";
+import { expressiveCodeConfig, siteConfig } from "@/config";
+import type { LIGHT_DARK_MODE, WallpaperMode } from "@/types/config";
+import type { TexturePreset } from "@/types/textureConfig";
 
-import { fullscreenWallpaperConfig, sakuraConfig, siteConfig } from "@/config";
-import type { LIGHT_DARK_MODE, WALLPAPER_MODE } from "@/types/config";
+export function isTexturePreset(value: unknown): value is TexturePreset {
+	return (
+		typeof value === "string" &&
+		(TEXTURE_PRESETS as readonly string[]).includes(value)
+	);
+}
+
+export function getDefaultTexturePreset(): TexturePreset {
+	const textureCfg =
+		typeof siteConfig.texture === "object" ? siteConfig.texture : undefined;
+	const fallback = textureCfg?.defaultPreset ?? "starlight";
+	const value =
+		document.getElementById("config-carrier")?.dataset.texturePreset;
+	return isTexturePreset(value) ? value : fallback;
+}
+
+export function getStoredTexturePreset(): TexturePreset {
+	const value = localStorage.getItem(TEXTURE_PRESET_KEY);
+	return isTexturePreset(value) ? value : getDefaultTexturePreset();
+}
+
+export function setTexturePreset(preset: TexturePreset): void {
+	localStorage.setItem(TEXTURE_PRESET_KEY, preset);
+	document.documentElement.dataset.texturePreset = preset;
+	window.dispatchEvent(
+		new CustomEvent(TEXTURE_CHANGE_EVENT, {
+			detail: { preset, opacity: getStoredTextureOpacity() },
+		}),
+	);
+}
+
+export function getDefaultTextureOpacity(): number {
+	const textureCfg =
+		typeof siteConfig.texture === "object" ? siteConfig.texture : undefined;
+	const fallback = textureCfg?.defaultOpacity ?? 0.12;
+	const carrier = document.getElementById("config-carrier");
+	const val = carrier?.dataset.textureOpacity;
+	if (val) {
+		const parsed = Number.parseFloat(val);
+		if (!Number.isNaN(parsed) && parsed >= 0 && parsed <= 1) {
+			return parsed;
+		}
+	}
+	return fallback;
+}
+
+export function getStoredTextureOpacity(): number {
+	const value = localStorage.getItem(TEXTURE_OPACITY_KEY);
+	if (value) {
+		const parsed = Number.parseFloat(value);
+		if (!Number.isNaN(parsed) && parsed >= 0 && parsed <= 1) {
+			return parsed;
+		}
+	}
+	return getDefaultTextureOpacity();
+}
+
+export function setTextureOpacity(opacity: number): void {
+	const clamped = Math.min(Math.max(opacity, 0), 1);
+	localStorage.setItem(TEXTURE_OPACITY_KEY, String(clamped));
+	document.documentElement.style.setProperty(
+		"--texture-opacity",
+		String(clamped),
+	);
+	window.dispatchEvent(
+		new CustomEvent(TEXTURE_CHANGE_EVENT, {
+			detail: { preset: getStoredTexturePreset(), opacity: clamped },
+		}),
+	);
+}
+
+export function isWallpaperMode(value: unknown): value is WallpaperMode {
+	return value === "banner" || value === "none";
+}
+
+export function getDefaultWallpaperMode(): WallpaperMode {
+	const value =
+		document.getElementById("config-carrier")?.dataset.wallpaperMode;
+	return isWallpaperMode(value) ? value : "none";
+}
+
+export function getStoredWallpaperMode(): WallpaperMode {
+	const value = localStorage.getItem(WALLPAPER_MODE_KEY);
+	return isWallpaperMode(value) ? value : getDefaultWallpaperMode();
+}
+
+export function setWallpaperMode(mode: WallpaperMode): void {
+	localStorage.setItem(WALLPAPER_MODE_KEY, mode);
+	document.documentElement.dataset.wallpaperMode = mode;
+	window.dispatchEvent(
+		new CustomEvent(WALLPAPER_MODE_CHANGE_EVENT, { detail: { mode } }),
+	);
+}
 
 export function getDefaultHue(): number {
 	const fallback = "250";
 	const configCarrier = document.getElementById("config-carrier");
-	if (!configCarrier) {
-		return Number.parseInt(fallback, 10);
-	}
-	return Number.parseInt(configCarrier.dataset.hue || fallback, 10);
+	return Number.parseInt(configCarrier?.dataset.hue || fallback, 10);
 }
 
 export function getHue(): number {
-	if (siteConfig.themeColor.fixed) return getDefaultHue();
 	const stored = localStorage.getItem("hue");
 	return stored ? Number.parseInt(stored, 10) : getDefaultHue();
 }
@@ -25,90 +128,43 @@ export function setHue(hue: number): void {
 		return;
 	}
 	r.style.setProperty("--hue", String(hue));
+	applyCurrentScheme();
 }
 
-export function applyThemeToDocument(theme: LIGHT_DARK_MODE) {
-	const currentIsDark = document.documentElement.classList.contains("dark");
-	const currentTheme = document.documentElement.getAttribute("data-theme");
-
-	let targetIsDark = false;
+export function applyThemeToDocument(theme: LIGHT_DARK_MODE): void {
 	switch (theme) {
 		case LIGHT_MODE:
-			targetIsDark = false;
+			document.documentElement.classList.remove("dark");
 			break;
 		case DARK_MODE:
-			targetIsDark = true;
+			document.documentElement.classList.add("dark");
 			break;
-		default:
-			targetIsDark = currentIsDark;
-			break;
-	}
-
-	const needsThemeChange = currentIsDark !== targetIsDark;
-	const expectedTheme = targetIsDark ? "github-dark" : "github-light";
-	const needsCodeThemeUpdate = currentTheme !== expectedTheme;
-
-	if (!needsThemeChange && !needsCodeThemeUpdate) {
-		return;
-	}
-
-	const performThemeChange = () => {
-		if (needsThemeChange) {
-			if (targetIsDark) {
+		case AUTO_MODE:
+			if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
 				document.documentElement.classList.add("dark");
 			} else {
 				document.documentElement.classList.remove("dark");
 			}
-		}
-
-		if (needsCodeThemeUpdate) {
-			const expressiveTheme = targetIsDark ? "github-dark" : "github-light";
-			document.documentElement.setAttribute("data-theme", expressiveTheme);
-		}
-	};
-
-	if (
-		needsThemeChange &&
-		document.startViewTransition &&
-		!window.matchMedia("(prefers-reduced-motion: reduce)").matches
-	) {
-		document.documentElement.classList.add(
-			"is-theme-transitioning",
-			"use-view-transition",
-		);
-
-		const transition = document.startViewTransition(() => {
-			performThemeChange();
-		});
-
-		transition.finished
-			.then(() => {
-				queueMicrotask(() => {
-					document.documentElement.classList.remove(
-						"is-theme-transitioning",
-						"use-view-transition",
-					);
-				});
-			})
-			.catch(() => {
-				document.documentElement.classList.remove(
-					"is-theme-transitioning",
-					"use-view-transition",
-				);
-			});
-	} else {
-		if (needsThemeChange) {
-			document.documentElement.classList.add("is-theme-transitioning");
-		}
-
-		performThemeChange();
-
-		if (needsThemeChange) {
-			requestAnimationFrame(() => {
-				document.documentElement.classList.remove("is-theme-transitioning");
-			});
-		}
+			break;
 	}
+
+	// Set the theme for Expressive Code based on current mode
+	// (light/dark code block themes)
+	const isDark = document.documentElement.classList.contains("dark");
+	document.documentElement.setAttribute(
+		"data-theme",
+		isDark
+			? (expressiveCodeConfig.darkTheme ?? expressiveCodeConfig.theme)
+			: (expressiveCodeConfig.lightTheme ?? expressiveCodeConfig.theme),
+	);
+
+	// 广播明暗状态变化，供按需加载的第三方组件（如 giscus iframe）同步主题
+	window.dispatchEvent(
+		new CustomEvent(THEME_CHANGE_EVENT, { detail: { isDark } }),
+	);
+
+	// Dark mode affects the resolved M3/M3E scheme
+	applyCurrentScheme();
 }
 
 export function setTheme(theme: LIGHT_DARK_MODE): void {
@@ -120,298 +176,18 @@ export function getStoredTheme(): LIGHT_DARK_MODE {
 	return (localStorage.getItem("theme") as LIGHT_DARK_MODE) || DEFAULT_THEME;
 }
 
-export function getStoredWallpaperMode(): WALLPAPER_MODE {
-	if (!fullscreenWallpaperConfig.enable)
-		return siteConfig.wallpaperMode.defaultMode as WALLPAPER_MODE;
-	return (
-		(localStorage.getItem("wallpaperMode") as WALLPAPER_MODE) ||
-		siteConfig.wallpaperMode.defaultMode
-	);
+const MOTION_KEY = "mc-motion";
+
+/** 是否开启「减少动态效果」（手动覆盖 prefers-reduced-motion） */
+export function getMotionPreference(): boolean {
+	return localStorage.getItem(MOTION_KEY) === "reduced";
 }
 
-export function setWallpaperMode(mode: WALLPAPER_MODE): void {
-	localStorage.setItem("wallpaperMode", mode);
-	window.dispatchEvent(
-		new CustomEvent("wallpaper-mode-change", { detail: { mode } }),
-	);
+export function applyMotionPreference(reduced: boolean): void {
+	document.documentElement.classList.toggle("motion-reduced", reduced);
 }
 
-function getConfigDefault(key: string, fallback: string): string {
-	const configCarrier = document.getElementById("config-carrier");
-	if (!configCarrier) return fallback;
-	return configCarrier.dataset[key] || fallback;
-}
-
-// ─── Overlay Settings ────────────────────────────────────────
-
-export function getDefaultOverlayOpacity(): number {
-	return Number(
-		getConfigDefault(
-			"overlayOpacity",
-			String(fullscreenWallpaperConfig.overlay?.opacity ?? 0.8),
-		),
-	);
-}
-
-export function getStoredOverlayOpacity(): number {
-	const sw = fullscreenWallpaperConfig.overlay?.switchable;
-	const isSwitchable =
-		typeof sw === "object" ? (sw.opacity ?? true) : (sw ?? true);
-	if (!isSwitchable) return getDefaultOverlayOpacity();
-	const stored = localStorage.getItem("overlayOpacity");
-	return stored ? Number(stored) : getDefaultOverlayOpacity();
-}
-
-export function setOverlayOpacity(value: number): void {
-	localStorage.setItem("overlayOpacity", String(value));
-	const wallpaper = document.querySelector(
-		"[data-fullscreen-wallpaper]",
-	) as HTMLElement;
-	if (wallpaper) {
-		wallpaper.style.setProperty("--wallpaper-opacity", String(value));
-	}
-	window.dispatchEvent(new CustomEvent("overlay-settings-change"));
-}
-
-export function getDefaultOverlayBlur(): number {
-	return Number(
-		getConfigDefault(
-			"overlayBlur",
-			String(fullscreenWallpaperConfig.overlay?.blur ?? 10),
-		),
-	);
-}
-
-export function getStoredOverlayBlur(): number {
-	const sw = fullscreenWallpaperConfig.overlay?.switchable;
-	const isSwitchable =
-		typeof sw === "object" ? (sw.blur ?? true) : (sw ?? true);
-	if (!isSwitchable) return getDefaultOverlayBlur();
-	const stored = localStorage.getItem("overlayBlur");
-	return stored ? Number(stored) : getDefaultOverlayBlur();
-}
-
-export function setOverlayBlur(value: number): void {
-	localStorage.setItem("overlayBlur", String(value));
-	const wallpaper = document.querySelector(
-		"[data-fullscreen-wallpaper]",
-	) as HTMLElement;
-	if (wallpaper) {
-		wallpaper.style.setProperty("--wallpaper-blur", `${value}px`);
-	}
-	window.dispatchEvent(new CustomEvent("overlay-settings-change"));
-}
-
-export function getDefaultOverlayCardOpacity(): number {
-	return Number(
-		getConfigDefault(
-			"overlayCardOpacity",
-			String(fullscreenWallpaperConfig.overlay?.cardOpacity ?? 0.5),
-		),
-	);
-}
-
-export function getStoredOverlayCardOpacity(): number {
-	const sw = fullscreenWallpaperConfig.overlay?.switchable;
-	const isSwitchable =
-		typeof sw === "object" ? (sw.cardOpacity ?? true) : (sw ?? true);
-	if (!isSwitchable) return getDefaultOverlayCardOpacity();
-	const stored = localStorage.getItem("overlayCardOpacity");
-	return stored ? Number(stored) : getDefaultOverlayCardOpacity();
-}
-
-export function setOverlayCardOpacity(value: number): void {
-	localStorage.setItem("overlayCardOpacity", String(value));
-	const root = document.querySelector(":root") as HTMLElement;
-	if (root) {
-		root.style.setProperty("--card-transparent-opacity", String(value));
-	}
-	window.dispatchEvent(new CustomEvent("overlay-settings-change"));
-}
-
-// ─── Fullscreen Settings ─────────────────────────────────────
-
-export function getDefaultFullscreenOpacity(): number {
-	return Number(
-		getConfigDefault(
-			"fullscreenOpacity",
-			String(fullscreenWallpaperConfig.opacity ?? 0.8),
-		),
-	);
-}
-
-export function getStoredFullscreenOpacity(): number {
-	const sw = fullscreenWallpaperConfig.fullscreen?.switchable;
-	const isSwitchable =
-		typeof sw === "object" ? (sw.opacity ?? true) : (sw ?? true);
-	if (!isSwitchable) return getDefaultFullscreenOpacity();
-	const stored = localStorage.getItem("fullscreenOpacity");
-	return stored ? Number(stored) : getDefaultFullscreenOpacity();
-}
-
-export function setFullscreenOpacity(value: number): void {
-	localStorage.setItem("fullscreenOpacity", String(value));
-	const wallpaper = document.querySelector(
-		"[data-fullscreen-wallpaper]",
-	) as HTMLElement;
-	if (wallpaper) {
-		wallpaper.style.setProperty("--wallpaper-opacity", String(value));
-	}
-	window.dispatchEvent(new CustomEvent("fullscreen-settings-change"));
-}
-
-export function getDefaultFullscreenBlur(): number {
-	return Number(
-		getConfigDefault(
-			"fullscreenBlur",
-			String(fullscreenWallpaperConfig.blur ?? 0),
-		),
-	);
-}
-
-export function getStoredFullscreenBlur(): number {
-	const sw = fullscreenWallpaperConfig.fullscreen?.switchable;
-	const isSwitchable =
-		typeof sw === "object" ? (sw.blur ?? true) : (sw ?? true);
-	if (!isSwitchable) return getDefaultFullscreenBlur();
-	const stored = localStorage.getItem("fullscreenBlur");
-	return stored ? Number(stored) : getDefaultFullscreenBlur();
-}
-
-export function setFullscreenBlur(value: number): void {
-	localStorage.setItem("fullscreenBlur", String(value));
-	const wallpaper = document.querySelector(
-		"[data-fullscreen-wallpaper]",
-	) as HTMLElement;
-	if (wallpaper) {
-		wallpaper.style.setProperty("--wallpaper-blur", `${value}px`);
-	}
-	window.dispatchEvent(new CustomEvent("fullscreen-settings-change"));
-}
-
-export function applyWallpaperVisualSettings(mode?: WALLPAPER_MODE): void {
-	const currentMode = mode || getStoredWallpaperMode();
-	const wallpaper = document.querySelector(
-		"[data-fullscreen-wallpaper]",
-	) as HTMLElement;
-	const root = document.documentElement;
-
-	if (!wallpaper) {
-		return;
-	}
-
-	if (currentMode === "overlay") {
-		wallpaper.style.setProperty(
-			"--wallpaper-opacity",
-			String(getStoredOverlayOpacity()),
-		);
-		wallpaper.style.setProperty(
-			"--wallpaper-blur",
-			`${getStoredOverlayBlur()}px`,
-		);
-		root.style.setProperty(
-			"--card-transparent-opacity",
-			String(getStoredOverlayCardOpacity()),
-		);
-		return;
-	}
-
-	if (currentMode === "fullscreen") {
-		wallpaper.style.setProperty(
-			"--wallpaper-opacity",
-			String(getStoredFullscreenOpacity()),
-		);
-		wallpaper.style.setProperty(
-			"--wallpaper-blur",
-			`${getStoredFullscreenBlur()}px`,
-		);
-		root.style.removeProperty("--card-transparent-opacity");
-		return;
-	}
-
-	wallpaper.style.removeProperty("--wallpaper-opacity");
-	wallpaper.style.removeProperty("--wallpaper-blur");
-	root.style.removeProperty("--card-transparent-opacity");
-}
-
-// ─── Waves ───────────────────────────────────────────────────
-
-export function getDefaultWavesEnabled(): boolean {
-	return siteConfig.banner?.waves?.enable ?? true;
-}
-
-export function getStoredWavesEnabled(): boolean {
-	if (!getDefaultWavesEnabled()) return false;
-	const stored = localStorage.getItem("wavesEnabled");
-	return stored !== null ? stored === "true" : true;
-}
-
-export function setWavesEnabled(enabled: boolean): void {
-	localStorage.setItem("wavesEnabled", String(enabled));
-	document.documentElement.setAttribute("data-waves-enabled", String(enabled));
-	window.dispatchEvent(
-		new CustomEvent("waves-toggle", { detail: { enabled } }),
-	);
-}
-
-// ─── Banner Title ────────────────────────────────────────────
-
-export function getDefaultBannerTitleEnabled(): boolean {
-	return siteConfig.banner?.homeText?.enable ?? true;
-}
-
-export function getStoredBannerTitleEnabled(): boolean {
-	if (!getDefaultBannerTitleEnabled()) return false;
-	const stored = localStorage.getItem("bannerTitleEnabled");
-	return stored !== null ? stored === "true" : true;
-}
-
-export function setBannerTitleEnabled(enabled: boolean): void {
-	localStorage.setItem("bannerTitleEnabled", String(enabled));
-	document.documentElement.setAttribute(
-		"data-banner-title-enabled",
-		String(enabled),
-	);
-	window.dispatchEvent(
-		new CustomEvent("banner-title-toggle", { detail: { enabled } }),
-	);
-}
-
-// ─── Banner Carousel ─────────────────────────────────────────
-
-export function getDefaultBannerCarouselEnabled(): boolean {
-	return siteConfig.banner?.carousel?.enable ?? true;
-}
-
-export function getStoredBannerCarouselEnabled(): boolean {
-	const stored = localStorage.getItem("bannerCarouselEnabled");
-	return stored !== null
-		? stored === "true"
-		: getDefaultBannerCarouselEnabled();
-}
-
-export function setBannerCarouselEnabled(enabled: boolean): void {
-	localStorage.setItem("bannerCarouselEnabled", String(enabled));
-	window.dispatchEvent(
-		new CustomEvent("banner-carousel-change", { detail: { enabled } }),
-	);
-}
-
-// ─── Sakura ──────────────────────────────────────────────────
-
-export function getDefaultSakuraEnabled(): boolean {
-	return sakuraConfig.enable ?? false;
-}
-
-export function getStoredSakuraEnabled(): boolean {
-	if (!sakuraConfig.enable) return false;
-	const stored = localStorage.getItem("sakuraEnabled");
-	return stored !== null ? stored === "true" : false;
-}
-
-export function setSakuraEnabled(enabled: boolean): void {
-	localStorage.setItem("sakuraEnabled", String(enabled));
-	window.dispatchEvent(
-		new CustomEvent("sakura-toggle", { detail: { enabled } }),
-	);
+export function setMotionPreference(reduced: boolean): void {
+	localStorage.setItem(MOTION_KEY, reduced ? "reduced" : "full");
+	applyMotionPreference(reduced);
 }

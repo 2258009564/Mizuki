@@ -1,0 +1,15 @@
+{
+  "conversion": "Full font conversion to WOFF2, no glyph subsetting",
+  "originalBytes": 17779716,
+  "woff2Bytes": 6339976,
+  "glyphCount": 33042,
+  "unchangedTables": {
+    "cmap": true,
+    "maxp": true,
+    "name": true,
+    "hhea": true,
+    "hmtx": true,
+    "OS/2": true
+  },
+  "sha256": "ae4658d26cb64ad4416772bf7bda592bd8be7d2d8319b48984603abe87242781"
+}

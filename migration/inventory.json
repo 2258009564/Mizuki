@@ -1,0 +1,14 @@
+{
+  "sourceCommit": "a479816007607bfad6b69ff0002e641b6b19b646",
+  "upstreamCommit": "f92fbbe0e6f9991b7b65017bbe23ed19cd0cbc67",
+  "diaryCount": 6,
+  "animeCount": 40,
+  "skillsCount": 55,
+  "timelineCount": 9,
+  "font": {
+    "file": "MapleMono-NF-CN-Regular.ttf",
+    "bytes": 17779716,
+    "sha256": "3d8f0ab650c9b34131d18a0277962359c1de2b7002ff9040bd92a349c502b55e"
+  },
+  "projectsCount": 15
+}

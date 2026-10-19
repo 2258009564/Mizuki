@@ -1,0 +1,5 @@
+---
+import { pioConfig } from "@/config/pioConfig";
+import Pio from "./Pio.svelte";
+---
+{pioConfig.enable && <><link rel="stylesheet" href="/pio/static/pio.css" /><Pio client:idle /></>}

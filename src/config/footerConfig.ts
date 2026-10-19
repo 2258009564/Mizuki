@@ -1,10 +1,11 @@
-import type { FooterConfig } from "../types/config";
+import type { FooterConfig } from "@/types/footerConfig";
+import { withUserConfig } from "../utils/config-overlay.ts";
 
-// 页脚配置
-export const footerConfig: FooterConfig = {
-	enable: false, // 是否启用Footer HTML注入功能
-	customHtml: "", // HTML格式的自定义页脚信息，例如备案号等，默认留空
-	// 也可以直接编辑 FooterConfig.html 文件来添加备案号等自定义内容
-	// 注意：若 customHtml 不为空，则使用 customHtml 中的内容；若 customHtml 留空，则使用 FooterConfig.html 文件中的内容
-	// FooterConfig.html 可能会在未来的某个版本弃用
-};
+/**
+ * 页脚自定义 HTML 注入配置。
+ * 开启后将读取 src/config/FooterConfig.html 文件内容并注入到页脚版权信息上方。
+ * 关闭时（enable: false）零额外 DOM 占位、零文件读取开销。
+ */
+export const footerConfig: FooterConfig = withUserConfig("footer", {
+	enable: false,
+});
