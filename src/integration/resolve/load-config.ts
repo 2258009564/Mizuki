@@ -239,6 +239,7 @@ export async function loadModuleFile(
 	const module = (
 		await import(/* @vite-ignore */ pathToFileURL(file).href)
 	) as LoadedModule;
+	
 	cache.set(cacheKey, module);
 	return module;
 }
