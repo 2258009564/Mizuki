@@ -1,13 +1,13 @@
 ---
-title: "2026 CCPC 长春站游记"
+title: 2026 CCPC 长春站游记
 published: 2026-10-19
-description: "铜牌收工。记录一下热身赛的抽象、正赛的挣扎，以及一点还没完全放下的银牌念想。"
-category: "闲谈"
-tags: ["算法竞赛", "CCPC", "游记"]
+description: 铜牌收工。记录一下热身赛的抽象、正赛的挣扎，以及一点还没完全放下的银牌念想。
+category: 杂谈
+tags: [算法竞赛, CCPC, 游记]
 draft: false
 pinned: false
 comment: true
-updated: 2026-10-19T16:07:15Z
+updated: 2026-10-19T21:15:02Z
 ---
 
 第一次参加区域赛，大二因为太区了没拿到名额 
