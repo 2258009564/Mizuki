@@ -7,6 +7,7 @@ tags: ["算法竞赛", "CCPC", "游记"]
 draft: false
 pinned: false
 comment: true
+updated: 2026-10-19T16:07:15Z
 ---
 
 第一次参加区域赛，大二因为太区了没拿到名额 
