@@ -236,8 +236,9 @@ export async function loadModuleFile(
 	const file = join(outputDir(paths), `${prefix}${hash}.mjs`);
 	if (!existsSync(file)) writeFileSync(file, code, "utf8");
 	pruneStaleBundles(paths, prefix, file);
-
-	const module = (await import(pathToFileURL(file).href)) as LoadedModule;
+	const module = (
+		await import(/* @vite-ignore */ pathToFileURL(file).href)
+	) as LoadedModule;
 	cache.set(cacheKey, module);
 	return module;
 }
