@@ -3144,7 +3144,7 @@ export const commentConfig: CommentConfig = {
 
 - **URL**: https://alisa22580.com/posts/2026-ccpc-changchun/
 - **Published**: 2026-10-19
-- **Category**: 闲谈
+- **Category**: 杂谈
 - **Tags**: 算法竞赛, CCPC, 游记
 - **Description**: 铜牌收工。记录一下热身赛的抽象、正赛的挣扎，以及一点还没完全放下的银牌念想。
 
