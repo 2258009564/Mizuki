@@ -1,6 +1,10 @@
 import type { TimelineItem } from "@/types/timelineConfig";
 
-// 根据用户提供的简历与获奖经历整理；不包含待学习项。
+// 比赛日期取正式赛当日；来源：
+// 重庆：https://rl.algoux.cn/ranklist/cqcpc14th
+// 东盟：https://ac.nowcoder.com/acm/contest/140485
+// 沈阳：https://board.xcpcio.com/?s=sh
+// 蓝桥杯：https://jx.cri.cn/20260618/8a49ce96-3e68-7c8a-7df7-cda0286969eb.html
 export const timelineData: TimelineItem[] = [
 	{
 		title: "CCPC 长春区域赛 · 铜牌",
@@ -8,9 +12,6 @@ export const timelineData: TimelineItem[] = [
 		category: "achievement",
 		subtitle: "中国大学生程序设计竞赛（CCPC）",
 		location: "长春",
-		description:
-			"首次参加 CCPC 区域赛，与队友在长春站获得铜牌。铜牌是这一程的纪念，未解出的题目则留给赛后的补题与复盘。",
-		tags: ["CCPC", "算法竞赛", "团队协作"],
 		links: [
 			{
 				label: "长春站参赛记",
@@ -20,13 +21,10 @@ export const timelineData: TimelineItem[] = [
 		featured: true,
 	},
 	{
-		title: "软件工程本科学习",
+		title: "软件工程本科",
 		date: "2024.09 – 2028.09",
 		category: "education",
 		subtitle: "哈尔滨理工大学",
-		description: "软件工程本科在读，预计于 2028 年 9 月毕业。",
-		highlights: ["专业排名：10/240", "校级一等奖学金、二等奖学金"],
-		tags: ["软件工程", "算法与数据结构"],
 		featured: true,
 	},
 	{
@@ -52,29 +50,37 @@ export const timelineData: TimelineItem[] = [
 		featured: true,
 	},
 	{
-		title: "重庆市大学生程序设计大赛 · 金牌",
-		date: "2026",
+		title: "重庆市大学生程序设计大赛 · 金牌（第 12 名）",
+		date: "2026.06.14",
 		category: "achievement",
-		description: "获得金牌，排名第 12 名。",
-		tags: ["C++", "算法竞赛"],
 	},
 	{
 		title: "中国—东盟国际大学生程序设计大赛 · 银牌",
-		date: "2026",
+		date: "2026.05.31",
 		category: "achievement",
-		tags: ["C++", "算法竞赛"],
 	},
 	{
 		title: "ICPC 全国邀请赛（沈阳）· 银牌",
-		date: "2026",
+		date: "2026.07.29",
 		category: "achievement",
-		tags: ["ICPC", "C++", "算法竞赛"],
+		links: [
+			{
+				label: "沈阳站参赛记",
+				url: "/posts/2026-icpcsy/",
+			},
+		],
 	},
 	{
 		title: "蓝桥杯全国总决赛 · 一等奖",
-		date: "2026",
+		date: "2026.06.06",
 		category: "achievement",
-		description: "全国大学生软件和信息技术大赛程序设计全国总决赛一等奖。",
-		tags: ["蓝桥杯", "算法竞赛"],
+	},
+	{
+		title: "创建 Codeforces 账号",
+		date: "2024.10.05",
+		category: "achievement",
+		links: [
+			{ label: "alisa22580", url: "https://codeforces.com/profile/alisa22580" },
+		],
 	},
 ];
