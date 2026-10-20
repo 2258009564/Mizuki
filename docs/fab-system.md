@@ -148,3 +148,7 @@ resolveDeviceClasses(undefined)              => "flex"              // 全设备
 | **Tablet 测试** | 平板视口（820px）下 FAB-TOC 正确呈现 |
 | **A11y 测试** | 亮暗主题全页面无障碍扫描（`tests/site/a11y.spec.ts`）0 违规 |
 | **TOC 回归** | 侧栏目录与长目录内部滚动测试（`tests/site/toc.spec.ts`）全部通过 |
+
+### 本站目录配置与独立数据源
+
+本站延续迁移前 Mizuki 的悬浮目录：`fabConfig` 的 toc 设备范围为 mobile、tablet、desktop，深度为 2，桌面侧栏目录保持关闭。悬浮目录直接读取当前 `#swup-container .prose` 内的标题，不依赖 `#toc` 侧栏；打开面板、Swup 切页及正文解密后均按当前正文刷新，滚动时同步阅读位置高亮。目录点击自行处理锚点并阻止 Swup 重复滚动；关闭面板恢复焦点时使用 preventScroll，避免打断定位。本站回归测试为 `tests/site/personal-toc.spec.ts`。

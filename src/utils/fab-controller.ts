@@ -83,6 +83,7 @@ class FabController {
 				}
 			}
 			this.syncMobileScrollVisibility(scrollTop);
+			if (this.state.tocOpen) this.highlightFloatingToc();
 		};
 
 		window.addEventListener("scroll", handleScroll, { passive: true });
@@ -194,6 +195,8 @@ class FabController {
 			const target = e.target as HTMLElement;
 			const anchor = target.closest<HTMLAnchorElement>("a[href^='#']");
 			if (anchor) {
+				// 目录自行管理锚点，阻止 Swup 再次处理同一次点击。
+				e.stopPropagation();
 				const hash = anchor.getAttribute("href");
 				if (hash && hash.length > 1) {
 					const targetId = decodeURIComponent(hash.substring(1));
@@ -205,7 +208,10 @@ class FabController {
 							headingEl.getBoundingClientRect().top + window.scrollY - 80,
 						);
 						history.pushState(history.state, "", hash);
-						window.scrollTo({ top: offsetTop, behavior: "smooth" });
+						window.scrollTo({
+							top: offsetTop,
+							behavior: prefersReducedMotion() ? "auto" : "smooth",
+						});
 					}
 				}
 				if (panel?.dataset.tocCloseOnSelect !== "false") {
@@ -220,9 +226,7 @@ class FabController {
 	}
 
 	public openToc(): void {
-		// 打开前总是从侧栏源（#toc nav.m3-blog-toc）刷新目录内容：
-		// 加密文章解锁后侧栏 TOC 由 post-decryption 客户端重建，
-		// 悬浮面板需还原实时状态而非残留 SSR 空态。
+		// 打开前从当前文章刷新，覆盖站内导航和加密文章解锁后的状态。
 		this.syncFloatingToc();
 		const panel = document.getElementById("floating-toc-panel");
 		if (!panel) return;
@@ -233,6 +237,7 @@ class FabController {
 				: null;
 		this.state.tocOpen = true;
 		panel.classList.add("is-open");
+		requestAnimationFrame(() => this.highlightFloatingToc(true));
 		panel.setAttribute("aria-hidden", "false");
 		document
 			.querySelector("#fab-toc-btn button")
@@ -250,7 +255,8 @@ class FabController {
 		document
 			.querySelector("#fab-toc-btn button")
 			?.setAttribute("aria-expanded", "false");
-		if (this.previousFocus?.isConnected) this.previousFocus.focus();
+		if (this.previousFocus?.isConnected)
+			this.previousFocus.focus({ preventScroll: true });
 		this.previousFocus = null;
 	}
 
@@ -435,33 +441,103 @@ class FabController {
 
 	public syncFloatingToc(): void {
 		const tree = document.getElementById("floating-toc-tree");
-		const source = document.querySelector("#toc nav.m3-blog-toc");
 		const panel = document.getElementById("floating-toc-panel");
 		if (!tree || !panel) return;
-		if (!source) {
+		// 从当前文章读取，避免依赖可被关闭、且位于 Swup 容器外的侧栏。
+		// 加密正文解锁前没有标题，因此也不会泄露大纲。
+		const headings = Array.from(
+			document.querySelectorAll<HTMLElement>(
+				"#swup-container .prose h1[id], #swup-container .prose h2[id], #swup-container .prose h3[id], #swup-container .prose h4[id], #swup-container .prose h5[id], #swup-container .prose h6[id]",
+			),
+		);
+		const base = Math.min(
+			...headings.map((heading) => Number(heading.tagName.slice(1))),
+		);
+		const maxDepth = Number.parseInt(panel.dataset.tocMaxDepth ?? "3", 10);
+		const nav = document.createElement("nav");
+		nav.className = "m3-blog-toc";
+		nav.setAttribute("aria-label", panel.getAttribute("aria-label") ?? "");
+		let counter = 0;
+		for (const heading of headings) {
+			const depth = Number(heading.tagName.slice(1));
+			if (depth >= base + maxDepth) continue;
+			const top = depth === base;
+			const anchor = document.createElement("a");
+			anchor.className = `m3-blog-toc__item${top ? "" : " m3-blog-toc__item--sub"}`;
+			anchor.href = `#${encodeURIComponent(heading.id)}`;
+			anchor.dataset.tocDepth = String(depth);
+			const mark = document.createElement("span");
+			mark.className = "m3-blog-toc__mark";
+			mark.setAttribute("aria-hidden", "true");
+			if (top) mark.textContent = String(++counter);
+			else {
+				const dot = document.createElement("span");
+				dot.className = "m3-blog-toc__dot";
+				mark.append(dot);
+			}
+			const text = document.createElement("span");
+			text.className = "m3-blog-toc__text";
+			text.textContent = (heading.textContent ?? "")
+				.trim()
+				.replace(/#$/, "")
+				.trim();
+			anchor.title = text.textContent;
+			anchor.append(mark, text);
+			nav.append(anchor);
+		}
+		if (nav.childElementCount) tree.replaceChildren(nav);
+		else {
 			const empty = document.createElement("div");
 			empty.className =
 				"py-6 text-center text-xs text-[var(--on-surface-variant)]";
 			empty.textContent = panel.dataset.emptyLabel ?? "";
 			tree.replaceChildren(empty);
-			return;
 		}
-		const clone = source.cloneNode(true) as HTMLElement;
-		const maxDepth = Number.parseInt(panel.dataset.tocMaxDepth ?? "3", 10);
-		const entries = [
-			...clone.querySelectorAll<HTMLElement>("[data-toc-depth]"),
-		];
-		const depths = entries
-			.map((entry) => Number.parseInt(entry.dataset.tocDepth ?? "", 10))
-			.filter(Number.isFinite);
-		const baseDepth = depths.length > 0 ? Math.min(...depths) : 1;
-		entries.forEach((entry) => {
-			const depth = Number.parseInt(entry.dataset.tocDepth ?? "", 10);
-			if (Number.isFinite(depth) && depth >= baseDepth + maxDepth) {
-				entry.remove();
-			}
-		});
-		tree.replaceChildren(clone);
+		this.highlightFloatingToc();
+	}
+
+	private highlightFloatingToc(forceReveal = false): void {
+		const entries = Array.from(
+			document.querySelectorAll<HTMLAnchorElement>(
+				"#floating-toc-tree a[href^='#']",
+			),
+		);
+		const previous = entries.find((entry) =>
+			entry.hasAttribute("aria-current"),
+		);
+		let active = entries[0];
+		for (const entry of entries) {
+			const heading = document.getElementById(
+				decodeURIComponent(entry.hash.slice(1)),
+			);
+			if (
+				heading &&
+				heading.getBoundingClientRect().top <= window.innerHeight * 0.35
+			)
+				active = entry;
+		}
+		for (const entry of entries) {
+			entry.classList.toggle("m3-blog-toc__item--active", entry === active);
+			if (entry === active) entry.setAttribute("aria-current", "location");
+			else entry.removeAttribute("aria-current");
+		}
+		if (this.state.tocOpen && active && (previous !== active || forceReveal)) {
+			const content = document.getElementById("floating-toc-scroll-content");
+			if (!content) return;
+			const bounds = content.getBoundingClientRect();
+			const item = active.getBoundingClientRect();
+			const delta =
+				item.top < bounds.top
+					? item.top - bounds.top
+					: item.bottom > bounds.bottom
+						? item.bottom - bounds.bottom
+						: 0;
+			if (delta)
+				content.scrollBy({
+					top: delta,
+					behavior: prefersReducedMotion() ? "auto" : "smooth",
+				});
+		}
 	}
 
 	private trapFocus(event: KeyboardEvent, panel: HTMLElement): void {
