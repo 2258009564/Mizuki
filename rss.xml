@@ -88,10 +88,12 @@ dfs(dfs, 1, 0);
 &lt;li&gt;&lt;a href=&quot;#%E5%9F%BA%E7%A1%80%E9%80%9F%E6%9F%A5&quot;&gt;基础速查&lt;/a&gt;：类型范围、排序、前缀和、差分、BFS、DFS&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;#%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%90%9C%E7%B4%A2&quot;&gt;基础与搜索&lt;/a&gt;：基础框架、离散化、二分答案、ST 表&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;#%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84&quot;&gt;数据结构&lt;/a&gt;：并查集、树状数组、线段树、左偏树&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#%E6%A0%91%E4%B8%8E%E5%9B%BE&quot;&gt;树与图&lt;/a&gt;：LCA、重心、直径、最短路、最小生成树、拓扑排序&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#%E6%A0%91%E4%B8%8E%E5%9B%BE&quot;&gt;树与图&lt;/a&gt;：LCA、重心、直径、Dijkstra、Bellman-Ford、Floyd、Kruskal、Prim、拓扑排序&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;#%E6%95%B0%E8%AE%BA&quot;&gt;数论&lt;/a&gt;：组合数、快速幂、质数筛&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;#%E5%AD%97%E7%AC%A6%E4%B8%B2&quot;&gt;字符串&lt;/a&gt;：双哈希、Trie、Z 函数&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92&quot;&gt;动态规划&lt;/a&gt;：矩阵快速幂、背包&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92&quot;&gt;动态规划&lt;/a&gt;：普通矩阵与 max-plus 矩阵快速幂、0/1、完全与多重背包&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#%E5%88%86%E5%9D%97%E4%B8%8E%E7%A6%BB%E7%BA%BF%E6%9F%A5%E8%AF%A2&quot;&gt;分块与离线查询&lt;/a&gt;：莫队与区间异或计数&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95&quot;&gt;计算几何&lt;/a&gt;：点线关系、多边形、凸包、最近点对&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;:::tip
 如果只是赛前复习，可以先看每节代码上方的说明；真正要用时，再完整复制对应代码块。原始练习代码仍保留在本地板子目录里，这篇只收通用性比较强的版本。
@@ -1532,6 +1534,123 @@ void solve()
 */
 &lt;/code&gt;&lt;/pre&gt;
 &lt;hr /&gt;
+&lt;h2&gt;分块与离线查询&lt;/h2&gt;
+&lt;h3&gt;莫队：区间异或计数&lt;/h3&gt;
+&lt;p&gt;静态区间询问离线处理，按左端点所在块和右端点蛇形排序。这里保留异或计数的使用版本：输入 &lt;code&gt;n q k&lt;/code&gt;、长度为 &lt;code&gt;n&lt;/code&gt; 的数组，再输入 &lt;code&gt;q&lt;/code&gt; 个闭区间，输出各区间中异或和为 &lt;code&gt;k&lt;/code&gt; 的子数组数量。&lt;/p&gt;
+&lt;p&gt;原区间 &lt;code&gt;[l,r]&lt;/code&gt; 对应前缀异或数组的 &lt;code&gt;[l-1,r]&lt;/code&gt;，维护两两异或为 &lt;code&gt;k&lt;/code&gt; 的前缀对数。&lt;code&gt;add&lt;/code&gt; 先统计再加入，&lt;code&gt;del&lt;/code&gt; 先删除再扣除，尤其别把 &lt;code&gt;k=0&lt;/code&gt; 时自己和自己配成一对。块长取 $\sqrt n$，复杂度约 $O((n+q)\sqrt n)$。&lt;/p&gt;
+&lt;p&gt;这版计数数组要求原值与 &lt;code&gt;k&lt;/code&gt; 都在 &lt;code&gt;[0,2^20)&lt;/code&gt; 内；更大值域要改用哈希表，不能只对原值离散化后继续做异或。代码中的 &lt;code&gt;solve()&lt;/code&gt; 配合本文基础模板使用。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;struct Query
+{
+    int l, r, idx, blk;
+};
+
+void solve()
+{
+    int n, q, k;
+    cin &amp;gt;&amp;gt; n &amp;gt;&amp;gt; q &amp;gt;&amp;gt; k;
+
+    vector&amp;lt;int&amp;gt; v(n + 1), pre(n + 1);
+    for (int i = 1; i &amp;lt;= n; i++)
+    {
+        cin &amp;gt;&amp;gt; v[i];
+        pre[i] = pre[i - 1] ^ v[i];
+    }
+
+    int B = max(1ll, (int)sqrt(n));
+    vector&amp;lt;Query&amp;gt; ask(q);
+    for (int i = 0; i &amp;lt; q; i++)
+    {
+        int l, r;
+        cin &amp;gt;&amp;gt; l &amp;gt;&amp;gt; r;
+
+        /*
+            原区间 [l, r] 的子数组
+            对应前缀下标 [l - 1, r]
+        */
+        ask[i] = {l - 1, r, i, (l - 1) / B};
+    }
+
+    auto cmp = [&amp;amp;](const Query &amp;amp;a, const Query &amp;amp;b) -&amp;gt; bool
+    {
+        if (a.blk != b.blk)
+        {
+            return a.blk &amp;lt; b.blk;
+        }
+
+        // 蛇形排序：减少 r 指针来回跳
+        if (a.blk &amp;amp; 1)
+        {
+            return a.r &amp;lt; b.r;
+        }
+        else
+        {
+            return a.r &amp;gt; b.r;
+        }
+    };
+
+    sort(all(ask), cmp);
+
+    /*
+        如果 v[i] &amp;lt;= 1e6，可以直接开 vector&amp;lt;int&amp;gt; cnt(1 &amp;lt;&amp;lt; 20)。
+        如果值域很大，就换 unordered_map&amp;lt;int, int&amp;gt; cnt。
+
+    */
+    vector&amp;lt;int&amp;gt; cnt(1 &amp;lt;&amp;lt; 20, 0);
+
+    int ans = 0;
+
+    auto add = [&amp;amp;](int pos) -&amp;gt; void
+    {
+        /*
+            新加入 pre[pos]。
+            它能和以前出现过的 k ^ pre[pos] 配成一对。
+        */
+        ans += cnt[k ^ pre[pos]];
+        cnt[pre[pos]]++;
+    };
+
+    auto del = [&amp;amp;](int pos) -&amp;gt; void
+    {
+        /*
+            删除 pre[pos]。
+            先删自己，再减去它和剩下元素组成的贡献。
+        */
+        cnt[pre[pos]]--;
+        ans -= cnt[k ^ pre[pos]];
+    };
+
+    int ll = 1, rr = 0;
+    vector&amp;lt;int&amp;gt; anss(q);
+
+    for (auto [l, r, idx, blk] : ask)
+    {
+        while (ll &amp;gt; l)
+        {
+            add(--ll);
+        }
+        while (rr &amp;lt; r)
+        {
+            add(++rr);
+        }
+        while (ll &amp;lt; l)
+        {
+            del(ll++);
+        }
+        while (rr &amp;gt; r)
+        {
+            del(rr--);
+        }
+
+        anss[idx] = ans;
+    }
+
+    for (int i = 0; i &amp;lt; q; i++)
+    {
+        cout &amp;lt;&amp;lt; anss[i] &amp;lt;&amp;lt; endl;
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;hr /&gt;
 &lt;h2&gt;树与图&lt;/h2&gt;
 &lt;h3&gt;倍增 LCA&lt;/h3&gt;
 &lt;pre&gt;&lt;code&gt;// ============================================================
@@ -2014,6 +2133,62 @@ vector&amp;lt;ll&amp;gt; dijkstra(int n, int s,
     return dist;
 }
 &lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;Bellman-Ford 最短路&lt;/h3&gt;
+&lt;p&gt;有向图允许负边，前提是源点可达范围内没有负环。按边表松弛，重边直接保留；&lt;code&gt;dist[i] == INF&lt;/code&gt; 表示不可达。复杂度 $O(nm)$，距离绝对值应明显小于 &lt;code&gt;INF&lt;/code&gt;。下面的 &lt;code&gt;Edge&lt;/code&gt; 与 Kruskal 的定义独立使用。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;struct Edge
+{
+    int u, v, w;
+};
+
+vector&amp;lt;int&amp;gt; bellman_ford(int n, int s, const vector&amp;lt;Edge&amp;gt; &amp;amp;edges)
+{
+    const int INF = (1LL &amp;lt;&amp;lt; 62);
+    vector&amp;lt;int&amp;gt; dist(n + 1, INF);
+    dist[s] = 0;
+    for (int i = 1; i &amp;lt; n; i++)
+    {
+        bool changed = false;
+        for (auto [u, v, w] : edges)
+        {
+            if (dist[u] != INF and dist[v] &amp;gt; dist[u] + w)
+            {
+                dist[v] = dist[u] + w;
+                changed = true;
+            }
+        }
+        if (!changed)
+        {
+            break;
+        }
+    }
+    return dist;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;Floyd 全源最短路&lt;/h3&gt;
+&lt;p&gt;适合点数较少的图，复杂度 $O(n^3)$、空间 $O(n^2)$。先令对角线为 0、其他位置为 &lt;code&gt;INF&lt;/code&gt;，重边取最小值；无向边需要同时赋值两个方向。允许负边，但不能有负环。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;const int INF = (1LL &amp;lt;&amp;lt; 62);
+vector&amp;lt;vector&amp;lt;int&amp;gt;&amp;gt; dist(n + 1, vector&amp;lt;int&amp;gt;(n + 1, INF));
+for (int i = 1; i &amp;lt;= n; i++)
+{
+    dist[i][i] = 0;
+}
+// 读边时：dist[u][v] = min(dist[u][v], w);
+
+for (int k = 1; k &amp;lt;= n; k++)
+{
+    for (int i = 1; i &amp;lt;= n; i++)
+    {
+        for (int j = 1; j &amp;lt;= n; j++)
+        {
+            // 不可达的两段不能直接拿无穷大相加。
+            if (dist[i][k] != INF and dist[k][j] != INF)
+            {
+                dist[i][j] = min(dist[i][j], dist[i][k] + dist[k][j]);
+            }
+        }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
 &lt;h3&gt;Kruskal 最小生成树&lt;/h3&gt;
 &lt;pre&gt;&lt;code&gt;struct Edge {
     int u, v;
@@ -2034,6 +2209,43 @@ optional&amp;lt;long long&amp;gt; kruskal(int n, vector&amp;lt;Edge&amp;gt; edge
         }
     }
     if (used != n - 1) return nullopt;
+    return ans;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;Prim 最小生成树&lt;/h3&gt;
+&lt;p&gt;无向带权图，邻接表中的每条边存两次；边权可以为负数。返回最小生成树的权值，不连通时返回 &lt;code&gt;nullopt&lt;/code&gt;。这版直接沿用堆优化写法，复杂度 $O((n+m)\log(n+m))$。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;optional&amp;lt;int&amp;gt; prim(int n, const vector&amp;lt;vector&amp;lt;pair&amp;lt;int, int&amp;gt;&amp;gt;&amp;gt; &amp;amp;g)
+{
+    const int INF = (1LL &amp;lt;&amp;lt; 62);
+    vector&amp;lt;int&amp;gt; vis(n + 1), dist(n + 1, INF);
+    priority_queue&amp;lt;pair&amp;lt;int, int&amp;gt;, vector&amp;lt;pair&amp;lt;int, int&amp;gt;&amp;gt;, greater&amp;lt;&amp;gt;&amp;gt; pq;
+    dist[1] = 0;
+    pq.push({0, 1});
+    int ans = 0, cnt = 0;
+    while (!pq.empty())
+    {
+        auto [w, u] = pq.top();
+        pq.pop();
+        if (vis[u])
+        {
+            continue;
+        }
+        vis[u] = 1;
+        ans += w;
+        cnt++;
+        for (auto [v, val] : g[u])
+        {
+            if (!vis[v] and val &amp;lt; dist[v])
+            {
+                dist[v] = val;
+                pq.push({val, v});
+            }
+        }
+    }
+    if (cnt != n)
+    {
+        return nullopt;
+    }
     return ans;
 }
 &lt;/code&gt;&lt;/pre&gt;
@@ -2139,10 +2351,11 @@ int comb(int n, int k)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h3&gt;质数筛与最小质因子&lt;/h3&gt;
 &lt;pre&gt;&lt;code&gt;const int N = 1e7;
-
+bool inited = 0;
 vector&amp;lt;int&amp;gt; primes, isprime(N + 1, 1), minfactor(N + 1);
 void init()
 {
+    inited = 1;
     isprime[0] = isprime[1] = 0;
     for (int i = 2; i &amp;lt;= N; i++)
     {
@@ -2169,10 +2382,14 @@ void init()
     }
 }
 
-// 返回 x 的最小质因数。调用前需要先执行 init()。
+// 返回 x 的最小质因数；第一次调用时自动初始化。
 // x 必须满足 2 &amp;lt;= x &amp;lt;= N。
 int getminfactor(int x)
 {
+    if (!inited)
+    {
+        init();
+    }
     return minfactor[x];
 }
 &lt;/code&gt;&lt;/pre&gt;
@@ -2604,6 +2821,104 @@ Matrix qpow(Matrix base, int exp)
     return ans;
 }
 &lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;max-plus 矩阵快速幂&lt;/h3&gt;
+&lt;p&gt;用于形如 &lt;code&gt;ndp[j] = max(dp[i] + trans[i][j])&lt;/code&gt; 的固定转移。矩阵的乘法改成“取最大值，拼接时收益相加”，&lt;code&gt;NEG&lt;/code&gt; 表示不可能；走 0 步的单位矩阵是对角线为 0、其余为 &lt;code&gt;NEG&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;qpow(base, steps)[i][j]&lt;/code&gt; 表示从 &lt;code&gt;i&lt;/code&gt; 恰好走 &lt;code&gt;steps&lt;/code&gt; 步到 &lt;code&gt;j&lt;/code&gt; 的最大收益，&lt;code&gt;steps &amp;gt;= 0&lt;/code&gt;，复杂度 $O(S^3\log steps)$。有限收益应处于 &lt;code&gt;long long&lt;/code&gt; 的安全范围内，不能与 &lt;code&gt;NEG&lt;/code&gt; 混淆。这里的 &lt;code&gt;Matrix&lt;/code&gt;、&lt;code&gt;mul&lt;/code&gt; 和 &lt;code&gt;qpow&lt;/code&gt; 与上面的普通矩阵版本独立复制，不能直接放进同一作用域。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;const int NEG = -4e18; // 负无穷：表示“不可能”。不要用 LLONG_MIN，防止相加溢出
+
+using Matrix = vector&amp;lt;vector&amp;lt;int&amp;gt;&amp;gt;;
+
+Matrix mul(const Matrix &amp;amp;A, const Matrix &amp;amp;B)
+{
+    // S 是状态数量，也就是矩阵的行数/列数。
+    // 如果有 2 个状态，S = 2，矩阵是 2 x 2。
+    // 如果状态是 mask，且有 n 个二进制位，S = 1 &amp;lt;&amp;lt; n。
+    int S = A.size();
+
+    Matrix C(S, vector&amp;lt;int&amp;gt;(S, NEG));
+
+    for (int i = 0; i &amp;lt; S; i++) // i：起点状态
+    {
+        for (int mid = 0; mid &amp;lt; S; mid++) // mid：中间状态
+        {
+            if (A[i][mid] == NEG)
+            {
+                continue;
+            }
+            for (int j = 0; j &amp;lt; S; j++) // j：终点状态
+            {
+                if (B[mid][j] == NEG)
+                {
+                    continue;
+                }
+
+                // A 表示先走一段，B 表示再走一段。
+                // i -&amp;gt; mid 的收益 + mid -&amp;gt; j 的收益，就是 i -&amp;gt; j 的一种方案。
+                C[i][j] = max(C[i][j], A[i][mid] + B[mid][j]);
+            }
+        }
+    }
+
+    return C;
+}
+
+Matrix zero_step_matrix(int S)
+{
+    // zero_step_matrix(S) 是“走 0 步的矩阵”。
+    // 它也叫单位矩阵，但这里不用 identity 这个名字，避免和 std::identity 冲突。
+    //
+    // 在这里你可以理解成：
+    //   走 0 步的转移表。
+    //
+    // 走 0 步时：
+    //   从 i 到 i：合法，收益 +0
+    //   从 i 到 j：不合法，收益 NEG
+    //
+    // 例如 S = 3：
+    //   0  NEG NEG
+    //   NEG 0  NEG
+    //   NEG NEG 0
+    //
+    // 它的作用类似普通快速幂里的 ans = 1。
+    Matrix I(S, vector&amp;lt;int&amp;gt;(S, NEG));
+    for (int i = 0; i &amp;lt; S; i++)
+    {
+        I[i][i] = 0;
+    }
+    return I;
+}
+
+Matrix qpow(Matrix base, int exp)
+{
+    // base 是“一步转移矩阵”。
+    // 如果要求走 exp 步后的转移矩阵，就是求 base^exp。
+    //
+    // 这里的 S 还是状态数量。
+    // 因为 base 是 S x S 的矩阵，所以 base.size() 就是 S。
+    int S = base.size();
+
+    // ans 一开始表示“已经拼出来 0 步”。
+    // 所以它必须是 zero_step_matrix(S)，也就是走 0 步的转移表。
+    Matrix ans = zero_step_matrix(S);
+
+    while (exp)
+    {
+        // 当前二进制位是 1，就把当前 base 这段接到 ans 后面。
+        if (exp &amp;amp; 1)
+        {
+            ans = mul(ans, base);
+        }
+
+        // base 自己乘自己：
+        // 1 步 -&amp;gt; 2 步 -&amp;gt; 4 步 -&amp;gt; 8 步 ...
+        base = mul(base, base);
+
+        exp &amp;gt;&amp;gt;= 1;
+    }
+
+    return ans;
+}
+&lt;/code&gt;&lt;/pre&gt;
 &lt;h3&gt;0/1 与完全背包&lt;/h3&gt;
 &lt;pre&gt;&lt;code&gt;// 0/1 背包：每件物品最多一次，容量不超过 W。
 vector&amp;lt;long long&amp;gt; zero_one_knapsack(
@@ -2625,6 +2940,579 @@ vector&amp;lt;long long&amp;gt; complete_knapsack(
     return dp;
 }
 &lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;0/1 背包：恰好装满&lt;/h3&gt;
+&lt;p&gt;与“不超过容量”区别在初始化。只有容量 0 可达，其余设为负无穷；转移前先判断前一状态可达，避免负无穷加上价值后变成伪答案。体积为正，答案及中间和不溢出，复杂度 $O(nW)$。返回 &lt;code&gt;nullopt&lt;/code&gt; 表示无法恰好装满，负价值的合法答案也会保留。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;optional&amp;lt;int&amp;gt; exact_knapsack(int W, const vector&amp;lt;pair&amp;lt;int, int&amp;gt;&amp;gt; &amp;amp;items)
+{
+    const int NEG = -(1LL &amp;lt;&amp;lt; 62);
+    vector&amp;lt;int&amp;gt; dp(W + 1, NEG);
+    dp[0] = 0;
+    for (auto [v, w] : items)
+    {
+        for (int j = W; j &amp;gt;= v; j--)
+        {
+            if (dp[j - v] != NEG)
+            {
+                dp[j] = max(dp[j], dp[j - v] + w);
+            }
+        }
+    }
+    if (dp[W] == NEG)
+    {
+        return nullopt;
+    }
+    return dp[W];
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;多重背包：枚举件数&lt;/h3&gt;
+&lt;p&gt;第 &lt;code&gt;i&lt;/code&gt; 种物品最多选 &lt;code&gt;cnt&lt;/code&gt; 件，体积 &lt;code&gt;v &amp;gt; 0&lt;/code&gt;、价值 &lt;code&gt;w&lt;/code&gt;。容量倒序枚举，保证本轮转移读取的较小容量仍是上一种物品处理后的状态；这版适合件数较少的情况，复杂度 $O(W\sum cnt_i)$。代码放在 &lt;code&gt;solve()&lt;/code&gt; 中，输入 &lt;code&gt;n W&lt;/code&gt;，随后每行 &lt;code&gt;v w cnt&lt;/code&gt;。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;int n, W;
+cin &amp;gt;&amp;gt; n &amp;gt;&amp;gt; W;
+vector&amp;lt;int&amp;gt; dp(W + 1);
+for (int i = 1; i &amp;lt;= n; i++)
+{
+    int v, w, cnt;
+    cin &amp;gt;&amp;gt; v &amp;gt;&amp;gt; w &amp;gt;&amp;gt; cnt;
+    for (int j = W; j &amp;gt;= v; j--)
+    {
+        for (int k = 1; k &amp;lt;= cnt and k * v &amp;lt;= j; k++)
+        {
+            dp[j] = max(dp[j], dp[j - k * v] + k * w);
+        }
+    }
+}
+cout &amp;lt;&amp;lt; dp[W];
+&lt;/code&gt;&lt;/pre&gt;
+&lt;hr /&gt;
+&lt;h2&gt;计算几何&lt;/h2&gt;
+&lt;h3&gt;二维整数计算几何&lt;/h3&gt;
+&lt;p&gt;统一使用整数坐标，点与向量放在 &lt;code&gt;Geometry::Point&lt;/code&gt;，直线放在 &lt;code&gt;Geometry::Line&lt;/code&gt; 中。叉积、面积的两倍和距离平方使用 &lt;code&gt;__int128&lt;/code&gt;，输出时调用 &lt;code&gt;geo.toString(x)&lt;/code&gt;；距离计算返回 &lt;code&gt;long double&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;这版包含线段相交、点在多边形中、Pick 定理、Andrew 凸包、最近点对和最大曼哈顿距离。凸包和最近点对为 $O(n\log n)$，多边形面积、点定位与曼哈顿距离为 $O(n)$。多边形顶点按边界顺序给出，Pick 定理要求格点简单多边形；直线的两个定义点不能重合。&lt;/p&gt;
+&lt;p&gt;按常见的 $|x|,|y|\le 10^9$ 整数坐标使用；&lt;code&gt;Point&lt;/code&gt; 的加减与曼哈顿距离仍是 &lt;code&gt;long long&lt;/code&gt;，不能认为出现 &lt;code&gt;__int128&lt;/code&gt; 就能接受整个 64 位坐标范围。使用方式和各接口说明保留在代码注释里。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;// ============================================================
+// 二维整数计算几何
+// ============================================================
+// 依赖基础板子中的 bits/stdc++.h、using namespace std、
+// #define int long long 和 all(x)。
+//
+// 【基本使用】
+// Geometry geo;                       // 先创建一个几何工具对象
+// using Point = Geometry::Point;      // 给 Point 起一个短名
+// using Line = Geometry::Line;        // 给 Line 起一个短名
+//
+// Point a;                            // 定义一个点
+// cin &amp;gt;&amp;gt; a;                           // 直接输入 x y
+// cout &amp;lt;&amp;lt; a &amp;lt;&amp;lt; endl;                  // 直接输出 x y
+//
+// int n;
+// cin &amp;gt;&amp;gt; n;
+// vector&amp;lt;Point&amp;gt; p(n);
+// for (Point &amp;amp;x : p)
+// {
+//     cin &amp;gt;&amp;gt; x;                       // 输入 n 个点
+// }
+//
+// Point a = {0, 0}, b = {2, 0}, p = {1, 1};
+// int d = geo.side(a, b, p);          // 1 左侧，-1 右侧，0 共线
+//
+// Line l(a, b);                       // 用两个不同的点构造直线 ab
+// long double d1 = geo.dist(a, b);    // 点 a 到点 b 的距离
+// long double d2 = geo.dist(p, l);    // 点 p 到直线 l 的距离
+//
+// 也可以用一般式 Ax + By + C = 0 构造：
+// Line l2(A, B, C);
+//
+// 【CF 772B Volatile Kite 核心用法】
+// Line l(p[(i - 1 + n) % n], p[(i + 1) % n]);
+// ans = min(ans, geo.dist(p[i], l) / 2);
+//
+// 【ABC266 C 凸四边形用法】
+// void solve()
+// {
+//     Geometry geo;
+//     using Point = Geometry::Point;
+//
+//     vector&amp;lt;Point&amp;gt; p(4);
+//     for (Point &amp;amp;x : p)
+//     {
+//         cin &amp;gt;&amp;gt; x;
+//     }
+//
+//     cout &amp;lt;&amp;lt; (geo.isStrictlyConvex(p) ? &quot;Yes&quot; : &quot;No&quot;);
+// }
+//
+// 主要内容：
+// 1. 点、向量、点积、叉积、距离。
+// 2. 点与直线、点与线段、线段相交。
+// 3. 多边形面积、点在多边形中、Pick 定理。
+// 4. Andrew 凸包、最近点对、最大曼哈顿距离。
+//
+// 叉积、面积和距离平方使用 __int128 防止 long long 溢出。
+// Geometry::i128 不能直接 cout，请使用 geo.toString(x)。
+// ============================================================
+
+class Geometry
+{
+public:
+    using i128 = __int128_t;
+
+    struct Point
+    {
+        int x, y;
+
+        Point(int _x = 0, int _y = 0) : x(_x), y(_y)
+        {
+        }
+
+        // 读入一个点：cin &amp;gt;&amp;gt; p 等价于 cin &amp;gt;&amp;gt; p.x &amp;gt;&amp;gt; p.y。
+        friend istream &amp;amp;operator&amp;gt;&amp;gt;(istream &amp;amp;in, Point &amp;amp;p)
+        {
+            return in &amp;gt;&amp;gt; p.x &amp;gt;&amp;gt; p.y;
+        }
+
+        // 输出一个点：cout &amp;lt;&amp;lt; p 会输出「x y」。
+        friend ostream &amp;amp;operator&amp;lt;&amp;lt;(ostream &amp;amp;out, const Point &amp;amp;p)
+        {
+            return out &amp;lt;&amp;lt; p.x &amp;lt;&amp;lt; &apos; &apos; &amp;lt;&amp;lt; p.y;
+        }
+
+        Point operator+(const Point &amp;amp;p) const
+        {
+            return {x + p.x, y + p.y};
+        }
+
+        Point operator-(const Point &amp;amp;p) const
+        {
+            return {x - p.x, y - p.y};
+        }
+
+        Point operator*(int k) const
+        {
+            return {x * k, y * k};
+        }
+
+        bool operator==(const Point &amp;amp;p) const
+        {
+            return x == p.x and y == p.y;
+        }
+
+        bool operator&amp;lt;(const Point &amp;amp;p) const
+        {
+            return x != p.x ? x &amp;lt; p.x : y &amp;lt; p.y;
+        }
+    };
+
+    // 直线的一般式：Ax + By + C = 0。
+    // 用点 p -&amp;gt; q 构造时，方程保留方向：
+    // 将点 r 代入 Ax + By + C，正数表示 r 在 p -&amp;gt; q 左侧。
+    struct Line
+    {
+        i128 A, B, C;
+
+        Line(i128 _A = 0, i128 _B = 0, i128 _C = 0)
+            : A(_A), B(_B), C(_C)
+        {
+        }
+
+        Line(const Point &amp;amp;p, const Point &amp;amp;q)
+        {
+            A = (i128)p.y - q.y;
+            B = (i128)q.x - p.x;
+            C = -A * p.x - B * p.y;
+        }
+    };
+
+    // __int128 不能直接用 cout 输出。
+    string toString(i128 x)
+    {
+        if (x == 0)
+        {
+            return &quot;0&quot;;
+        }
+
+        bool neg = x &amp;lt; 0;
+        if (neg)
+        {
+            x = -x;
+        }
+
+        string s;
+        while (x)
+        {
+            s.push_back(&apos;0&apos; + x % 10);
+            x /= 10;
+        }
+        if (neg)
+        {
+            s.push_back(&apos;-&apos;);
+        }
+        reverse(all(s));
+        return s;
+    }
+
+    i128 abs128(i128 x)
+    {
+        return x &amp;gt;= 0 ? x : -x;
+    }
+
+    int sgn(i128 x)
+    {
+        return (x &amp;gt; 0) - (x &amp;lt; 0);
+    }
+
+    // 点积：a·b。常用于判断夹角和投影。
+    i128 dot(const Point &amp;amp;a, const Point &amp;amp;b)
+    {
+        return (i128)a.x * b.x + (i128)a.y * b.y;
+    }
+
+    // 二维叉积：a×b。正数表示 b 在 a 的逆时针方向。
+    i128 cross(const Point &amp;amp;a, const Point &amp;amp;b)
+    {
+        return (i128)a.x * b.y - (i128)a.y * b.x;
+    }
+
+    // (b-a)×(c-a)：正数左转，负数右转，0 表示三点共线。
+    i128 cross(const Point &amp;amp;a, const Point &amp;amp;b, const Point &amp;amp;c)
+    {
+        return cross(b - a, c - a);
+    }
+
+    // 两点距离的平方，保留整数精度。
+    i128 dist2(const Point &amp;amp;a, const Point &amp;amp;b)
+    {
+        Point v = a - b;
+        return dot(v, v);
+    }
+
+    // 两点的欧氏距离。
+    long double dist(const Point &amp;amp;a, const Point &amp;amp;b)
+    {
+        return sqrt((long double)dist2(a, b));
+    }
+
+    // 计算点 p 代入直线 Ax + By + C 后的值。
+    // 值的符号表示有向直线的左右侧，0 表示点在直线上。
+    i128 value(const Line &amp;amp;l, const Point &amp;amp;p)
+    {
+        return l.A * p.x + l.B * p.y + l.C;
+    }
+
+    // 点 p 到直线 l 的距离。要求 l 是有效直线，即 A、B 不能同时为 0。
+    long double dist(const Point &amp;amp;p, const Line &amp;amp;l)
+    {
+        long double numerator = abs((long double)value(l, p));
+        long double denominator = sqrt((long double)l.A * l.A +
+                                       (long double)l.B * l.B);
+        return numerator / denominator;
+    }
+
+    // 从 a 看向 b：1 是左侧，-1 是右侧，0 是直线上。
+    int side(const Point &amp;amp;a, const Point &amp;amp;b, const Point &amp;amp;p)
+    {
+        return sgn(cross(a, b, p));
+    }
+
+    bool onLine(const Point &amp;amp;a, const Point &amp;amp;b, const Point &amp;amp;p)
+    {
+        return cross(a, b, p) == 0;
+    }
+
+    bool onSegment(const Point &amp;amp;a, const Point &amp;amp;b, const Point &amp;amp;p)
+    {
+        // 先共线，再检查 p 是否介于 a、b 之间。
+        return cross(a, b, p) == 0 and dot(p - a, p - b) &amp;lt;= 0;
+    }
+
+    // 包含端点接触和部分重合。
+    bool segmentsIntersect(const Point &amp;amp;a, const Point &amp;amp;b,
+                           const Point &amp;amp;c, const Point &amp;amp;d)
+    {
+        int c1 = side(a, b, c);
+        int c2 = side(a, b, d);
+        int c3 = side(c, d, a);
+        int c4 = side(c, d, b);
+
+        if (c1 == 0 and onSegment(a, b, c))
+        {
+            return true;
+        }
+        if (c2 == 0 and onSegment(a, b, d))
+        {
+            return true;
+        }
+        if (c3 == 0 and onSegment(c, d, a))
+        {
+            return true;
+        }
+        if (c4 == 0 and onSegment(c, d, b))
+        {
+            return true;
+        }
+        return c1 * c2 &amp;lt; 0 and c3 * c4 &amp;lt; 0;
+    }
+
+    // 严格相交：交点必须同时在两条线段的内部。
+    bool segmentsProperlyIntersect(const Point &amp;amp;a, const Point &amp;amp;b,
+                                   const Point &amp;amp;c, const Point &amp;amp;d)
+    {
+        return side(a, b, c) * side(a, b, d) &amp;lt; 0 and
+               side(c, d, a) * side(c, d, b) &amp;lt; 0;
+    }
+
+    // 有向面积的 2 倍：逆时针顶点序为正，顺时针为负。
+    i128 polygonSignedArea2(const vector&amp;lt;Point&amp;gt; &amp;amp;p)
+    {
+        i128 ans = 0;
+        int n = p.size();
+        for (int i = 0; i &amp;lt; n; i++)
+        {
+            ans += cross(p[i], p[(i + 1) % n]);
+        }
+        return ans;
+    }
+
+    i128 polygonArea2(const vector&amp;lt;Point&amp;gt; &amp;amp;p)
+    {
+        return abs128(polygonSignedArea2(p));
+    }
+
+    // 格点多边形边界上的整点数。
+    int boundaryLatticePoints(const vector&amp;lt;Point&amp;gt; &amp;amp;p)
+    {
+        int ans = 0;
+        int n = p.size();
+        for (int i = 0; i &amp;lt; n; i++)
+        {
+            int dx = abs(p[i].x - p[(i + 1) % n].x);
+            int dy = abs(p[i].y - p[(i + 1) % n].y);
+            ans += gcd(dx, dy);
+        }
+        return ans;
+    }
+
+    // Pick 定理：2S = 2I + B - 2，只适用于格点简单多边形。
+    i128 interiorLatticePoints(const vector&amp;lt;Point&amp;gt; &amp;amp;p)
+    {
+        i128 area2 = polygonArea2(p);
+        int boundary = boundaryLatticePoints(p);
+        return (area2 - boundary + 2) / 2;
+    }
+
+    enum class Location
+    {
+        Outside,
+        Boundary,
+        Inside
+    };
+
+    // 射线法判断点与简单多边形的位置，全程整数运算。
+    Location pointInPolygon(const vector&amp;lt;Point&amp;gt; &amp;amp;poly, const Point &amp;amp;p)
+    {
+        bool inside = false;
+        int n = poly.size();
+
+        for (int i = 0; i &amp;lt; n; i++)
+        {
+            Point a = poly[i];
+            Point b = poly[(i + 1) % n];
+
+            if (onSegment(a, b, p))
+            {
+                return Location::Boundary;
+            }
+
+            // 只在边跨过 p 的水平线时统计，上闭下开避免顶点被算两次。
+            if (a.y &amp;lt;= p.y and p.y &amp;lt; b.y and cross(a, b, p) &amp;gt; 0)
+            {
+                inside = !inside;
+            }
+            if (b.y &amp;lt;= p.y and p.y &amp;lt; a.y and cross(a, b, p) &amp;lt; 0)
+            {
+                inside = !inside;
+            }
+        }
+
+        return inside ? Location::Inside : Location::Outside;
+    }
+
+    // 判断一个多边形是否为严格凸多边形。
+    // 要求：顶点必须按顺时针或逆时针顺序给出，多边形不自交。
+    // 原理：沿边界走一圈，每个拐弯必须始终保持同一方向。
+    // 有一次变向就是凹多边形；有三点共线则不是「严格凸」。
+    bool isStrictlyConvex(const vector&amp;lt;Point&amp;gt; &amp;amp;p)
+    {
+        int n = p.size();
+        if (n &amp;lt; 3)
+        {
+            return false;
+        }
+
+        int dir = 0;
+        for (int i = 0; i &amp;lt; n; i++)
+        {
+            int cur = sgn(cross(p[i], p[(i + 1) % n], p[(i + 2) % n]));
+            if (cur == 0)
+            {
+                return false;
+            }
+            if (dir == 0)
+            {
+                dir = cur;
+            }
+            else if (dir != cur)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    // Andrew 凸包：返回逆时针凸包，不重复起点，去掉边上的中间共线点。
+    vector&amp;lt;Point&amp;gt; convexHull(vector&amp;lt;Point&amp;gt; p)
+    {
+        sort(all(p));
+        p.erase(unique(all(p)), p.end());
+
+        if (p.size() &amp;lt;= 1)
+        {
+            return p;
+        }
+
+        vector&amp;lt;Point&amp;gt; lower, upper;
+        for (const Point &amp;amp;x : p)
+        {
+            while (lower.size() &amp;gt;= 2 and
+                   cross(lower[lower.size() - 2], lower.back(), x) &amp;lt;= 0)
+            {
+                lower.pop_back();
+            }
+            lower.push_back(x);
+        }
+
+        reverse(all(p));
+        for (const Point &amp;amp;x : p)
+        {
+            while (upper.size() &amp;gt;= 2 and
+                   cross(upper[upper.size() - 2], upper.back(), x) &amp;lt;= 0)
+            {
+                upper.pop_back();
+            }
+            upper.push_back(x);
+        }
+
+        lower.pop_back();
+        upper.pop_back();
+        lower.insert(lower.end(), all(upper));
+        return lower;
+    }
+
+    // 最近点对的距离平方，少于两个点时返回 -1。
+    i128 closestPairSquared(vector&amp;lt;Point&amp;gt; p)
+    {
+        int n = p.size();
+        if (n &amp;lt; 2)
+        {
+            return -1;
+        }
+
+        sort(all(p));
+        vector&amp;lt;Point&amp;gt; tmp(n);
+        const i128 INF = (i128)1 &amp;lt;&amp;lt; 126;
+
+        auto dfs = [&amp;amp;](auto &amp;amp;&amp;amp;self, int l, int r) -&amp;gt; i128
+        {
+            if (r - l &amp;lt;= 3)
+            {
+                i128 ans = INF;
+                for (int i = l; i &amp;lt; r; i++)
+                {
+                    for (int j = i + 1; j &amp;lt; r; j++)
+                    {
+                        ans = min(ans, dist2(p[i], p[j]));
+                    }
+                }
+                sort(p.begin() + l, p.begin() + r,
+                     [](const Point &amp;amp;a, const Point &amp;amp;b)
+                     {
+                         return a.y != b.y ? a.y &amp;lt; b.y : a.x &amp;lt; b.x;
+                     });
+                return ans;
+            }
+
+            int mid = (l + r) / 2;
+            int midx = p[mid].x;
+            i128 ans = min(self(self, l, mid), self(self, mid, r));
+
+            merge(p.begin() + l, p.begin() + mid,
+                  p.begin() + mid, p.begin() + r,
+                  tmp.begin() + l,
+                  [](const Point &amp;amp;a, const Point &amp;amp;b)
+                  {
+                      return a.y != b.y ? a.y &amp;lt; b.y : a.x &amp;lt; b.x;
+                  });
+            copy(tmp.begin() + l, tmp.begin() + r, p.begin() + l);
+
+            vector&amp;lt;Point&amp;gt; strip;
+            for (int i = l; i &amp;lt; r; i++)
+            {
+                i128 dx = (i128)p[i].x - midx;
+                if (dx * dx &amp;lt; ans)
+                {
+                    strip.push_back(p[i]);
+                }
+            }
+
+            // strip 已按 y 排序；只检查 y 差平方小于当前答案的后继点。
+            for (int i = 0; i &amp;lt; (int)strip.size(); i++)
+            {
+                for (int j = i + 1; j &amp;lt; (int)strip.size(); j++)
+                {
+                    i128 dy = (i128)strip[j].y - strip[i].y;
+                    if (dy * dy &amp;gt;= ans)
+                    {
+                        break;
+                    }
+                    ans = min(ans, dist2(strip[i], strip[j]));
+                }
+            }
+            return ans;
+        };
+
+        return dfs(dfs, 0, n);
+    }
+
+    // 对每个点，求它到其他点的最大曼哈顿距离。
+    vector&amp;lt;int&amp;gt; maximumManhattanDistances(const vector&amp;lt;Point&amp;gt; &amp;amp;p)
+    {
+        if (p.empty())
+        {
+            return {};
+        }
+
+        int minSum = LLONG_MAX, maxSum = LLONG_MIN;
+        int minDif = LLONG_MAX, maxDif = LLONG_MIN;
+        for (const Point &amp;amp;x : p)
+        {
+            minSum = min(minSum, x.x + x.y);
+            maxSum = max(maxSum, x.x + x.y);
+            minDif = min(minDif, x.x - x.y);
+            maxDif = max(maxDif, x.x - x.y);
+        }
+
+        vector&amp;lt;int&amp;gt; ans;
+        ans.reserve(p.size());
+        for (const Point &amp;amp;x : p)
+        {
+            int sum = x.x + x.y;
+            int dif = x.x - x.y;
+            ans.push_back(max({maxSum - sum, sum - minSum,
+                               maxDif - dif, dif - minDif}));
+        }
+        return ans;
+    }
+};
+&lt;/code&gt;&lt;/pre&gt;
 &lt;hr /&gt;
 &lt;h2&gt;维护记录&lt;/h2&gt;
 &lt;ul&gt;
@@ -2633,6 +3521,9 @@ vector&amp;lt;long long&amp;gt; complete_knapsack(
 &lt;/ul&gt;
 &lt;blockquote&gt;
 &lt;p&gt;最后更新：2026-08-13。把原来的蓝桥杯速查扩充为个人通用模板合集，并统一了目录与说明。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;2026-10-20 更新：同步质数筛懒初始化，补充莫队、二维整数计算几何、max-plus 矩阵快速幂、Bellman-Ford、Floyd、Prim、恰好装满与多重背包。原有模板和练习代码的收录范围保持不变。&lt;/p&gt;
 &lt;/blockquote&gt;
 </content:encoded></item><item><title>本博客的搭建教程</title><link>https://alisa22580.com/posts/my-blog-build-tutorial/</link><guid isPermaLink="true">https://alisa22580.com/posts/my-blog-build-tutorial/</guid><description>和我一起，开启博客生涯。</description><pubDate>Thu, 12 Mar 2026 11:33:24 GMT</pubDate><content:encoded>&lt;p&gt;&amp;lt;!-- ---
 title: &quot;我的第一篇 Astro 博客&quot;      # 文章标题
