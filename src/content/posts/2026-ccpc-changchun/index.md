@@ -3,7 +3,7 @@ title: 2026 CCPC 长春站游记
 published: 2026-10-19
 description: 铜牌收工。记录一下热身赛的抽象、正赛的挣扎，以及一点还没完全放下的银牌念想。
 category: 杂谈
-tags: [算法竞赛, CCPC, 游记]
+tags: [算法竞赛]
 draft: false
 pinned: false
 comment: true
