@@ -19,19 +19,15 @@ export const timelineConfig: TimelineConfig = withUserConfig("timeline", {
 	categories: [
 		{
 			key: "education",
-			label: "education",
+			label: "教育经历",
 		},
 		{
 			key: "project",
-			label: "project",
-		},
-		{
-			key: "work",
-			label: "work",
+			label: "项目实践",
 		},
 		{
 			key: "achievement",
-			label: "achievement",
+			label: "竞赛荣誉",
 		},
 	],
 	order: "desc",
