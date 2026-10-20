@@ -46,6 +46,10 @@ const tocHeadings = headings.map((heading) => ({
 </WidgetLayout>
 
 <style lang="stylus">
+@media (max-width: 1023.98px)
+	:global(widget-layout[data-id="toc-inner-wrapper"])
+		display: none
+
 .sidebar-toc__content
 	max-height: calc(100dvh - 15rem)
 	overflow-y: auto

@@ -86,9 +86,9 @@ export const swupOptions: NonNullable<Parameters<typeof swup>[0]> = {
 	theme: false as const,
 	ignore: ['a[href="#"]'],
 	animationClass: "transition-swup-",
-	// This site disables the desktop TOC widget, so #toc is absent. Requiring it
-	// makes Swup fall back to full reloads and destroys the persistent Live2D.
-	containers: ["main"],
+	// TOC is rendered on every page (hidden outside posts), so Swup can refresh
+	// its contents without rebuilding the persistent music player and Live2D.
+	containers: ["main", "#toc"],
 	smoothScrolling: true,
 	cache: true,
 	preload: true,

@@ -36,8 +36,8 @@ export const fabConfig: FabConfig = withUserConfig("fab", {
 		{
 			type: "toc",
 			enable: true,
-			// 延续 Mizuki：全设备悬浮目录，不占用文章侧栏。
-			devices: ["mobile", "tablet", "desktop"],
+			// 电脑使用侧栏目录，手机和平板使用悬浮目录。
+			devices: ["mobile", "tablet"],
 			pages: ["post"],
 			depth: 2,
 			closeOnSelect: true,

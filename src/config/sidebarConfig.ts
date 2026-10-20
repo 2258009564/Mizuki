@@ -44,6 +44,13 @@ export const sidebarConfig: SidebarConfig = withUserConfig("sidebar", {
 			pages: ["home"],
 		},
 		{
+			type: "toc",
+			enable: true,
+			slot: "sticky",
+			column: "primary",
+			pages: ["post"],
+		},
+		{
 			type: "categories",
 			enable: true,
 			slot: "sticky",
@@ -62,7 +69,6 @@ export const sidebarConfig: SidebarConfig = withUserConfig("sidebar", {
 				"timeline",
 				"albums",
 				"about",
-				"post",
 			],
 		},
 		{
@@ -84,7 +90,6 @@ export const sidebarConfig: SidebarConfig = withUserConfig("sidebar", {
 				"timeline",
 				"albums",
 				"about",
-				"post",
 			],
 		},
 		{
@@ -106,7 +111,6 @@ export const sidebarConfig: SidebarConfig = withUserConfig("sidebar", {
 				"timeline",
 				"albums",
 				"about",
-				"post",
 			],
 		},
 		{
@@ -121,13 +125,6 @@ export const sidebarConfig: SidebarConfig = withUserConfig("sidebar", {
 			enable: true,
 			slot: "top",
 			column: "secondary",
-		},
-		{
-			type: "toc",
-			enable: false,
-			slot: "sticky",
-			column: "secondary",
-			pages: ["post"],
 		},
 	],
 });
