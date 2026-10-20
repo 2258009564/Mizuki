@@ -115,6 +115,12 @@ for (const width of [1100, 1440]) {
 		await page.waitForURL("**/posts/2026-ccpc-changchun/");
 		const toc = page.locator("#toc");
 		await expect(toc).toBeVisible();
+		const tocBox = await toc.boundingBox();
+		const articleBox = await page.locator("#main-content-column").boundingBox();
+		expect(
+			tocBox && articleBox && tocBox.x >= articleBox.x + articleBox.width,
+		).toBe(true);
+
 		await expect(page.locator("#fab-toc-btn")).toBeHidden();
 		await expect(toc.locator("a")).toHaveCount(3);
 		const target = toc.locator("a").nth(1);

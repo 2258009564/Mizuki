@@ -131,3 +131,25 @@ const mainContentClasses = generateMainContentClasses(sidebarResponsive);
 )}
 
 </Layout>
+
+<style>
+/* 窄桌面文章页保留右侧目录，让正文与副栏组成两列。
+   使用当前 main 的页面标识，Swup 换页后自动恢复其他页面的布局。 */
+@media (min-width: 1024px) and (max-width: 1279.98px) {
+    :global(#main-grid:has(main[data-current-page="post"])) {
+        grid-template-columns: minmax(0, 1fr) var(--sidebar-width);
+    }
+    :global(#main-grid:has(main[data-current-page="post"]) > #sidebar) {
+        display: none;
+    }
+    :global(#main-grid:has(main[data-current-page="post"]) > #main-content-column) {
+        grid-column: 1;
+    }
+    :global(#main-grid:has(main[data-current-page="post"]) > #sidebar-secondary) {
+        display: block;
+        grid-column: 2;
+        grid-row: 1;
+        max-width: var(--sidebar-width);
+    }
+}
+</style>

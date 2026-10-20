@@ -47,7 +47,7 @@ export const sidebarConfig: SidebarConfig = withUserConfig("sidebar", {
 			type: "toc",
 			enable: true,
 			slot: "sticky",
-			column: "primary",
+			column: "secondary",
 			pages: ["post"],
 		},
 		{
