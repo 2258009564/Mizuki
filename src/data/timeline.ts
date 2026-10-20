@@ -76,7 +76,7 @@ export const timelineData: TimelineItem[] = [
 		category: "achievement",
 	},
 	{
-		title: "创建 Codeforces 账号",
+		title: "注册 Codeforces，首次 AC",
 		date: "2024.10.05",
 		category: "achievement",
 		links: [
