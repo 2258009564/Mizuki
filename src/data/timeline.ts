@@ -26,6 +26,7 @@ export const timelineData: TimelineItem[] = [
 		category: "education",
 		subtitle: "哈尔滨理工大学",
 		featured: true,
+		location: "哈尔滨",
 	},
 	{
 		title: "Raft 共识引擎",
@@ -53,11 +54,13 @@ export const timelineData: TimelineItem[] = [
 		title: "重庆市大学生程序设计大赛 · 金牌（第 12 名）",
 		date: "2026.06.14",
 		category: "achievement",
+		location: "重庆",
 	},
 	{
 		title: "中国—东盟国际大学生程序设计大赛 · 银牌",
 		date: "2026.05.31",
 		category: "achievement",
+		location: "桂林",
 	},
 	{
 		title: "ICPC 全国邀请赛（沈阳）· 银牌",
@@ -69,18 +72,31 @@ export const timelineData: TimelineItem[] = [
 				url: "/posts/2026-icpcsy/",
 			},
 		],
+		location: "沈阳",
 	},
 	{
 		title: "蓝桥杯全国总决赛 · 一等奖",
 		date: "2026.06.06",
 		category: "achievement",
+		location: "哈尔滨",
 	},
 	{
 		title: "注册 Codeforces，首次 AC",
 		date: "2024.10.05",
 		category: "achievement",
 		links: [
-			{ label: "alisa22580", url: "https://codeforces.com/profile/alisa22580" },
+			{
+				label: "alisa22580",
+				url: "https://codeforces.com/profile/alisa22580",
+			},
 		],
+	},
+	{
+		title: "高中",
+		date: "2021.09 – 2024.06",
+		category: "education",
+		subtitle: "深圳市龙城高级中学",
+		location: "深圳",
+		description: "度过了愉快的三年时光",
 	},
 ];
