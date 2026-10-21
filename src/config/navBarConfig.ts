@@ -174,12 +174,6 @@ const defaultNavBarConfig: NavBarConfig = {
 					external: true,
 					icon: "simple-icons:codeforces",
 				},
-				{
-					name: "X",
-					url: "https://x.com/alisa_22580",
-					external: true,
-					icon: "fa7-brands:x-twitter",
-				},
 			],
 		},
 		{

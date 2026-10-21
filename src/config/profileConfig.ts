@@ -25,10 +25,5 @@ export const profileConfig: ProfileConfig = withUserConfig("profile", {
 			icon: "simple-icons:codeforces",
 			url: "https://codeforces.com/profile/alisa22580",
 		},
-		{
-			name: "X",
-			icon: "fa7-brands:x-twitter",
-			url: "https://x.com/alisa_22580",
-		},
 	],
 });
