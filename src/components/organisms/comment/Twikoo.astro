@@ -480,7 +480,7 @@ const twikooStyles = await new Promise<string>((resolve, reject) => {
 	class="shirone-twikoo-wrapper relative min-h-[160px] w-full"
 	data-twikoo-env-id={config.envId}
 	data-twikoo-script-url={config.scriptUrl}
-	data-twikoo-path={context.path}
+	data-twikoo-path={config.pathAliases?.[context.path] ?? context.path}
 	data-twikoo-lang={resolvedLang}
 	data-twikoo-lazy={lazy ? "true" : "false"}
 	data-twikoo-placeholder={config.placeholder}

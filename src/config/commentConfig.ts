@@ -34,7 +34,15 @@ export const commentConfig: CommentConfig = withUserConfig("comment", {
 	lazy: true,
 	twikoo: {
 		envId: "https://vercel-repo-fawn.vercel.app",
-		scriptUrl: "https://cdn.jsdelivr.net/npm/twikoo@1.7.20/dist/twikoo.min.js",
+		scriptUrl: "https://cdn.jsdelivr.net/npm/twikoo@2.0.15/dist/twikoo.min.js",
+		// 沿用旧 Mizuki 的评论键，不修改数据库中的评论记录。
+		pathAliases: {
+			"/posts/selectecho-getting-started/": "/posts/selectecho-getting-started",
+			"/posts/my-blog-build-tutorial/":
+				"/posts/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B",
+			"/posts/vpn-usage-tutorial/": "/posts/vpn-usage-tutorial",
+			"/posts/test/": "/posts/test",
+		},
 		lang: "zh-CN",
 		placeholder: "Share your thoughts...",
 	},

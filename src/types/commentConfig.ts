@@ -9,6 +9,8 @@ export interface TwikooConfig {
 	lang: "auto" | string;
 	/** 评论输入框的灰色说明文字；留空时不显示 */
 	placeholder?: string;
+	/** 当前 canonical 路径到旧 Twikoo 评论路径的映射，改名后继续读取原评论。 */
+	pathAliases?: Record<string, string>;
 }
 
 export interface CommentConfig {
