@@ -3910,6 +3910,7 @@ Root directory: /
 <p>随着时代进步，我们惊喜地发现，Harness 已经可以直接操作电脑了。我由衷地希望，大学生们可以把更多的时间拿去做自己想做的事情，而不是在电脑前面盯着被吹毛求疵的样式反复修改。</p>
 <p>为此，我设计了 <a href="https://github.com/2258009564/project-to-template-report">project-to-template-report</a>，一套“更适合哈理工宝宝体质”的 Word 报告 Skill，其他学校的模板也能用。<strong>需求随口说，模板和材料交给它，等着收报告就行。</strong> 从读要求、写正文，到做图表、审稿和排版，它会按技能里的流程接着完成。</p>
 <p>::github{repo="2258009564/project-to-template-report"}</p>
+<p>如果用下来觉得好用，欢迎分享给身边也在赶报告的朋友，也可以到 <a href="https://github.com/2258009564/project-to-template-report">项目页</a> 点个 <strong>Star</strong>，支持一下。</p>
 <h2>快速入门：说一句话，等一份完整报告</h2>
 <p>老师的模板已经有了，代码、运行截图和参考资料也都在电脑里。接下来，你可以直接对 AI 说：</p>
 <pre><code>部署 https://github.com/2258009564/project-to-template-report 到本地，然后读取 D:/Desktop/实验报告资料 的内容，用这个 Skill 帮我直接完成实验报告，完成版放在这个文件夹里。
@@ -3956,7 +3957,7 @@ Root directory: /
 <p><strong>如果报告必填的姓名、学号、班级等个人信息还不知道，它默认会停下来集中询问，等你回答后再继续。</strong> 已经从材料或本地记录中明确的信息会直接复用。第一次补充时，可以顺手说“这些常用信息可以记在本地，以后做报告直接用”，下次做报告时，它就会先读这些记录。</p>
 <p>剩下的时间等它处理，保持电脑开机，有需要确认的提示时按界面处理。完成后打开它给出的 Word 文件，核对题目、个人信息和实验结果；想改哪里，就在原对话里说“心得结合我的代码写具体一点”“这里加一张流程图”，让它接着修改。</p>
 <p><strong>以后再做报告，直接重复第二步：换份材料，说句需求，等它完成。</strong></p>
-<p>关于这个 Skill 的详细介绍、功能和使用示例，都放在 <a href="https://github.com/2258009564/project-to-template-report#readme">项目 README</a> 里了。觉得好用的话，欢迎顺手点个 <strong>Star</strong>！下面简要介绍一下它的技术细节。</p>
+<p>关于这个 Skill 的详细介绍、功能和使用示例，都放在 <a href="https://github.com/2258009564/project-to-template-report#readme">项目 README</a> 里了。下面简要介绍一下它的技术细节。</p>
 <h2>技术细节：技能内部怎样完成这件事</h2>
 <h3>读取实际格式，在模板副本上编写</h3>
 <p>技能通过 Word 自动化读取模板的段落、字体、标题、表格和分节等信息，以实际格式为依据。模板样式名相同，实际字号、缩进或间距也可能不同，因此需要先检查再使用。</p>
