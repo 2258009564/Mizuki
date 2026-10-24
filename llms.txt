@@ -12,6 +12,7 @@ This is the llms.txt file for from alisa. It provides a machine-readable directo
 ## Articles
 - [个人常用算法模板](https://alisa22580.com/posts/lanqiao-cpp-b-common/): 算法竞赛常用 C++ 模板与临场速查
 - [本博客的搭建教程](https://alisa22580.com/posts/my-blog-build-tutorial/): 和我一起，开启博客生涯。
+- [一句话，让 AI 帮你完成实验报告](https://alisa22580.com/posts/dsh-word-report-tutorial/): 实质是对harness使用的简单扫盲以及对个人word制作skill的推广
 - [2026 CCPC 长春站游记](https://alisa22580.com/posts/2026-ccpc-changchun/): 铜牌收工。记录一下热身赛的抽象、正赛的挣扎，以及一点还没完全放下的银牌念想。
 - [2026ICPC沈阳 赛站游记](https://alisa22580.com/posts/2026-icpcsy/): 流水账一篇
 - [一场幻梦](https://alisa22580.com/posts/a-dream/): 希望我将来也不要留下遗憾。

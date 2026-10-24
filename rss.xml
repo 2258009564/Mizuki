@@ -3864,6 +3864,73 @@ Root directory: /
 &lt;p&gt;我们可以直接访问 &lt;a href=&quot;https://twikoo.js.org/backend.html#vercel-%E9%83%A8%E7%BD%B2&quot;&gt;Vercel 部署&lt;/a&gt; 的教程来获取这个 ID 。&lt;/p&gt;
 &lt;h2&gt;更多内容&lt;/h2&gt;
 &lt;p&gt;持续更新中...&lt;/p&gt;
+</content:encoded></item><item><title>一句话，让 AI 帮你完成实验报告</title><link>https://alisa22580.com/posts/dsh-word-report-tutorial/</link><guid isPermaLink="true">https://alisa22580.com/posts/dsh-word-report-tutorial/</guid><description>实质是对harness使用的简单扫盲以及对个人word制作skill的推广</description><pubDate>Sat, 24 Oct 2026 00:00:00 GMT</pubDate><content:encoded>&lt;blockquote&gt;
+&lt;p&gt;[!NOTE]
+&lt;strong&gt;观前提示：&lt;/strong&gt; 除作者自己的感想外，本文完全由 AI 生成并直接发布。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;前言&lt;/h2&gt;
+&lt;p&gt;在我 24 年大一入学的时候，AI 技术还尚未像今天一样发达。彼时我为了完成一个对格式要求严苛的课程设计，不得已反复调整格式，为此学会了不少有关 Word VBA 宏的操作知识。&lt;/p&gt;
+&lt;p&gt;随着时代进步，我们惊喜地发现，Harness 已经可以直接操作电脑了。我由衷地希望，大学生们可以把更多的时间拿去做自己想做的事情，而不是在电脑前面盯着被吹毛求疵的样式反复修改。&lt;/p&gt;
+&lt;p&gt;为此，我设计了 &lt;a href=&quot;https://github.com/2258009564/project-to-template-report&quot;&gt;project-to-template-report&lt;/a&gt;，一套“更适合哈理工宝宝体质”的 Word 报告 Skill，其他学校的模板也能用。&lt;strong&gt;需求随口说，模板和材料交给它，等着收报告就行。&lt;/strong&gt; 从读要求、写正文，到做图表、审稿和排版，它会按技能里的流程接着完成。&lt;/p&gt;
+&lt;p&gt;::github{repo=&quot;2258009564/project-to-template-report&quot;}&lt;/p&gt;
+&lt;h2&gt;快速入门：说一句话，等一份完整报告&lt;/h2&gt;
+&lt;p&gt;老师的模板已经有了，代码、运行截图和参考资料也都在电脑里。接下来，你可以直接对 AI 说：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;部署 https://github.com/2258009564/project-to-template-report 到本地，然后读取 D:/Desktop/实验报告资料 的内容，用这个 Skill 帮我直接完成实验报告，完成版放在这个文件夹里。
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;把路径换成自己的材料位置，发给已经配置好的 &lt;strong&gt;DeepSeek Harness，简称 dsh&lt;/strong&gt;，就可以开始了。模板里的章节和图表要求由它自己读取，你再补充这次作业的特殊要求即可。&lt;/p&gt;
+&lt;p&gt;下面是项目 README 展示的三份&lt;strong&gt;一次性生成的报告成果&lt;/strong&gt;，个人信息已遮盖，可以直接看看实际的内容和排版效果。&lt;/p&gt;
+&lt;p&gt;算法设计与分析实验报告：沿用老师的表格模板，完成封面、实验说明、算法描述与代码。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;./showcase-algorithms.png&quot; alt=&quot;一次生成的算法实验报告：封面、实验说明与代码，个人信息已遮盖&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;软件体系结构与设计模式报告：封面、目录、分级标题和正文表格，按同一套模板组织。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;./showcase-architecture.png&quot; alt=&quot;一次生成的软件体系结构报告：封面、目录、正文与表格，个人信息已遮盖&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;系统分析与设计课程报告：正文分析、对比表格和系统架构图一起制作、编排。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;./showcase-course-design.png&quot; alt=&quot;一次生成的系统分析与设计报告：正文、对比表与架构图，个人信息已遮盖&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;第一次用 dsh，可以先让 DeepSeek 带你安装、配置和测试，再到 dsh 里交报告任务。&lt;strong&gt;跟着下面两步走就行。&lt;/strong&gt;&lt;/p&gt;
+&lt;h3&gt;第一步：打开 DeepSeek 网页版，把这段提示词发给它&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;都已经是 AI 时代了，装软件、配环境，也让 AI 带着做。&lt;/strong&gt; 直接打开 &lt;a href=&quot;https://chat.deepseek.com/&quot;&gt;DeepSeek 网页版&lt;/a&gt;，把下面的提示词复制发给它，跟着提示一步步把 dsh 配好就行。遇到看不懂的界面，也可以截图问它。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;你现在是我的 DeepSeek Harness（简称 dsh）入门向导。我正在使用 DeepSeek 网页版聊天，请一步步带我完成 dsh 官方桌面端的下载、安装、模型接入和可用性测试，让我最后能直接把本地实验报告任务交给它。
+
+我是新手，请按下面的方式带我操作：
+
+1. 每轮教我做一小步，选一条适合我的操作路线，说清楚打开哪个页面、点击什么、填写什么，以及成功后会看到什么。等我回复结果，再继续下一步。
+
+2. 先问我使用 Windows 还是 macOS，以及现在进行到哪一步。已经完成的步骤直接跳过；如果我已经能在 dsh 里正常使用模型，就直接进入测试。
+
+3. 从官方入口 https://www.deepseek.com/download/ 带我找到 DeepSeek Harness 桌面端并下载安装。告诉我接下来哪些操作在 DeepSeek 网页里做，哪些在 Harness 里做。能联网时先核对当前页面；无法联网时，根据我提供的界面文字或截图指导。
+
+4. 安装后指导我接入模型。账号登录后已有可用模型，就直接使用；需要 API Key 时，带我进入 https://platform.deepseek.com/ 创建密钥，再教我填入 dsh 的“设置 → 模型”。简单解释 API Key 是什么、在哪里复制、粘贴到哪个输入框。密钥由我直接填进设置。需要选择工作区时，先选桌面。
+
+5. 配置后做两项实际测试：先让我在 dsh 发送一条简单消息，确认模型正常回复；再给我一条可复制的指令，让 dsh 在实际的桌面目录创建“dsh测试.txt”，写入“本地文件操作测试成功”。让 dsh 先确认桌面的实际位置，已有同名文件时换个文件名。让我打开文件核对内容，两项都通过才算准备完成。
+
+6. 遇到问题，先看我提供的报错或截图，每次给出一个针对当前问题的处理步骤，再根据结果继续。你在网页里指导，我按提示操作，本地文件测试由 dsh 执行。以实际回复和文件内容判断是否成功。
+
+7. 两项测试通过后，告诉我 dsh 已经配置完成，提醒我回到原教程帖，继续第二步。引导到这里结束。
+
+讲解以眼前的操作为主，报告技能留到教程第二步交给 dsh 处理。现在先问我使用的操作系统和当前进度。
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;第二步：到 dsh 发一句话，直接做完报告&lt;/h3&gt;
+&lt;p&gt;前面的向导带你测通以后，打开 dsh 的对话框，把技能仓库地址和材料路径一起丢给它：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;部署 https://github.com/2258009564/project-to-template-report 到本地，然后读取 D:/Desktop/实验报告资料 的内容，用这个 Skill 帮我直接完成实验报告，完成版另存到这个文件夹里，保留原模板。
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;把示例路径换成你电脑上复制出来的真实路径就行。&lt;/strong&gt; 文件夹里放老师的模板、实验要求和已有代码、截图等资料；分散在不同位置的，也可以把几个路径一起发给它。有特别要求，就顺口补一句“只做实验二”“封面已填好，别改”或“按学号姓名命名”。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;./request-brief.png&quot; alt=&quot;简短需求示例：告诉助手材料位置和命名要求&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;./request-template.png&quot; alt=&quot;模板需求示例：提供封面与格式参考，让助手完成报告&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;这两张图就是实际提需求的例子。交代材料在哪、想做什么就够了，技能部署、读取模板和后续制作由 dsh 接着处理。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;如果报告必填的姓名、学号、班级等个人信息还不知道，它默认会停下来集中询问，等你回答后再继续。&lt;/strong&gt; 已经从材料或本地记录中明确的信息会直接复用。第一次补充时，可以顺手说“这些常用信息可以记在本地，以后做报告直接用”，下次做报告时，它就会先读这些记录。&lt;/p&gt;
+&lt;p&gt;剩下的时间等它处理，保持电脑开机，有需要确认的提示时按界面处理。完成后打开它给出的 Word 文件，核对题目、个人信息和实验结果；想改哪里，就在原对话里说“心得结合我的代码写具体一点”“这里加一张流程图”，让它接着修改。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;以后再做报告，直接重复第二步：换份材料，说句需求，等它完成。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;关于这个 Skill 的详细介绍、功能和使用示例，都放在 &lt;a href=&quot;https://github.com/2258009564/project-to-template-report#readme&quot;&gt;项目 README&lt;/a&gt; 里了。觉得好用的话，欢迎顺手点个 &lt;strong&gt;Star&lt;/strong&gt;！下面简要介绍一下它的技术细节。&lt;/p&gt;
+&lt;h2&gt;技术细节：技能内部怎样完成这件事&lt;/h2&gt;
+&lt;h3&gt;读取实际格式，在模板副本上编写&lt;/h3&gt;
+&lt;p&gt;技能通过 Word 自动化读取模板的段落、字体、标题、表格和分节等信息，以实际格式为依据。模板样式名相同，实际字号、缩进或间距也可能不同，因此需要先检查再使用。&lt;/p&gt;
+&lt;p&gt;正文先按标题、段落、图表等类型整理，再批量写入模板并套用格式。修改在副本上进行，封面和指定保留的区域沿用原样；局部修改则围绕选定内容处理。&lt;/p&gt;
+&lt;h3&gt;按任务加载需要的能力&lt;/h3&gt;
+&lt;p&gt;技能入口是 &lt;code&gt;SKILL.md&lt;/code&gt;，相关规则在 &lt;code&gt;references&lt;/code&gt;，复用脚本在 &lt;code&gt;scripts&lt;/code&gt;。普通报告读取对应的模板、内容与验证规则；软件项目报告再结合项目证据，有图示要求时再加载图表制作与检查规则。&lt;/p&gt;
+&lt;p&gt;dsh 会根据报告内容读取相关说明和调用脚本，仓库地址和材料路径就是这套流程的入口。&lt;/p&gt;
+&lt;h3&gt;本地记忆与最终检查&lt;/h3&gt;
+&lt;p&gt;个人信息和反馈单独记在本地，带有来源、日期和适用范围。以后做报告时先读取相关记录，以本次要求为准；这些私人记录与公开技能分开存放。&lt;/p&gt;
+&lt;p&gt;报告生成后，先核对内容和结构，再把页面渲染出来逐页检查，查看表格、图片和文字的位置。最终分页以 Word 中的实际效果为准。&lt;/p&gt;
+&lt;p&gt;相关入口：&lt;a href=&quot;https://github.com/2258009564/project-to-template-report&quot;&gt;Word 报告 Skill 与 README&lt;/a&gt;、&lt;a href=&quot;https://www.deepseek.com/download/&quot;&gt;DeepSeek 官方下载&lt;/a&gt;、&lt;a href=&quot;https://deepseek-harness.github.io/deepseek-harness/guide/providers&quot;&gt;模型配置说明&lt;/a&gt;。入口按 2026 年 10 月 24 日核对。&lt;/p&gt;
 </content:encoded></item><item><title>2026 CCPC 长春站游记</title><link>https://alisa22580.com/posts/2026-ccpc-changchun/</link><guid isPermaLink="true">https://alisa22580.com/posts/2026-ccpc-changchun/</guid><description>铜牌收工。记录一下热身赛的抽象、正赛的挣扎，以及一点还没完全放下的银牌念想。</description><pubDate>Mon, 19 Oct 2026 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;第一次参加区域赛，大二因为太区了没拿到名额&lt;/p&gt;
 &lt;p&gt;第一场就拿到铜其实对我来说已经达到大学阶段算法竞赛能取得的至高成就了，相比之下蓝桥杯国一和省赛金是真没含金量啊（笑&lt;/p&gt;
 &lt;p&gt;感觉银牌没啥戏了，reg的铜银（在大部分场次）还是很有区分度的，这场要想ag我得再做两题&lt;/p&gt;
