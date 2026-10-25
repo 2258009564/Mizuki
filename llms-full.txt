@@ -6,7 +6,7 @@
 
 ## 个人常用算法模板
 
-- **URL**: https://alisa22580.com/posts/lanqiao-cpp-b-common/
+- **URL**: https://blog.alisa22580.com/posts/lanqiao-cpp-b-common/
 - **Published**: 2026-04-10
 - **Category**: Tutorial
 - **Tags**: 算法竞赛, C++, 代码模板
@@ -3679,7 +3679,7 @@ public:
 
 ## 本博客的搭建教程
 
-- **URL**: https://alisa22580.com/posts/my-blog-build-tutorial/
+- **URL**: https://blog.alisa22580.com/posts/my-blog-build-tutorial/
 - **Published**: 2026-03-12
 - **Category**: Tutorial
 - **Tags**: Tutorial, Demo
@@ -4073,7 +4073,7 @@ export const commentConfig: CommentConfig = {
 
 ## 一句话，让 AI 帮你完成实验报告
 
-- **URL**: https://alisa22580.com/posts/dsh-word-report-tutorial/
+- **URL**: https://blog.alisa22580.com/posts/dsh-word-report-tutorial/
 - **Published**: 2026-10-24
 - **Category**: Tutorial
 - **Tags**: AI, Word, 实验报告
@@ -4192,7 +4192,7 @@ dsh 会根据报告内容读取相关说明和调用脚本，仓库地址和材�
 
 ## 2026 CCPC 长春站游记
 
-- **URL**: https://alisa22580.com/posts/2026-ccpc-changchun/
+- **URL**: https://blog.alisa22580.com/posts/2026-ccpc-changchun/
 - **Published**: 2026-10-19
 - **Category**: 杂谈
 - **Tags**: 算法竞赛
@@ -4264,7 +4264,7 @@ THU 去年出的上海站题被喷得挺惨，今年开幕式上说“我们已�
 
 ## 2026 ICPC 沈阳站游记
 
-- **URL**: https://alisa22580.com/posts/2026-icpcsy/
+- **URL**: https://blog.alisa22580.com/posts/2026-icpcsy/
 - **Published**: 2026-07-29
 - **Category**: 杂谈
 - **Tags**: 算法竞赛
@@ -4328,7 +4328,7 @@ THU 去年出的上海站题被喷得挺惨，今年开幕式上说“我们已�
 
 ## 一场幻梦
 
-- **URL**: https://alisa22580.com/posts/a-dream/
+- **URL**: https://blog.alisa22580.com/posts/a-dream/
 - **Published**: 2026-07-26
 - **Category**: 杂谈
 - **Tags**: 杂谈
@@ -4370,7 +4370,7 @@ THU 去年出的上海站题被喷得挺惨，今年开幕式上说“我们已�
 
 ## CFBetter 快速配置 AI 翻译（接入 DeepSeek V4 Flash）
 
-- **URL**: https://alisa22580.com/posts/cfbetter-deepseek-ai-translation/
+- **URL**: https://blog.alisa22580.com/posts/cfbetter-deepseek-ai-translation/
 - **Published**: 2026-06-07
 - **Category**: Tutorial
 - **Tags**: Tutorial, Codeforces, CFBetter
@@ -4540,7 +4540,7 @@ AI 翻译的速度取决于 DeepSeek 服务器的响应时间，通常在 2-5 �
 
 ## 2026东北赛游记
 
-- **URL**: https://alisa22580.com/posts/2026-dbcpc/
+- **URL**: https://blog.alisa22580.com/posts/2026-dbcpc/
 - **Published**: 2026-05-24
 - **Category**: 杂谈
 - **Tags**: 算法竞赛
@@ -4560,7 +4560,7 @@ AI 翻译的速度取决于 DeepSeek 服务器的响应时间，通常在 2-5 �
 
 ## vscode 快速配置 g++
 
-- **URL**: https://alisa22580.com/posts/vscode-run-code-tutorial/
+- **URL**: https://blog.alisa22580.com/posts/vscode-run-code-tutorial/
 - **Published**: 2026-04-13
 - **Category**: Tutorial
 - **Tags**: vscode, 算法竞赛
@@ -4807,7 +4807,7 @@ g++ main.cpp -o main -Wall -std=c++11 && ./main
 
 ## 蓝桥杯 C++ B 组省赛 A-H 题解（2026）
 
-- **URL**: https://alisa22580.com/posts/lanqiao-cpp-b-solutions/
+- **URL**: https://blog.alisa22580.com/posts/lanqiao-cpp-b-solutions/
 - **Published**: 2026-04-11
 - **Category**: Tutorial
 - **Tags**: 蓝桥杯, 算法竞赛, 题解
@@ -5471,7 +5471,7 @@ void solve()
 
 ## GKD：李跳跳的平替推荐
 
-- **URL**: https://alisa22580.com/posts/gkd-shizuku-usage-tutorial/
+- **URL**: https://blog.alisa22580.com/posts/gkd-shizuku-usage-tutorial/
 - **Published**: 2026-04-09
 - **Category**: Tutorial
 - **Tags**: Tutorial, Android, GKD, Shizuku, ADB
@@ -5624,7 +5624,7 @@ https://raw.githubusercontent.com/AIsouler/GKD_subscription/main/dist/AIsouler_g
 
 ## 简短的 VPN 使用教程
 
-- **URL**: https://alisa22580.com/posts/vpn-usage-tutorial/
+- **URL**: https://blog.alisa22580.com/posts/vpn-usage-tutorial/
 - **Published**: 2026-04-03
 - **Category**: Tutorial
 - **Tags**: Tutorial, VPN
@@ -5724,7 +5724,7 @@ clash 是 基于规则的软件内代理核心 ...
 
 ## SelectEcho 入门教程：从安装到第一次划词翻译
 
-- **URL**: https://alisa22580.com/posts/selectecho-getting-started/
+- **URL**: https://blog.alisa22580.com/posts/selectecho-getting-started/
 - **Published**: 2026-03-15
 - **Category**: Tutorial
 - **Tags**: Tutorial, SelectEcho
@@ -5930,7 +5930,7 @@ cd SelectEcho
 
 ## test
 
-- **URL**: https://alisa22580.com/posts/test/
+- **URL**: https://blog.alisa22580.com/posts/test/
 - **Published**: 2026-03-11
 - **Category**: Examples
 - **Tags**: Markdown, Demo

@@ -5,25 +5,25 @@
 This is the llms.txt file for from alisa. It provides a machine-readable directory of published articles and core pages for Large Language Models.
 
 ## Core Pages
-- [Home](https://alisa22580.com/): Main blog entrance and latest post stream.
-- [About](https://alisa22580.com/about/): Author profile, technical stack, and background.
-- [Archive](https://alisa22580.com/archive/): Chronological index of all published writings.
+- [Home](https://blog.alisa22580.com/): Main blog entrance and latest post stream.
+- [About](https://blog.alisa22580.com/about/): Author profile, technical stack, and background.
+- [Archive](https://blog.alisa22580.com/archive/): Chronological index of all published writings.
 
 ## Articles
-- [个人常用算法模板](https://alisa22580.com/posts/lanqiao-cpp-b-common/): 算法竞赛常用 C++ 模板与临场速查
-- [本博客的搭建教程](https://alisa22580.com/posts/my-blog-build-tutorial/): 和我一起，开启博客生涯。
-- [一句话，让 AI 帮你完成实验报告](https://alisa22580.com/posts/dsh-word-report-tutorial/): 实质是对harness使用的简单扫盲以及对个人word制作skill的推广
-- [2026 CCPC 长春站游记](https://alisa22580.com/posts/2026-ccpc-changchun/): 流水账一篇
-- [2026 ICPC 沈阳站游记](https://alisa22580.com/posts/2026-icpcsy/): 流水账一篇
-- [一场幻梦](https://alisa22580.com/posts/a-dream/): 希望我将来也不要留下遗憾。
-- [CFBetter 快速配置 AI 翻译（接入 DeepSeek V4 Flash）](https://alisa22580.com/posts/cfbetter-deepseek-ai-translation/): 在 Codeforces Better 中接入 DeepSeek V4 Flash
-- [2026东北赛游记](https://alisa22580.com/posts/2026-dbcpc/): 流水账一篇
-- [vscode 快速配置 g++](https://alisa22580.com/posts/vscode-run-code-tutorial/): 可以作为 从 Dev-C++ / CodeBlocks 等 古老 IDE 过渡到 vscode 的快速替代方案
-- [蓝桥杯 C++ B 组省赛 A-H 题解（2026）](https://alisa22580.com/posts/lanqiao-cpp-b-solutions/): 完整(?)复盘
-- [GKD：李跳跳的平替推荐](https://alisa22580.com/posts/gkd-shizuku-usage-tutorial/): GKD 使用教程，以及一些 Root、Shizuku、ADB 相关的原理学习
-- [简短的 VPN 使用教程](https://alisa22580.com/posts/vpn-usage-tutorial/): 内含丛雨云推荐（更适合二次元宝宝体质）
-- [SelectEcho 入门教程：从安装到第一次划词翻译](https://alisa22580.com/posts/selectecho-getting-started/): 一篇给零基础用户的完整上手指南：安装、配置、实操、排错和进阶建议。
-- [test](https://alisa22580.com/posts/test/): 这是一个测试文章，用于验证博客系统的功能是否正常。
+- [个人常用算法模板](https://blog.alisa22580.com/posts/lanqiao-cpp-b-common/): 算法竞赛常用 C++ 模板与临场速查
+- [本博客的搭建教程](https://blog.alisa22580.com/posts/my-blog-build-tutorial/): 和我一起，开启博客生涯。
+- [一句话，让 AI 帮你完成实验报告](https://blog.alisa22580.com/posts/dsh-word-report-tutorial/): 实质是对harness使用的简单扫盲以及对个人word制作skill的推广
+- [2026 CCPC 长春站游记](https://blog.alisa22580.com/posts/2026-ccpc-changchun/): 流水账一篇
+- [2026 ICPC 沈阳站游记](https://blog.alisa22580.com/posts/2026-icpcsy/): 流水账一篇
+- [一场幻梦](https://blog.alisa22580.com/posts/a-dream/): 希望我将来也不要留下遗憾。
+- [CFBetter 快速配置 AI 翻译（接入 DeepSeek V4 Flash）](https://blog.alisa22580.com/posts/cfbetter-deepseek-ai-translation/): 在 Codeforces Better 中接入 DeepSeek V4 Flash
+- [2026东北赛游记](https://blog.alisa22580.com/posts/2026-dbcpc/): 流水账一篇
+- [vscode 快速配置 g++](https://blog.alisa22580.com/posts/vscode-run-code-tutorial/): 可以作为 从 Dev-C++ / CodeBlocks 等 古老 IDE 过渡到 vscode 的快速替代方案
+- [蓝桥杯 C++ B 组省赛 A-H 题解（2026）](https://blog.alisa22580.com/posts/lanqiao-cpp-b-solutions/): 完整(?)复盘
+- [GKD：李跳跳的平替推荐](https://blog.alisa22580.com/posts/gkd-shizuku-usage-tutorial/): GKD 使用教程，以及一些 Root、Shizuku、ADB 相关的原理学习
+- [简短的 VPN 使用教程](https://blog.alisa22580.com/posts/vpn-usage-tutorial/): 内含丛雨云推荐（更适合二次元宝宝体质）
+- [SelectEcho 入门教程：从安装到第一次划词翻译](https://blog.alisa22580.com/posts/selectecho-getting-started/): 一篇给零基础用户的完整上手指南：安装、配置、实操、排错和进阶建议。
+- [test](https://blog.alisa22580.com/posts/test/): 这是一个测试文章，用于验证博客系统的功能是否正常。
 
 ## Full Text Dump
-- [Full Text Archive](https://alisa22580.com/llms-full.txt): Complete, concatenated Markdown content of all public articles for full-context ingestion.
+- [Full Text Archive](https://blog.alisa22580.com/llms-full.txt): Complete, concatenated Markdown content of all public articles for full-context ingestion.
