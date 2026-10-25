@@ -1,6 +1,6 @@
 ---
-title: 2026广西邀请赛 桂林游 / 补题 / 感想
-description: 我才是我的全部
+title: 2026 XCPC 桂林站游记
+description: 流水账一篇
 published: 2026-06-03
 updated: 2026-06-06T22:25:04Z
 category: 杂谈

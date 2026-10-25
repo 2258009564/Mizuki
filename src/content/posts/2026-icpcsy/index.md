@@ -1,5 +1,5 @@
 ---
-title: 2026ICPC沈阳 赛站游记
+title: 2026 ICPC 沈阳站游记
 description: 流水账一篇
 published: 2026-07-29
 updated: 2026-08-13T09:31:21Z
