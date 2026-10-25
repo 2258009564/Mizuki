@@ -1,5 +1,5 @@
 ---
-title: 2026 XCPC 桂林站游记
+title: 2026 ICPC 桂林站游记
 description: 流水账一篇
 published: 2026-06-03
 updated: 2026-06-06T22:25:04Z
