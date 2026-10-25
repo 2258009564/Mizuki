@@ -3889,7 +3889,8 @@ Root directory: /
 &lt;p&gt;第一次用 dsh，可以先让 DeepSeek 带你安装、配置和测试，再到 dsh 里交报告任务。&lt;strong&gt;跟着下面两步走就行。&lt;/strong&gt;&lt;/p&gt;
 &lt;h3&gt;第一步：打开 DeepSeek 网页版，把这段提示词发给它&lt;/h3&gt;
 &lt;p&gt;&lt;strong&gt;都已经是 AI 时代了，装软件、配环境，也让 AI 带着做。&lt;/strong&gt; 直接打开 &lt;a href=&quot;https://chat.deepseek.com/&quot;&gt;DeepSeek 网页版&lt;/a&gt;，把下面的提示词复制发给它，跟着提示一步步把 dsh 配好就行。遇到看不懂的界面，也可以截图问它。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;你现在是我的 DeepSeek Harness（简称 dsh）入门向导。我正在使用 DeepSeek 网页版聊天，请一步步带我完成 dsh 官方桌面端的下载、安装、模型接入和可用性测试，让我最后能直接把本地实验报告任务交给它。
+&lt;p&gt;dsh 直接登录 DeepSeek 账号就能使用，付费调用需要账号里有余额。&lt;strong&gt;可以先充 2 元试试：做一份完整的 Word 报告，消耗可以低于 1 元。&lt;/strong&gt; 实际费用随模型、篇幅和修改次数变化，以账单为准。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;你现在是我的 DeepSeek Harness（简称 dsh）入门向导。我正在使用 DeepSeek 网页版聊天，请一步步带我完成 dsh 官方桌面端的下载、安装、账号登录、充值和可用性测试，让我最后能直接把本地实验报告任务交给它。
 
 我是新手，请按下面的方式带我操作：
 
@@ -3899,7 +3900,7 @@ Root directory: /
 
 3. 从官方入口 https://www.deepseek.com/download/ 带我找到 DeepSeek Harness 桌面端并下载安装。告诉我接下来哪些操作在 DeepSeek 网页里做，哪些在 Harness 里做。能联网时先核对当前页面；无法联网时，根据我提供的界面文字或截图指导。
 
-4. 安装后指导我接入模型。账号登录后已有可用模型，就直接使用；需要 API Key 时，带我进入 https://platform.deepseek.com/ 创建密钥，再教我填入 dsh 的“设置 → 模型”。简单解释 API Key 是什么、在哪里复制、粘贴到哪个输入框。密钥由我直接填进设置。需要选择工作区时，先选桌面。
+4. 安装后带我直接登录 DeepSeek 账号，选用账号里的模型。接着指导我查看余额，找到充值入口，通过 DeepSeek 开放平台为同一账号充值；余额充足就继续测试。可以先充 2 元体验，按当前页面提供的金额选项操作，支付由我自己完成。根据实际余额更新确认充值结果。需要选择工作区时，先选桌面。
 
 5. 配置后做两项实际测试：先让我在 dsh 发送一条简单消息，确认模型正常回复；再给我一条可复制的指令，让 dsh 在实际的桌面目录创建“dsh测试.txt”，写入“本地文件操作测试成功”。让 dsh 先确认桌面的实际位置，已有同名文件时换个文件名。让我打开文件核对内容，两项都通过才算准备完成。
 
@@ -3931,7 +3932,7 @@ Root directory: /
 &lt;h3&gt;本地记忆与最终检查&lt;/h3&gt;
 &lt;p&gt;个人信息和反馈单独记在本地，带有来源、日期和适用范围。以后做报告时先读取相关记录，以本次要求为准；这些私人记录与公开技能分开存放。&lt;/p&gt;
 &lt;p&gt;报告生成后，先核对内容和结构，再把页面渲染出来逐页检查，查看表格、图片和文字的位置。最终分页以 Word 中的实际效果为准。&lt;/p&gt;
-&lt;p&gt;相关入口：&lt;a href=&quot;https://github.com/2258009564/project-to-template-report&quot;&gt;Word 报告 Skill 与 README&lt;/a&gt;、&lt;a href=&quot;https://www.deepseek.com/download/&quot;&gt;DeepSeek 官方下载&lt;/a&gt;、&lt;a href=&quot;https://deepseek-harness.github.io/deepseek-harness/guide/providers&quot;&gt;模型配置说明&lt;/a&gt;。入口按 2026 年 10 月 24 日核对。&lt;/p&gt;
+&lt;p&gt;相关入口：&lt;a href=&quot;https://github.com/2258009564/project-to-template-report&quot;&gt;Word 报告 Skill 与 README&lt;/a&gt;、&lt;a href=&quot;https://www.deepseek.com/download/&quot;&gt;DeepSeek 官方下载&lt;/a&gt;、&lt;a href=&quot;https://platform.deepseek.com/&quot;&gt;DeepSeek 开放平台&lt;/a&gt;。入口按 2026 年 10 月 24 日核对。&lt;/p&gt;
 </content:encoded></item><item><title>2026 CCPC 长春站游记</title><link>https://alisa22580.com/posts/2026-ccpc-changchun/</link><guid isPermaLink="true">https://alisa22580.com/posts/2026-ccpc-changchun/</guid><description>铜牌收工。记录一下热身赛的抽象、正赛的挣扎，以及一点还没完全放下的银牌念想。</description><pubDate>Mon, 19 Oct 2026 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;第一次参加区域赛，大二因为太区了没拿到名额&lt;/p&gt;
 &lt;p&gt;第一场就拿到铜其实对我来说已经达到大学阶段算法竞赛能取得的至高成就了，相比之下蓝桥杯国一和省赛金是真没含金量啊（笑&lt;/p&gt;
 &lt;p&gt;感觉银牌没啥戏了，reg的铜银（在大部分场次）还是很有区分度的，这场要想ag我得再做两题&lt;/p&gt;
