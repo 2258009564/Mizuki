@@ -3874,12 +3874,8 @@ Root directory: /
 &lt;p&gt;为此，我设计了 &lt;a href=&quot;https://github.com/2258009564/project-to-template-report&quot;&gt;project-to-template-report&lt;/a&gt;，一套“更适合哈理工宝宝体质”的 Word 报告 Skill，其他学校的模板也能用。&lt;strong&gt;需求随口说，模板和材料交给它，等着收报告就行。&lt;/strong&gt; 从读要求、写正文，到做图表、审稿和排版，它会按技能里的流程接着完成。&lt;/p&gt;
 &lt;p&gt;::github{repo=&quot;2258009564/project-to-template-report&quot;}&lt;/p&gt;
 &lt;p&gt;如果用下来觉得好用，欢迎分享给身边也在赶报告的朋友，也可以到 &lt;a href=&quot;https://github.com/2258009564/project-to-template-report&quot;&gt;项目页&lt;/a&gt; 点个 &lt;strong&gt;Star&lt;/strong&gt;，支持一下。&lt;/p&gt;
-&lt;h2&gt;快速入门：说一句话，等一份完整报告&lt;/h2&gt;
-&lt;p&gt;老师的模板已经有了，代码、运行截图和参考资料也都在电脑里。接下来，你可以直接对 AI 说：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;部署 https://github.com/2258009564/project-to-template-report 到本地，然后读取 D:/Desktop/实验报告资料 的内容，用这个 Skill 帮我直接完成实验报告，完成版放在这个文件夹里。
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;把路径换成自己的材料位置，发给已经配置好的 &lt;strong&gt;DeepSeek Harness，简称 dsh&lt;/strong&gt;，就可以开始了。模板里的章节和图表要求由它自己读取，你再补充这次作业的特殊要求即可。&lt;/p&gt;
-&lt;p&gt;下面是项目 README 展示的三份&lt;strong&gt;一次性生成的报告成果&lt;/strong&gt;，个人信息已遮盖，可以直接看看实际的内容和排版效果。&lt;/p&gt;
+&lt;h2&gt;使用示例：一次性生成报告&lt;/h2&gt;
+&lt;p&gt;下面是项目 README 展示的三份&lt;strong&gt;一次性生成的报告成果&lt;/strong&gt;，可以简单看看实际的内容和排版效果。&lt;/p&gt;
 &lt;p&gt;算法设计与分析实验报告：沿用老师的表格模板，完成封面、实验说明、算法描述与代码。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;./showcase-algorithms.png&quot; alt=&quot;一次生成的算法实验报告：封面、实验说明与代码，个人信息已遮盖&quot; /&gt;&lt;/p&gt;
 &lt;p&gt;软件体系结构与设计模式报告：封面、目录、分级标题和正文表格，按同一套模板组织。&lt;/p&gt;
@@ -3890,6 +3886,7 @@ Root directory: /
 &lt;h3&gt;第一步：打开 DeepSeek 网页版，把这段提示词发给它&lt;/h3&gt;
 &lt;p&gt;&lt;strong&gt;都已经是 AI 时代了，装软件、配环境，也让 AI 带着做。&lt;/strong&gt; 直接打开 &lt;a href=&quot;https://chat.deepseek.com/&quot;&gt;DeepSeek 网页版&lt;/a&gt;，把下面的提示词复制发给它，跟着提示一步步把 dsh 配好就行。遇到看不懂的界面，也可以截图问它。&lt;/p&gt;
 &lt;p&gt;dsh 直接登录 DeepSeek 账号就能使用，付费调用需要账号里有余额。&lt;strong&gt;可以先充 2 元试试：做一份完整的 Word 报告，消耗可以低于 1 元。&lt;/strong&gt; 实际费用随模型、篇幅和修改次数变化，以账单为准。&lt;/p&gt;
+&lt;p&gt;提示词如下：&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;你现在是我的 DeepSeek Harness（简称 dsh）入门向导。我正在使用 DeepSeek 网页版聊天，请一步步带我完成 dsh 官方桌面端的下载、安装、账号登录、充值和可用性测试，让我最后能直接把本地实验报告任务交给它。
 
 我是新手，请按下面的方式带我操作：
@@ -3912,7 +3909,7 @@ Root directory: /
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h3&gt;第二步：到 dsh 发一句话，直接做完报告&lt;/h3&gt;
 &lt;p&gt;前面的向导带你测通以后，打开 dsh 的对话框，把技能仓库地址和材料路径一起丢给它：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;部署 https://github.com/2258009564/project-to-template-report 到本地，然后读取 D:/Desktop/实验报告资料 的内容，用这个 Skill 帮我直接完成实验报告，完成版另存到这个文件夹里，保留原模板。
+&lt;pre&gt;&lt;code&gt;部署 https://github.com/2258009564/project-to-template-report 到本地，然后读取 xxxxx 的内容，用这个 Skill 帮我直接完成实验报告，完成版另存到这个文件夹里，保留原模板。
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;strong&gt;把示例路径换成你电脑上复制出来的真实路径就行。&lt;/strong&gt; 文件夹里放老师的模板、实验要求和已有代码、截图等资料；分散在不同位置的，也可以把几个路径一起发给它。有特别要求，就顺口补一句“只做实验二”“封面已填好，别改”或“按学号姓名命名”。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;./request-brief.png&quot; alt=&quot;简短需求示例：告诉助手材料位置和命名要求&quot; /&gt;&lt;/p&gt;

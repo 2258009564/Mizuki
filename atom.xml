@@ -5,7 +5,7 @@
   <link href="https://alisa22580.com/" rel="alternate" type="text/html"/>
   <link href="https://alisa22580.com/atom.xml" rel="self" type="application/atom+xml"/>
   <id>https://alisa22580.com/</id>
-  <updated>2026-10-24T21:49:29.000Z</updated>
+  <updated>2026-10-25T18:37:48.000Z</updated>
   <entry>
     <title>个人常用算法模板</title>
     <link href="https://alisa22580.com/posts/lanqiao-cpp-b-common/" rel="alternate" type="text/html"/>
@@ -3899,7 +3899,7 @@ Root directory: /
     <link href="https://alisa22580.com/posts/dsh-word-report-tutorial/" rel="alternate" type="text/html"/>
     <id>https://alisa22580.com/posts/dsh-word-report-tutorial/</id>
     <published>2026-10-24T00:00:00.000Z</published>
-    <updated>2026-10-24T21:49:29.000Z</updated>
+    <updated>2026-10-25T18:37:48.000Z</updated>
     <summary>实质是对harness使用的简单扫盲以及对个人word制作skill的推广</summary>
     <content type="html"><![CDATA[<blockquote>
 <p>[!NOTE]
@@ -3911,12 +3911,8 @@ Root directory: /
 <p>为此，我设计了 <a href="https://github.com/2258009564/project-to-template-report">project-to-template-report</a>，一套“更适合哈理工宝宝体质”的 Word 报告 Skill，其他学校的模板也能用。<strong>需求随口说，模板和材料交给它，等着收报告就行。</strong> 从读要求、写正文，到做图表、审稿和排版，它会按技能里的流程接着完成。</p>
 <p>::github{repo="2258009564/project-to-template-report"}</p>
 <p>如果用下来觉得好用，欢迎分享给身边也在赶报告的朋友，也可以到 <a href="https://github.com/2258009564/project-to-template-report">项目页</a> 点个 <strong>Star</strong>，支持一下。</p>
-<h2>快速入门：说一句话，等一份完整报告</h2>
-<p>老师的模板已经有了，代码、运行截图和参考资料也都在电脑里。接下来，你可以直接对 AI 说：</p>
-<pre><code>部署 https://github.com/2258009564/project-to-template-report 到本地，然后读取 D:/Desktop/实验报告资料 的内容，用这个 Skill 帮我直接完成实验报告，完成版放在这个文件夹里。
-</code></pre>
-<p>把路径换成自己的材料位置，发给已经配置好的 <strong>DeepSeek Harness，简称 dsh</strong>，就可以开始了。模板里的章节和图表要求由它自己读取，你再补充这次作业的特殊要求即可。</p>
-<p>下面是项目 README 展示的三份<strong>一次性生成的报告成果</strong>，个人信息已遮盖，可以直接看看实际的内容和排版效果。</p>
+<h2>使用示例：一次性生成报告</h2>
+<p>下面是项目 README 展示的三份<strong>一次性生成的报告成果</strong>，可以简单看看实际的内容和排版效果。</p>
 <p>算法设计与分析实验报告：沿用老师的表格模板，完成封面、实验说明、算法描述与代码。</p>
 <p><img src="./showcase-algorithms.png" alt="一次生成的算法实验报告：封面、实验说明与代码，个人信息已遮盖" /></p>
 <p>软件体系结构与设计模式报告：封面、目录、分级标题和正文表格，按同一套模板组织。</p>
@@ -3927,6 +3923,7 @@ Root directory: /
 <h3>第一步：打开 DeepSeek 网页版，把这段提示词发给它</h3>
 <p><strong>都已经是 AI 时代了，装软件、配环境，也让 AI 带着做。</strong> 直接打开 <a href="https://chat.deepseek.com/">DeepSeek 网页版</a>，把下面的提示词复制发给它，跟着提示一步步把 dsh 配好就行。遇到看不懂的界面，也可以截图问它。</p>
 <p>dsh 直接登录 DeepSeek 账号就能使用，付费调用需要账号里有余额。<strong>可以先充 2 元试试：做一份完整的 Word 报告，消耗可以低于 1 元。</strong> 实际费用随模型、篇幅和修改次数变化，以账单为准。</p>
+<p>提示词如下：</p>
 <pre><code>你现在是我的 DeepSeek Harness（简称 dsh）入门向导。我正在使用 DeepSeek 网页版聊天，请一步步带我完成 dsh 官方桌面端的下载、安装、账号登录、充值和可用性测试，让我最后能直接把本地实验报告任务交给它。
 
 我是新手，请按下面的方式带我操作：
@@ -3949,7 +3946,7 @@ Root directory: /
 </code></pre>
 <h3>第二步：到 dsh 发一句话，直接做完报告</h3>
 <p>前面的向导带你测通以后，打开 dsh 的对话框，把技能仓库地址和材料路径一起丢给它：</p>
-<pre><code>部署 https://github.com/2258009564/project-to-template-report 到本地，然后读取 D:/Desktop/实验报告资料 的内容，用这个 Skill 帮我直接完成实验报告，完成版另存到这个文件夹里，保留原模板。
+<pre><code>部署 https://github.com/2258009564/project-to-template-report 到本地，然后读取 xxxxx 的内容，用这个 Skill 帮我直接完成实验报告，完成版另存到这个文件夹里，保留原模板。
 </code></pre>
 <p><strong>把示例路径换成你电脑上复制出来的真实路径就行。</strong> 文件夹里放老师的模板、实验要求和已有代码、截图等资料；分散在不同位置的，也可以把几个路径一起发给它。有特别要求，就顺口补一句“只做实验二”“封面已填好，别改”或“按学号姓名命名”。</p>
 <p><img src="./request-brief.png" alt="简短需求示例：告诉助手材料位置和命名要求" /></p>
