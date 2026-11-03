@@ -31,6 +31,19 @@ jobs:
           
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
+
+      - name: Materialize content and config
+        run: pnpm content:sync
+
+      # 每次部署刷新；失败时使用仓库中的上次有效快照，构建本身仍可离线运行。
+      - name: Sync Bangumi snapshot
+        id: anime-sync
+        continue-on-error: true
+        run: pnpm anime:sync --provider bangumi
+
+      - name: Report anime sync failure
+        if: steps.anime-sync.outcome == 'failure'
+        run: echo '::warning::Bangumi sync failed; deploying the last committed snapshot.'
       
       - name: Build site
         run: pnpm run build

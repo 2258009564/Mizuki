@@ -94,19 +94,28 @@ async function fetchCollectionType(userId, type, status, options) {
 
 		const res = await fetchJson(url);
 		if (!res.ok) {
-			if (res.status === 404) {
-				console.log(
-					`   [Bangumi] User ${userId} has no data or 404 for type ${type}`,
-				);
-				return [];
-			}
-			console.warn(
-				`   [Bangumi] Request failed for type ${type}: HTTP ${res.status || res.error?.message}`,
+			// 任何一页失败都不能发布部分收藏，交由同步入口保留旧快照并报告失败。
+			throw new Error(
+				`[Bangumi] Collection type ${type} at offset ${offset} failed: ${res.status ? `HTTP ${res.status}` : res.error?.message}`,
 			);
-			break;
 		}
 
 		const data = res.data;
+		if (
+			!data ||
+			!Array.isArray(data.data) ||
+			!Number.isInteger(data.total) ||
+			data.total < 0
+		) {
+			throw new Error(
+				`[Bangumi] Invalid collection response for type ${type} at offset ${offset}`,
+			);
+		}
+		if (data.data.length < Math.min(limit, Math.max(0, data.total - offset))) {
+			throw new Error(
+				`[Bangumi] Incomplete collection response for type ${type} at offset ${offset}`,
+			);
+		}
 		if (data && Array.isArray(data.data) && data.data.length > 0) {
 			collected.push(...data.data);
 			if (
