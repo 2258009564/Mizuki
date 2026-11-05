@@ -1,4 +1,8 @@
 enum I18nKey {
+	navLinks = "navLinks",
+	navPersonal = "navPersonal",
+	navOthers = "navOthers",
+	coursework = "coursework",
 	home = "home",
 	notFound = "notFound",
 	notFoundTitle = "notFoundTitle",

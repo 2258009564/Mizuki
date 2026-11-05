@@ -2,6 +2,11 @@ import Key from "../i18nKey-runtime.mjs";
 import type { Translation } from "../translation.ts";
 
 export const zh_CN: Translation = {
+	[Key.navLinks]: "链接",
+	[Key.navPersonal]: "我的",
+	[Key.navOthers]: "其他",
+	[Key.coursework]: "课程实验",
+
 	[Key.home]: "主页",
 	[Key.about]: "关于",
 	[Key.archive]: "归档",

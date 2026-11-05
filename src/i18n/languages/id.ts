@@ -2,6 +2,11 @@ import Key from "../i18nKey-runtime.mjs";
 import type { Translation } from "../translation.ts";
 
 export const id: Translation = {
+	[Key.navLinks]: "Tautan",
+	[Key.navPersonal]: "Ruang saya",
+	[Key.navOthers]: "Lainnya",
+	[Key.coursework]: "Praktikum",
+
 	[Key.home]: "Beranda",
 	[Key.about]: "Tentang",
 	[Key.archive]: "Arsip",

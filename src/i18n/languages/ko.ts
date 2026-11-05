@@ -2,6 +2,11 @@ import Key from "../i18nKey-runtime.mjs";
 import type { Translation } from "../translation.ts";
 
 export const ko: Translation = {
+	[Key.navLinks]: "링크",
+	[Key.navPersonal]: "내 공간",
+	[Key.navOthers]: "더 보기",
+	[Key.coursework]: "수업 실습",
+
 	[Key.home]: "홈",
 	[Key.about]: "소개",
 	[Key.archive]: "아카이브",

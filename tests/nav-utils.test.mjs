@@ -139,3 +139,14 @@ test("pruneUnavailableNavLinks keeps every link when nothing is disabled", () =>
 		["/", "/moments/"],
 	);
 });
+
+test("coursework navigation stays active for direct and base-prefixed routes", () => {
+	assert.equal(
+		resolvePageKey(new URL("https://example.com/coursework/")),
+		"coursework",
+	);
+	assert.equal(
+		resolvePageKey(new URL("https://example.com/blog/coursework/"), "/blog/"),
+		"coursework",
+	);
+});

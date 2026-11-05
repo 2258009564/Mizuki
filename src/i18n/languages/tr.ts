@@ -2,6 +2,11 @@ import Key from "../i18nKey-runtime.mjs";
 import type { Translation } from "../translation.ts";
 
 export const tr: Translation = {
+	[Key.navLinks]: "Bağlantılar",
+	[Key.navPersonal]: "Alanım",
+	[Key.navOthers]: "Diğer",
+	[Key.coursework]: "Ders laboratuvarları",
+
 	[Key.home]: "Anasayfa",
 	[Key.about]: "Hakkında",
 	[Key.archive]: "Arşiv",

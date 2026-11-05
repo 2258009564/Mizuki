@@ -2,6 +2,11 @@ import Key from "../i18nKey-runtime.mjs";
 import type { Translation } from "../translation.ts";
 
 export const vi: Translation = {
+	[Key.navLinks]: "Liên kết",
+	[Key.navPersonal]: "Góc cá nhân",
+	[Key.navOthers]: "Khác",
+	[Key.coursework]: "Thực hành môn học",
+
 	[Key.home]: "Trang chủ",
 	[Key.about]: "Giới thiệu",
 	[Key.archive]: "Kho bài",

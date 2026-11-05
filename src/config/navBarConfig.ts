@@ -140,19 +140,19 @@ export const LinkPresets: Record<string, NavBarLink> = {
 const defaultNavBarConfig: NavBarConfig = {
 	links: [
 		{
-			name: "首页",
+			name: i18n(I18nKey.home),
 			url: "/",
 			icon: "material-symbols:home-rounded",
 			pageKey: "home",
 		},
 		{
-			name: "归档",
+			name: i18n(I18nKey.archive),
 			url: "/archive/",
 			icon: "material-symbols:archive-rounded",
 			pageKey: "archive",
 		},
 		{
-			name: "Links",
+			name: i18n(I18nKey.navLinks),
 			url: "#",
 			icon: "material-symbols:link",
 			children: [
@@ -163,7 +163,7 @@ const defaultNavBarConfig: NavBarConfig = {
 					icon: "fa7-brands:github",
 				},
 				{
-					name: "Bilibili",
+					name: i18n(I18nKey.animeSourceBilibili),
 					url: "https://space.bilibili.com/98732441",
 					external: true,
 					icon: "fa7-brands:bilibili",
@@ -177,61 +177,67 @@ const defaultNavBarConfig: NavBarConfig = {
 			],
 		},
 		{
-			name: "My",
+			name: i18n(I18nKey.navPersonal),
 			url: "#",
 			icon: "material-symbols:person",
 			children: [
 				{
-					name: "Anime",
+					name: i18n(I18nKey.anime),
 					url: "/anime/",
 					icon: "material-symbols:movie",
 				},
 				{
-					name: "Diary",
+					name: i18n(I18nKey.moments),
 					url: "/moments/",
 					icon: "material-symbols:book",
 				},
 				{
-					name: "Gallery",
+					name: i18n(I18nKey.albums),
 					url: "/albums/",
 					icon: "material-symbols:photo-library",
 				},
 			],
 		},
 		{
-			name: "About",
+			name: i18n(I18nKey.about),
 			url: "#",
 			icon: "material-symbols:info",
 			children: [
 				{
-					name: "About",
+					name: i18n(I18nKey.about),
 					url: "/about/",
 					icon: "material-symbols:person",
 				},
 				{
-					name: "Friends",
+					name: i18n(I18nKey.friends),
 					url: "/friends/",
 					icon: "material-symbols:group",
 				},
 			],
 		},
 		{
-			name: "Others",
+			name: i18n(I18nKey.navOthers),
 			url: "#",
 			icon: "material-symbols:more-horiz",
 			children: [
 				{
-					name: "Projects",
+					name: i18n(I18nKey.coursework),
+					url: "/coursework/",
+					pageKey: "coursework",
+					icon: "material-symbols:school-outline-rounded",
+				},
+				{
+					name: i18n(I18nKey.projects),
 					url: "/projects/",
 					icon: "material-symbols:work",
 				},
 				{
-					name: "Skills",
+					name: i18n(I18nKey.skills),
 					url: "/skills/",
 					icon: "material-symbols:psychology",
 				},
 				{
-					name: "Timeline",
+					name: i18n(I18nKey.timeline),
 					url: "/timeline/",
 					icon: "material-symbols:timeline",
 				},
